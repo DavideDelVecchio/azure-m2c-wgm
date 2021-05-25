@@ -81,17 +81,19 @@ To demonstrate the migration process, and help you understand it, a
 You can optionally execute the migration process vs this data, or
 simply observe the output artifacts from it.
 
-## Reference Databases 
+### Reference Databases 
 
 Two sample databases have been implemented.  They are:
 
 - **openflights** (airports, airplanes, routes, etc)
 - **olympics** (results of the summer and olympic games 1896-2016)
 
-You can load this data into your dev/test database as follows:
+You can load this data into your dev/test database by executing
+the following scripts:
 
 ```
 $ cd reference_app/databases
+
 ./mongo_recreate_olympics_db.sh
 ./mongo_recreate_openflights_db.sh
 ```
@@ -100,7 +102,7 @@ The above scripts use the **mongoimport** program to load a curated set of
 datafiles in this repo.  These scripts assume a mongo database running at
 localhost:27017; if your dev/test is elsewhere simply modify these two scripts.
 
-## Reference Metadata
+### Reference Metadata
 
 The metadata for these two databases has been extracted, and is in this repo
 for your reference in the following two files.
@@ -110,8 +112,8 @@ reference_app/data/meta/olympics_metadata.json
 reference_app/data/meta/openflights_metadata.json
 ```
 
-## Reference Artifacts
+### Reference Artifacts
 
 Similarly, this repo contains sample code/script/file artifacts that
-was generated from this metadata.  See the **reference_app/artifacts**
+was generated from this metadata.  See the **reference_app/artifacts/**
 directory.
