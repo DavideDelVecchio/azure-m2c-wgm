@@ -148,7 +148,7 @@ def generate_games_import_commands():
         print("    --collection g{} \\".format(game))
         print("    --file olympics/import_json/{}.json \\".format(game))
         print("    --numInsertionWorkers 1 \\")
-        print("    --batchSize 10")
+        print("    --batchSize 24")
         print('sleep 3')
 
 def generate_mongo_init_commands():
