@@ -1,6 +1,6 @@
 # azure-m2c-wgm
 
-<p align="center"><img src="doc/architecture.png" width="99%" border="1"></p>
+<p align="center"><img src="doc/architecture.png" width="99%"></p>
 
 ---
 
