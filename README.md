@@ -4,11 +4,12 @@
 
 ---
 
-This repo contains:
+## This repo contains:
+
 - The metadata-driven migration process
 - A reference implementation of it, including reference databases
 
-Directory map of this repo:
+### Directory map of this repo:
 
 ```
 ├── doc
@@ -125,3 +126,13 @@ reference_app/data/meta/openflights_metadata.json
 Similarly, this repo contains sample code/script/file artifacts that
 was generated from this metadata.  See the **reference_app/artifacts/**
 directory.
+
+---
+
+## Execution
+
+Clone this repo:
+
+```
+$ git clone https://github.com/cjoakim/azure-m2c-wgm.git
+```
