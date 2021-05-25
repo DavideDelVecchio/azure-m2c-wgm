@@ -149,4 +149,4 @@ switched to db openflights
 
 ### Repairing a mongod database on macOS
 
-See [mongod_repair_macos](mongod_repair_macos.md)
+See [mongod_repair_macos](databases/mongod_macos_repair.sh)
