@@ -1,6 +1,6 @@
 {
   "dbname": "openflights",
-  "utc_datetime": "2021-05-23T19:55:39.598033+00:00",
+  "utc_datetime": "2021-05-25T17:55:10.878439+00:00",
   "collections": [
     {
       "name": "airports",
@@ -17,8 +17,7 @@
             "key": {
               "_id": 1
             },
-            "name": "_id_",
-            "ns": "openflights.airports"
+            "name": "_id_"
           }
         ],
         "stats": {
@@ -26,48 +25,17 @@
           "size": 2626623,
           "count": 7698,
           "avgObjSize": 341,
-          "storageSize": 1159168,
+          "storageSize": 876544,
+          "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
-          "totalIndexSize": 81920,
+          "indexBuilds": [],
+          "totalIndexSize": 86016,
+          "totalSize": 962560,
           "indexSizes": {
-            "_id_": 81920
+            "_id_": 86016
           },
-          "ok": 1.0
-        }
-      }
-    },
-    {
-      "name": "routes",
-      "wrangling": {
-        "pk_attr_name": "pk",
-        "pk_attr_logic": [],
-        "excludes": []
-      },
-      "metadata": {
-        "doc_count": 67663,
-        "indexes": [
-          {
-            "v": 2,
-            "key": {
-              "_id": 1
-            },
-            "name": "_id_",
-            "ns": "openflights.routes"
-          }
-        ],
-        "stats": {
-          "ns": "openflights.routes",
-          "size": 15503770,
-          "count": 67663,
-          "avgObjSize": 229,
-          "storageSize": 3198976,
-          "capped": false,
-          "nindexes": 1,
-          "totalIndexSize": 618496,
-          "indexSizes": {
-            "_id_": 618496
-          },
+          "scaleFactor": 1,
           "ok": 1.0
         }
       }
@@ -87,8 +55,7 @@
             "key": {
               "_id": 1
             },
-            "name": "_id_",
-            "ns": "openflights.planes"
+            "name": "_id_"
           }
         ],
         "stats": {
@@ -96,13 +63,55 @@
           "size": 19699,
           "count": 246,
           "avgObjSize": 80,
-          "storageSize": 20480,
+          "storageSize": 24576,
+          "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
-          "totalIndexSize": 16384,
+          "indexBuilds": [],
+          "totalIndexSize": 20480,
+          "totalSize": 45056,
           "indexSizes": {
-            "_id_": 16384
+            "_id_": 20480
           },
+          "scaleFactor": 1,
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "routes",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 67663,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_"
+          }
+        ],
+        "stats": {
+          "ns": "openflights.routes",
+          "size": 15503770,
+          "count": 67663,
+          "avgObjSize": 229,
+          "storageSize": 2277376,
+          "freeStorageSize": 0,
+          "capped": false,
+          "nindexes": 1,
+          "indexBuilds": [],
+          "totalIndexSize": 618496,
+          "totalSize": 2895872,
+          "indexSizes": {
+            "_id_": 618496
+          },
+          "scaleFactor": 1,
           "ok": 1.0
         }
       }
@@ -122,8 +131,7 @@
             "key": {
               "_id": 1
             },
-            "name": "_id_",
-            "ns": "openflights.airlines"
+            "name": "_id_"
           }
         ],
         "stats": {
@@ -131,13 +139,17 @@
           "size": 1048944,
           "count": 6161,
           "avgObjSize": 170,
-          "storageSize": 479232,
+          "storageSize": 368640,
+          "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
-          "totalIndexSize": 65536,
+          "indexBuilds": [],
+          "totalIndexSize": 69632,
+          "totalSize": 438272,
           "indexSizes": {
-            "_id_": 65536
+            "_id_": 69632
           },
+          "scaleFactor": 1,
           "ok": 1.0
         }
       }
@@ -157,8 +169,7 @@
             "key": {
               "_id": 1
             },
-            "name": "_id_",
-            "ns": "openflights.countries"
+            "name": "_id_"
           }
         ],
         "stats": {
@@ -166,13 +177,17 @@
           "size": 20643,
           "count": 261,
           "avgObjSize": 79,
-          "storageSize": 20480,
+          "storageSize": 24576,
+          "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
-          "totalIndexSize": 16384,
+          "indexBuilds": [],
+          "totalIndexSize": 20480,
+          "totalSize": 45056,
           "indexSizes": {
-            "_id_": 16384
+            "_id_": 20480
           },
+          "scaleFactor": 1,
           "ok": 1.0
         }
       }
@@ -185,12 +200,13 @@
     "objects": 82029,
     "avgObjSize": 234.3034658474442,
     "dataSize": 19219679.0,
-    "storageSize": 4878336.0,
-    "numExtents": 0,
+    "storageSize": 3571712.0,
     "indexes": 5,
-    "indexSize": 798720.0,
-    "fsUsedSize": 1058251378688.0,
-    "fsTotalSize": 1121118199808.0,
+    "indexSize": 815104.0,
+    "totalSize": 4386816.0,
+    "scaleFactor": 1.0,
+    "fsUsedSize": 350166016000.0,
+    "fsTotalSize": 1000240963584.0,
     "ok": 1.0
   }
 }
