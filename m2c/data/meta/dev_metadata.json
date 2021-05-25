@@ -1,0 +1,781 @@
+{
+  "dbname": "dev",
+  "collections": [
+    {
+      "name": "1900_summer",
+      "count": 5808,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1900_summer"
+        }
+      ]
+    },
+    {
+      "name": "1912_summer",
+      "count": 12120,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1912_summer"
+        }
+      ]
+    },
+    {
+      "name": "1964_summer",
+      "count": 23106,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1964_summer"
+        }
+      ]
+    },
+    {
+      "name": "1956_winter",
+      "count": 3921,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1956_winter"
+        }
+      ]
+    },
+    {
+      "name": "1980_summer",
+      "count": 21573,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1980_summer"
+        }
+      ]
+    },
+    {
+      "name": "1968_winter",
+      "count": 5673,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1968_winter"
+        }
+      ]
+    },
+    {
+      "name": "1972_winter",
+      "count": 4965,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1972_winter"
+        }
+      ]
+    },
+    {
+      "name": "1932_summer",
+      "count": 8907,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1932_summer"
+        }
+      ]
+    },
+    {
+      "name": "2002_winter",
+      "count": 12327,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2002_winter"
+        }
+      ]
+    },
+    {
+      "name": "1998_winter",
+      "count": 10815,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1998_winter"
+        }
+      ]
+    },
+    {
+      "name": "1968_summer",
+      "count": 25764,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1968_summer"
+        }
+      ]
+    },
+    {
+      "name": "2000_summer",
+      "count": 41463,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2000_summer"
+        }
+      ]
+    },
+    {
+      "name": "1932_winter",
+      "count": 1056,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1932_winter"
+        }
+      ]
+    },
+    {
+      "name": "1948_winter",
+      "count": 3225,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1948_winter"
+        }
+      ]
+    },
+    {
+      "name": "1952_winter",
+      "count": 3264,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1952_winter"
+        }
+      ]
+    },
+    {
+      "name": "1924_winter",
+      "count": 1380,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1924_winter"
+        }
+      ]
+    },
+    {
+      "name": "1960_summer",
+      "count": 24357,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1960_summer"
+        }
+      ]
+    },
+    {
+      "name": "1976_winter",
+      "count": 5583,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1976_winter"
+        }
+      ]
+    },
+    {
+      "name": "1992_summer",
+      "count": 38931,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1992_summer"
+        }
+      ]
+    },
+    {
+      "name": "2008_summer",
+      "count": 40806,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2008_summer"
+        }
+      ]
+    },
+    {
+      "name": "1992_winter",
+      "count": 10308,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1992_winter"
+        }
+      ]
+    },
+    {
+      "name": "2010_winter",
+      "count": 13206,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2010_winter"
+        }
+      ]
+    },
+    {
+      "name": "2006_winter",
+      "count": 13146,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2006_winter"
+        }
+      ]
+    },
+    {
+      "name": "1988_winter",
+      "count": 7917,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1988_winter"
+        }
+      ]
+    },
+    {
+      "name": "1972_summer",
+      "count": 30912,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1972_summer"
+        }
+      ]
+    },
+    {
+      "name": "1936_summer",
+      "count": 19518,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1936_summer"
+        }
+      ]
+    },
+    {
+      "name": "countries",
+      "count": 230,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.countries"
+        },
+        {
+          "v": 2,
+          "unique": true,
+          "key": {
+            "NOC": 1.0
+          },
+          "name": "NOC_1",
+          "ns": "dev.countries"
+        },
+        {
+          "v": 2,
+          "key": {
+            "region": 1.0
+          },
+          "name": "region_1",
+          "ns": "dev.countries"
+        }
+      ]
+    },
+    {
+      "name": "1928_summer",
+      "count": 14976,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1928_summer"
+        }
+      ]
+    },
+    {
+      "name": "1980_winter",
+      "count": 5238,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1980_winter"
+        }
+      ]
+    },
+    {
+      "name": "1948_summer",
+      "count": 19215,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1948_summer"
+        }
+      ]
+    },
+    {
+      "name": "1924_summer",
+      "count": 15699,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1924_summer"
+        }
+      ]
+    },
+    {
+      "name": "games",
+      "count": 51,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.games"
+        },
+        {
+          "v": 2,
+          "unique": true,
+          "key": {
+            "games": 1.0
+          },
+          "name": "games_1",
+          "ns": "dev.games"
+        },
+        {
+          "v": 2,
+          "key": {
+            "city": 1.0
+          },
+          "name": "city_1",
+          "ns": "dev.games"
+        }
+      ]
+    },
+    {
+      "name": "1956_summer",
+      "count": 15381,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1956_summer"
+        }
+      ]
+    },
+    {
+      "name": "1988_summer",
+      "count": 36111,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1988_summer"
+        }
+      ]
+    },
+    {
+      "name": "1994_winter",
+      "count": 9480,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1994_winter"
+        }
+      ]
+    },
+    {
+      "name": "1996_summer",
+      "count": 41340,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1996_summer"
+        }
+      ]
+    },
+    {
+      "name": "1896_summer",
+      "count": 1140,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1896_summer"
+        }
+      ]
+    },
+    {
+      "name": "2004_summer",
+      "count": 40329,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2004_summer"
+        }
+      ]
+    },
+    {
+      "name": "1908_summer",
+      "count": 9303,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1908_summer"
+        }
+      ]
+    },
+    {
+      "name": "1960_winter",
+      "count": 3348,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1960_winter"
+        }
+      ]
+    },
+    {
+      "name": "1906_summer",
+      "count": 5199,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1906_summer"
+        }
+      ]
+    },
+    {
+      "name": "1904_summer",
+      "count": 3903,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1904_summer"
+        }
+      ]
+    },
+    {
+      "name": "1920_summer",
+      "count": 12876,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1920_summer"
+        }
+      ]
+    },
+    {
+      "name": "1936_winter",
+      "count": 2685,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1936_winter"
+        }
+      ]
+    },
+    {
+      "name": "1964_winter",
+      "count": 5334,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1964_winter"
+        }
+      ]
+    },
+    {
+      "name": "2016_summer",
+      "count": 41064,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2016_summer"
+        }
+      ]
+    },
+    {
+      "name": "1984_winter",
+      "count": 6402,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1984_winter"
+        }
+      ]
+    },
+    {
+      "name": "1976_summer",
+      "count": 25923,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1976_summer"
+        }
+      ]
+    },
+    {
+      "name": "2012_summer",
+      "count": 38760,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2012_summer"
+        }
+      ]
+    },
+    {
+      "name": "1952_summer",
+      "count": 24810,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1952_summer"
+        }
+      ]
+    },
+    {
+      "name": "1928_winter",
+      "count": 1746,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1928_winter"
+        }
+      ]
+    },
+    {
+      "name": "2014_winter",
+      "count": 14673,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.2014_winter"
+        }
+      ]
+    },
+    {
+      "name": "1984_summer",
+      "count": 28362,
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_",
+          "ns": "dev.1984_summer"
+        }
+      ]
+    }
+  ]
+}

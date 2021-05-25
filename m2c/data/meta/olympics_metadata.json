@@ -1,0 +1,1914 @@
+{
+  "dbname": "olympics",
+  "utc_datetime": "2021-05-23T19:55:38.856213+00:00",
+  "collections": [
+    {
+      "name": "1936_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 6506,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1936_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1936_summer",
+          "size": 2097744,
+          "count": 6506,
+          "avgObjSize": 322,
+          "storageSize": 626688,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 69632,
+          "indexSizes": {
+            "_id_": 69632
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1948_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1075,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1948_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1948_winter",
+          "size": 355407,
+          "count": 1075,
+          "avgObjSize": 330,
+          "storageSize": 118784,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 20480,
+          "indexSizes": {
+            "_id_": 20480
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1906_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1733,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1906_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1906_summer",
+          "size": 566422,
+          "count": 1733,
+          "avgObjSize": 326,
+          "storageSize": 176128,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2012_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 12920,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2012_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2012_summer",
+          "size": 4196423,
+          "count": 12920,
+          "avgObjSize": 324,
+          "storageSize": 1245184,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 126976,
+          "indexSizes": {
+            "_id_": 126976
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1956_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1307,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1956_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1956_winter",
+          "size": 441216,
+          "count": 1307,
+          "avgObjSize": 337,
+          "storageSize": 143360,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 24576,
+          "indexSizes": {
+            "_id_": 24576
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1980_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1746,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1980_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1980_winter",
+          "size": 584333,
+          "count": 1746,
+          "avgObjSize": 334,
+          "storageSize": 184320,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1920_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4292,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1920_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1920_summer",
+          "size": 1409607,
+          "count": 4292,
+          "avgObjSize": 328,
+          "storageSize": 425984,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 49152
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1924_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 460,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1924_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1924_winter",
+          "size": 151977,
+          "count": 460,
+          "avgObjSize": 330,
+          "storageSize": 57344,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 16384,
+          "indexSizes": {
+            "_id_": 16384
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1956_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 5127,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1956_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1956_summer",
+          "size": 1682629,
+          "count": 5127,
+          "avgObjSize": 328,
+          "storageSize": 507904,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 57344,
+          "indexSizes": {
+            "_id_": 57344
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1988_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 12037,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1988_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1988_summer",
+          "size": 3900779,
+          "count": 12037,
+          "avgObjSize": 324,
+          "storageSize": 1159168,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 118784,
+          "indexSizes": {
+            "_id_": 118784
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1996_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 13780,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1996_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1996_summer",
+          "size": 4484940,
+          "count": 13780,
+          "avgObjSize": 325,
+          "storageSize": 1331200,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 135168,
+          "indexSizes": {
+            "_id_": 135168
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1984_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 2134,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1984_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1984_winter",
+          "size": 709202,
+          "count": 2134,
+          "avgObjSize": 332,
+          "storageSize": 221184,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1904_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1301,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1904_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1904_summer",
+          "size": 434585,
+          "count": 1301,
+          "avgObjSize": 334,
+          "storageSize": 139264,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 24576,
+          "indexSizes": {
+            "_id_": 24576
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1932_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 352,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1932_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1932_winter",
+          "size": 117609,
+          "count": 352,
+          "avgObjSize": 334,
+          "storageSize": 45056,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 16384,
+          "indexSizes": {
+            "_id_": 16384
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1984_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 9454,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1984_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1984_summer",
+          "size": 3117534,
+          "count": 9454,
+          "avgObjSize": 329,
+          "storageSize": 929792,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 94208,
+          "indexSizes": {
+            "_id_": 94208
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2016_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 13688,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2016_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2016_summer",
+          "size": 4542081,
+          "count": 13688,
+          "avgObjSize": 331,
+          "storageSize": 1347584,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 135168,
+          "indexSizes": {
+            "_id_": 135168
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1960_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 8119,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1960_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1960_summer",
+          "size": 2628928,
+          "count": 8119,
+          "avgObjSize": 323,
+          "storageSize": 782336,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 81920,
+          "indexSizes": {
+            "_id_": 81920
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1976_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 8641,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1976_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1976_summer",
+          "size": 2835330,
+          "count": 8641,
+          "avgObjSize": 328,
+          "storageSize": 847872,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 90112,
+          "indexSizes": {
+            "_id_": 90112
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1994_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 3160,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1994_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1994_winter",
+          "size": 1064279,
+          "count": 3160,
+          "avgObjSize": 336,
+          "storageSize": 323584,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 40960,
+          "indexSizes": {
+            "_id_": 40960
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1952_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1088,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1952_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1952_winter",
+          "size": 352327,
+          "count": 1088,
+          "avgObjSize": 323,
+          "storageSize": 114688,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 20480,
+          "indexSizes": {
+            "_id_": 20480
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1964_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 7702,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1964_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1964_summer",
+          "size": 2500904,
+          "count": 7702,
+          "avgObjSize": 324,
+          "storageSize": 749568,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 81920,
+          "indexSizes": {
+            "_id_": 81920
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1968_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 8588,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1968_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1968_summer",
+          "size": 2849297,
+          "count": 8588,
+          "avgObjSize": 331,
+          "storageSize": 847872,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 90112,
+          "indexSizes": {
+            "_id_": 90112
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2014_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4891,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2014_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2014_winter",
+          "size": 1610341,
+          "count": 4891,
+          "avgObjSize": 329,
+          "storageSize": 483328,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 57344,
+          "indexSizes": {
+            "_id_": 57344
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1964_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1778,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1964_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1964_winter",
+          "size": 589583,
+          "count": 1778,
+          "avgObjSize": 331,
+          "storageSize": 184320,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1972_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 10304,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1972_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1972_summer",
+          "size": 3357363,
+          "count": 10304,
+          "avgObjSize": 325,
+          "storageSize": 999424,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 102400,
+          "indexSizes": {
+            "_id_": 102400
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1932_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 2969,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1932_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1932_summer",
+          "size": 1000444,
+          "count": 2969,
+          "avgObjSize": 336,
+          "storageSize": 303104,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 36864,
+          "indexSizes": {
+            "_id_": 36864
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1948_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 6405,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1948_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1948_summer",
+          "size": 2067951,
+          "count": 6405,
+          "avgObjSize": 322,
+          "storageSize": 618496,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 69632,
+          "indexSizes": {
+            "_id_": 69632
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1900_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1936,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1900_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1900_summer",
+          "size": 620743,
+          "count": 1936,
+          "avgObjSize": 320,
+          "storageSize": 192512,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1936_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 895,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1936_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1936_winter",
+          "size": 305580,
+          "count": 895,
+          "avgObjSize": 341,
+          "storageSize": 102400,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 20480,
+          "indexSizes": {
+            "_id_": 20480
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2000_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 13821,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2000_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2000_summer",
+          "size": 4491369,
+          "count": 13821,
+          "avgObjSize": 324,
+          "storageSize": 1331200,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 135168,
+          "indexSizes": {
+            "_id_": 135168
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2006_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4382,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2006_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2006_winter",
+          "size": 1448889,
+          "count": 4382,
+          "avgObjSize": 330,
+          "storageSize": 438272,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 49152
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1960_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1116,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1960_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1960_winter",
+          "size": 375473,
+          "count": 1116,
+          "avgObjSize": 336,
+          "storageSize": 122880,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 20480,
+          "indexSizes": {
+            "_id_": 20480
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1928_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4992,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1928_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1928_summer",
+          "size": 1637987,
+          "count": 4992,
+          "avgObjSize": 328,
+          "storageSize": 491520,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 57344,
+          "indexSizes": {
+            "_id_": 57344
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2008_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 13602,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2008_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2008_summer",
+          "size": 4430066,
+          "count": 13602,
+          "avgObjSize": 325,
+          "storageSize": 1314816,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 131072,
+          "indexSizes": {
+            "_id_": 131072
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1908_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 3101,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1908_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1908_summer",
+          "size": 1005815,
+          "count": 3101,
+          "avgObjSize": 324,
+          "storageSize": 307200,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 40960,
+          "indexSizes": {
+            "_id_": 40960
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1952_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 8270,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1952_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1952_summer",
+          "size": 2685687,
+          "count": 8270,
+          "avgObjSize": 324,
+          "storageSize": 798720,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 86016,
+          "indexSizes": {
+            "_id_": 86016
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1968_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1891,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1968_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1968_winter",
+          "size": 627160,
+          "count": 1891,
+          "avgObjSize": 331,
+          "storageSize": 196608,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1988_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 2639,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1988_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1988_winter",
+          "size": 871033,
+          "count": 2639,
+          "avgObjSize": 330,
+          "storageSize": 266240,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 32768,
+          "indexSizes": {
+            "_id_": 32768
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2010_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4402,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2010_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2010_winter",
+          "size": 1470808,
+          "count": 4402,
+          "avgObjSize": 334,
+          "storageSize": 442368,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 49152
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2004_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 13443,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2004_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2004_summer",
+          "size": 4366662,
+          "count": 13443,
+          "avgObjSize": 324,
+          "storageSize": 1294336,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 131072,
+          "indexSizes": {
+            "_id_": 131072
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1976_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1861,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1976_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1976_winter",
+          "size": 617726,
+          "count": 1861,
+          "avgObjSize": 331,
+          "storageSize": 192512,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 28672,
+          "indexSizes": {
+            "_id_": 28672
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1928_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 582,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1928_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1928_winter",
+          "size": 193030,
+          "count": 582,
+          "avgObjSize": 331,
+          "storageSize": 69632,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 20480,
+          "indexSizes": {
+            "_id_": 20480
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1998_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 3605,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1998_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1998_winter",
+          "size": 1194597,
+          "count": 3605,
+          "avgObjSize": 331,
+          "storageSize": 364544,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 45056,
+          "indexSizes": {
+            "_id_": 45056
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1912_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4040,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1912_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1912_summer",
+          "size": 1330500,
+          "count": 4040,
+          "avgObjSize": 329,
+          "storageSize": 401408,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 49152
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "games",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 51,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.games"
+          },
+          {
+            "v": 2,
+            "unique": true,
+            "key": {
+              "games": 1.0
+            },
+            "name": "games_1",
+            "ns": "olympics.games"
+          },
+          {
+            "v": 2,
+            "key": {
+              "city": 1.0
+            },
+            "name": "city_1",
+            "ns": "olympics.games"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.games",
+          "size": 3289,
+          "count": 51,
+          "avgObjSize": 64,
+          "storageSize": 16384,
+          "capped": false,
+          "nindexes": 3,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 16384,
+            "games_1": 16384,
+            "city_1": 16384
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1924_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 5233,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1924_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1924_summer",
+          "size": 1678074,
+          "count": 5233,
+          "avgObjSize": 320,
+          "storageSize": 503808,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 57344,
+          "indexSizes": {
+            "_id_": 57344
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1992_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 12977,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1992_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1992_summer",
+          "size": 4250199,
+          "count": 12977,
+          "avgObjSize": 327,
+          "storageSize": 1261568,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 126976,
+          "indexSizes": {
+            "_id_": 126976
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1980_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 7191,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1980_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1980_summer",
+          "size": 2337030,
+          "count": 7191,
+          "avgObjSize": 324,
+          "storageSize": 700416,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 77824,
+          "indexSizes": {
+            "_id_": 77824
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1972_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 1655,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1972_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1972_winter",
+          "size": 548742,
+          "count": 1655,
+          "avgObjSize": 331,
+          "storageSize": 172032,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 24576,
+          "indexSizes": {
+            "_id_": 24576
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1896_summer",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 380,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1896_summer"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1896_summer",
+          "size": 122757,
+          "count": 380,
+          "avgObjSize": 323,
+          "storageSize": 45056,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 16384,
+          "indexSizes": {
+            "_id_": 16384
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "1992_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 3436,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.1992_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.1992_winter",
+          "size": 1151810,
+          "count": 3436,
+          "avgObjSize": 335,
+          "storageSize": 348160,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 40960,
+          "indexSizes": {
+            "_id_": 40960
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "2002_winter",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 4109,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.2002_winter"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.2002_winter",
+          "size": 1392560,
+          "count": 4109,
+          "avgObjSize": 338,
+          "storageSize": 421888,
+          "capped": false,
+          "nindexes": 1,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 49152
+          },
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "countries",
+      "wrangling": {
+        "pk_attr_name": "pk",
+        "pk_attr_logic": [],
+        "excludes": []
+      },
+      "metadata": {
+        "doc_count": 230,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_",
+            "ns": "olympics.countries"
+          },
+          {
+            "v": 2,
+            "unique": true,
+            "key": {
+              "NOC": 1.0
+            },
+            "name": "NOC_1",
+            "ns": "olympics.countries"
+          },
+          {
+            "v": 2,
+            "key": {
+              "region": 1.0
+            },
+            "name": "region_1",
+            "ns": "olympics.countries"
+          }
+        ],
+        "stats": {
+          "ns": "olympics.countries",
+          "size": 15995,
+          "count": 230,
+          "avgObjSize": 69,
+          "storageSize": 20480,
+          "capped": false,
+          "nindexes": 3,
+          "totalIndexSize": 49152,
+          "indexSizes": {
+            "_id_": 16384,
+            "NOC_1": 16384,
+            "region_1": 16384
+          },
+          "ok": 1.0
+        }
+      }
+    }
+  ],
+  "dbstats": {
+    "db": "olympics",
+    "collections": 53,
+    "views": 0,
+    "objects": 271397,
+    "avgObjSize": 327.2800215182924,
+    "dataSize": 88822816.0,
+    "storageSize": 26730496.0,
+    "numExtents": 0,
+    "indexes": 57,
+    "indexSize": 3121152.0,
+    "fsUsedSize": 1058251378688.0,
+    "fsTotalSize": 1121118199808.0,
+    "ok": 1.0
+  }
+}
