@@ -8,7 +8,7 @@ This repo contains:
 - The metadata-driven migration process
 - A reference implementation of it, including reference databases
 
-Directory map in this repo:
+Directory map of this repo:
 
 ```
 ├── doc
@@ -30,13 +30,15 @@ Directory map in this repo:
         │   └── raw
 ```
 
+---
+
 ## Implementation
 
-The implementation of this process primarily uses **Python3** and the 
-**Azure PaaS services** shown in the above diagram.  
+The implementation of this process primarily uses **Python3**, the **mongoexport program**,
+and the **Azure PaaS services** shown in the above diagram.  
 
 The current implementation uses and generates **bash** scripts for linux and macOS
-environments.  Windows **powershell** will be added soon.
+environments.  Windows **powershell** will be added in the near future.
 
 The **mongoexport** utility, and **file format**, is a core compoment of the migration process.
 **Azure Data Factory** understands this file format.
@@ -48,11 +50,12 @@ generate the many code, script, and file artifacts from this metadata.  This inc
 - Blob Upload scripts
 - Azure Container Instance execution scripts (optional)
 - Azure Data Factory (ADF) code artifacts - Linked Services, Datasets, Pipelines
+- Target Database initialization scripts (create containers, indexes)
 
 The mongoexport files exported from the source database are typically **wrangled**
 before being loaded into the target CosmosDB database, via ADF, from blob storage.
-The wrangling process can add a **partition key**, sometimes a **doctype**, 
-as well as other document modifications.
+The wrangling process can add a **partition key** attribute, sometimes a **doctype**
+attribute, as well as other document modifications.
 
 In some cases the data wrangling can use logic built into the standard python program.
 But in other cases that program will need ad-hoc modification per the needs of
@@ -60,11 +63,16 @@ the customer and their data.
 
 The data wrangling process can be executed in one of several places:
 - On-Prem Datacenter
-- In Azure Container Instances, as shown in the above diagram.
-- Elsewhere in Azure, such as on a VM.
+- In Azure Container Instances, as shown in the above diagram
+- Elsewhere in Azure, such as on a VM
 
 The output of the wrangling process is blob files in Azure Storage, in mongoexport/mongoimport
 format, and suitable for loading into the target CosmosDB database using ADF.
+
+The generated ADF artifacts can be added to the **git repo associated to your ADF**.
+Once these ADF Linked Services, Datasets, and Pipelines have been loaded into
+your ADF instance, the pipelines can be executed to load the various containers
+in your target CosmosDB account.
 
 ### Oplog
 
