@@ -1,0 +1,51 @@
+{"_id":{"$oid":"60ae879d063ec0c2613d7e16"},"games":"1906_summer","city":"athina"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e17"},"games":"1920_summer","city":"antwerpen"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e18"},"games":"1896_summer","city":"athina"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e19"},"games":"1900_summer","city":"paris"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e1a"},"games":"1948_winter","city":"sankt moritz"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e1b"},"games":"1952_summer","city":"helsinki"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e1c"},"games":"1956_winter","city":"cortina dampezzo"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e1d"},"games":"1952_winter","city":"oslo"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e1e"},"games":"1960_summer","city":"roma"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e1f"},"games":"1948_summer","city":"london"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e20"},"games":"1960_winter","city":"squaw valley"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e21"},"games":"1956_summer","city":"melbourne"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e22"},"games":"1964_summer","city":"tokyo"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e23"},"games":"1964_winter","city":"innsbruck"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e24"},"games":"1972_summer","city":"munich"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e25"},"games":"1968_winter","city":"grenoble"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e26"},"games":"1976_summer","city":"montreal"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e27"},"games":"1972_winter","city":"sapporo"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e28"},"games":"1980_winter","city":"lake placid"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e29"},"games":"1980_summer","city":"moskva"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e2a"},"games":"1976_winter","city":"innsbruck"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e2b"},"games":"1968_summer","city":"mexico city"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e2c"},"games":"1908_summer","city":"london"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e2d"},"games":"1904_summer","city":"st. louis"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e2e"},"games":"1932_summer","city":"los angeles"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e2f"},"games":"1912_summer","city":"stockholm"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e30"},"games":"1924_winter","city":"chamonix"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e31"},"games":"1932_winter","city":"lake placid"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e32"},"games":"1936_summer","city":"berlin"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e33"},"games":"1928_summer","city":"amsterdam"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e34"},"games":"1924_summer","city":"paris"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e35"},"games":"1928_winter","city":"sankt moritz"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e36"},"games":"1936_winter","city":"garmisch-partenkirchen"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e37"},"games":"1984_summer","city":"los angeles"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e38"},"games":"1984_winter","city":"sarajevo"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e39"},"games":"1988_summer","city":"seoul"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e3a"},"games":"1988_winter","city":"calgary"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e3b"},"games":"1992_summer","city":"barcelona"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e3c"},"games":"1994_winter","city":"lillehammer"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e3d"},"games":"1992_winter","city":"albertville"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e3e"},"games":"1996_summer","city":"atlanta"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e3f"},"games":"1998_winter","city":"nagano"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e40"},"games":"2000_summer","city":"sydney"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e41"},"games":"2002_winter","city":"salt lake city"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e42"},"games":"2004_summer","city":"athina"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e43"},"games":"2008_summer","city":"beijing"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e44"},"games":"2012_summer","city":"london"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e45"},"games":"2010_winter","city":"vancouver"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e46"},"games":"2006_winter","city":"torino"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e47"},"games":"2016_summer","city":"rio de janeiro"}
+{"_id":{"$oid":"60ae879d063ec0c2613d7e48"},"games":"2014_winter","city":"sochi"}

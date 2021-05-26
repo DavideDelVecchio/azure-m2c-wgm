@@ -21,10 +21,8 @@
     │   └── shell                  <--- generated shell scripts
     ├── data
     │   ├── meta                   <--- extracted metadata from the source databases
-    │   ├── olympics
-    │   │   └── mongoexports       <--- exported data from localhost sample database
-    │   └── openflights
-    │       └── mongoexports       <--- exported data from localhost sample database
+    │   ├── olympics               <--- exported mongoexports from localhost sample database
+    │   └── openflights            <--- exported mongoexports from localhost sample database
     └── databases
         ├── mongo                  <-- mongo init "ddl" files
         ├── olympics
