@@ -18,16 +18,23 @@
 │   │   └── __pycache__
 │   └── templates
 └── reference_app
-    ├── artifacts
+    ├── artifacts                  <--- generated artifacts
+    │   ├── adf
+    │   └── shell
     ├── data
-    │   └── meta
+    │   ├── adf
+    │   ├── meta                   <--- extracted metadata
+    │   ├── olympics
+    │   │   └── mongoexports
+    │   └── openflights
+    │       └── mongoexports
     └── databases
-        ├── mongo
+        ├── mongo                  <-- mongo init "ddl" files
         ├── olympics
-        │   ├── import_json
+        │   ├── import_json        <-- mongoimport files for sample database
         │   └── raw
         ├── openflights
-        │   ├── import_json
+        │   ├── import_json        <-- mongoimport files for sample database
         │   └── raw
 ```
 

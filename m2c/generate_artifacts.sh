@@ -7,16 +7,19 @@
 
 source env.sh
 
+echo 'ensuring target artifact directories exist ...'
 mkdir -p /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/adf
 mkdir -p /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell
 
-# format: 
-# python main.py generate_artifacts <dbname> <gen-flags>
+echo 'deleting previous generated artifacts ...'
+rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/adf/*.*
+rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell/*.*
 
+echo 'generating artifacts ...'
 python main.py generate_artifacts openflights --all
-
 python main.py generate_artifacts olympics --all
 
+echo 'making generated scripts executable ...'
 cp env.sh /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell
 chmod 744 /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell/*.sh 
 
