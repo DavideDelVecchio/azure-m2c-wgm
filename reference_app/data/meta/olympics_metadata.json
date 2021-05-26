@@ -1,6 +1,6 @@
 {
   "dbname": "olympics",
-  "utc_datetime": "2021-05-26T17:54:33.489079+00:00",
+  "utc_datetime": "2021-05-26T20:40:41.871911+00:00",
   "collections": [
     {
       "name": "games",
@@ -3287,7 +3287,7 @@
     "indexSize": 12914688.0,
     "totalSize": 33943552.0,
     "scaleFactor": 1.0,
-    "fsUsedSize": 351279427584.0,
+    "fsUsedSize": 351580209152.0,
     "fsTotalSize": 1000240963584.0,
     "ok": 1.0
   }
