@@ -7,8 +7,8 @@
 
 source env.sh
 
-mkdir -p artifacts/adf
-mkdir -p artifacts/shell
+mkdir -p /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/adf
+mkdir -p /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell
 
 # format: 
 # python main.py generate_artifacts <dbname> <gen-flags>
@@ -17,8 +17,7 @@ python main.py generate_artifacts openflights --all
 
 python main.py generate_artifacts olympics --all
 
-cp env.sh artifacts/shell/
-cp env.sh /Users/cjoakim/Downloads/m2c/artifacts/shell/
-chmod 744 /Users/cjoakim/Downloads/m2c/artifacts/shell/*.sh 
+cp env.sh /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell
+chmod 744 /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell/*.sh 
 
 echo 'done'

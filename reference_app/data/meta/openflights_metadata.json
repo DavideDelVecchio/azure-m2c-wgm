@@ -1,16 +1,16 @@
 {
   "dbname": "openflights",
-  "utc_datetime": "2021-05-25T17:55:10.878439+00:00",
+  "utc_datetime": "2021-05-26T17:54:34.314454+00:00",
   "collections": [
     {
-      "name": "airports",
+      "name": "airlines",
       "wrangling": {
         "pk_attr_name": "pk",
         "pk_attr_logic": [],
         "excludes": []
       },
       "metadata": {
-        "doc_count": 7698,
+        "doc_count": 6161,
         "indexes": [
           {
             "v": 2,
@@ -21,19 +21,19 @@
           }
         ],
         "stats": {
-          "ns": "openflights.airports",
-          "size": 2626623,
-          "count": 7698,
-          "avgObjSize": 341,
-          "storageSize": 876544,
+          "ns": "openflights.airlines",
+          "size": 1048944,
+          "count": 6161,
+          "avgObjSize": 170,
+          "storageSize": 368640,
           "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
           "indexBuilds": [],
-          "totalIndexSize": 86016,
-          "totalSize": 962560,
+          "totalIndexSize": 69632,
+          "totalSize": 438272,
           "indexSizes": {
-            "_id_": 86016
+            "_id_": 69632
           },
           "scaleFactor": 1,
           "ok": 1.0
@@ -101,13 +101,13 @@
           "size": 15503770,
           "count": 67663,
           "avgObjSize": 229,
-          "storageSize": 2277376,
+          "storageSize": 2281472,
           "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
           "indexBuilds": [],
           "totalIndexSize": 618496,
-          "totalSize": 2895872,
+          "totalSize": 2899968,
           "indexSizes": {
             "_id_": 618496
           },
@@ -117,14 +117,14 @@
       }
     },
     {
-      "name": "airlines",
+      "name": "airports",
       "wrangling": {
         "pk_attr_name": "pk",
         "pk_attr_logic": [],
         "excludes": []
       },
       "metadata": {
-        "doc_count": 6161,
+        "doc_count": 7698,
         "indexes": [
           {
             "v": 2,
@@ -135,19 +135,19 @@
           }
         ],
         "stats": {
-          "ns": "openflights.airlines",
-          "size": 1048944,
-          "count": 6161,
-          "avgObjSize": 170,
-          "storageSize": 368640,
+          "ns": "openflights.airports",
+          "size": 2626623,
+          "count": 7698,
+          "avgObjSize": 341,
+          "storageSize": 880640,
           "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
           "indexBuilds": [],
-          "totalIndexSize": 69632,
-          "totalSize": 438272,
+          "totalIndexSize": 86016,
+          "totalSize": 966656,
           "indexSizes": {
-            "_id_": 69632
+            "_id_": 86016
           },
           "scaleFactor": 1,
           "ok": 1.0
@@ -200,12 +200,12 @@
     "objects": 82029,
     "avgObjSize": 234.3034658474442,
     "dataSize": 19219679.0,
-    "storageSize": 3571712.0,
+    "storageSize": 3579904.0,
     "indexes": 5,
     "indexSize": 815104.0,
-    "totalSize": 4386816.0,
+    "totalSize": 4395008.0,
     "scaleFactor": 1.0,
-    "fsUsedSize": 350166016000.0,
+    "fsUsedSize": 351279427584.0,
     "fsTotalSize": 1000240963584.0,
     "ok": 1.0
   }
