@@ -21,6 +21,13 @@ cat /usr/local/var/log/mongodb/mongo.log
 #
 # $ brew tap mongodb/brew
 # $ brew install mongodb-community@4.4
+# To have launchd start mongodb/brew/mongodb-community now and restart at login:
+#   brew services start mongodb/brew/mongodb-community
+# Or, if you don't want/need a background service you can just run:
+#   mongod --config /usr/local/etc/mongod.conf
+# ==> Summary
+# 🍺  /usr/local/Cellar/mongodb-community/4.4.5: 11 files, 157.3MB, built in 6 seconds
+#
 # ... exit shell, start a new one
 #
 # $ $ mongo --version

@@ -30,7 +30,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1896_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1900_summer'
 mongoimport --db olympics \
@@ -38,7 +38,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1900_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1904_summer'
 mongoimport --db olympics \
@@ -46,7 +46,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1904_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1906_summer'
 mongoimport --db olympics \
@@ -54,7 +54,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1906_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1908_summer'
 mongoimport --db olympics \
@@ -62,7 +62,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1908_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1912_summer'
 mongoimport --db olympics \
@@ -70,7 +70,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1912_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1920_summer'
 mongoimport --db olympics \
@@ -78,7 +78,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1920_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1924_summer'
 mongoimport --db olympics \
@@ -86,7 +86,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1924_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1924_winter'
 mongoimport --db olympics \
@@ -94,7 +94,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1924_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1928_summer'
 mongoimport --db olympics \
@@ -102,7 +102,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1928_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1928_winter'
 mongoimport --db olympics \
@@ -110,7 +110,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1928_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1932_summer'
 mongoimport --db olympics \
@@ -118,7 +118,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1932_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1932_winter'
 mongoimport --db olympics \
@@ -126,7 +126,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1932_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1936_summer'
 mongoimport --db olympics \
@@ -134,7 +134,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1936_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1936_winter'
 mongoimport --db olympics \
@@ -142,7 +142,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1936_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1948_summer'
 mongoimport --db olympics \
@@ -150,7 +150,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1948_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1948_winter'
 mongoimport --db olympics \
@@ -158,7 +158,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1948_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1952_summer'
 mongoimport --db olympics \
@@ -166,7 +166,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1952_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1952_winter'
 mongoimport --db olympics \
@@ -174,7 +174,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1952_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1956_summer'
 mongoimport --db olympics \
@@ -182,7 +182,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1956_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1956_winter'
 mongoimport --db olympics \
@@ -190,7 +190,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1956_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1960_summer'
 mongoimport --db olympics \
@@ -198,7 +198,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1960_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1960_winter'
 mongoimport --db olympics \
@@ -206,7 +206,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1960_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1964_summer'
 mongoimport --db olympics \
@@ -214,7 +214,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1964_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1964_winter'
 mongoimport --db olympics \
@@ -222,7 +222,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1964_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1968_summer'
 mongoimport --db olympics \
@@ -230,7 +230,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1968_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1968_winter'
 mongoimport --db olympics \
@@ -238,7 +238,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1968_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1972_summer'
 mongoimport --db olympics \
@@ -246,7 +246,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1972_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1972_winter'
 mongoimport --db olympics \
@@ -254,7 +254,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1972_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1976_summer'
 mongoimport --db olympics \
@@ -262,7 +262,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1976_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1976_winter'
 mongoimport --db olympics \
@@ -270,7 +270,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1976_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1980_summer'
 mongoimport --db olympics \
@@ -278,7 +278,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1980_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1980_winter'
 mongoimport --db olympics \
@@ -286,7 +286,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1980_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1984_summer'
 mongoimport --db olympics \
@@ -294,7 +294,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1984_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1984_winter'
 mongoimport --db olympics \
@@ -302,7 +302,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1984_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1988_summer'
 mongoimport --db olympics \
@@ -310,7 +310,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1988_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1988_winter'
 mongoimport --db olympics \
@@ -318,7 +318,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1988_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1992_summer'
 mongoimport --db olympics \
@@ -326,7 +326,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1992_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1992_winter'
 mongoimport --db olympics \
@@ -334,7 +334,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1992_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1994_winter'
 mongoimport --db olympics \
@@ -342,7 +342,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1994_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1996_summer'
 mongoimport --db olympics \
@@ -350,7 +350,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1996_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g1998_winter'
 mongoimport --db olympics \
@@ -358,7 +358,7 @@ mongoimport --db olympics \
     --file olympics/import_json/1998_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2000_summer'
 mongoimport --db olympics \
@@ -366,7 +366,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2000_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2002_winter'
 mongoimport --db olympics \
@@ -374,7 +374,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2002_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2004_summer'
 mongoimport --db olympics \
@@ -382,7 +382,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2004_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2006_winter'
 mongoimport --db olympics \
@@ -390,7 +390,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2006_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2008_summer'
 mongoimport --db olympics \
@@ -398,7 +398,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2008_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2010_winter'
 mongoimport --db olympics \
@@ -406,7 +406,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2010_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2012_summer'
 mongoimport --db olympics \
@@ -414,7 +414,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2012_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2014_winter'
 mongoimport --db olympics \
@@ -422,7 +422,7 @@ mongoimport --db olympics \
     --file olympics/import_json/2014_winter.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'importing game g2016_summer'
 mongoimport --db olympics \
@@ -430,6 +430,6 @@ mongoimport --db olympics \
     --file olympics/import_json/2016_summer.json \
     --numInsertionWorkers 1 \
     --batchSize 24
-sleep 3
+sleep 1
 
 echo 'done'
