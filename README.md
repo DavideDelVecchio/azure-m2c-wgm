@@ -13,21 +13,18 @@
 
 ```
 ├── doc
-├── m2c
-│   ├── pysrc
-│   │   └── __pycache__
-│   └── templates
-└── reference_app
+├── m2c                            <--- implementation of the migration process
+│   └── templates                  <--- python Jinja2 text templates for artifacts
+└── reference_app                  <--- sample "source" databases for this process
     ├── artifacts                  <--- generated artifacts
-    │   ├── adf
-    │   └── shell
+    │   ├── adf                    <--- generated Azure Data Factory artifacts
+    │   └── shell                  <--- generated shell scripts
     ├── data
-    │   ├── adf
-    │   ├── meta                   <--- extracted metadata
+    │   ├── meta                   <--- extracted metadata from the source databases
     │   ├── olympics
-    │   │   └── mongoexports
+    │   │   └── mongoexports       <--- exported data from localhost sample database
     │   └── openflights
-    │       └── mongoexports
+    │       └── mongoexports       <--- exported data from localhost sample database
     └── databases
         ├── mongo                  <-- mongo init "ddl" files
         ├── olympics
@@ -128,11 +125,17 @@ reference_app/data/meta/olympics_metadata.json
 reference_app/data/meta/openflights_metadata.json
 ```
 
+These metadata files were created by script **m2c/extract_metadata.sh**
+in this repo.
+
 ### Reference Artifacts
 
 Similarly, this repo contains sample code/script/file artifacts that
 was generated from this metadata.  See the **reference_app/artifacts/**
 directory.
+
+These artifact files were created by script **m2c/generate_artifacts.sh**
+in this repo.
 
 ---
 
@@ -143,3 +146,6 @@ Clone this repo:
 ```
 $ git clone https://github.com/cjoakim/azure-m2c-wgm.git
 ```
+
+TODO - document this
+
