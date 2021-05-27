@@ -1,17 +1,26 @@
 """
 Usage:
-    python main.py read_db_metadata <conn-str-env-var> <db-name>
-    python main.py read_db_metadata localhost:27017 olympics
-    python main.py read_db_metadata localhost:27017 openflights
+    source env.sh ; python main.py read_db_metadata <conn-str-env-var> <db-name>
+    source env.sh ; python main.py read_db_metadata localhost:27017 olympics
+    source env.sh ; python main.py read_db_metadata localhost:27017 openflights
     -
-    python main.py generate_artifacts olympics --all
-    python main.py generate_artifacts openflights --mongoexports
+    source env.sh ; python main.py generate_artifacts olympics --all
+    source env.sh ; python main.py generate_artifacts openflights --mongoexports
+    -
+    source env.sh ; python main.py create_blob_container openflights-raw
+    source env.sh ; python main.py create_blob_container openflights-adf
+    source env.sh ; python main.py create_blob_container test
+    source env.sh ; python main.py delete_blob_container this-that-other
+    source env.sh ; python main.py list_blob_containers
+    source env.sh ; python main.py upload_blob local_file_path cname blob_name
+    source env.sh ; python main.py upload_blob requirements.in test requirements.in
+    source env.sh ; python main.py download_blob test aaa.txt aaa-down.txt
 """
 
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.05.25"
+__version__ = "2021.05.27"
 
 import json
 import os
@@ -28,6 +37,8 @@ from docopt import docopt
 from pymongo import MongoClient
 
 from pysrc.generator import Generator
+from pysrc.storage import Storage
+
 
 def db_metadata_file(dbname):
     data_dir = os.environ['M2C_ROOT_DATA_DIR']
@@ -128,6 +139,34 @@ def generate_artifacts(dbname):
     if (gen_artifact('--adf-pipelines')):
         generator.gen_adf_pipelines() 
 
+def list_blob_containers():
+    stor = Storage()
+    containers = stor.list_containers()
+    for idx, c in enumerate(containers):
+        # print(str(type(c))) # <class 'azure.storage.blob._models.ContainerProperties'>
+        print('{} {}'.format(idx + 1, c.name))
+
+def create_blob_container(cname):
+    print('create_blob_container; cname: {}'.format(cname))
+    stor = Storage()
+    stor.create_container(cname)
+
+def delete_blob_container(cname):
+    print('delete_blob_container; cname: {}'.format(cname))
+    stor = Storage()
+    stor.delete_container(cname)
+
+def upload_blob(local_file_path, cname, blob_name):
+    print('upload_blob; {} {} {}'.format(local_file_path, cname, blob_name))
+    stor = Storage()
+    stor.upload_blob(local_file_path, cname, blob_name)
+
+def download_blob(cname, blob_name, local_file_path):
+    print('download_blob; {} {} {}'.format(cname, blob_name, local_file_path))
+    stor = Storage()
+    stor.download_blob(cname, blob_name, local_file_path)
+
+
 def load_json_file(infile):
     with open(infile) as json_file:
         return json.load(json_file)
@@ -153,13 +192,44 @@ def print_options(msg):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         func = sys.argv[1].lower()
+
         if func == 'read_db_metadata':
             conn_str_env_var = sys.argv[2]
             dbname = sys.argv[3]
             read_db_metadata(conn_str_env_var, dbname)
+
         elif func == 'generate_artifacts':
             dbname = sys.argv[2]
             generate_artifacts(dbname)
+
+        elif func == 'list_blob_containers':
+            list_blob_containers()
+
+        elif func == 'create_blob_container':
+            cname = sys.argv[2]
+            create_blob_container(cname)
+
+        elif func == 'delete_blob_container':
+            cname = sys.argv[2]
+            delete_blob_container(cname)
+
+        elif func == 'upload_blob':
+            print(len(sys.argv))
+            local_file_path = sys.argv[2]
+            cname = sys.argv[3]
+            if len(sys.argv) > 4:
+                blob_name = sys.argv[4]
+            else:
+                blob_name = os.path.basename(local_file_path) 
+            upload_blob(local_file_path, cname, blob_name)
+
+        elif func == 'download_blob':
+            print(len(sys.argv))
+            cname = sys.argv[2]
+            blob_name = sys.argv[3]
+            local_file_path = sys.argv[4]
+            download_blob(cname, blob_name, local_file_path)
+
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:
