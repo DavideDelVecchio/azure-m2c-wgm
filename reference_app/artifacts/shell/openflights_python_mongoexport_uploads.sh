@@ -19,4 +19,6 @@ python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/
 python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__routes__source.json openflights-raw openflights__routes__source.json
 
 
+python storage.py list_blob_container openflights-raw
+
 echo 'done'

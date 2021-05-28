@@ -5,6 +5,7 @@ Usage:
     source env.sh ; python storage.py create_blob_container test
     source env.sh ; python storage.py delete_blob_container this-that-other
     source env.sh ; python storage.py list_blob_containers
+    source env.sh ; python storage.py list_blob_container openflights-raw
     source env.sh ; python storage.py upload_blob local_file_path cname blob_name
     source env.sh ; python storage.py upload_blob requirements.in test requirements.in
     source env.sh ; python storage.py download_blob test aaa.txt aaa-down.txt
@@ -110,6 +111,13 @@ def list_blob_containers():
         # print(str(type(c))) # <class 'azure.storage.blob._models.ContainerProperties'>
         print('{} {}'.format(idx + 1, c.name))
 
+def list_blob_container(cname):
+    stor = StorageUtil()
+    blobs = stor.list_container(cname)
+    for idx, b in enumerate(blobs):
+        #print(str(type(b))) # <class 'azure.storage.blob._models.BlobProperties'>
+        print('{} {}'.format(idx + 1, b.name))
+
 def create_blob_container(cname):
     print('create_blob_container; cname: {}'.format(cname))
     stor = StorageUtil()
@@ -158,6 +166,10 @@ if __name__ == "__main__":
 
         if func == 'list_blob_containers':
             list_blob_containers()
+
+        elif func == 'list_blob_container':
+            cname = sys.argv[2]
+            list_blob_container(cname)
 
         elif func == 'create_blob_container':
             cname = sys.argv[2]

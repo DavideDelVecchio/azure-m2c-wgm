@@ -20,7 +20,6 @@ cp storage.py templates
 
 echo 'generating artifacts ...'
 python main.py generate_artifacts openflights --all
-python main.py generate_artifacts openflights --create-containers
 # python main.py generate_artifacts olympics --all
 
 # 

@@ -7,8 +7,16 @@
 
 source env.sh
 
+# Uncomment, as necessary, to delete and recreate the storage container:
+# python storage.py delete_blob_container {{ container }}
+# sleep 10
+# python storage.py create_blob_container {{ container }}
+# sleep 10
+
 {% for c in collections %}
-python storage.py upload_blob {{ c['local_file_path'] }} {{ c['cname'] }} {{ c['blob_name'] }}
+python storage.py upload_blob {{ c['local_file_path'] }} {{container }} {{ c['blob_name'] }}
 {% endfor %}
+
+python storage.py list_blob_container {{ container }}
 
 echo 'done'

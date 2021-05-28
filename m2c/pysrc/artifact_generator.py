@@ -91,7 +91,6 @@ class ArtifactGenerator(object):
         template_data = dict()
         container_names = list()
         for metadata_file in metadata_files:
-            print('globbed {}'.format(metadata_file))
             meta = self.load_json_file(metadata_file)
             dbname = meta['dbname']
             container_names.append('{}-raw'.format(dbname))
@@ -104,7 +103,6 @@ class ArtifactGenerator(object):
         outfile = '{}/python_create_containers.sh'.format(self.shell_artifacts_dir)
         self.write(outfile, s)
 
-
     def gen_python_uploads(self):
         mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
 
@@ -113,13 +111,13 @@ class ArtifactGenerator(object):
         template_data['dbname'] = self.dbname
         template_data['gentimestamp'] = self.timestamp()
         template_data['collections'] = collection_data
+        template_data['container'] = '{}-raw'.format(self.dbname)
 
         for c in self.collections:
             cname = c['name']
             local_file = self.app_config.mongoexport_file(self.dbname, cname)
             coll_dict = dict()
             coll_dict['local_file_path'] = local_file
-            coll_dict['cname'] = '{}-raw'.format(self.dbname)
             coll_dict['blob_name'] = os.path.basename(local_file)
             collection_data.append(coll_dict)
 
