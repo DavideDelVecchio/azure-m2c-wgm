@@ -1,15 +1,20 @@
 ## Development TODO List
 
 - TODO Quality Control - file sizes
+- TODO File Map Excel Report?
+- TODO Run MongoDB with a Docker container?
 
 - TODO ADF/git integration and testing
+
 - TODO ACI Script Testing
-- TODO Script Generation
-- TODO Implement Wrangling Rules
+- TODO ACI Script Generation
+- TODO Create Dockerfile and Container
 
-- TODO File Map Excel Report
+- TODO Implement Wrangling Rules, wrangle.py
 
-- TODO File Uploads - az CLI 
+- Done Add pytest, pytest-cov, and first tests of AppConfig
+
+- Done File Uploads - az CLI 
 - Done File Uploads - Python 
 
 - Done Generate Customer-Edited Mapping File

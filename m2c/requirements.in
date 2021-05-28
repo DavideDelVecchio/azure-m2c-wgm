@@ -4,3 +4,6 @@ arrow
 azure-storage-blob
 docopt
 pymongo
+
+pytest
+pytest-cov
