@@ -3,7 +3,7 @@
 # Bash shell script to export each source collection via mongoexport.
 #
 # Database Name: openflights
-# Generated on:  
+# Generated on:  2021-05-28 18:22:18 UTC
 
 source env.sh
 

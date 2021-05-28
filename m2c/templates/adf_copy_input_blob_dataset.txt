@@ -2,7 +2,7 @@
     "name": "{{ dataset_name }}",
     "properties": {
         "linkedServiceName": {
-            "referenceName": "{{ blob_linked_service }}",
+            "referenceName": "{{ blob_linked_svc }}",
             "type": "LinkedServiceReference"
         },
         "annotations": [],

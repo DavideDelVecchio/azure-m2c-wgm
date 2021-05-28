@@ -121,9 +121,9 @@ def generate_mapping_file(dbname):
 
 def generate_artifacts(dbname):
     print('generate_artifacts {} {}'.format(dbname, sys.argv))
-    infile = app_config.db_mapping_file(dbname)
-    mapping_data = load_json_file(infile)
-    generator = ArtifactGenerator(dbname, mapping_data)
+    infile = app_config.db_metadata_file(dbname)
+    db_metadata = load_json_file(infile)
+    generator = ArtifactGenerator(dbname, db_metadata)
 
     if (gen_artifact('--mongoexports')):
         generator.gen_mongoexports()
@@ -136,9 +136,6 @@ def generate_artifacts(dbname):
 
     if (gen_artifact('--file-wrangle-script')):
         generator.gen_file_wrangle_script() 
-
-    if (gen_artifact('--py-uploads')):
-        generator.gen_python_uploads() 
 
     if (gen_artifact('--adf-datasets')):
         generator.gen_adf_datasets() 
