@@ -38,9 +38,6 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--mongoexports')):
             self.gen_mongoexports()
 
-        if (self.gen_artifact('--blob-uploads')):
-            self.gen_blob_uploads() 
-
         if (self.gen_artifact('--file-wrangle-script')):
             self.gen_aci_wrangle_script() 
 
@@ -52,6 +49,9 @@ class ArtifactGenerator(object):
 
         if (self.gen_artifact('--py-uploads')):
             self.gen_python_uploads() 
+
+        if (self.gen_artifact('--az-cli-uploads')):
+            self.gen_az_cli_uploads() 
 
         if (self.gen_artifact('--adf-datasets')):
             self.gen_adf_datasets() 
@@ -135,8 +135,31 @@ class ArtifactGenerator(object):
             outfile = '{}/{}'.format(self.shell_artifacts_dir, tname)
             self.write(outfile, s)
 
-    def gen_blob_uploads(self):
-        pass
+    def gen_az_cli_uploads(self):
+        mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
+
+        template_data = dict()
+        collection_data = list()
+        template_data['dbname'] = self.dbname
+        template_data['gentimestamp'] = self.timestamp()
+        template_data['collections'] = collection_data
+        template_data['container'] = '{}-raw'.format(self.dbname)
+
+        for c in self.collections:
+            cname = c['name']
+            local_file = self.app_config.mongoexport_file(self.dbname, cname)
+            coll_dict = dict()
+            coll_dict['local_file_path'] = local_file
+            coll_dict['blob_name'] = os.path.basename(local_file)
+            collection_data.append(coll_dict)
+
+        t = self.get_template(os.getcwd(), 'blob_uploads_az_cli.txt')
+        s = t.render(template_data)
+
+        self.ensure_directory_path(self.shell_artifacts_dir)
+
+        outfile = '{}/{}_az_cli_mongoexport_uploads.sh'.format(self.shell_artifacts_dir, self.dbname)
+        self.write(outfile, s)
 
     def gen_aci_wrangle_script(self):
         pass

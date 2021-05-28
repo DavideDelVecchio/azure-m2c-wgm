@@ -7,19 +7,27 @@
 - TODO Script Generation
 - TODO Implement Wrangling Rules
 
-- TODO File Uploads
-  - AzCopy raw upload generation
-  - AzCopy raw upload generation
-  - Python raw upload generation
-
 - TODO File Map Excel Report
 
-- TODO Customer-Edited Mapping File
+- TODO File Uploads - az CLI 
+- Done File Uploads - Python 
+
+- Done Generate Customer-Edited Mapping File
   - source container to target container mapping
   - pk attr and logic
   - doctype attr attr and logic
   - transformations
-
+```
+    {
+      "name": "airports",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+```
 ---
 
 - Done Recreate Local DB, load, export

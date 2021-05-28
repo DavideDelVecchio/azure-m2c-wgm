@@ -7,6 +7,12 @@
 
 source env.sh
 
+# Uncomment, as necessary, to delete and recreate the storage container:
+# python storage.py delete_blob_container openflights-raw
+# sleep 10
+# python storage.py create_blob_container openflights-raw
+# sleep 10
+
 
 python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airlines__source.json openflights-raw openflights__airlines__source.json
 
