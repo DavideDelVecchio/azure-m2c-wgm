@@ -3,7 +3,7 @@ Usage:
     source env.sh ; python storage.py create_blob_container openflights-raw
     source env.sh ; python storage.py create_blob_container openflights-adf
     source env.sh ; python storage.py create_blob_container test
-    source env.sh ; python storage.py delete_blob_container this-that-other
+    source env.sh ; python storage.py delete_blob_container openflights-raw
     source env.sh ; python storage.py list_blob_containers
     source env.sh ; python storage.py list_blob_container openflights-raw
     source env.sh ; python storage.py upload_blob local_file_path cname blob_name

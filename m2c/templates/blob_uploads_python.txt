@@ -14,9 +14,15 @@ source env.sh
 # sleep 10
 
 {% for c in collections %}
+echo '---'
+date
 python storage.py upload_blob {{ c['local_file_path'] }} {{ container }} {{ c['blob_name'] }}
 {% endfor %}
 
+date
+
+echo ''
+echo 'listing contents of container: {{ container }}'
 python storage.py list_blob_container {{ container }}
 
 echo 'done'

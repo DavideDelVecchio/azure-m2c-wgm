@@ -7,12 +7,14 @@
 
 source env.sh
 
-echo 'acct: '$M2C_STORAGE_ACCOUNT
-echo 'key:  '$M2C_STORAGE_KEY
+# Uncomment as necessary:
+# echo 'acct: '$M2C_STORAGE_ACCOUNT
+# echo 'key:  '$M2C_STORAGE_KEY
 
 {% for c in collections %}
+echo '---'
 echo 'uploading {{ c['local_file_path'] }} to {{ container }} ...'
-
+date 
 az storage blob upload \
   --container-name {{ container }} \
   --file {{ c['local_file_path'] }} \
@@ -20,5 +22,14 @@ az storage blob upload \
   --account-name $M2C_STORAGE_ACCOUNT \
   --account-key $M2C_STORAGE_KEY
 {% endfor %}
+
+date
+
+#echo ''
+#echo 'listing contents of container: {{ container }}'
+#az storage blob list -c {{ container }} \
+#  --auth-mode key \
+#  --account-name $M2C_STORAGE_ACCOUNT \
+#  --account-key $M2C_STORAGE_KEY
 
 echo 'done'

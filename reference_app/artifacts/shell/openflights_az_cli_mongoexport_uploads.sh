@@ -7,12 +7,14 @@
 
 source env.sh
 
-echo 'acct: '$M2C_STORAGE_ACCOUNT
-echo 'key:  '$M2C_STORAGE_KEY
+# Uncomment as necessary:
+# echo 'acct: '$M2C_STORAGE_ACCOUNT
+# echo 'key:  '$M2C_STORAGE_KEY
 
 
+echo '---'
 echo 'uploading /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airlines__source.json to openflights-raw ...'
-
+date 
 az storage blob upload \
   --container-name openflights-raw \
   --file /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airlines__source.json \
@@ -20,8 +22,9 @@ az storage blob upload \
   --account-name $M2C_STORAGE_ACCOUNT \
   --account-key $M2C_STORAGE_KEY
 
+echo '---'
 echo 'uploading /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airports__source.json to openflights-raw ...'
-
+date 
 az storage blob upload \
   --container-name openflights-raw \
   --file /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airports__source.json \
@@ -29,8 +32,9 @@ az storage blob upload \
   --account-name $M2C_STORAGE_ACCOUNT \
   --account-key $M2C_STORAGE_KEY
 
+echo '---'
 echo 'uploading /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__countries__source.json to openflights-raw ...'
-
+date 
 az storage blob upload \
   --container-name openflights-raw \
   --file /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__countries__source.json \
@@ -38,8 +42,9 @@ az storage blob upload \
   --account-name $M2C_STORAGE_ACCOUNT \
   --account-key $M2C_STORAGE_KEY
 
+echo '---'
 echo 'uploading /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__planes__source.json to openflights-raw ...'
-
+date 
 az storage blob upload \
   --container-name openflights-raw \
   --file /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__planes__source.json \
@@ -47,8 +52,9 @@ az storage blob upload \
   --account-name $M2C_STORAGE_ACCOUNT \
   --account-key $M2C_STORAGE_KEY
 
+echo '---'
 echo 'uploading /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__routes__source.json to openflights-raw ...'
-
+date 
 az storage blob upload \
   --container-name openflights-raw \
   --file /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__routes__source.json \
@@ -56,5 +62,14 @@ az storage blob upload \
   --account-name $M2C_STORAGE_ACCOUNT \
   --account-key $M2C_STORAGE_KEY
 
+
+date
+
+#echo ''
+#echo 'listing contents of container: openflights-raw'
+#az storage blob list -c openflights-raw \
+#  --auth-mode key \
+#  --account-name $M2C_STORAGE_ACCOUNT \
+#  --account-key $M2C_STORAGE_KEY
 
 echo 'done'
