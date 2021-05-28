@@ -186,4 +186,5 @@ See [mongod_repair_macos](databases/mongod_macos_repair.sh)
 
 ### Docker 
 
-https://medium.com/@foxjstephen/tutorial-mongodb-local-development-environment-on-macos-5f9b0ead4dc5
+- https://hub.docker.com/_/mongo/ 
+- https://medium.com/@foxjstephen/tutorial-mongodb-local-development-environment-on-macos-5f9b0ead4dc5
