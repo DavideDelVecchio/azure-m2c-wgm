@@ -64,10 +64,11 @@ class ArtifactGenerator(object):
 
         for c in self.collections:
             cname = c['name']
+            local_file = self.app_config.mongoexport_file(self.dbname, cname)
             coll_dict = dict()
-            coll_dict['local_file_path'] = self.app_config.mongoexport_file(self.dbname, cname)
-            coll_dict['cname'] = cname
-            coll_dict['blob_name'] = 'bbb'
+            coll_dict['local_file_path'] = local_file
+            coll_dict['cname'] = '{}-raw'.format(self.dbname)
+            coll_dict['blob_name'] = os.path.basename(local_file)
             collection_data.append(coll_dict)
 
         t = self.get_template(os.getcwd(), 'blob_uploads_python.txt')
@@ -77,6 +78,12 @@ class ArtifactGenerator(object):
 
         outfile = '{}/{}_python_mongoexport_uploads.sh'.format(self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
+
+        for tname in 'env.sh,pyenv.sh,requirements.in,requirements.txt'.split(','):
+            t = self.get_template(os.getcwd(), tname)
+            s = t.render(template_data)
+            outfile = '{}/{}'.format(self.shell_artifacts_dir, tname)
+            self.write(outfile, s)
 
     def gen_blob_uploads(self):
         pass

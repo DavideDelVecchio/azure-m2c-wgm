@@ -15,6 +15,7 @@ echo 'deleting previous generated artifacts ...'
 rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/adf/*.*
 rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell/*.*
 
+cp env.sh      templates 
 cp uploader.py templates 
 
 echo 'generating artifacts ...'

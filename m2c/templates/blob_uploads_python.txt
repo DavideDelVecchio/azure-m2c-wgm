@@ -1,17 +1,14 @@
 #!/bin/bash
 
-# Bash shell script to upload blobs to Azure Storage with Python3.
-# See https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+# Bash shell script to upload mongoexport blobs to Azure Storage with Python3.
 #
 # Database Name: {{ dbname }}
 # Generated on:  {{ gen_timestamp }}
 
 source env.sh
 
-
 {% for c in collections %}
-# python uploader.py upload_blob local_file_path cname blob_name
-python uploader.py upload_blob {{ c['local_file_path'] }} {{ c['cname'] }} {{ c['blob_name'] }}
+python storage.py upload_blob {{ c['local_file_path'] }} {{ c['cname'] }} {{ c['blob_name'] }}
 {% endfor %}
 
 echo 'done'

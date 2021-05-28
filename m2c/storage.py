@@ -1,23 +1,6 @@
 """
 Usage:
-    source env.sh ; python main.py extract_db_metadata <conn-str-env-var> <db-name>
-    source env.sh ; python main.py extract_db_metadata localhost:27017 olympics
-    source env.sh ; python main.py extract_db_metadata localhost:27017 openflights
-    -
-    source env.sh ; python main.py generate_mapping_file olympics
-    source env.sh ; python main.py generate_mapping_file openflights
-    -
-    source env.sh ; python main.py generate_artifacts olympics --all
-    source env.sh ; python main.py generate_artifacts openflights --mongoexports
-    -
-    source env.sh ; python main.py create_blob_container openflights-raw
-    source env.sh ; python main.py create_blob_container openflights-adf
-    source env.sh ; python main.py create_blob_container test
-    source env.sh ; python main.py delete_blob_container this-that-other
-    source env.sh ; python main.py list_blob_containers
-    source env.sh ; python main.py upload_blob local_file_path cname blob_name
-    source env.sh ; python main.py upload_blob requirements.in test requirements.in
-    source env.sh ; python main.py download_blob test aaa.txt aaa-down.txt
+    source env.sh ; python storage.py upload_blob local_file_path cname blob_name
 """
 
 __author__  = 'Chris Joakim'

@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Bash shell script to upload blobs to Azure Storage with Python3.
-# See https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10
+# Bash shell script to upload mongoexport blobs to Azure Storage with Python3.
 #
 # Database Name: openflights
 # Generated on:  
@@ -9,21 +8,15 @@
 source env.sh
 
 
+python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airlines__source.json openflights-raw openflights__airlines__source.json
 
-# python uploader.py upload_blob local_file_path cname blob_name
-python uploader.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airlines__source.json airlines bbb
+python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airports__source.json openflights-raw openflights__airports__source.json
 
-# python uploader.py upload_blob local_file_path cname blob_name
-python uploader.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__airports__source.json airports bbb
+python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__countries__source.json openflights-raw openflights__countries__source.json
 
-# python uploader.py upload_blob local_file_path cname blob_name
-python uploader.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__countries__source.json countries bbb
+python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__planes__source.json openflights-raw openflights__planes__source.json
 
-# python uploader.py upload_blob local_file_path cname blob_name
-python uploader.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__planes__source.json planes bbb
-
-# python uploader.py upload_blob local_file_path cname blob_name
-python uploader.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__routes__source.json routes bbb
+python storage.py upload_blob /Users/cjoakim/github/azure-m2c-wgm/reference_app/data/openflights/mongoexports/openflights__routes__source.json openflights-raw openflights__routes__source.json
 
 
 echo 'done'

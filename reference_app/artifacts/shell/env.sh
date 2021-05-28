@@ -5,6 +5,7 @@
 # Chris Joakim, Microsoft, May 2021
 
 export M2C_SHELL_TYPE="bash"
+
 export M2C_ROOT_ARTIFACTS_DIR="/Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts"
 export M2C_ROOT_DATA_DIR="/Users/cjoakim/github/azure-m2c-wgm/reference_app/data"
 
