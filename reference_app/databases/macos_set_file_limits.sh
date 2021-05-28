@@ -35,6 +35,6 @@ echo 'updated launchctl limit maxfiles'
 launchctl limit maxfiles
 
 echo ''
-echo 'now start thd mongod program with:'
+echo 'now exit this shell, open another shell, confirm maxfiles, and start mongod with:'
 echo 'mongod --config /usr/local/etc/mongod.conf &'
 echo ''

@@ -3,7 +3,7 @@
 # Bash shell script to export each source collection via mongoexport.
 #
 # Database Name: olympics
-# Generated on:  2021-05-26 20:42:46 UTC
+# Generated on:  2021-05-28 14:45:31 UTC
 
 source env.sh
 

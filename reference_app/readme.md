@@ -119,6 +119,39 @@ games
 
 ## Mongod Administration 
 
+### Adding the exporter user
+
+```
+$ mongo
+
+> use olympics
+db.createUser({'user':'exporter','pwd':'secret','roles':['read']})
+
+> use openflights
+> db.createUser({'user':'exporter','pwd':'secret','roles':['read']})
+
+> db.getUsers()
+[
+	{
+		"_id" : "openflights.exporter",
+		"userId" : UUID("7ec46724-9cd4-4fee-a9c0-34e4d3f71a25"),
+		"user" : "exporter",
+		"db" : "openflights",
+		"roles" : [
+			{
+				"role" : "read",
+				"db" : "openflights"
+			}
+		],
+		"mechanisms" : [
+			"SCRAM-SHA-1",
+			"SCRAM-SHA-256"
+		]
+	}
+]
+
+```
+
 ### Stopping mongod
 
 ```
@@ -150,3 +183,7 @@ switched to db openflights
 ### Repairing a mongod database on macOS
 
 See [mongod_repair_macos](databases/mongod_macos_repair.sh)
+
+### Docker 
+
+https://medium.com/@foxjstephen/tutorial-mongodb-local-development-environment-on-macos-5f9b0ead4dc5
