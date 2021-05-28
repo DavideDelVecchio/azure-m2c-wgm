@@ -14,7 +14,7 @@ import arrow
 import jinja2
 
 
-class Generator(object):    
+class ArtifactGenerator(object):    
 
     def __init__(self, dbname, db_metadata):
         self.dbname = dbname

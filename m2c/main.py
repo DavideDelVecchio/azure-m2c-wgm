@@ -1,8 +1,11 @@
 """
 Usage:
-    source env.sh ; python main.py read_db_metadata <conn-str-env-var> <db-name>
-    source env.sh ; python main.py read_db_metadata localhost:27017 olympics
-    source env.sh ; python main.py read_db_metadata localhost:27017 openflights
+    source env.sh ; python main.py extract_db_metadata <conn-str-env-var> <db-name>
+    source env.sh ; python main.py extract_db_metadata localhost:27017 olympics
+    source env.sh ; python main.py extract_db_metadata localhost:27017 openflights
+    -
+    source env.sh ; python main.py generate_mapping_file olympics
+    source env.sh ; python main.py generate_mapping_file openflights
     -
     source env.sh ; python main.py generate_artifacts olympics --all
     source env.sh ; python main.py generate_artifacts openflights --mongoexports
@@ -33,27 +36,17 @@ import arrow
 import jinja2
 
 from docopt import docopt
-
+from operator import itemgetter
 from pymongo import MongoClient
 
-from pysrc.generator import Generator
+from pysrc.app_config import AppConfig
+from pysrc.artifact_generator import ArtifactGenerator
 from pysrc.storage import Storage
 
+app_config = AppConfig()
 
-def db_metadata_file(dbname):
-    data_dir = os.environ['M2C_ROOT_DATA_DIR']
-    outdir = '{}/meta'.format(data_dir)
-    ensure_directory_path(outdir)
-    return '{}/{}_metadata.json'.format(outdir, dbname)
 
-def ensure_directory_path(dir_path):
-    try:
-        if not os.path.exists(dir_path):
-            os.makedirs(dir_path)
-    except:
-        pass
-
-def read_db_metadata(conn_str, dbname):
+def extract_db_metadata(conn_str, dbname):
     print('conn_str: {}'.format(conn_str))
     print('dbname:   {}'.format(dbname))
 
@@ -75,15 +68,8 @@ def read_db_metadata(conn_str, dbname):
         coll_obj = db[coll_name]
         coll_info = dict()
         coll_meta = dict()
-        wrangling = dict()
         coll_info['name'] = coll_name 
-        coll_info['wrangling'] = wrangling
         coll_info['metadata'] = coll_meta
-
-        wrangling['pk_attr_name'] = 'pk' 
-        wrangling['pk_attr_logic'] = list()
-        wrangling['excludes'] = list()
-
         coll_meta['doc_count'] = coll_obj.count_documents({})
         coll_meta['indexes'] = list()
 
@@ -97,7 +83,7 @@ def read_db_metadata(conn_str, dbname):
     db_metadata['dbstats'] = db.command('dbstats')
 
     jstr = json.dumps(db_metadata, sort_keys=False, indent=2)
-    outfile = db_metadata_file(dbname)
+    outfile = app_config.db_metadata_file(dbname)
     write(outfile, jstr)
 
 def prune_coll_stats(stats):
@@ -107,19 +93,37 @@ def prune_coll_stats(stats):
             del stats[key]
     return stats
 
-def gen_artifact(name):
-    for arg in sys.argv:
-        if arg == '--all':
-            return True
-        elif arg == name:
-            return True 
-    return False 
+def generate_mapping_file(dbname):
+    print('generate_mapping_file; dbname {}'.format(dbname))
+    infile = app_config.db_metadata_file(dbname)
+    print('generate_mapping_file; infile:  {}'.format(infile))
+    metadata = load_json_file(infile)
+    data = dict()
+    data['dbname'] = dbname
+    coll_data = list()
+
+    for coll in metadata['collections']:
+        coll_info = dict()
+        coll_info['name'] = coll['name']
+        mapping = dict()
+        mapping['target_db_container'] = 'ddd/ccc' 
+        mapping['pk_attr_name'] = 'aaa' 
+        mapping['pk_attr_logic'] = list()
+        mapping['excludes'] = list()
+        coll_info['mapping'] = mapping
+        coll_data.append(coll_info)
+
+    data['collections'] = sorted(coll_data, key = itemgetter('name'))
+
+    jstr = json.dumps(data, sort_keys=False, indent=2)
+    outfile = app_config.db_mapping_file(dbname)
+    write(outfile, jstr)
 
 def generate_artifacts(dbname):
     print('generate_artifacts {} {}'.format(dbname, sys.argv))
-    infile = db_metadata_file(dbname)
+    infile = app_config.db_metadata_file(dbname)
     db_metadata = load_json_file(infile)
-    generator = Generator(dbname, db_metadata)
+    generator = ArtifactGenerator(dbname, db_metadata)
 
     if (gen_artifact('--mongoexports')):
         generator.gen_mongoexports()
@@ -138,6 +142,14 @@ def generate_artifacts(dbname):
 
     if (gen_artifact('--adf-pipelines')):
         generator.gen_adf_pipelines() 
+
+def gen_artifact(name):
+    for arg in sys.argv:
+        if arg == '--all':
+            return True
+        elif arg == name:
+            return True 
+    return False 
 
 def list_blob_containers():
     stor = Storage()
@@ -193,10 +205,14 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         func = sys.argv[1].lower()
 
-        if func == 'read_db_metadata':
+        if func == 'extract_db_metadata':
             conn_str_env_var = sys.argv[2]
             dbname = sys.argv[3]
-            read_db_metadata(conn_str_env_var, dbname)
+            extract_db_metadata(conn_str_env_var, dbname)
+
+        elif func == 'generate_mapping_file':
+            dbname = sys.argv[2]
+            generate_mapping_file(dbname)
 
         elif func == 'generate_artifacts':
             dbname = sys.argv[2]
