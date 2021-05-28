@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Bash shell script to create, the list, the blob containers for this migration.
+#
+# Generated on:  {{ gen_timestamp }}
+
+source env.sh
+
+{% for cname in container_names %}
+python storage.py create_blob_container {{ cname }}
+{% endfor %}
+
+python storage.py list_blob_containers
+
+echo 'done'

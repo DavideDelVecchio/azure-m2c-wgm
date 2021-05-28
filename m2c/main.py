@@ -9,15 +9,6 @@ Usage:
     -
     source env.sh ; python main.py generate_artifacts olympics --all
     source env.sh ; python main.py generate_artifacts openflights --mongoexports
-    -
-    source env.sh ; python main.py create_blob_container openflights-raw
-    source env.sh ; python main.py create_blob_container openflights-adf
-    source env.sh ; python main.py create_blob_container test
-    source env.sh ; python main.py delete_blob_container this-that-other
-    source env.sh ; python main.py list_blob_containers
-    source env.sh ; python main.py upload_blob local_file_path cname blob_name
-    source env.sh ; python main.py upload_blob requirements.in test requirements.in
-    source env.sh ; python main.py download_blob test aaa.txt aaa-down.txt
 """
 
 __author__  = 'Chris Joakim'
@@ -124,63 +115,7 @@ def generate_artifacts(dbname):
     infile = app_config.db_mapping_file(dbname)
     mapping_data = load_json_file(infile)
     generator = ArtifactGenerator(dbname, mapping_data)
-
-    if (gen_artifact('--mongoexports')):
-        generator.gen_mongoexports()
-
-    if (gen_artifact('--blob-uploads')):
-        generator.gen_blob_uploads() 
-
-    if (gen_artifact('--file-wrangle-script')):
-        generator.gen_aci_wrangle_script() 
-
-    if (gen_artifact('--file-wrangle-script')):
-        generator.gen_file_wrangle_script() 
-
-    if (gen_artifact('--py-uploads')):
-        generator.gen_python_uploads() 
-
-    if (gen_artifact('--adf-datasets')):
-        generator.gen_adf_datasets() 
-
-    if (gen_artifact('--adf-pipelines')):
-        generator.gen_adf_pipelines() 
-
-def gen_artifact(name):
-    for arg in sys.argv:
-        if arg == '--all':
-            return True
-        elif arg == name:
-            return True 
-    return False 
-
-def list_blob_containers():
-    stor = Storage()
-    containers = stor.list_containers()
-    for idx, c in enumerate(containers):
-        # print(str(type(c))) # <class 'azure.storage.blob._models.ContainerProperties'>
-        print('{} {}'.format(idx + 1, c.name))
-
-def create_blob_container(cname):
-    print('create_blob_container; cname: {}'.format(cname))
-    stor = Storage()
-    stor.create_container(cname)
-
-def delete_blob_container(cname):
-    print('delete_blob_container; cname: {}'.format(cname))
-    stor = Storage()
-    stor.delete_container(cname)
-
-def upload_blob(local_file_path, cname, blob_name):
-    print('upload_blob; {} {} {}'.format(local_file_path, cname, blob_name))
-    stor = Storage()
-    stor.upload_blob(local_file_path, cname, blob_name)
-
-def download_blob(cname, blob_name, local_file_path):
-    print('download_blob; {} {} {}'.format(cname, blob_name, local_file_path))
-    stor = Storage()
-    stor.download_blob(cname, blob_name, local_file_path)
-
+    generator.generate()
 
 def load_json_file(infile):
     with open(infile) as json_file:

@@ -15,12 +15,15 @@ echo 'deleting previous generated artifacts ...'
 rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/adf/*.*
 rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell/*.*
 
-cp env.sh      templates 
-cp uploader.py templates 
+cp env.sh     templates 
+cp storage.py templates 
 
 echo 'generating artifacts ...'
 python main.py generate_artifacts openflights --all
+python main.py generate_artifacts openflights --create-containers
 # python main.py generate_artifacts olympics --all
+
+# 
 
 echo 'making generated scripts executable ...'
 cp env.sh /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell

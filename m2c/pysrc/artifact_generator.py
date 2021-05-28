@@ -34,6 +34,39 @@ class ArtifactGenerator(object):
         self.blob_linked_svc     = self.app_config.blob_linked_svc
         self.cosmos_linked_svc   = self.app_config.cosmos_linked_svc
 
+    def generate(self):
+        if (self.gen_artifact('--mongoexports')):
+            self.gen_mongoexports()
+
+        if (self.gen_artifact('--blob-uploads')):
+            self.gen_blob_uploads() 
+
+        if (self.gen_artifact('--file-wrangle-script')):
+            self.gen_aci_wrangle_script() 
+
+        if (self.gen_artifact('--file-wrangle-script')):
+            self.gen_file_wrangle_script() 
+
+        if (self.gen_artifact('--create-containers')):
+            self.gen_python_create_containers() 
+
+        if (self.gen_artifact('--py-uploads')):
+            self.gen_python_uploads() 
+
+        if (self.gen_artifact('--adf-datasets')):
+            self.gen_adf_datasets() 
+
+        if (self.gen_artifact('--adf-pipelines')):
+            self.gen_adf_pipelines() 
+
+    def gen_artifact(self, name):
+        for arg in sys.argv:
+            if arg == '--all':
+                return True
+            elif arg == name:
+                return True 
+        return False 
+
     def gen_mongoexports(self):
         script_lines = self.shell_script_lines()
         template_name = 'mongoexport_script_ssl_{}.txt'.format(self.ssl).lower()
@@ -52,6 +85,25 @@ class ArtifactGenerator(object):
 
         outfile = '{}/{}_mongoexports.sh'.format(self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
+
+    def gen_python_create_containers(self):
+        metadata_files = self.app_config.metadata_files()
+        template_data = dict()
+        container_names = list()
+        for metadata_file in metadata_files:
+            print('globbed {}'.format(metadata_file))
+            meta = self.load_json_file(metadata_file)
+            dbname = meta['dbname']
+            container_names.append('{}-raw'.format(dbname))
+            container_names.append('{}-adf'.format(dbname))
+        template_data['container_names'] = container_names
+
+        t = self.get_template(os.getcwd(), 'create_blob_containers.txt')
+        s = t.render(template_data)
+        self.ensure_directory_path(self.shell_artifacts_dir)
+        outfile = '{}/python_create_containers.sh'.format(self.shell_artifacts_dir)
+        self.write(outfile, s)
+
 
     def gen_python_uploads(self):
         mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
@@ -79,7 +131,7 @@ class ArtifactGenerator(object):
         outfile = '{}/{}_python_mongoexport_uploads.sh'.format(self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
 
-        for tname in 'env.sh,pyenv.sh,requirements.in,requirements.txt'.split(','):
+        for tname in 'env.sh,pyenv.sh,storage.py,requirements.in,requirements.txt'.split(','):
             t = self.get_template(os.getcwd(), tname)
             s = t.render(template_data)
             outfile = '{}/{}'.format(self.shell_artifacts_dir, tname)

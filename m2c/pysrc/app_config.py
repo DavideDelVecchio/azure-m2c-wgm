@@ -3,6 +3,7 @@ __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
 __version__ = "2021.05.28"
 
+import glob
 import os
 import sys
 import traceback
@@ -21,6 +22,10 @@ class AppConfig(object):
 
     def metadata_dir(self):
         return '{}/metadata'.format(self.data_dir)
+
+    def metadata_files(self):
+        pattern = '{}/*_metadata.json'.format(self.metadata_dir())
+        return glob.glob(pattern)
 
     def db_metadata_file(self, dbname):
         outdir = self.metadata_dir()
