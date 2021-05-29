@@ -231,15 +231,45 @@ class ArtifactGenerator(object):
     def openflights_collection_names(self):
         return 'airports,airlines,routes,planes,countries'.split(',')
 
-
     def generate_olympics_reference_db_scripts(self):
-        pass
+        dbname = 'olympics'
+        template_data = dict()
+        template_data['dbname'] = dbname
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['uri']  = 'mongodb://@{}:{}'.format(
+            self.app_config.source_mongodb_host, self.app_config.source_mongodb_port)
+        template_data['url']  = self.app_config.source_mongodb_url
+        template_data['host'] = self.app_config.source_mongodb_host 
+        template_data['post'] = self.app_config.source_mongodb_port
+        template_data['user'] = self.app_config.source_mongodb_user 
+        template_data['pass'] = self.app_config.source_mongodb_pass
+        template_data['ssl']  = ' # no --ssl' # self.app_config.source_mongodb_ssl 
+        coll_names = self.olympics_collection_names()
+        coll_list = list()
+        for coll_name in coll_names:
+            coll_info = dict()
+            coll_info['name'] = coll_name
+            coll_info['infile'] = '{}.json'.format(coll_name)
+            coll_list.append(coll_info)
+        template_data['collections'] = sorted(coll_list, key = itemgetter('name'))
+
+        t = self.get_template(os.getcwd(), 'mongo_recreate_db.txt')
+        s = t.render(template_data)
+        outfile = '{}/databases/mongo_recreate_{}_db.sh'.format(
+            self.app_config.reference_app_dir, dbname)
+        self.write(outfile, s)
 
     def olympics_collection_names(self):
         names = list()
+        names.append('countries')
+        names.append('games')
         infile = '../reference_app/databases/olympics/import_json/games.json'
-        games = load_json_file(infile)
 
+        with open(infile, 'r') as f:
+            lines = f.readlines()
+            for line in lines:  # {"games":"1896_summer","city":"athina"}
+                doc = json.loads(line.strip())
+                names.append(doc['games'])
         return names
 
     # standard private methods
