@@ -1,8 +1,8 @@
 """
 Usage:
-    source env.sh ; python main.py extract_db_metadata <conn-str-env-var> <db-name>
-    source env.sh ; python main.py extract_db_metadata localhost:27017 olympics
-    source env.sh ; python main.py extract_db_metadata localhost:27017 openflights
+    source env.sh ; python main.py extract_db_metadata <login-db> <db-name>
+    source env.sh ; python main.py extract_db_metadata admin olympics
+    source env.sh ; python main.py extract_db_metadata admin openflights
     -
     source env.sh ; python main.py generate_mapping_file olympics
     source env.sh ; python main.py generate_mapping_file openflights
@@ -38,9 +38,10 @@ from pysrc.artifact_generator import ArtifactGenerator
 app_config = AppConfig()
 
 
-def extract_db_metadata(conn_str, dbname):
-    print('conn_str: {}'.format(conn_str))
+def extract_db_metadata(login_db, dbname):
+    conn_str = app_config.pymongo_conn_string(login_db)  # login to the admin database
     print('dbname:   {}'.format(dbname))
+    print('conn_str: {}'.format(conn_str))
 
     client = MongoClient(conn_str)
     print('client: {}'.format(client))
@@ -149,9 +150,9 @@ if __name__ == "__main__":
         func = sys.argv[1].lower()
 
         if func == 'extract_db_metadata':
-            conn_str_env_var = sys.argv[2]
+            login_db = sys.argv[2]
             dbname = sys.argv[3]
-            extract_db_metadata(conn_str_env_var, dbname)
+            extract_db_metadata(login_db, dbname)
 
         elif func == 'generate_mapping_file':
             dbname = sys.argv[2]

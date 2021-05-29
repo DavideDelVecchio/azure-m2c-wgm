@@ -38,6 +38,11 @@ def test_source_mongodb_uri():
     app_config = AppConfig()
     assert(app_config.source_mongodb_uri() == 'mongodb://@localhost:27017')
 
+def test_pymongo_conn_string():
+    app_config = AppConfig()
+    expected = 'mongodb://root:rootpassword@localhost:27017/admin'
+    assert(app_config.pymongo_conn_string('admin') == expected)
+
 def test_metadata_dir():
     app_config = AppConfig()
     expected = absolute_filename('reference_app/data/metadata')

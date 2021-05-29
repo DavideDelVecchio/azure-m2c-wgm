@@ -32,6 +32,16 @@ class AppConfig(object):
         return 'mongodb://@{}:{}'.format(
             self.source_mongodb_host, self.source_mongodb_port)
 
+    def pymongo_conn_string(self, dbname):
+        # https://docs.mongodb.com/manual/reference/connection-string/
+        # mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
+        return 'mongodb://{}:{}@{}:{}/{}'.format(
+            self.source_mongodb_user,
+            self.source_mongodb_pass,
+            self.source_mongodb_host,
+            self.source_mongodb_port,
+            dbname)
+
     def metadata_dir(self):
         return '{}/metadata'.format(self.data_dir)
 
