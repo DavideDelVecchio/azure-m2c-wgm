@@ -9,6 +9,8 @@ Usage:
     -
     source env.sh ; python main.py generate_artifacts olympics --all
     source env.sh ; python main.py generate_artifacts openflights --mongoexports
+    -
+    source env.sh ; python main.py generate_reference_db_scripts
 """
 
 __author__  = 'Chris Joakim'
@@ -32,7 +34,6 @@ from pymongo import MongoClient
 
 from pysrc.app_config import AppConfig
 from pysrc.artifact_generator import ArtifactGenerator
-from pysrc.storage import Storage
 
 app_config = AppConfig()
 
@@ -117,6 +118,10 @@ def generate_artifacts(dbname):
     generator = ArtifactGenerator(dbname, mapping_data)
     generator.generate()
 
+def generate_reference_db_scripts():
+    generator = ArtifactGenerator('', {})
+    generator.generate_reference_db_scripts()
+
 def load_json_file(infile):
     with open(infile) as json_file:
         return json.load(json_file)
@@ -156,34 +161,8 @@ if __name__ == "__main__":
             dbname = sys.argv[2]
             generate_artifacts(dbname)
 
-        elif func == 'list_blob_containers':
-            list_blob_containers()
-
-        elif func == 'create_blob_container':
-            cname = sys.argv[2]
-            create_blob_container(cname)
-
-        elif func == 'delete_blob_container':
-            cname = sys.argv[2]
-            delete_blob_container(cname)
-
-        elif func == 'upload_blob':
-            print(len(sys.argv))
-            local_file_path = sys.argv[2]
-            cname = sys.argv[3]
-            if len(sys.argv) > 4:
-                blob_name = sys.argv[4]
-            else:
-                blob_name = os.path.basename(local_file_path) 
-            upload_blob(local_file_path, cname, blob_name)
-
-        elif func == 'download_blob':
-            print(len(sys.argv))
-            cname = sys.argv[2]
-            blob_name = sys.argv[3]
-            local_file_path = sys.argv[4]
-            download_blob(cname, blob_name, local_file_path)
-
+        elif func == 'generate_reference_db_scripts':
+            generate_reference_db_scripts()
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:
