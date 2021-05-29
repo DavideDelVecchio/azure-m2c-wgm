@@ -3,6 +3,7 @@ __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
 __version__ = "2021.05.28"
 
+import arrow
 import glob
 import os
 import sys
@@ -51,8 +52,11 @@ class AppConfig(object):
         try:
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
+                return 'created'
+            else:
+                return 'exists'
         except:
-            pass
+            return 'except'
 
     def timestamp(self):
         return arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
@@ -66,7 +70,7 @@ class AppConfig(object):
     def boolean_env_var(self, name, default_value):
         try:
             v = os.environ[name].lower()
-            if v == 'true':
+            if (v.lower() == 'true') or (v.lower() == 't'):
                 return True
             return False
         except:
