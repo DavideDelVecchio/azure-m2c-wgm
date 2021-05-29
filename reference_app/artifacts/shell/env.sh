@@ -6,6 +6,7 @@
 
 export M2C_SHELL_TYPE="bash"
 
+export M2C_REPO_DIR='/Users/cjoakim/github/azure-m2c-wgm'
 export M2C_ROOT_ARTIFACTS_DIR="/Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts"
 export M2C_ROOT_DATA_DIR="/Users/cjoakim/github/azure-m2c-wgm/reference_app/data"
 
@@ -23,8 +24,13 @@ export M2C_SOURCE_MONGODB_URL="localhost:27017"
 export M2C_SOURCE_MONGODB_SSL="false"  # true or false
 export M2C_SOURCE_MONGODB_HOST="localhost"
 export M2C_SOURCE_MONGODB_PORT="27017"
-export M2C_SOURCE_MONGODB_USER="exporter"
-export M2C_SOURCE_MONGODB_PASS="secret"
+export M2C_SOURCE_MONGODB_USER="root"
+export M2C_SOURCE_MONGODB_PASS="rootpassword"
+
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: rootpassword
+
+
 
 # In mongo shell of source database:
 # >  db.createUser({'user':'exporter','pwd':'secret','roles':['read']})

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# bash script to execute the the mongoimport program to load
+# the reference database with the sample data.
+# Chris Joakim, Microsoft, May 2021
+
+echo 'init database ...'
+mongo -u {{ user }} -p {{ pass }} {{ host }}:{{ port }}/{{ dbname }} < mongo/{{ dbname }}_init.ddl
+
+{% for c in collections %}
+echo 'mongoimport {{ c['name'] }} ...'
+mongoimport --db openflights \
+    --collection {{ c['name'] }} \
+    --file {{ dbname }}/import_json/{{ c['infile'] }}.json \
+    --numInsertionWorkers 1 \
+    --batchSize 24
+{% endfor %}
+
+echo 'done'
