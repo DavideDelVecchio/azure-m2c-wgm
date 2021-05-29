@@ -2,7 +2,6 @@
 
 - TODO Quality Control - file sizes
 - TODO File Map Excel Report?
-- TODO Run MongoDB with a Docker container?
 
 - TODO ADF/git integration and testing
 
@@ -11,6 +10,11 @@
 - TODO Create Dockerfile and Container
 
 - TODO Implement Wrangling.  With externalized rules?  wrangle.py
+
+- TODO mongoexports for Docker DB
+
+- Done Modifify DB loading for Docker DB
+- Done Run MongoDB with a Docker container
 
 - Done Enhance unit tests, with env vars, to 100% coverage of AppConfig
 - Done Add pytest, pytest-cov, and first tests of AppConfig
