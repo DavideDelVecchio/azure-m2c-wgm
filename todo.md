@@ -10,8 +10,9 @@
 - TODO ACI Script Generation
 - TODO Create Dockerfile and Container
 
-- TODO Implement Wrangling Rules, wrangle.py
+- TODO Implement Wrangling.  With externalized rules?  wrangle.py
 
+- Done Enhance unit tests, with env vars, to 100% coverage of AppConfig
 - Done Add pytest, pytest-cov, and first tests of AppConfig
 
 - Done File Uploads - az CLI 
