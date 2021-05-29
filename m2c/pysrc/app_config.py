@@ -28,6 +28,10 @@ class AppConfig(object):
         self.source_mongodb_pass = self.env_var('M2C_SOURCE_MONGODB_PASS', 'rootpassword')
         self.source_mongodb_ssl  = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL',  False)
 
+    def source_mongodb_uri(self):
+        return 'mongodb://@{}:{}'.format(
+            self.source_mongodb_host, self.source_mongodb_port)
+
     def metadata_dir(self):
         return '{}/metadata'.format(self.data_dir)
 

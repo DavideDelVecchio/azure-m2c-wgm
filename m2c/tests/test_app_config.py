@@ -26,6 +26,18 @@ def test_instance_variables():
     assert(app_config.blob_linked_svc == 'MigrationBlobStorage')
     assert(app_config.cosmos_linked_svc == 'MigrationCosmosDB')
 
+    assert(app_config.reference_app_dir == absolute_filename('reference_app'))
+    assert(app_config.source_mongodb_url  == 'localhost:27017')
+    assert(app_config.source_mongodb_host == 'localhost')
+    assert(app_config.source_mongodb_port == '27017')
+    assert(app_config.source_mongodb_user == 'root')
+    assert(app_config.source_mongodb_pass == 'rootpassword')
+    assert(app_config.source_mongodb_ssl  == False)
+
+def test_source_mongodb_uri():
+    app_config = AppConfig()
+    assert(app_config.source_mongodb_uri() == 'mongodb://@localhost:27017')
+
 def test_metadata_dir():
     app_config = AppConfig()
     expected = absolute_filename('reference_app/data/metadata')

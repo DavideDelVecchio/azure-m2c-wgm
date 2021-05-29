@@ -236,8 +236,7 @@ class ArtifactGenerator(object):
         template_data = dict()
         template_data['dbname'] = dbname
         template_data['gen_timestamp'] = self.timestamp()
-        template_data['uri']  = 'mongodb://@{}:{}'.format(
-            self.app_config.source_mongodb_host, self.app_config.source_mongodb_port)
+        template_data['uri']  = self.app_config.source_mongodb_uri()
         template_data['url']  = self.app_config.source_mongodb_url
         template_data['host'] = self.app_config.source_mongodb_host 
         template_data['post'] = self.app_config.source_mongodb_port
