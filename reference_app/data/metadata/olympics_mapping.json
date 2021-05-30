@@ -2,6 +2,465 @@
   "dbname": "olympics",
   "collections": [
     {
+      "name": "1896_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1900_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1904_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1906_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1908_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1912_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1920_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1924_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1924_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1928_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1928_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1932_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1932_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1936_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1936_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1948_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1948_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1952_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1952_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1956_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1956_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1960_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1960_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1964_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1964_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1968_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1968_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1972_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1972_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1976_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1976_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1980_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1980_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1984_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1984_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1988_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1988_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1992_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1992_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1994_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1996_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "1998_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2000_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2002_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2004_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2006_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2008_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2010_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2012_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2014_winter",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
+      "name": "2016_summer",
+      "mapping": {
+        "target_db_container": "ddd/ccc",
+        "pk_attr_name": "aaa",
+        "pk_attr_logic": [],
+        "excludes": []
+      }
+    },
+    {
       "name": "countries",
       "mapping": {
         "target_db_container": "ddd/ccc",
