@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  console:
+    image: cjoakim/azure-m2c-wgm-wrangle:latest
+    environment:
+    - M2C_STORAGE_ACCOUNT=${AZURE_M2C_STORAGE_ACCOUNT}
+    - M2C_STORAGE_KEY=${AZURE_M2C_STORAGE_KEY}
+    - M2C_STORAGE_CONNECTION_STRING=${AZURE_M2C_STORAGE_CONNECTION_STRING}
+    - CLI_ARGS="arg0-ignored hello world"
+
+
+# Notes:
+# $ docker-compose up -d
+# $ docker ps
+# $ docker volume ls
+# $ mongo admin -u root -p rootpassword 
+# $ docker-compose stop
+
+
+# References:
+# - https://dev.to/sonyarianto/how-to-spin-mongodb-server-with-docker-and-docker-compose-2lef 
+

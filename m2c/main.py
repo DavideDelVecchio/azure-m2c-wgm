@@ -146,6 +146,7 @@ def print_options(msg):
 
 
 if __name__ == "__main__":
+    print(sys.argv)
     if len(sys.argv) > 1:
         func = sys.argv[1].lower()
 

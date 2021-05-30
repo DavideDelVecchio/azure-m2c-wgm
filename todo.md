@@ -9,13 +9,14 @@
 
 - TODO ACI Script Testing
 - TODO ACI Script Generation
-- TODO Create Dockerfile and Container
 
-- TODO Implement Wrangling.  With externalized rules?  wrangle.py
-
-- TODO mongoexports for Docker DB
+- TODO Implement Wrangling; wrangle.py  enable blobs, externalized rules  
 
 ---
+
+- Done Create Dockerfile and Container
+
+- Done mongoexports for Docker DB
 
 - Done Modifify DB loading for Docker DB
 - Done Run MongoDB with a Docker container
