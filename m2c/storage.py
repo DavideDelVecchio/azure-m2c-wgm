@@ -92,7 +92,14 @@ class StorageUtil(object):
         except:
             msg = 'cname: {}  blob_name: {}  local_file_path: {}'.format(
                 cname, blob_name, local_file_path)
-            self.print_exception('upload_blob {}'.format(msg))
+            self.print_exception('download_blob {}'.format(msg))
+
+    def blob_properties(self, cname, blob_name):
+        try:
+            blob_client = self.blob_service_client.get_blob_client(container=cname, blob=blob_name)
+            return blob_client.get_blob_properties()
+        except:
+            self.print_exception('blob_properties {} {}'.format(cname, blob_name))
 
     def print_exception(self, msg=None):
         print('*** exception in storage.py - {}'.format(msg))

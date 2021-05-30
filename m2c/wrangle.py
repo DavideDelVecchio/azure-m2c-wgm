@@ -43,9 +43,11 @@ class Transformer(object):
         self.filename = self.cli_arg('--filename')
         self.outfile  = self.cli_arg('--outfile')
         self.out_container = self.cli_arg('--out-container')
+        self.mappings = self.load_mappings()
 
         self.start_time = time.time()
         self.finish_time = 0
+        self.verbose = self.flag_arg('--verbose')
 
         if self.dbname == None:
             raise Exception("Error: no --db specified")
@@ -60,8 +62,7 @@ class Transformer(object):
         self.download_blob()
         self.transform_file()
         self.upload_transformed_blob()
-        self.finish_time = time.time()
-        self.elapsed_time = self.finish_time - self.start_time
+        self.elapsed_time = time.time() - self.start_time
         self.status = 'completed'
 
     def download_blob(self):
@@ -69,11 +70,11 @@ class Transformer(object):
         bname = self.cli_arg('--blobname') 
         fname = self.cli_arg('--filename') 
         if (cname != None) and (bname != None):
-            self.add_message('downloading to {}'.format(self.filename))
             start = time.time()
+            self.add_message('downloading {} at {} from {}'.format(self.filename, self.timestamp(), cname))
             self.stor.download_blob(cname, bname, self.filename)
-            finish = time.time()
-            self.add_message('downloaded blob {} in {}'.format(self.filename, finish - start))
+            elapsed = time.time() - start
+            self.add_message('downloaded  {} at {} in {}'.format(self.filename, self.timestamp(), elapsed))
         else:
             if (fname == None):
                 raise Exception("Error: no --filename specified")
@@ -89,27 +90,39 @@ class Transformer(object):
         with open(self.outfile, 'wt') as out:
             for i, line in enumerate(it):
                 line_count = line_count + 1
-                print(line)
+                if self.verbose:
+                    print(line)
                 doc = json.loads(line)
                 out.write(json.dumps(doc))
                 out.write("\n")
 
-        finish = time.time()
-        self.add_message('file {}, {} lines, transformed in {}'.format(
-            self.filename, line_count, finish - start))
+        elapsed = time.time() - start
+        self.add_message('transformed {} lines in {}'.format(
+            line_count, elapsed))
 
     def upload_transformed_blob(self):
-        pass 
+        bname = os.path.basename(self.outfile)
+        start = time.time()
+        self.add_message('uploading {} at {} to {}/{}'.format(
+            self.filename, self.timestamp(), self.out_container, bname))
+        self.stor.upload_blob(self.outfile, self.out_container, bname, overwrite=True)
+        elapsed = time.time() - start
+        self.add_message('uploaded {}/{} at {} in {}'.format(
+            self.filename, bname, self.timestamp(), elapsed))
+
+        properties = self.stor.blob_properties(self.out_container, bname)
+        print(properties)
 
     def add_message(self, msg):
         self.messages.append(msg)
 
     def print_summary(self):
-        print('SUMMARY for args: {}'.format(self.args)) 
+        print('-')
+        print('SUMMARY for args: {}'.format(" ".join(self.args))) 
         print('  status:       {}'.format(self.status)) 
         print('  start_time:   {}'.format(self.start_time)) 
-        print('  finish_time:  {}'.format(self.finish_time)) 
-        print('  elapsed_time: {}'.format(self.finish_time - self.start_time))
+        print('  elapsed_time: {}'.format(self.elapsed_time))
+        print('  verbose:      {}'.format(str(self.verbose).lower())) 
         print('  processing messages:') 
         for msg in self.messages:
             print('    {}'.format(msg))
@@ -120,9 +133,25 @@ class Transformer(object):
                 return args[idx + 1]
         return None
 
+    def flag_arg(self, flag):
+        for idx, arg in enumerate(self.args):
+            if arg == flag:
+                return True
+        return False
+
+    def timestamp(self):
+        return arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
+
     def is_successful(self):
         return self.status == 'successful'
 
+    def load_mappings(self):
+        f = self.app_config.db_metadata_file(self.dbname)
+        return self.load_json_file(f)
+
+    def load_json_file(self, infile):
+        with open(infile) as json_file:
+            return json.load(json_file)
 
 def transform_original(doctype, infile, outfile):
     print('transform: {} -> {} -> {}'.format(doctype, infile, outfile))

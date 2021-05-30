@@ -13,6 +13,9 @@
 
 ---
 
+- Done Implement Wrangling IO processing
+  - download, transform, upload, logging, list and download result blob
+
 - Done Explore ACI; use a VM instead.
   - Simplicity, streams, subscription limits, VM sizes
 

@@ -5,13 +5,26 @@
 
 source env.sh
 
+mkdir -p tmp/olympics/
 mkdir -p tmp/openflights/
+
 rm tmp/openflights/openflights__airlines__source*
+rm tmp/downloaded_blob.json
 
 python wrangle.py transform \
     --db openflights \
     --in-container openflights-raw \
     --blobname openflights__airlines__source.json \
     --filename tmp/openflights/openflights__airlines__source.json \
-    --outfile  tmp/openflights/openflights__airlines__source_wrangled.json \
-    --out-container openflights-raw 
+    --outfile  tmp/openflights/openflights__airlines__wrangled.json \
+    --out-container openflights-adf
+
+python storage.py list_blob_container openflights-adf
+
+python storage.py download_blob openflights-adf openflights__airlines__wrangled.json tmp/downloaded_blob.json
+
+# python wrangle.py transform \
+#     --db openflights \
+#     --filename ../reference_app/data/olympics/mongoexports/olympics__2016_summer__source.json \
+#     --outfile  tmp/olympics/olympics__2016_summer__source.json \
+#     --out-container olympics-adf
