@@ -26,6 +26,8 @@ from operator import itemgetter
 from bson.objectid import ObjectId
 
 from pysrc.app_config import AppConfig
+from pysrc.standard_doc_wrangler import StandardDocumentWrangler
+
 from storage import StorageUtil
 
 
@@ -43,10 +45,23 @@ class Transformer(object):
         self.filename = self.cli_arg('--filename')
         self.outfile  = self.cli_arg('--outfile')
         self.out_container = self.cli_arg('--out-container')
-        self.mappings = self.load_mappings()
+        self.mappings = self.load_container_mappings()
+        print('mappings: {}'.format(self.mappings))
+
+        self.std_doc_wrangler = StandardDocumentWrangler(self.mappings)
+
+        self.wrangling_algorithm = self.mappings['mapping']['wrangling_algorithm'].strip().lower()
+        print('wrangling_algorithm: {}'.format(self.wrangling_algorithm))
+
+        self.pk_name = self.mappings['mapping']['pk_name'].strip().lower()
+        self.pk_logic = self.mappings['mapping']['pk_logic']
+        self.do_pk_wrangling = len(self.pk_name) > 0
+
+        self.excludes = self.mappings['mapping']['excludes']
+        self.do_excludes = len(self.excludes) > 0
 
         self.start_time = time.time()
-        self.finish_time = 0
+        self.elapsed_time = 0
         self.verbose = self.flag_arg('--verbose')
 
         if self.dbname == None:
@@ -83,9 +98,8 @@ class Transformer(object):
                 self.add_message('using local file {}'.format(self.filename))
 
     def transform_file(self):
-        start = time.time()
-        it = text_file_iterator(self.filename)
-        line_count = 0
+        start, line_count = time.time(), 0
+        it = text_file_iterator(self.filename)  # use and iterator to handle huge files
 
         with open(self.outfile, 'wt') as out:
             for i, line in enumerate(it):
@@ -93,6 +107,12 @@ class Transformer(object):
                 if self.verbose:
                     print(line)
                 doc = json.loads(line)
+
+                if self.wrangling_algorithm == 'standard':
+                    self.std_doc_wrangler.wrangle(doc)
+                else:
+                    pass  # TODO: implement
+
                 out.write(json.dumps(doc))
                 out.write("\n")
 
@@ -145,9 +165,39 @@ class Transformer(object):
     def is_successful(self):
         return self.status == 'successful'
 
-    def load_mappings(self):
-        f = self.app_config.db_metadata_file(self.dbname)
-        return self.load_json_file(f)
+    def load_container_mappings(self):
+        # reference_app/data/metadata/openflights_mapping.json
+        cname = self.parse_container_from_filename(self.filename)
+        fname = self.app_config.db_mapping_file(self.dbname)
+        allmeta = self.load_json_file(fname)
+        for mapping in allmeta['collections']:
+            if mapping['name'] == cname:
+                mapping['source_dbname'] = allmeta['source_dbname']
+                mapping['default_target_dbname'] = allmeta['default_target_dbname']
+                return mapping
+        raise Exception("Error: container '{}' missing in metadata file {}".format(cname, fname))
+
+        # "source_dbname": "openflights",
+        # "default_target_dbname": "openflights",
+        # "collections": [
+        # {
+        #   "name": "airports",
+        #   "mapping": {
+        #     "target_dbname": "",
+        #     "target_container": "",
+        #     "wrangling_algorithm": "standard",
+        #     "pk_name": "pk",
+        #     "pk_logic": [ "name" ],
+        #     "excludes": [ "_id" ]
+        #   }
+        # },
+
+    def parse_container_from_filename(self, filename):
+        # filename: tmp/openflights/openflights__airlines__source.json
+        # tokens:   ['openflights', 'airlines', 'source.json']
+        tokens = os.path.basename(filename).split('__')
+        print('parse_container_from_filename tokens: {}'.format(tokens))
+        return tokens[-2]
 
     def load_json_file(self, infile):
         with open(infile) as json_file:

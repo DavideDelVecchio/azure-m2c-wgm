@@ -92,16 +92,23 @@ def generate_mapping_file(dbname):
     print('generate_mapping_file; infile:  {}'.format(infile))
     metadata = load_json_file(infile)
     data = dict()
-    data['dbname'] = dbname
+    data['source_dbname'] = dbname
+    data['default_target_dbname'] = dbname
     coll_data = list()
 
     for coll in metadata['collections']:
         coll_info = dict()
         coll_info['name'] = coll['name']
         mapping = dict()
-        mapping['target_db_container'] = 'ddd/ccc' 
-        mapping['pk_attr_name'] = 'aaa' 
-        mapping['pk_attr_logic'] = list()
+        mapping['target_dbname'] = '' 
+        mapping['target_container'] = '' 
+        mapping['wrangling_algorithm'] = 'standard' 
+        mapping['pk_name']  = 'pk' 
+        mapping['pk_logic'] = list()
+        mapping['pk_sep']  = '-' 
+        mapping['doctype_name']  = 'doctype' 
+        mapping['doctype_logic'] = list()
+        mapping['doctype_sep']  = '-' 
         mapping['excludes'] = list()
         coll_info['mapping'] = mapping
         coll_data.append(coll_info)

@@ -7,11 +7,16 @@
 
 - TODO ADF/git integration and testing
 
-- TODO Automate VM Provisioning and Setup
+- TODO Automate VM Provisioning and Setup; see uvm
 
-- TODO Implement Wrangling; wrangle.py  enable blobs, externalized rules  
+- TODO Implement StandardDocumentWrangler Unit test
+- TODO Refine AppConfig Unit test
 
 ---
+
+- Done Implement Wrangling
+  - wrangle.py  enable blobs, externalized rules  
+  - standard_doc_wrangler.py using mapping json
 
 - Done Implement Wrangling IO processing
   - download, transform, upload, logging, list and download result blob

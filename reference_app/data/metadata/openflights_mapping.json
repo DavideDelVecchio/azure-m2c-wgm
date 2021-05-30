@@ -1,48 +1,79 @@
 {
-  "dbname": "openflights",
+  "source_dbname": "openflights",
+  "default_target_dbname": "openflights",
   "collections": [
     {
       "name": "airlines",
       "mapping": {
-        "target_db_container": "ddd/ccc",
-        "pk_attr_name": "aaa",
-        "pk_attr_logic": [],
-        "excludes": []
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [ "attr:xxx" ],
+        "doctype_sep": "-",
+        "excludes": [ "airport_id", "source" ]
       }
     },
     {
       "name": "airports",
       "mapping": {
-        "target_db_container": "ddd/ccc",
-        "pk_attr_name": "aaa",
-        "pk_attr_logic": [],
-        "excludes": []
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [ {"type": "attr", "value": "name" }, {"type": "literal", "value": "xxx" } ],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [ {"type": "literal", "value": "airport" } ],
+        "doctype_sep": "-",
+        "excludes": [ "airport_id", "source", "type" ]
       }
     },
     {
       "name": "countries",
       "mapping": {
-        "target_db_container": "ddd/ccc",
-        "pk_attr_name": "aaa",
-        "pk_attr_logic": [],
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
         "excludes": []
       }
     },
     {
       "name": "planes",
       "mapping": {
-        "target_db_container": "ddd/ccc",
-        "pk_attr_name": "aaa",
-        "pk_attr_logic": [],
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
         "excludes": []
       }
     },
     {
       "name": "routes",
       "mapping": {
-        "target_db_container": "ddd/ccc",
-        "pk_attr_name": "aaa",
-        "pk_attr_logic": [],
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
         "excludes": []
       }
     }
