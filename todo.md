@@ -1,5 +1,7 @@
 ## Development TODO List
 
+---
+
 - TODO Quality Control - file sizes
 - TODO File Map Excel Report?
 
@@ -12,6 +14,8 @@
 - TODO Implement Wrangling.  With externalized rules?  wrangle.py
 
 - TODO mongoexports for Docker DB
+
+---
 
 - Done Modifify DB loading for Docker DB
 - Done Run MongoDB with a Docker container
