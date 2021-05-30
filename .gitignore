@@ -18,6 +18,9 @@
 **/tmp/
 **/target/
 
+reference_app/data/imdb/*.json
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

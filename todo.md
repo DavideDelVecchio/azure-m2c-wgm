@@ -7,12 +7,14 @@
 
 - TODO ADF/git integration and testing
 
-- TODO ACI Script Testing
-- TODO ACI Script Generation
+- TODO Automate VM Provisioning and Setup
 
 - TODO Implement Wrangling; wrangle.py  enable blobs, externalized rules  
 
 ---
+
+- Done Explore ACI; use a VM instead.
+  - Simplicity, streams, subscription limits, VM sizes
 
 - Done Create Dockerfile and Container
 

@@ -11,7 +11,7 @@ Usage:
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com,christopher.joakim@gmail.com"
 __license__ = "MIT"
-__version__ = "2021.02.20"
+__version__ = "2021.05.30"
 
 import json
 import os
@@ -20,9 +20,13 @@ import sys
 import time
 import uuid
 
+import arrow
 from docopt import docopt
 from os.path import abspath
+from operator import itemgetter
 from bson.objectid import ObjectId
+
+from pysrc.app_config import AppConfig
 
 def transform(doctype, infile, outfile):
     print('transform: {} -> {} -> {}'.format(doctype, infile, outfile))
@@ -74,7 +78,6 @@ def print_options(msg):
     arguments = docopt(__doc__, version=__version__)
     print(arguments)
 
-
 def get_program_args():
     # get the program args from either the command-line or the CLI_ARGS
     # environment variable if running in a Docker container.
@@ -86,6 +89,7 @@ def get_program_args():
         print('CLI_ARGS: {}'.format(cli_arg_str))
         args = cli_arg_str.split()
     return args
+
 
 if __name__ == "__main__":
     args = get_program_args()
