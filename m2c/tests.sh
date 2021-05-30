@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Bash shell scripts to execute the pytest-based unit, tests with code coverage.
+# Chris Joakim, Microsoft, June 2021
+
 source bin/activate
 source env.sh
 

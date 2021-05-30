@@ -2,7 +2,7 @@
 
 # This script defines environment variables used in this migration process;
 # it is 'sourced' by other scripts in this repo.
-# Chris Joakim, Microsoft, May 2021
+# Chris Joakim, Microsoft, June 2021
 
 export M2C_SHELL_TYPE="bash"
 

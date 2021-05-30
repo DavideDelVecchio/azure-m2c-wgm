@@ -1,5 +1,5 @@
 // MongoDB "DDL" initialize the "olympics" database and its collections.
-// Chris Joakim, Microsoft, May 2021
+// Chris Joakim, Microsoft, June 2021
 
 use olympics
 

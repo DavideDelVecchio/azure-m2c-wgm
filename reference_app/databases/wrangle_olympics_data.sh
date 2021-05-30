@@ -4,7 +4,7 @@
 # directory into mongoimport files in the olympics/import_json/ directory.
 # Users of this repo don't need to execute this script, as the output files
 # are already present in the olympics/import_json/ directory.
-# Chris Joakim, Microsoft, May 2021
+# Chris Joakim, Microsoft, June 2021
 
 mkdir -p tmp
 

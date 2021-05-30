@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bash script to repair a stopped mongod installation after it crashes.
-# Chris Joakim, Microsoft, May 2021
+# Chris Joakim, Microsoft, June 2021
 
 echo 'repairing ...'
 mongod --config /usr/local/etc/mongod.conf --repair

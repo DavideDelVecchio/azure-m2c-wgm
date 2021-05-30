@@ -1,6 +1,6 @@
 // MongoDB "DDL" initialize the "openflights" database and its collections.
 // No indexes are added since this DB is simply used as a database migration source.
-// Chris Joakim, Microsoft, May 2021
+// Chris Joakim, Microsoft, June 2021
 
 use openflights
 

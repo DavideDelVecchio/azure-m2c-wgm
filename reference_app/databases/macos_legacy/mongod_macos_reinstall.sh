@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bash script to reinstall mongo on macOS with homebrew.
-# Chris Joakim, Microsoft, May 2021
+# Chris Joakim, Microsoft, June 2021
 
 # brew mongodb-database-tools ?
 

@@ -9,7 +9,7 @@
 # $ ./compose.sh ps
 # $ ./compose.sh down
 #
-# Chris Joakim, Microsoft, May 2021
+# Chris Joakim, Microsoft, June 2021
 
 source env.sh
 
