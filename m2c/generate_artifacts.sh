@@ -18,6 +18,9 @@ rm  /Users/cjoakim/github/azure-m2c-wgm/reference_app/artifacts/shell/*.*
 cp env.sh     templates 
 cp storage.py templates 
 
+echo 'generating reference db scripts ...'
+python main.py generate_reference_db_scripts
+
 echo 'generating artifacts ...'
 python main.py generate_artifacts openflights --all
 python main.py generate_artifacts olympics --all

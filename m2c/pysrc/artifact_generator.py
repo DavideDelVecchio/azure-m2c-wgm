@@ -70,21 +70,27 @@ class ArtifactGenerator(object):
         return False 
 
     def gen_mongoexports(self):
-        script_lines = self.shell_script_lines()
-        template_name = 'mongoexport_script_ssl_{}.txt'.format(self.ssl).lower()
+        #script_lines = self.shell_script_lines()
         self.ensure_directory_path(self.mongoexports_dir)
-
+        self.ensure_directory_path(self.shell_artifacts_dir)
+        template = 'mongoexport_script.txt'
         template_data = dict()
         template_data['dbname'] = self.dbname
-        template_data['gentimestamp'] = self.timestamp()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_mongoexports()'
+        template_data['uri']  = 'mongodb://@{}:{}'.format(
+            self.app_config.source_mongodb_host, self.app_config.source_mongodb_port)
+        template_data['url']  = self.app_config.source_mongodb_url
+        template_data['host'] = self.app_config.source_mongodb_host 
+        template_data['post'] = self.app_config.source_mongodb_port
+        template_data['user'] = self.app_config.source_mongodb_user 
+        template_data['pass'] = self.app_config.source_mongodb_pass
+        template_data['ssl']  = ' # no --ssl' # self.app_config.source_mongodb_ssl 
         template_data['collections'] = self.collections
         template_data['outdir'] = self.mongoexports_dir
 
-        t = self.get_template(os.getcwd(), template_name)
+        t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
-
-        self.ensure_directory_path(self.shell_artifacts_dir)
-
         outfile = '{}/{}_mongoexports.sh'.format(self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
 
@@ -107,11 +113,12 @@ class ArtifactGenerator(object):
 
     def gen_python_uploads(self):
         mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
-
+        template = 'blob_uploads_python.txt'
         template_data = dict()
         collection_data = list()
         template_data['dbname'] = self.dbname
-        template_data['gentimestamp'] = self.timestamp()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_python_uploads()'
         template_data['collections'] = collection_data
         template_data['container'] = '{}-raw'.format(self.dbname)
 
@@ -123,7 +130,7 @@ class ArtifactGenerator(object):
             coll_dict['blob_name'] = os.path.basename(local_file)
             collection_data.append(coll_dict)
 
-        t = self.get_template(os.getcwd(), 'blob_uploads_python.txt')
+        t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
 
         self.ensure_directory_path(self.shell_artifacts_dir)
@@ -139,11 +146,12 @@ class ArtifactGenerator(object):
 
     def gen_az_cli_uploads(self):
         mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
-
+        template = 'blob_uploads_az_cli.txt'
         template_data = dict()
         collection_data = list()
         template_data['dbname'] = self.dbname
-        template_data['gentimestamp'] = self.timestamp()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_az_cli_uploads()'
         template_data['collections'] = collection_data
         template_data['container'] = '{}-raw'.format(self.dbname)
 
@@ -155,7 +163,7 @@ class ArtifactGenerator(object):
             coll_dict['blob_name'] = os.path.basename(local_file)
             collection_data.append(coll_dict)
 
-        t = self.get_template(os.getcwd(), 'blob_uploads_az_cli.txt')
+        t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
 
         self.ensure_directory_path(self.shell_artifacts_dir)
@@ -202,9 +210,11 @@ class ArtifactGenerator(object):
 
     def generate_openflights_reference_db_scripts(self):
         dbname = 'openflights'
+        template = 'mongo_recreate_db.txt'
         template_data = dict()
         template_data['dbname'] = dbname
         template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py generate_openflights_reference_db_scripts()'
         template_data['uri']  = 'mongodb://@{}:{}'.format(
             self.app_config.source_mongodb_host, self.app_config.source_mongodb_port)
         template_data['url']  = self.app_config.source_mongodb_url
@@ -222,7 +232,7 @@ class ArtifactGenerator(object):
             coll_list.append(coll_info)
         template_data['collections'] = sorted(coll_list, key = itemgetter('name'))
 
-        t = self.get_template(os.getcwd(), 'mongo_recreate_db.txt')
+        t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
         outfile = '{}/databases/mongo_recreate_{}_db.sh'.format(
             self.app_config.reference_app_dir, dbname)
@@ -233,9 +243,11 @@ class ArtifactGenerator(object):
 
     def generate_olympics_reference_db_scripts(self):
         dbname = 'olympics'
+        template = 'mongo_recreate_db.txt'
         template_data = dict()
         template_data['dbname'] = dbname
         template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py generate_olympics_reference_db_scripts()'
         template_data['uri']  = self.app_config.source_mongodb_uri()
         template_data['url']  = self.app_config.source_mongodb_url
         template_data['host'] = self.app_config.source_mongodb_host 
@@ -252,7 +264,7 @@ class ArtifactGenerator(object):
             coll_list.append(coll_info)
         template_data['collections'] = sorted(coll_list, key = itemgetter('name'))
 
-        t = self.get_template(os.getcwd(), 'mongo_recreate_db.txt')
+        t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
         outfile = '{}/databases/mongo_recreate_{}_db.sh'.format(
             self.app_config.reference_app_dir, dbname)
@@ -268,7 +280,8 @@ class ArtifactGenerator(object):
             lines = f.readlines()
             for line in lines:  # {"games":"1896_summer","city":"athina"}
                 doc = json.loads(line.strip())
-                names.append(doc['games'])
+                cname = 'g{}'.format(doc['games'])
+                names.append(cname)
         return names
 
     # standard private methods

@@ -10,14 +10,11 @@ source env.sh
 mkdir -p data/source/mongoexports
 
 {% for c in collections %}
-mongoexport \
-  --host $M2C_SOURCE_MONGODB_HOST \
-  --port $M2C_SOURCE_MONGODB_PORT \
-  --db {{ dbname }} \
-  --username $M2C_SOURCE_MONGODB_USER \
-  --password $M2C_SOURCE_MONGODB_PASS \
-  --collection {{ c['name'] }} \
-  --out {{ outdir }}/{{ dbname }}__{{ c['name'] }}__source.json
+mongoexport --authenticationDatabase admin -u $M2C_SOURCE_MONGODB_USER -p $M2C_SOURCE_MONGODB_PASS --uri {{ uri }} \
+    --db {{ dbname }} \
+    --collection {{ c['name'] }} \
+    --out {{ outdir }}/{{ dbname }}__{{ c['name'] }}__source.json
+    {{ ssl }}
 {% endfor %}
 
 echo 'done'
