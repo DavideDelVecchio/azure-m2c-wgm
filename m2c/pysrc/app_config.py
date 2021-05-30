@@ -69,6 +69,9 @@ class AppConfig(object):
     def artifact_dir(self, artifact_type):
         return '{}/{}'.format(self.artifacts_dir, artifact_type)
 
+    def blob_download_dir(self, dbname):
+        return 'tmp/{}'.format(dbname)
+
     def ensure_directory_path(self, dir_path):
         try:
             if not os.path.exists(dir_path):
