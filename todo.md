@@ -9,6 +9,8 @@
 
 - TODO Automate VM Provisioning and Setup; see uvm
 
+- TODO Generate Wrangling Shell Scripts
+
 - TODO Implement StandardDocumentWrangler Unit test
 - TODO Refine AppConfig Unit test
 
