@@ -80,6 +80,20 @@ def test_mongoexports_file():
     print(f)
     assert(f == expected)
 
+def test_blob_download_dir():
+    app_config = AppConfig()
+    expected = filename('reference_app/data/downloads/olympics')
+    f = app_config.blob_download_dir('olympics')
+    print(f)
+    assert(f == expected)
+
+def test_blob_download_file():
+    app_config = AppConfig()
+    expected = filename('reference_app/data/downloads/olympics/olympics__countries__source.json')
+    f = app_config.blob_download_file('olympics', 'countries')
+    print(f)
+    assert(f == expected)
+
 def test_artifact_dir():
     app_config = AppConfig()
     expected = filename('reference_app/artifacts/shell')

@@ -73,7 +73,11 @@ class AppConfig(object):
         return '{}/{}'.format(self.artifacts_dir, artifact_type)
 
     def blob_download_dir(self, dbname):
-        return 'tmp/{}'.format(dbname)
+        return '{}/downloads/{}'.format(self.data_dir, dbname)
+
+    def blob_download_file(self, dbname, cname):
+        return '{}/{}__{}__source.json'.format(
+            self.blob_download_dir(dbname), dbname, cname)
 
     def ensure_directory_path(self, dir_path):
         try:

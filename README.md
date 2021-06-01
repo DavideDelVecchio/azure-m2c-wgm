@@ -114,6 +114,8 @@ Provision the following:
 - Azure Data Factory
 - Azure CosmosDB/Mongo - the target database for the migration
 
+---
+
 ### 2.0 Development Computer Setup
 
 This process assumes that the following are installed:
@@ -139,12 +141,34 @@ $ cd azure-m2c-wgm
 In repo root directory **azure-m2c-wgm** create a **python virtual environment** using the mechanism of your choice (venv, pyenv, etc.)
 and install the libraries listed in the **requirements.in** file.
 
+This repo contains and generates **pyenv.sh** scripts which create python virtual 
+environments using [pyenv](https://github.com/pyenv/pyenv)
+
+**Standard Python version 3.8 or higher is recommended.**  It has been developed with 3.8.6.
+
 #### 2.4 Edit env.sh and set Environment Variables
 
 See file **env.sh** and make your edits to it.
 
 This script is **sourced** by the other scripts, and the generated scripts.
 
+In particular, you should set these three variable to point to a filesystem
+location that is **external to this repo**.  They are currently set to the
+reference_app directory within this repo simply to provide easily understood
+references of the process.
+
+```
+export M2C_APP_DIR="reference_app"
+export M2C_APP_ARTIFACTS_DIR="reference_app/artifacts"
+export M2C_APP_DATA_DIR="reference_app/data"
+```
+
+#### 2.4.1 Execute replicate_scripts.sh
+
+Once **env.sh** is edited, execute script **replicate_scripts.sh** to copy env.sh
+to several places.
+
+---
 
 ### 3.0 Extract Database Metadata
 
@@ -181,6 +205,8 @@ $ ./generate_mapping_files.sh
 file written: reference_app/data/metadata/olympics_mapping.json
 file written: reference_app/data/metadata/openflights_mapping.json
 ```
+
+---
 
 ### 4.0 Generate Artifacts
 
@@ -225,6 +251,8 @@ file written: reference_app/artifacts/adf/openflights__planes__mongoexport.json
 file written: reference_app/artifacts/adf/openflights__routes__mongoexport.json
 ```
 
+---
+
 ### 5.0 Execute the Data wrangling/transformation scripts
 
 These can be executed in one of several locations:
@@ -232,21 +260,96 @@ These can be executed in one of several locations:
 - Your on-prem virtual machine(s)
 - Azure virtual machine(s)
 
-#### 5.1 Execute the scripts
+#### 5.1 Execute the mongoexport scripts
 
-See ...
+See the **shell subdirectory** within M2C_APP_ARTIFACTS_DIR.
 
-#### 5.2 Verify Execution
+These generated scripts end with **_mongoexports.sh**, such as **openflights_mongoexports.sh**
+where **openflights** is the name of the source database.
 
-TBD ....
+For example:
+
+```
+$ ./openflights_mongoexports.sh
+
+2021-06-01T16:32:10.974-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-01T16:32:11.099-0400	exported 6161 records
+2021-06-01T16:32:11.134-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-01T16:32:11.333-0400	exported 7698 records
+2021-06-01T16:32:11.373-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-01T16:32:11.388-0400	exported 261 records
+2021-06-01T16:32:11.424-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-01T16:32:11.436-0400	exported 246 records
+2021-06-01T16:32:11.471-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-01T16:32:12.474-0400	[#################.......]  openflights.routes  48000/67663  (70.9%)
+2021-06-01T16:32:12.644-0400	[########################]  openflights.routes  67663/67663  (100.0%)
+2021-06-01T16:32:12.644-0400	exported 67663 records
+done
+```
+
+#### 5.2 Create Azure Storage Containers
+
+First, create the necessary containers within your Azure Storage account.
+This creates two containers per database to be migrated -  a xxx-raw
+container, and a xxx-adf container, where xxx is your database name.
+
+The xxx-raw containers are for your raw mongoexport files, while the
+xxx-adf containers are for the wrangled/transformed blobs that will
+be loaded into Azure CosmosDB by Azure Data Factory (ADF).
+
+```
+$ python_create_containers.sh
+
+$ source env.sh ; python storage.py list_blob_containers 
+
+1 olympics-adf
+2 olympics-raw
+3 openflights-adf
+4 openflights-raw
+```
+
+#### 5.3 Execute the upload to Azure Storage scripts
+
+Two similar scripts per database will be generated for you to choose from,
+based on your preferences - **python** or the **az CLI** program.
+
+These will upload your source mongoexport files to Azure Storage blobs.
+
+The typical migration use-case is that the mongoexport process is executed
+on-prem, while the subsequent wrangling/transformation is executed in 
+Azure on a VM(s). 
+
+```
+$ ./olympics_az_cli_mongoexport_uploads.sh
+  ... or ...
+$ ./olympics_python_mongoexport_uploads.sh
+```
+
+#### 5.4 Execute the Wrangling/Transformation scripts
+
+These transform the mongoexport files extracted in section 5.1 per the rules
+you defined in the mapping files.
+
+```
+TBD
+```
+
+After transforming each input file, these scripts upload the transformed file
+to Azure Storage.
+
+---
 
 ### 6.0 Execute the Azure Data Factory Pipelines 
 
-### 6.1 Executes the ADF Pipelines 
+### 6.1 Execute Verification Process
+
+TBD
+
+### 6.2 Executes the ADF Pipelines 
 
 This executes the ADF Pipelines to copy the Azure Storage data
 to the target CosmosDB.
 
-### 6.2 Execute the Verification Process
+### 6.3 Execute the Verification Process
 
 TBD ....
