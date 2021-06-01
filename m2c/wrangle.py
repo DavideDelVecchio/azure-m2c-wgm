@@ -282,6 +282,10 @@ if __name__ == "__main__":
                 t.print_summary()
                 print("ERROR: TRANSFORMATION_FAILED for args {}".format(args))
                 traceback.print_exc(file=sys.stdout)
+
+        elif func == 'cleanup':
+            print('TODO - implement cleanup logic per mappings')
+            
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:

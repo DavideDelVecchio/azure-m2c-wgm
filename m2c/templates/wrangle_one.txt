@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Bash shell script to wrangle/transform a raw mongoexport file
+#
+# Database Name: {{ dbname }}
+# Generated on:  {{ gen_timestamp }}
+# Template:      wrangle.txt
+
+source env.sh
+
+
+{% for c in collections %}
+
+python storage.py download_blob {{ dbname }}-raw openflights__airports__wrangled.json tmp/downloaded_blob.json
+
+#python wrangle.py transform \
+#    --db {{ dbname }} \
+#    --in-container {{ dbname }}-raw \
+#    --blobname openflights__airports__source.json \
+#    --filename tmp/openflights/openflights__airports__source.json \
+#    --outfile  tmp/openflights/openflights__airports__wrangled.json \
+#    --out-container openflights-adf
+
+#python storage.py download_blob openflights-adf openflights__airports__wrangled.json tmp/downloaded_blob.json
+
+{% endfor %}
+
+echo 'done'

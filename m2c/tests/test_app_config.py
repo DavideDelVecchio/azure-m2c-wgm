@@ -94,6 +94,13 @@ def test_blob_download_file():
     print(f)
     assert(f == expected)
 
+def test_wrangle_script_basename():
+    app_config = AppConfig()
+    expected = filename('olympics/wrangle_olympics_countries')
+    s = app_config.wrangle_script_basename('olympics', 'countries')
+    print(s)
+    assert(s == expected)
+
 def test_artifact_dir():
     app_config = AppConfig()
     expected = filename('reference_app/artifacts/shell')

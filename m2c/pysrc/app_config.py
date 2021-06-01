@@ -79,6 +79,9 @@ class AppConfig(object):
         return '{}/{}__{}__source.json'.format(
             self.blob_download_dir(dbname), dbname, cname)
 
+    def wrangle_script_basename(self, dbname, cname):
+        return '{}/wrangle_{}_{}'.format(dbname, dbname, cname)
+
     def ensure_directory_path(self, dir_path):
         try:
             if not os.path.exists(dir_path):

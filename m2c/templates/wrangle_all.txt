@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Bash shell script to wrangle/transform a raw mongoexport file
+#
+# Database Name: {{ dbname }}
+# Generated on:  {{ gen_timestamp }}
+# Template:      wrangle_all.txt
+
+source ../env.sh
+
+{% for c in collections %}
+echo '{{ c['script_basename'] }} ...'
+./{{ c['script_basename'] }}.sh > tmp/{{ c['script_basename'] }}.txt
+python wrangle.py cleanup {{ c['script_basename'] }}
+{% endfor %}
+
+echo 'done'

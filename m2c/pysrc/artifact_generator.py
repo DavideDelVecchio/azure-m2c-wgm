@@ -40,12 +40,6 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--mongoexports')):
             self.gen_mongoexports()
 
-        if (self.gen_artifact('--file-wrangle-script')):
-            self.gen_aci_wrangle_script() 
-
-        if (self.gen_artifact('--file-wrangle-script')):
-            self.gen_file_wrangle_script() 
-
         if (self.gen_artifact('--create-containers')):
             self.gen_python_create_containers() 
 
@@ -54,6 +48,12 @@ class ArtifactGenerator(object):
 
         if (self.gen_artifact('--az-cli-uploads')):
             self.gen_az_cli_uploads() 
+
+        if (self.gen_artifact('--wrangle-scripts-for-db')):
+            self.gen_wrangle_scripts_for_db() 
+
+        if (self.gen_artifact('--wrangle-scripts-individual')):
+            self.gen_wrangle_scripts_individual() 
 
         if (self.gen_artifact('--adf-datasets')):
             self.gen_adf_datasets() 
@@ -171,10 +171,33 @@ class ArtifactGenerator(object):
         outfile = '{}/{}_az_cli_mongoexport_uploads.sh'.format(self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
 
-    def gen_aci_wrangle_script(self):
-        pass
+    def gen_wrangle_scripts_for_db(self):
+        mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
+        template = 'wrangle_all.txt'
+        template_data = dict()
+        collection_data = list()
+        template_data['dbname'] = self.dbname
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_for_db()'
+        template_data['collections'] = collection_data
+        template_data['container'] = '{}-raw'.format(self.dbname)
 
-    def gen_file_wrangle_script(self):
+        for c in self.collections:
+            cname = c['name']
+            script_basename = self.app_config.wrangle_script_basename(self.dbname, cname)
+            coll_dict = dict()
+            coll_dict['script_basename'] = script_basename
+            collection_data.append(coll_dict)
+
+        t = self.get_template(os.getcwd(), template)
+        s = t.render(template_data)
+
+        self.ensure_directory_path(self.shell_artifacts_dir)
+
+        outfile = '{}/{}_wrangle_all.sh'.format(self.shell_artifacts_dir, self.dbname)
+        self.write(outfile, s)
+
+    def gen_wrangle_scripts_individual(self):
         pass
 
     def gen_adf_datasets(self):

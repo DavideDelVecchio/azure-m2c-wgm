@@ -11,9 +11,12 @@
 
 - TODO Implement StandardDocumentWrangler Unit test
 
-- TODO Generate Wrangling Shell Scripts
+- TODO Generate Wrangling Shell Scripts - for each collection
 
 ---
+
+- Done Generate Wrangling Shell Scripts - for each database
+  - app_config wrangle_script_basename
 
 - Done Refine AppConfig Unit test
 - Done Refactor data/xxx/mongoexports/ to data/mongoexports/xxx
