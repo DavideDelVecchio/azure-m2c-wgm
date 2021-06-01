@@ -123,19 +123,130 @@ This process assumes that the following are installed:
 - az CLI
 - bash shell support 
 
-### 2.1 Optionally Setup and run the Reference Database
+#### 2.1 Optionally Setup and run the Reference Database
 
 See https://github.com/cjoakim/mongodb-docker
 
-### 2.2 Clone this repo to your Development machine
+#### 2.2 Clone this repo to your Development machine
 
 ```
 $ git clone git@github.com:cjoakim/azure-m2c-wgm.git
 $ cd azure-m2c-wgm
 ```
 
-### 2.3 Create a Python Virtual Environment
+#### 2.3 Create a Python Virtual Environment
 
 In repo root directory **azure-m2c-wgm** create a **python virtual environment** using the mechanism of your choice (venv, pyenv, etc.)
 and install the libraries listed in the **requirements.in** file.
 
+#### 2.4 Edit env.sh and set Environment Variables
+
+See file **env.sh** and make your edits to it.
+
+This script is **sourced** by the other scripts, and the generated scripts.
+
+
+### 3.0 Extract Database Metadata
+
+This migration process is driven by the **metadata** extracted from the
+source databases, as well an initially-generated but then user edited
+**mapping** files.
+
+#### 3.1 Extract Source Database Metadata
+
+See **extract_metadata.sh**.  This executes a python process to connect
+to your source database(s) and extract metadata as JSON files.
+
+The output JSON files are **not edited** after initial creation.
+
+```
+$ ./extract_metadata.sh
+...
+file written: reference_app/data/metadata/olympics_metadata.json
+file written: reference_app/data/metadata/openflights_metadata.json
+```
+
+#### 3.2 Generate Mapping Files
+
+See **generate_mapping_files.sh**.  This generates files that are somewhat
+similar to the above metadata files, but are **intended to be edited by the customer**.  
+
+These files map source-to-target database and container mapping, as well as
+data wrangling/transformation rules for items such as partition keys, document types,
+and attribute pruning.
+
+```
+$ ./generate_mapping_files.sh
+...
+file written: reference_app/data/metadata/olympics_mapping.json
+file written: reference_app/data/metadata/openflights_mapping.json
+```
+
+### 4.0 Generate Artifacts
+
+This process generates the following:
+
+- mongoexport scripts from the source database(s)
+- Scripts to upload the mongoexport files to Azure Storage via the az CLI
+- Scripts to upload the mongoexport files to Azure Storage via Python 3
+- Data wrangling/transformation scripts
+  - Wrangle/transforms the source mongoexport files to similar output files
+  - Uploads the wrangled/transformed mongoexport files to Azure Storage
+- Azure Data Factory (ADF)
+  - Linked Services - Azure Storage and Azure CosmosDB
+  - DataSets - for each wrangled/transformed Azure Storage blob
+  - Pipelines - to load the target CosmosDB from the wrangled/transformed Azure Storage blobs
+  - These generated artifacts can be added to the git repository used by your ADF
+
+```
+./generate_artifacts.sh
+```
+
+Sample output:
+```
+ensuring target artifact directories exist ...
+deleting previous generated artifacts ...
+generating artifacts ...
+['main.py', 'generate_artifacts', 'openflights', '--all']
+generate_artifacts openflights ['main.py', 'generate_artifacts', 'openflights', '--all']
+file written: reference_app/artifacts/shell/openflights_mongoexports.sh
+file written: reference_app/artifacts/shell/python_create_containers.sh
+file written: reference_app/artifacts/shell/openflights_python_mongoexport_uploads.sh
+file written: reference_app/artifacts/shell/env.sh
+file written: reference_app/artifacts/shell/pyenv.sh
+file written: reference_app/artifacts/shell/storage.py
+file written: reference_app/artifacts/shell/requirements.in
+file written: reference_app/artifacts/shell/requirements.txt
+file written: reference_app/artifacts/shell/openflights_az_cli_mongoexport_uploads.sh
+file written: reference_app/artifacts/adf/openflights__airlines__mongoexport.json
+file written: reference_app/artifacts/adf/openflights__airports__mongoexport.json
+file written: reference_app/artifacts/adf/openflights__countries__mongoexport.json
+file written: reference_app/artifacts/adf/openflights__planes__mongoexport.json
+file written: reference_app/artifacts/adf/openflights__routes__mongoexport.json
+```
+
+### 5.0 Execute the Data wrangling/transformation scripts
+
+These can be executed in one of several locations:
+
+- Your on-prem virtual machine(s)
+- Azure virtual machine(s)
+
+#### 5.1 Execute the scripts
+
+See ...
+
+#### 5.2 Verify Execution
+
+TBD ....
+
+### 6.0 Execute the Azure Data Factory Pipelines 
+
+### 6.1 Executes the ADF Pipelines 
+
+This executes the ADF Pipelines to copy the Azure Storage data
+to the target CosmosDB.
+
+### 6.2 Execute the Verification Process
+
+TBD ....

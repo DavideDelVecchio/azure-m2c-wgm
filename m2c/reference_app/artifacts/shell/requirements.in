@@ -1,9 +1,8 @@
+# Chris Joakim, Microsoft, May 2021
+# These libraries are sorted alphabetically
 
 Jinja2
 arrow
 azure-storage-blob
 docopt
 pymongo
-
-pytest
-pytest-cov
