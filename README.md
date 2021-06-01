@@ -15,22 +15,12 @@
 ├── doc
 ├── m2c                            <--- implementation of the migration process
 │   └── templates                  <--- python Jinja2 text templates for artifacts
-└── reference_app                  <--- sample "source" databases for this process
+└── reference_app                  
     ├── artifacts                  <--- generated artifacts
     │   ├── adf                    <--- generated Azure Data Factory artifacts
     │   └── shell                  <--- generated shell scripts
     ├── data
-    │   ├── meta                   <--- extracted metadata from the source databases
-    │   ├── olympics               <--- exported mongoexports from localhost sample database
-    │   └── openflights            <--- exported mongoexports from localhost sample database
-    └── databases
-        ├── mongo                  <-- mongo init "ddl" files
-        ├── olympics
-        │   ├── import_json        <-- mongoimport files for sample database
-        │   └── raw
-        ├── openflights
-        │   ├── import_json        <-- mongoimport files for sample database
-        │   └── raw
+    │   ├── meta                   <--- extracted metadata from the source 
 ```
 
 ---
@@ -94,37 +84,13 @@ simply observe the output artifacts from it.
 
 ### Reference Databases 
 
-Two sample databases have been implemented.  They are:
+Two sample databases have been implemented, and are implemented
+in a separate repository: 
+**https://github.com/cjoakim/mongodb-docker**
 
 - **openflights** (airports, airplanes, routes, etc)
 - **olympics** (results of the summer and olympic games 1896-2016)
 
-You can load this data into your dev/test database by executing
-the following scripts:
-
-```
-$ cd reference_app/databases
-
-./mongo_recreate_olympics_db.sh
-./mongo_recreate_openflights_db.sh
-```
-
-The above scripts use the **mongoimport** program to load a curated set of
-datafiles in this repo.  These scripts assume a mongo database running at
-localhost:27017; if your dev/test is elsewhere simply modify these two scripts.
-
-### Reference Metadata
-
-The metadata for these two databases has been extracted, and is in this repo
-for your reference in the following two files.
-
-```
-reference_app/data/meta/olympics_metadata.json
-reference_app/data/meta/openflights_metadata.json
-```
-
-These metadata files were created by script **m2c/extract_metadata.sh**
-in this repo.
 
 ### Reference Artifacts
 
@@ -134,16 +100,3 @@ directory.
 
 These artifact files were created by script **m2c/generate_artifacts.sh**
 in this repo.
-
----
-
-## Execution
-
-Clone this repo:
-
-```
-$ git clone https://github.com/cjoakim/azure-m2c-wgm.git
-```
-
-TODO - document this
-
