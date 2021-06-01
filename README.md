@@ -20,7 +20,7 @@
     │   ├── adf                    <--- generated Azure Data Factory artifacts
     │   └── shell                  <--- generated shell scripts
     ├── data
-    │   ├── meta                   <--- extracted metadata from the source 
+    │   ├── metadata               <--- extracted metadata from the source 
 ```
 
 ---

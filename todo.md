@@ -13,8 +13,12 @@
 
 - TODO Implement StandardDocumentWrangler Unit test
 - TODO Refine AppConfig Unit test
+- TODO Refactor data/xxx/mongoexports/ to data/mongoexports/xxx
 
 ---
+
+- Done Extract Reference Database to a separate repo
+  - https://github.com/cjoakim/mongodb-docker
 
 - Done Implement Wrangling
   - wrangle.py  enable blobs, externalized rules  
