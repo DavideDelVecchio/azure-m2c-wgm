@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.05.28"
+__version__ = "2021/06/01"
 
 import arrow
 import glob
@@ -60,11 +60,11 @@ class AppConfig(object):
         return '{}/{}_mapping.json'.format(outdir, dbname)
 
     def mongoexports_dir(self, dbname):
-        return '{}/{}/mongoexports'.format(self.data_dir, dbname)
+        return '{}/mongoexports/{}'.format(self.data_dir, dbname)
 
     def mongoexport_file(self, dbname, cname):
-        return '{}/{}/mongoexports/{}__{}__source.json'.format(
-            self.data_dir, dbname, dbname, cname)
+        return '{}/{}__{}__source.json'.format(
+            self.mongoexports_dir(dbname), dbname, cname)
 
     def artifact_dir(self, artifact_type):
         return '{}/{}'.format(self.artifacts_dir, artifact_type)

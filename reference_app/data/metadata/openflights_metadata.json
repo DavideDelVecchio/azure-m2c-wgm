@@ -1,11 +1,11 @@
 {
   "dbname": "openflights",
-  "utc_datetime": "2021-05-30T10:05:51.536355+00:00",
+  "utc_datetime": "2021-06-01T18:18:53.260041+00:00",
   "collections": [
     {
-      "name": "airports",
+      "name": "planes",
       "metadata": {
-        "doc_count": 7698,
+        "doc_count": 246,
         "indexes": [
           {
             "v": 2,
@@ -16,19 +16,52 @@
           }
         ],
         "stats": {
-          "ns": "openflights.airports",
-          "size": 2626623,
-          "count": 7698,
-          "avgObjSize": 341,
-          "storageSize": 880640,
+          "ns": "openflights.planes",
+          "size": 19699,
+          "count": 246,
+          "avgObjSize": 80,
+          "storageSize": 24576,
           "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
           "indexBuilds": [],
-          "totalIndexSize": 86016,
-          "totalSize": 966656,
+          "totalIndexSize": 20480,
+          "totalSize": 45056,
           "indexSizes": {
-            "_id_": 86016
+            "_id_": 20480
+          },
+          "scaleFactor": 1,
+          "ok": 1.0
+        }
+      }
+    },
+    {
+      "name": "routes",
+      "metadata": {
+        "doc_count": 67663,
+        "indexes": [
+          {
+            "v": 2,
+            "key": {
+              "_id": 1
+            },
+            "name": "_id_"
+          }
+        ],
+        "stats": {
+          "ns": "openflights.routes",
+          "size": 15503770,
+          "count": 67663,
+          "avgObjSize": 229,
+          "storageSize": 2314240,
+          "freeStorageSize": 12288,
+          "capped": false,
+          "nindexes": 1,
+          "indexBuilds": [],
+          "totalIndexSize": 630784,
+          "totalSize": 2945024,
+          "indexSizes": {
+            "_id_": 630784
           },
           "scaleFactor": 1,
           "ok": 1.0
@@ -69,9 +102,9 @@
       }
     },
     {
-      "name": "routes",
+      "name": "airports",
       "metadata": {
-        "doc_count": 67663,
+        "doc_count": 7698,
         "indexes": [
           {
             "v": 2,
@@ -82,19 +115,19 @@
           }
         ],
         "stats": {
-          "ns": "openflights.routes",
-          "size": 15503770,
-          "count": 67663,
-          "avgObjSize": 229,
-          "storageSize": 2334720,
+          "ns": "openflights.airports",
+          "size": 2626623,
+          "count": 7698,
+          "avgObjSize": 341,
+          "storageSize": 880640,
           "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
           "indexBuilds": [],
-          "totalIndexSize": 618496,
-          "totalSize": 2953216,
+          "totalIndexSize": 86016,
+          "totalSize": 966656,
           "indexSizes": {
-            "_id_": 618496
+            "_id_": 86016
           },
           "scaleFactor": 1,
           "ok": 1.0
@@ -119,48 +152,15 @@
           "size": 1048944,
           "count": 6161,
           "avgObjSize": 170,
-          "storageSize": 372736,
+          "storageSize": 368640,
           "freeStorageSize": 0,
           "capped": false,
           "nindexes": 1,
           "indexBuilds": [],
           "totalIndexSize": 69632,
-          "totalSize": 442368,
+          "totalSize": 438272,
           "indexSizes": {
             "_id_": 69632
-          },
-          "scaleFactor": 1,
-          "ok": 1.0
-        }
-      }
-    },
-    {
-      "name": "planes",
-      "metadata": {
-        "doc_count": 246,
-        "indexes": [
-          {
-            "v": 2,
-            "key": {
-              "_id": 1
-            },
-            "name": "_id_"
-          }
-        ],
-        "stats": {
-          "ns": "openflights.planes",
-          "size": 19699,
-          "count": 246,
-          "avgObjSize": 80,
-          "storageSize": 24576,
-          "freeStorageSize": 0,
-          "capped": false,
-          "nindexes": 1,
-          "indexBuilds": [],
-          "totalIndexSize": 20480,
-          "totalSize": 45056,
-          "indexSizes": {
-            "_id_": 20480
           },
           "scaleFactor": 1,
           "ok": 1.0
@@ -175,13 +175,13 @@
     "objects": 82029,
     "avgObjSize": 234.3034658474442,
     "dataSize": 19219679.0,
-    "storageSize": 3637248.0,
+    "storageSize": 3612672.0,
     "indexes": 5,
-    "indexSize": 815104.0,
-    "totalSize": 4452352.0,
+    "indexSize": 827392.0,
+    "totalSize": 4440064.0,
     "scaleFactor": 1.0,
-    "fsUsedSize": 18221228032.0,
-    "fsTotalSize": 67371577344.0,
+    "fsUsedSize": 16698548224.0,
+    "fsTotalSize": 62725623808.0,
     "ok": 1.0
   }
 }

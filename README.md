@@ -100,3 +100,38 @@ directory.
 
 These artifact files were created by script **m2c/generate_artifacts.sh**
 in this repo.
+
+---
+
+## Executing the Migration Process
+
+### Azure Provisioning
+
+Provision the following:
+
+- Azure Storage Account
+- Azure Linux Virtual Machine(s)
+- Azure Data Factory
+- Azure CosmosDB/Mongo - the target database for the migration
+
+### Development Computer Setup
+
+This process assumes that the following are installed:
+
+- git
+- python 3
+- az CLI
+- bash shell support 
+
+### 0. Optionally Setup and run the Reference Database
+
+See https://github.com/cjoakim/mongodb-docker
+
+### 1. Clone this repo to your Development machine
+
+```
+$ git clone git@github.com:cjoakim/azure-m2c-wgm.git
+$ cd azure-m2c-wgm
+```
+
+### 2. 

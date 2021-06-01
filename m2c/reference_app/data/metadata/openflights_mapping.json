@@ -1,0 +1,81 @@
+{
+  "source_dbname": "openflights",
+  "default_target_dbname": "openflights",
+  "collections": [
+    {
+      "name": "airlines",
+      "mapping": {
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
+        "excludes": []
+      }
+    },
+    {
+      "name": "airports",
+      "mapping": {
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
+        "excludes": []
+      }
+    },
+    {
+      "name": "countries",
+      "mapping": {
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
+        "excludes": []
+      }
+    },
+    {
+      "name": "planes",
+      "mapping": {
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
+        "excludes": []
+      }
+    },
+    {
+      "name": "routes",
+      "mapping": {
+        "target_dbname": "",
+        "target_container": "",
+        "wrangling_algorithm": "standard",
+        "pk_name": "pk",
+        "pk_logic": [],
+        "pk_sep": "-",
+        "doctype_name": "doctype",
+        "doctype_logic": [],
+        "doctype_sep": "-",
+        "excludes": []
+      }
+    }
+  ]
+}

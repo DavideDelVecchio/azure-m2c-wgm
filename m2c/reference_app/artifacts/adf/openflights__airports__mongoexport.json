@@ -1,0 +1,20 @@
+{
+    "name": "openflights__airports__mongoexport.json",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "MigrationBlobStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "airports__mongoexport.json",
+                "container": "openflights"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}
