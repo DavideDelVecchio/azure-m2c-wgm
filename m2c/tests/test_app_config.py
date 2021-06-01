@@ -20,7 +20,7 @@ def test_instance_variables():
     assert(app_config.blob_linked_svc == 'MigrationBlobStorage')
     assert(app_config.cosmos_linked_svc == 'MigrationCosmosDB')
 
-    assert(app_config.reference_app_dir == filename('reference_app'))
+    assert(app_config.app_dir == filename('reference_app'))
     assert(app_config.source_mongodb_url  == 'localhost:27017')
     assert(app_config.source_mongodb_host == 'localhost')
     assert(app_config.source_mongodb_port == '27017')

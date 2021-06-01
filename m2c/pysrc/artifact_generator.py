@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.05.28"
+__version__ = "2021/06/01"
 
 import json
 import os
@@ -235,7 +235,7 @@ class ArtifactGenerator(object):
         t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
         outfile = '{}/databases/mongo_recreate_{}_db.sh'.format(
-            self.app_config.reference_app_dir, dbname)
+            self.app_config.app_dir, dbname)
         self.write(outfile, s)
 
     def openflights_collection_names(self):
@@ -267,7 +267,7 @@ class ArtifactGenerator(object):
         t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
         outfile = '{}/databases/mongo_recreate_{}_db.sh'.format(
-            self.app_config.reference_app_dir, dbname)
+            self.app_config.app_dir, dbname)
         self.write(outfile, s)
 
     def olympics_collection_names(self):

@@ -5,9 +5,9 @@
 # Chris Joakim, Microsoft, June 2021
 
 #export M2C_REPO_DIR='/Users/cjoakim/github/azure-m2c-wgm'
-export M2C_ROOT_REFERENCE_APP_DIR="reference_app"
-export M2C_ROOT_ARTIFACTS_DIR="reference_app/artifacts"
-export M2C_ROOT_DATA_DIR="reference_app/data"
+export M2C_APP_DIR="reference_app"
+export M2C_APP_ARTIFACTS_DIR="reference_app/artifacts"
+export M2C_APP_DATA_DIR="reference_app/data"
 
 export M2C_SHELL_TYPE="bash"
 

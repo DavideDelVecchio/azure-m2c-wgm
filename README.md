@@ -105,7 +105,7 @@ in this repo.
 
 ## Executing the Migration Process
 
-### Azure Provisioning
+### 1.0 Azure Provisioning
 
 Provision the following:
 
@@ -114,7 +114,7 @@ Provision the following:
 - Azure Data Factory
 - Azure CosmosDB/Mongo - the target database for the migration
 
-### Development Computer Setup
+### 2.0 Development Computer Setup
 
 This process assumes that the following are installed:
 
@@ -123,15 +123,19 @@ This process assumes that the following are installed:
 - az CLI
 - bash shell support 
 
-### 0. Optionally Setup and run the Reference Database
+### 2.1 Optionally Setup and run the Reference Database
 
 See https://github.com/cjoakim/mongodb-docker
 
-### 1. Clone this repo to your Development machine
+### 2.2 Clone this repo to your Development machine
 
 ```
 $ git clone git@github.com:cjoakim/azure-m2c-wgm.git
 $ cd azure-m2c-wgm
 ```
 
-### 2. 
+### 2.3 Create a Python Virtual Environment
+
+In repo root directory **azure-m2c-wgm** create a **python virtual environment** using the mechanism of your choice (venv, pyenv, etc.)
+and install the libraries listed in the **requirements.in** file.
+
