@@ -34,49 +34,60 @@ from storage import StorageUtil
 class Transformer(object):
 
     def __init__(self, args):
+        self.start_time = time.time()
         self.args = args
         self.app_config = AppConfig()
         self.stor = StorageUtil()
         self.infile = None
         self.status = 'constructor'
         self.messages = list()
-
-        self.dbname   = self.cli_arg('--db')
-        self.filename = self.cli_arg('--filename')
-        self.outfile  = self.cli_arg('--outfile')
-        self.out_container = self.cli_arg('--out-container')
-        self.mappings = self.load_container_mappings()
-        print('mappings: {}'.format(self.mappings))
-
-        self.std_doc_wrangler = StandardDocumentWrangler(self.mappings)
-
-        self.wrangling_algorithm = self.mappings['mapping']['wrangling_algorithm'].strip().lower()
-        print('wrangling_algorithm: {}'.format(self.wrangling_algorithm))
-
-        self.pk_name = self.mappings['mapping']['pk_name'].strip().lower()
-        self.pk_logic = self.mappings['mapping']['pk_logic']
-        self.do_pk_wrangling = len(self.pk_name) > 0
-
-        self.excludes = self.mappings['mapping']['excludes']
-        self.do_excludes = len(self.excludes) > 0
-
-        self.start_time = time.time()
-        self.elapsed_time = 0
+        self.elapsed_time = -1
         self.verbose = self.flag_arg('--verbose')
 
+        # python wrangle.py transform_blob \
+        #     --db {{ dbname }} \
+        #     --in-container {{ dbname }}-raw \
+        #     --blobname {{ c['blob_name'] }} \
+        #     --outfile  {{ c['wrangled_local_file_path'] }} \
+        #     --out-container {{ dbname }}-adf
+
+        self.dbname        = self.cli_arg('--db')
+        self.in_container  = self.cli_arg('--in-container')
+        self.blobname      = self.cli_arg('--blobname')
+        self.outfile       = self.cli_arg('--outfile')
+        self.out_container = self.cli_arg('--out-container')
+        self.mappings      = self.load_container_mappings()
+        print('mappings: {}'.format(self.mappings))
+
+        # Fail fast if invalid inputs:
         if self.dbname == None:
             raise Exception("Error: no --db specified")
-        if self.filename == None:
-            raise Exception("Error: no --filename specified")
+        if self.in_container == None:
+            raise Exception("Error: no --in_container specified")
+        if self.blobname == None:
+            raise Exception("Error: no --blobname specified")
         if self.outfile == None:
             raise Exception("Error: no --outfile specified")
         if self.out_container == None:
             raise Exception("Error: no --out-container specified")
+        if self.mappings == None:
+            raise Exception("Error: mappings")
 
-    def transform(self):
+        # Configure wrangling logic
+        self.std_doc_wrangler = StandardDocumentWrangler(self.mappings)
+        self.wrangling_algorithm = self.mappings['mapping']['wrangling_algorithm'].strip().lower()
+        print('wrangling_algorithm: {}'.format(self.wrangling_algorithm))
+        self.pk_name = self.mappings['mapping']['pk_name'].strip().lower()
+        self.pk_logic = self.mappings['mapping']['pk_logic']
+        self.do_pk_wrangling = len(self.pk_name) > 0
+        self.excludes = self.mappings['mapping']['excludes']
+        self.do_excludes = len(self.excludes) > 0
+
+    def transform_blob(self):
         self.download_blob()
         self.transform_file()
         self.upload_transformed_blob()
+        self.cleanup()
         self.elapsed_time = time.time() - self.start_time
         self.status = 'completed'
 
@@ -132,6 +143,9 @@ class Transformer(object):
 
         properties = self.stor.blob_properties(self.out_container, bname)
         print(properties)
+
+    def cleanup(self):
+        pass  # TODO - delete raw and transformed files
 
     def add_message(self, msg):
         self.messages.append(msg)
@@ -271,21 +285,15 @@ if __name__ == "__main__":
     print('__main__ args: {}'.format(args))
     if len(args) > 0:
         func = args[1].lower()
-        if func == 'transform':
-            # transform --db openflights --in-container openflights-raw --blobname openflights__airlines__source.json --out-container openflights-raw
-
+        if func == 'transform_blob':
             try:
                 t = Transformer(args)
-                t.transform()
+                t.transform_blob()
                 t.print_summary()
             except:
                 t.print_summary()
                 print("ERROR: TRANSFORMATION_FAILED for args {}".format(args))
                 traceback.print_exc(file=sys.stdout)
-
-        elif func == 'cleanup':
-            print('TODO - implement cleanup logic per mappings')
-            
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:

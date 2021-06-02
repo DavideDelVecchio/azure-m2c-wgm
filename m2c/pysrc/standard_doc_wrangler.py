@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.05.28"
+__version__ = "2021.06.02"
 
 import arrow
 import glob
@@ -10,22 +10,6 @@ import sys
 import traceback
 import uuid
 
-
-# {
-#     "name": "airports",
-#     "mapping": {
-#     "target_dbname": "",
-#     "target_container": "",
-#     "wrangling_algorithm": "standard",
-#     "pk_name": "pk",
-#     "pk_logic": [ {"type": "attr", "value": "name" }, {"type": "literal", "value": "xxx" } ],
-#     "pk_sep": "-",
-#     "doctype_name": "doctype",
-#     "doctype_logic": [ {"type": "literal", "value": "airport" } ],
-#     "doctype_sep": "-",
-#     "excludes": [ "airport_id", "source", "type" ]
-#     }
-# },
 
 class StandardDocumentWrangler(object):
 

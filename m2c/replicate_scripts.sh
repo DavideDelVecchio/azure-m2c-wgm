@@ -10,3 +10,4 @@ mkdir -p reference_app/artifacts/shell
 cp env.sh        reference_app/artifacts/shell/
 cp mongo_cli.sh  reference_app/artifacts/shell/
 cp requirements* reference_app/artifacts/shell/
+cp storage.py    reference_app/artifacts/shell/
