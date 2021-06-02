@@ -2,10 +2,10 @@
 
 # Bash script to create, populate, and activate the python virtual environment
 # for this project with pyenv.
-# Chris Joakim, Microsoft, May 2021
+# Chris Joakim, Microsoft, June 2021
 
 # These are the only two values that need to change between projects:
-venv_name="uploader"
+venv_name="m2cshell"
 python_version="3.8.6"
 
 echo '=== creating virtualenv '$venv_name

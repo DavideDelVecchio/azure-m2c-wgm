@@ -8,10 +8,11 @@
 
 source ../env.sh
 
+skip_download_flag=""  # set to "--skip-download" to bypass blob downloading
+
 {% for c in collections %}
 echo '{{ c['script_basename'] }} ...'
-./{{ c['script_basename'] }}.sh > tmp/{{ c['script_basename'] }}.txt
-python wrangle.py cleanup {{ c['script_basename'] }}
+./{{ c['script_basename'] }}.sh $skip_download_flag > tmp/{{ c['script_basename'] }}.txt
 {% endfor %}
 
 echo 'done'

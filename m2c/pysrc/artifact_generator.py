@@ -191,14 +191,41 @@ class ArtifactGenerator(object):
 
         t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
-
         self.ensure_directory_path(self.shell_artifacts_dir)
-
         outfile = '{}/{}_wrangle_all.sh'.format(self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
 
     def gen_wrangle_scripts_individual(self):
-        pass
+        mongoexports_dir = self.app_config.mongoexports_dir(self.dbname)
+        template = 'wrangle_one.txt'
+        template_data = dict()
+        collection_data = list()
+        template_data['dbname'] = self.dbname
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_individual()'
+        template_data['collections'] = collection_data
+        template_data['container'] = '{}-raw'.format(self.dbname)
+
+        for c in self.collections:
+            cname = c['name']
+            script_basename = self.app_config.wrangle_script_basename(
+                self.dbname, cname)
+            blob_name = self.app_config.blob_name(self.dbname, cname)
+            local_file_path = self.app_config.wrangling_blob_download_file(
+                self.dbname, cname)
+
+            coll_dict = dict()
+            coll_dict['cname'] = cname
+            coll_dict['blob_name'] = blob_name
+            coll_dict['local_file_path'] = local_file_path
+            coll_dict['script_basename'] = script_basename
+            collection_data.append(coll_dict)
+
+            t = self.get_template(os.getcwd(), template)
+            s = t.render(template_data)
+            self.ensure_directory_path(self.shell_artifacts_dir)
+            outfile = '{}/{}_wrangle_one.sh'.format(self.shell_artifacts_dir, self.dbname)
+            self.write(outfile, s)
 
     def gen_adf_datasets(self):
         outdata_dir = '{}/adf'.format(self.data_dir, self.dbname)

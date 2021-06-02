@@ -8,10 +8,12 @@
 
 source env.sh
 
+mkdir -p tmp/{{ dbname }}
 
 {% for c in collections %}
 
-python storage.py download_blob {{ dbname }}-raw openflights__airports__wrangled.json tmp/downloaded_blob.json
+# download_blob(cname, blob_name, local_file_path)
+python storage.py download_blob {{ dbname }}-raw {{ c['blob_name'] }} {{ c['local_file_path'] }} $1 $2 $3
 
 #python wrangle.py transform \
 #    --db {{ dbname }} \

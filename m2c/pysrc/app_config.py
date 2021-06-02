@@ -72,12 +72,15 @@ class AppConfig(object):
     def artifact_dir(self, artifact_type):
         return '{}/{}'.format(self.artifacts_dir, artifact_type)
 
+    def blob_name(self, dbname, cname):
+        return '{}__{}__source.json'.format(dbname, cname)
+
     def blob_download_dir(self, dbname):
         return '{}/downloads/{}'.format(self.data_dir, dbname)
 
-    def blob_download_file(self, dbname, cname):
-        return '{}/{}__{}__source.json'.format(
-            self.blob_download_dir(dbname), dbname, cname)
+    def wrangling_blob_download_file(self, dbname, cname):
+        return 'tmp/{}/{}'.format(
+            dbname, self.blob_name(dbname, cname))
 
     def wrangle_script_basename(self, dbname, cname):
         return '{}/wrangle_{}_{}'.format(dbname, dbname, cname)

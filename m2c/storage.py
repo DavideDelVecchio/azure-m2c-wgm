@@ -161,6 +161,13 @@ def write(outfile, s, verbose=True):
         if verbose:
             print('file written: {}'.format(outfile))
 
+def boolean_flag_arg(flag):
+    for arg in sys.argv:
+        if arg == flag:
+            return True
+    return False
+
+
 def print_options(msg):
     print(msg)
     arguments = docopt(__doc__, version=__version__)
@@ -201,8 +208,9 @@ if __name__ == "__main__":
             cname = sys.argv[2]
             blob_name = sys.argv[3]
             local_file_path = sys.argv[4]
-            download_blob(cname, blob_name, local_file_path)
-
+            skip_download = boolean_flag_arg('--skip-download')
+            if skip_download == False:
+                download_blob(cname, blob_name, local_file_path)
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:
