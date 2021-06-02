@@ -13,13 +13,15 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from azure.core.exceptions import ResourceExistsError
 from azure.core.exceptions import ResourceNotFoundError
 
+# Class Storage implements all operations in this application which interact
+# with Azure Storage.  For example, uploading, downloading, and listing blobs.
+#
 # References:
 # - https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-python
 # - https://pypi.org/project/azure-storage-blob/
 # - https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-blob
 # - https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#storage-limits
 # - https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/storage/azure-storage-blob/azure/storage/blob/_blob_client.py
-
 
 class Storage(object):
 

@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/01"
+__version__ = "2021/06/02"
 
 import arrow
 import os
@@ -9,6 +9,9 @@ import time
 import pytest
 
 from pysrc.app_config import AppConfig
+
+# This file implements unit tests of class AppConfig, using
+# the pytest framework.
 
 def test_instance_variables():
     app_config = AppConfig()

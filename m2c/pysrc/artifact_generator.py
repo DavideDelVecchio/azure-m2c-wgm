@@ -16,6 +16,9 @@ import jinja2
 from operator import itemgetter
 from pysrc.app_config import AppConfig
 
+# Class ArtifactGenerator is used to generate all script and code
+# artifacts in this application, by using the extracted source database
+# metadata as well as a customer-edited mapping file.
 
 class ArtifactGenerator(object):    
 

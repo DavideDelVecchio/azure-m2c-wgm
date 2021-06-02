@@ -10,6 +10,13 @@ import sys
 import traceback
 import uuid
 
+# Class StandardDocumentWrangler implements the "built-in" data wrangling,
+# or transformation logic.  It transforms raw input mongoexport files into
+# a similar but transformed format per the given mappings.
+#
+# The "wrangle(self, doc)" method takes a python dict object, which is the
+# parsed result from 1 line of the raw input file, and simply transforms
+# that doc object.  This includes adding and removing attributes.
 
 class StandardDocumentWrangler(object):
 

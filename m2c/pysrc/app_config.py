@@ -10,6 +10,9 @@ import sys
 import traceback
 import uuid
 
+# Class AppConfig is used by the application to obtain all configuration
+# values, such as environment variables.  It also defines all directory
+# and filenames.
 
 class AppConfig(object):
 
