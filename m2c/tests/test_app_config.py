@@ -87,10 +87,10 @@ def test_blob_download_dir():
     print(f)
     assert(f == expected)
 
-def test_blob_download_file():
+def test_wrangling_blob_download_file():
     app_config = AppConfig()
-    expected = filename('reference_app/data/downloads/olympics/olympics__countries__source.json')
-    f = app_config.blob_download_file('olympics', 'countries')
+    expected = filename('tmp/olympics/olympics__countries__source.json')
+    f = app_config.wrangling_blob_download_file('olympics', 'countries')
     print(f)
     assert(f == expected)
 
