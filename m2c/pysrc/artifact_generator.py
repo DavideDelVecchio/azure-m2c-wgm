@@ -50,6 +50,7 @@ class ArtifactGenerator(object):
         template_data['databases'] = databases_list
 
         self.generate_extract_metadata_script(template_data)
+        self.generate_generate_mapping_files_script(template_data)
         self.generate_generate_artifacts_script(template_data)
 
     def generate_extract_metadata_script(self, template_data):
@@ -58,11 +59,17 @@ class ArtifactGenerator(object):
         s = t.render(template_data)
         self.write('extract_metadata.sh', s)
 
-    def generate_generate_artifacts_script(self, template_data):
+    def generate_generate_mapping_files_script(self, template_data):
         template = 'generate_mapping_files.txt'
         t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
         self.write('generate_mapping_files.sh', s)
+
+    def generate_generate_artifacts_script(self, template_data):
+        template = 'generate_artifacts.txt'
+        t = self.get_template(os.getcwd(), template)
+        s = t.render(template_data)
+        self.write('generate_artifacts.sh', s)
 
     def generate(self):
         if (self.gen_artifact('--mongoexports')):
