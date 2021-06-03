@@ -4,10 +4,16 @@
 # directories in this repo.
 # Chris Joakim, Microsoft, June 2021
 
-mkdir -p reference_app
-mkdir -p reference_app/artifacts/shell
+source env.sh
 
-cp env.sh        reference_app/artifacts/shell/
-cp mongo_cli.sh  reference_app/artifacts/shell/
-cp requirements* reference_app/artifacts/shell/
-cp storage.py    reference_app/artifacts/shell/
+mkdir -p $M2C_APP_DIR
+mkdir -p $M2C_APP_ARTIFACTS_DIR/adf
+mkdir -p $M2C_APP_ARTIFACTS_DIR/shell
+
+echo 'copying to '$M2C_APP_ARTIFACTS_DIR'/shell ...'
+cp env.sh         $M2C_APP_ARTIFACTS_DIR/shell
+cp mongo_cli.sh   $M2C_APP_ARTIFACTS_DIR/shell
+cp requirements*  $M2C_APP_ARTIFACTS_DIR/shell
+cp storage.py     $M2C_APP_ARTIFACTS_DIR/shell
+
+echo 'done'

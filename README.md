@@ -105,6 +105,19 @@ in this repo.
 
 ## Executing the Migration Process
 
+Depending on your preferences and requirements, the steps listed in this
+process can be executed in a number of places, such as Developer Workstations, On-Prem Servers, other-cloud VMs, or Azure VMs.
+
+A typical scenario is to:
+- Provision Azure Resources from a Developer Workstation
+- Extract database metadata and generate artifacts on a Developer Workstation
+- Put the generated artifacts into your source control system, such as git.
+- Execute the generated mongoexport and upload scripts from either an on-prem
+or other-cloud VM, after copying the generating scripts there.
+- Execute the generated data-wrangling and file uploads from an Azure VM, 
+after copying the generating scripts there.
+- Execute the Azure Data Factory pipelines from a Developer Workstation
+
 ### 1.0 Azure Provisioning
 
 Provision the following:
@@ -206,6 +219,8 @@ This process essentially bootstraps the subsequent database metadata extraction
 and artifact generation processes (described below).
 
 ```
+$ cd m2c
+
 $ ./generate_initial_scripts.sh
 
 generate_initial_scripts
@@ -219,8 +234,6 @@ done
 
 ### 3.0 Extract Database Metadata
 
-
-
 This migration process is driven by the **metadata** extracted from the
 source databases, as well an initially-generated but then user edited
 **mapping** files.
@@ -233,6 +246,8 @@ to your source database(s) and extract metadata as JSON files.
 The output JSON files are **not edited** after initial creation.
 
 ```
+$ cd m2c
+
 $ ./extract_metadata.sh
 ...
 file written: reference_app/data/metadata/olympics_metadata.json
@@ -249,6 +264,8 @@ data wrangling/transformation rules for items such as partition keys, document t
 and attribute pruning.
 
 ```
+$ cd m2c
+
 $ ./generate_mapping_files.sh
 
 This process will overlay the mapping files you may have edited.
@@ -278,30 +295,25 @@ This process generates the following:
   - These generated artifacts can be added to the git repository used by your ADF
 
 ```
-./generate_artifacts.sh
+$ cd m2c
+$ ./generate_artifacts.sh
 ```
 
 Sample output:
 ```
+$ ./generate_artifacts.sh
+
+This process will delete all previously generated artifacts, then recreate them.
+Do you wish to proceed - delete and regenerate? yes
 ensuring target artifact directories exist ...
 deleting previous generated artifacts ...
 generating artifacts ...
-['main.py', 'generate_artifacts', 'openflights', '--all']
 generate_artifacts openflights ['main.py', 'generate_artifacts', 'openflights', '--all']
 file written: reference_app/artifacts/shell/openflights_mongoexports.sh
 file written: reference_app/artifacts/shell/python_create_containers.sh
 file written: reference_app/artifacts/shell/openflights_python_mongoexport_uploads.sh
 file written: reference_app/artifacts/shell/env.sh
-file written: reference_app/artifacts/shell/pyenv.sh
-file written: reference_app/artifacts/shell/storage.py
-file written: reference_app/artifacts/shell/requirements.in
-file written: reference_app/artifacts/shell/requirements.txt
-file written: reference_app/artifacts/shell/openflights_az_cli_mongoexport_uploads.sh
-file written: reference_app/artifacts/adf/openflights__airlines__mongoexport.json
-file written: reference_app/artifacts/adf/openflights__airports__mongoexport.json
-file written: reference_app/artifacts/adf/openflights__countries__mongoexport.json
-file written: reference_app/artifacts/adf/openflights__planes__mongoexport.json
-file written: reference_app/artifacts/adf/openflights__routes__mongoexport.json
+...
 ```
 
 ---
@@ -310,14 +322,25 @@ file written: reference_app/artifacts/adf/openflights__routes__mongoexport.json
 
 These can be executed in one of several locations:
 
-- Your on-prem virtual machine(s)
-- Azure virtual machine(s)
+- Your on-prem server(s)
+- Azure Virtual Machine(s), also known as VMs
 
 #### 5.1 Execute replicate_scripts.sh
 
-Once **env.sh** is edited, execute script **replicate_scripts.sh** to copy env.sh
-to several places.
+Once **env.sh** is edited, execute script **replicate_scripts.sh** to copy 
+several key files, including env.sh, to $M2C_APP_ARTIFACTS_DIR/shell
 
+```
+$ cd m2c
+
+$ ./replicate_scripts.sh
+
+copying to reference_app/artifacts/shell ...
+done
+
+```
+
+The remaining 5.x steps are executed from within your **$M2C_APP_ARTIFACTS_DIR/shell** directory, and **execute the generated scripts**.
 
 #### 5.2 Execute the generated mongoexport scripts
 
@@ -326,8 +349,6 @@ See the **shell subdirectory** within M2C_APP_ARTIFACTS_DIR.
 These generated scripts end with **_mongoexports.sh**, such as 
 **openflights_mongoexports.sh**where **openflights** is the name of the 
 source database.
-
-For example:
 
 ```
 $ ./openflights_mongoexports.sh
@@ -373,7 +394,7 @@ xxx-adf containers are for the wrangled/transformed blobs that will
 be loaded into Azure CosmosDB by Azure Data Factory (ADF).
 
 ```
-$ python_create_containers.sh
+$ ./python_create_containers.sh
 
 $ source env.sh ; python storage.py list_blob_containers 
 
@@ -381,6 +402,16 @@ $ source env.sh ; python storage.py list_blob_containers
 2 olympics-raw
 3 openflights-adf
 4 openflights-raw
+```
+
+If you run this script several times, you'll get output like the following
+which indicates that a Storage Container already exists:
+
+```
+azure.core.exceptions.ResourceExistsError: The specified container already exists.
+RequestId:be269404-e01e-0048-1e8f-5821a8000000
+Time:2021-06-03T15:47:56.7635981Z
+ErrorCode:ContainerAlreadyExists
 ```
 
 #### 5.4 Execute the upload to Azure Storage scripts
@@ -398,6 +429,66 @@ Azure on a VM(s).
 $ ./olympics_az_cli_mongoexport_uploads.sh
   ... or ...
 $ ./olympics_python_mongoexport_uploads.sh
+```
+
+You can list the uploaded Azure Storage blobs as follows:
+
+```
+$ source env.sh ; python storage.py list_blob_container olympics-raw
+
+1 olympics__countries__source.json
+2 olympics__g1896_summer__source.json
+3 olympics__g1900_summer__source.json
+4 olympics__g1904_summer__source.json
+5 olympics__g1906_summer__source.json
+6 olympics__g1908_summer__source.json
+7 olympics__g1912_summer__source.json
+8 olympics__g1920_summer__source.json
+9 olympics__g1924_summer__source.json
+10 olympics__g1924_winter__source.json
+11 olympics__g1928_summer__source.json
+12 olympics__g1928_winter__source.json
+13 olympics__g1932_summer__source.json
+14 olympics__g1932_winter__source.json
+15 olympics__g1936_summer__source.json
+16 olympics__g1936_winter__source.json
+17 olympics__g1948_summer__source.json
+18 olympics__g1948_winter__source.json
+19 olympics__g1952_summer__source.json
+20 olympics__g1952_winter__source.json
+21 olympics__g1956_summer__source.json
+22 olympics__g1956_winter__source.json
+23 olympics__g1960_summer__source.json
+24 olympics__g1960_winter__source.json
+25 olympics__g1964_summer__source.json
+26 olympics__g1964_winter__source.json
+27 olympics__g1968_summer__source.json
+28 olympics__g1968_winter__source.json
+29 olympics__g1972_summer__source.json
+30 olympics__g1972_winter__source.json
+31 olympics__g1976_summer__source.json
+32 olympics__g1976_winter__source.json
+33 olympics__g1980_summer__source.json
+34 olympics__g1980_winter__source.json
+35 olympics__g1984_summer__source.json
+36 olympics__g1984_winter__source.json
+37 olympics__g1988_summer__source.json
+38 olympics__g1988_winter__source.json
+39 olympics__g1992_summer__source.json
+40 olympics__g1992_winter__source.json
+41 olympics__g1994_winter__source.json
+42 olympics__g1996_summer__source.json
+43 olympics__g1998_winter__source.json
+44 olympics__g2000_summer__source.json
+45 olympics__g2002_winter__source.json
+46 olympics__g2004_summer__source.json
+47 olympics__g2006_winter__source.json
+48 olympics__g2008_summer__source.json
+49 olympics__g2010_winter__source.json
+50 olympics__g2012_summer__source.json
+51 olympics__g2014_winter__source.json
+52 olympics__g2016_summer__source.json
+53 olympics__games__source.json
 ```
 
 #### 5.5 Execute the Wrangling/Transformation scripts

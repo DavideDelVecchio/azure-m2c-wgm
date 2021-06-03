@@ -125,6 +125,9 @@ class ArtifactGenerator(object):
     def gen_python_create_containers(self):
         metadata_files = self.app_config.metadata_files()
         template_data = dict()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_python_create_containers()'
+
         container_names = list()
         for metadata_file in metadata_files:
             meta = self.load_json_file(metadata_file)
