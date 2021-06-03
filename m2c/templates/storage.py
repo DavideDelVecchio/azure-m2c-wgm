@@ -210,7 +210,7 @@ if __name__ == "__main__":
             local_file_path = sys.argv[4]
             skip_download = boolean_flag_arg('--skip-download')
             if skip_download == False:
-                download_blob(cname, blob_name, local_file_path, skip_download)
+                download_blob(cname, blob_name, local_file_path)
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:

@@ -9,8 +9,21 @@
 
 source env.sh
 
-python main.py generate_mapping_file olympics
+while true; do
+    echo ''
+    echo 'This process will overlay the mapping files you may have edited.'
+    read -p "Do you wish to proceed - regenerate and overlay? " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
+echo ''
+
+# TODO - generate the following
+python main.py generate_mapping_file olympics
 python main.py generate_mapping_file openflights
 
 echo 'done'

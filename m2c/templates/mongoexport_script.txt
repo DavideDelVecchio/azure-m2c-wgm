@@ -11,6 +11,8 @@ source env.sh
 mkdir -p data/source/mongoexports
 
 {% for c in collections %}
+echo ''
+echo 'mongoexporting - database: {{ dbname }} container: {{ c['name'] }}'
 mongoexport --authenticationDatabase admin -u $M2C_SOURCE_MONGODB_USER -p $M2C_SOURCE_MONGODB_PASS --uri {{ uri }} \
     --db {{ dbname }} \
     --collection {{ c['name'] }} \

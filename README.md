@@ -162,11 +162,6 @@ export M2C_APP_ARTIFACTS_DIR="reference_app/artifacts"
 export M2C_APP_DATA_DIR="reference_app/data"
 ```
 
-#### 2.4.1 Execute replicate_scripts.sh
-
-Once **env.sh** is edited, execute script **replicate_scripts.sh** to copy env.sh
-to several places.
-
 ---
 
 ### 3.0 Extract Database Metadata
@@ -200,9 +195,13 @@ and attribute pruning.
 
 ```
 $ ./generate_mapping_files.sh
-...
+
+This process will overlay the mapping files you may have edited.
+Do you wish to proceed - regenerate and overlay? yes
+
 file written: reference_app/data/metadata/olympics_mapping.json
 file written: reference_app/data/metadata/openflights_mapping.json
+done
 ```
 
 ---
@@ -259,34 +258,56 @@ These can be executed in one of several locations:
 - Your on-prem virtual machine(s)
 - Azure virtual machine(s)
 
-#### 5.1 Execute the mongoexport scripts
+#### 5.1 Execute replicate_scripts.sh
+
+Once **env.sh** is edited, execute script **replicate_scripts.sh** to copy env.sh
+to several places.
+
+
+#### 5.2 Execute the generated mongoexport scripts
 
 See the **shell subdirectory** within M2C_APP_ARTIFACTS_DIR.
 
-These generated scripts end with **_mongoexports.sh**, such as **openflights_mongoexports.sh**
-where **openflights** is the name of the source database.
+These generated scripts end with **_mongoexports.sh**, such as 
+**openflights_mongoexports.sh**where **openflights** is the name of the 
+source database.
 
 For example:
 
 ```
 $ ./openflights_mongoexports.sh
 
-2021-06-01T16:32:10.974-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
-2021-06-01T16:32:11.099-0400	exported 6161 records
-2021-06-01T16:32:11.134-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
-2021-06-01T16:32:11.333-0400	exported 7698 records
-2021-06-01T16:32:11.373-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
-2021-06-01T16:32:11.388-0400	exported 261 records
-2021-06-01T16:32:11.424-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
-2021-06-01T16:32:11.436-0400	exported 246 records
-2021-06-01T16:32:11.471-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
-2021-06-01T16:32:12.474-0400	[#################.......]  openflights.routes  48000/67663  (70.9%)
-2021-06-01T16:32:12.644-0400	[########################]  openflights.routes  67663/67663  (100.0%)
-2021-06-01T16:32:12.644-0400	exported 67663 records
+mongoexporting - database: openflights container: airlines
+2021-06-03T09:50:04.518-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-03T09:50:04.631-0400	exported 6161 records
+
+mongoexporting - database: openflights container: airports
+2021-06-03T09:50:04.664-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-03T09:50:04.850-0400	exported 7698 records
+
+mongoexporting - database: openflights container: countries
+2021-06-03T09:50:04.885-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-03T09:50:04.896-0400	exported 261 records
+
+mongoexporting - database: openflights container: planes
+2021-06-03T09:50:04.926-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-03T09:50:04.937-0400	exported 246 records
+
+mongoexporting - database: openflights container: routes
+2021-06-03T09:50:04.967-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-03T09:50:05.968-0400	[###################.....]  openflights.routes  56000/67663  (82.8%)
+2021-06-03T09:50:06.117-0400	[########################]  openflights.routes  67663/67663  (100.0%)
+2021-06-03T09:50:06.117-0400	exported 67663 records
 done
 ```
 
-#### 5.2 Create Azure Storage Containers
+```
+$ ./olympics_mongoexports.sh
+
+... output is similar to the above for the openflights database.
+```
+
+#### 5.3 Create Azure Storage Containers
 
 First, create the necessary containers within your Azure Storage account.
 This creates two containers per database to be migrated -  a xxx-raw
@@ -307,7 +328,7 @@ $ source env.sh ; python storage.py list_blob_containers
 4 openflights-raw
 ```
 
-#### 5.3 Execute the upload to Azure Storage scripts
+#### 5.4 Execute the upload to Azure Storage scripts
 
 Two similar scripts per database will be generated for you to choose from,
 based on your preferences - **python** or the **az CLI** program.
@@ -324,7 +345,7 @@ $ ./olympics_az_cli_mongoexport_uploads.sh
 $ ./olympics_python_mongoexport_uploads.sh
 ```
 
-#### 5.4 Execute the Wrangling/Transformation scripts
+#### 5.5 Execute the Wrangling/Transformation scripts
 
 These transform the mongoexport files extracted in section 5.1 per the rules
 you defined in the mapping files.

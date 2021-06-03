@@ -2,7 +2,7 @@
     "name": "olympics__g2004_summer__mongoexport.json",
     "properties": {
         "linkedServiceName": {
-            "referenceName": "MigrationBlobStorage",
+            "referenceName": "M2CMigrationBlobStorage",
             "type": "LinkedServiceReference"
         },
         "annotations": [],
