@@ -20,8 +20,8 @@ def test_instance_variables():
     assert(app_config.ssl == False)
     assert(app_config.artifacts_dir == filename('reference_app/artifacts'))
     assert(app_config.data_dir == filename('reference_app/data'))
-    assert(app_config.blob_linked_svc == 'MigrationBlobStorage')
-    assert(app_config.cosmos_linked_svc == 'MigrationCosmosDB')
+    assert(app_config.blob_linked_svc == 'M2CMigrationBlobStorage')
+    assert(app_config.cosmos_linked_svc == 'M2CMigrationCosmosDB')
 
     assert(app_config.app_dir == filename('reference_app'))
     assert(app_config.source_mongodb_url  == 'localhost:27017')

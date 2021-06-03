@@ -138,11 +138,10 @@ $ cd azure-m2c-wgm
 
 #### 2.3 Create a Python Virtual Environment
 
-In repo root directory **azure-m2c-wgm** create a **python virtual environment** using the mechanism of your choice (venv, pyenv, etc.)
+In directory **m2c**, within the repo root directory, create a **python virtual environment** using the mechanism of your choice (venv, pyenv, etc.)
 and install the libraries listed in the **requirements.in** file.
 
-This repo contains and generates **pyenv.sh** scripts which create python virtual 
-environments using [pyenv](https://github.com/pyenv/pyenv)
+This repo contains and generates **pyenv.sh** scripts which create python virtual environments using [pyenv](https://github.com/pyenv/pyenv)
 
 **Standard Python version 3.8 or higher is recommended.**  It has been developed with 3.8.6.
 

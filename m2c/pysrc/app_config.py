@@ -19,20 +19,17 @@ class AppConfig(object):
     def __init__(self):
         self.shell_type          = self.env_var('M2C_SHELL_TYPE', 'bash')
         self.ssl                 = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL', True)
-
         self.app_dir             = self.env_var('M2C_APP_DIR', None) 
         self.artifacts_dir       = self.env_var('M2C_APP_ARTIFACTS_DIR', 'artifacts')
         self.data_dir            = self.env_var('M2C_APP_DATA_DIR', 'data') 
-
-        self.blob_linked_svc     = self.env_var('M2C_ADF_BLOB_LINKED_SERVICE_NAME', 'MigrationBlobStorage')
-        self.cosmos_linked_svc   = self.env_var('M2C_ADF_COSMOS_LINKED_SERVICE', 'MigrationCosmosDB')
-        
         self.source_mongodb_url  = self.env_var('M2C_SOURCE_MONGODB_URL', 'localhost:27017')
         self.source_mongodb_host = self.env_var('M2C_SOURCE_MONGODB_HOST', 'localhost')
         self.source_mongodb_port = self.env_var('M2C_SOURCE_MONGODB_PORT', '27017')
         self.source_mongodb_user = self.env_var('M2C_SOURCE_MONGODB_USER', 'root')
         self.source_mongodb_pass = self.env_var('M2C_SOURCE_MONGODB_PASS', 'rootpassword')
         self.source_mongodb_ssl  = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL',  False)
+        self.blob_linked_svc     = 'M2CMigrationBlobStorage'
+        self.cosmos_linked_svc   = 'M2CMigrationCosmosDB'
 
     def source_mongodb_uri(self):
         return 'mongodb://@{}:{}'.format(
