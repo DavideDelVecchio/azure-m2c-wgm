@@ -74,21 +74,21 @@ class StandardMappingGenerator(object):
 
         if cname == 'games':
             mapping['target_container'] = 'locations'
-            mapping['pk_logic'] = 'attr:games'
+            mapping['pk_logic'] = [ ['attribute', 'games'] ]
 
         if cname == 'countries':
             mapping['target_container'] = 'locations'
-            mapping['pk_logic'] = 'attr:NOC'
+            mapping['pk_logic'] =  [ ['attribute', 'NOC'] ]
 
         if 'summer' in cname:
             mapping['target_container'] = 'games'
             mapping['pk_logic'] = 'attr:games'
-            mapping['doctype_logic'] = 'dynamic:source_cname'
+            mapping['doctype_logic'] = [ ['dynamic', 'source_cname'] ]
 
         if 'winter' in cname:
             mapping['target_container'] = 'games'
             mapping['pk_logic'] = 'attr:games'
-            mapping['doctype_logic'] = 'dynamic:source_cname'
+            mapping['doctype_logic'] = [ ['dynamic', 'source_cname'] ]
             
         mapping['excludes'].append("id")
 
@@ -99,9 +99,15 @@ class StandardMappingGenerator(object):
         cname = mapping['target_container']
 
         if cname == 'routes':
-            mapping['pk_logic'] = 'attr:airline_id'
+            mapping['pk_logic'] = [ ['attribute', 'airline_id'] ] 
+            mapping['doctype_logic'] = [ ['literal', 'route'] ] 
+            mapping['additions'] = [
+                ['dynamic', '_id', 'oid'],
+                ['dynamic', 't', 'epoch']
+            ] 
+            mapping['excludes'].append('codeshare')
         else:
-            mapping['pk_logic'] = 'attr:name'
+            mapping['pk_logic'] = [ ['attribute', 'name'] ] 
 
     def load_json_file(self, infile):
         with open(infile) as json_file:

@@ -3,7 +3,7 @@
 # Bash shell script to wrangle/transform a raw mongoexport file
 #
 # Database Name: openflights
-# Generated on:  2021-06-03 19:45:03 UTC
+# Generated on:  2021-06-03 22:10:05 UTC
 # Template:      wrangle_one.txt
 
 source env.sh
@@ -28,6 +28,12 @@ python wrangle.py transform_blob \
     --filename tmp/openflights/openflights__planes__source.json \
     --outfile  tmp/openflights/openflights__planes__wrangled.json \
     --out-container openflights-adf  # > out/openflights/wrangle_openflights__planes__source.json.out
+
+echo 'first line of input file:' # > out/openflights/wrangle_openflights__planes__source.json.out
+head -1 tmp/openflights/openflights__planes__source.json # > out/openflights/wrangle_openflights__planes__source.json.out
+
+echo 'first line of output file:' # > out/openflights/wrangle_openflights__planes__source.json.out
+head -1 tmp/openflights/openflights__planes__wrangled.json # > out/openflights/wrangle_openflights__planes__source.json.out
 
 echo 'deleting downloaded and wrangled files ...'
 rm tmp/openflights/openflights__planes__source.json

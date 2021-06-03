@@ -3,7 +3,7 @@
 # Bash shell script to wrangle/transform a raw mongoexport file
 #
 # Database Name: olympics
-# Generated on:  2021-06-03 19:45:03 UTC
+# Generated on:  2021-06-03 22:10:05 UTC
 # Template:      wrangle_one.txt
 
 source env.sh
@@ -28,6 +28,12 @@ python wrangle.py transform_blob \
     --filename tmp/olympics/olympics__g1948_winter__source.json \
     --outfile  tmp/olympics/olympics__g1948_winter__wrangled.json \
     --out-container olympics-adf  # > out/olympics/wrangle_olympics__g1948_winter__source.json.out
+
+echo 'first line of input file:' # > out/olympics/wrangle_olympics__g1948_winter__source.json.out
+head -1 tmp/olympics/olympics__g1948_winter__source.json # > out/olympics/wrangle_olympics__g1948_winter__source.json.out
+
+echo 'first line of output file:' # > out/olympics/wrangle_olympics__g1948_winter__source.json.out
+head -1 tmp/olympics/olympics__g1948_winter__wrangled.json # > out/olympics/wrangle_olympics__g1948_winter__source.json.out
 
 echo 'deleting downloaded and wrangled files ...'
 rm tmp/olympics/olympics__g1948_winter__source.json

@@ -125,7 +125,7 @@ class Transformer(object):
                 if self.verbose:
                     print(line)
                 doc = json.loads(line)
-                #self.doc_wrangler.wrangle(doc)
+                self.doc_wrangler.wrangle(doc)
                 out.write(json.dumps(doc))
                 out.write("\n")
                 self.lines_processed = self.lines_processed + 1

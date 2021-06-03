@@ -29,6 +29,12 @@ python wrangle.py transform_blob \
     --outfile  {{ wrangled_outfile_path }} \
     --out-container {{ dbname }}-adf  # > {{ redirect }}
 
+echo 'first line of input file:' # > {{ redirect }}
+head -1 {{ local_file_path }} # > {{ redirect }}
+
+echo 'first line of output file:' # > {{ redirect }}
+head -1 {{ wrangled_outfile_path }} # > {{ redirect }}
+
 echo 'deleting downloaded and wrangled files ...'
 rm {{ local_file_path }}
 rm {{ wrangled_outfile_path }}

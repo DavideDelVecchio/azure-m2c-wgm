@@ -9,7 +9,12 @@
         "target_container": "locations",
         "wrangling_algorithm": "standard",
         "pk_name": "pk",
-        "pk_logic": "attr:NOC",
+        "pk_logic": [
+          [
+            "attribute",
+            "NOC"
+          ]
+        ],
         "pk_sep": "-",
         "doctype_name": "doctype",
         "doctype_logic": [],
@@ -35,7 +40,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -58,7 +68,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -81,7 +96,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -104,7 +124,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -127,7 +152,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -150,7 +180,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -173,7 +208,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -196,7 +236,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -219,7 +264,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -242,7 +292,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -265,7 +320,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -288,7 +348,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -311,7 +376,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -334,7 +404,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -357,7 +432,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -380,7 +460,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -403,7 +488,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -426,7 +516,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -449,7 +544,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -472,7 +572,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -495,7 +600,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -518,7 +628,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -541,7 +656,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -564,7 +684,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -587,7 +712,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -610,7 +740,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -633,7 +768,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -656,7 +796,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -679,7 +824,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -702,7 +852,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -725,7 +880,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -748,7 +908,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -771,7 +936,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -794,7 +964,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -817,7 +992,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -840,7 +1020,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -863,7 +1048,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -886,7 +1076,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -909,7 +1104,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -932,7 +1132,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -955,7 +1160,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -978,7 +1188,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1001,7 +1216,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1024,7 +1244,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1047,7 +1272,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1070,7 +1300,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1093,7 +1328,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1116,7 +1356,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1139,7 +1384,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1162,7 +1412,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1185,7 +1440,12 @@
         "pk_logic": "attr:games",
         "pk_sep": "-",
         "doctype_name": "doctype",
-        "doctype_logic": "dynamic:source_cname",
+        "doctype_logic": [
+          [
+            "dynamic",
+            "source_cname"
+          ]
+        ],
         "doctype_sep": "-",
         "additions": [
           {
@@ -1205,7 +1465,12 @@
         "target_container": "locations",
         "wrangling_algorithm": "standard",
         "pk_name": "pk",
-        "pk_logic": "attr:games",
+        "pk_logic": [
+          [
+            "attribute",
+            "games"
+          ]
+        ],
         "pk_sep": "-",
         "doctype_name": "doctype",
         "doctype_logic": [],
