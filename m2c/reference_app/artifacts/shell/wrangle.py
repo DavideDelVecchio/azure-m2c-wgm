@@ -41,7 +41,7 @@ class Transformer(object):
         self.infile = None
         self.status = 'constructor'
         self.elapsed_time = -1
-        self.rows_processed = 0
+        self.lines_processed = 0
         self.verbose = self.flag_arg('--verbose')
 
         # Example bash script invocation:
@@ -90,7 +90,7 @@ class Transformer(object):
             raise Exception("Error: mappings")
 
         # Configure wrangling logic
-        self.std_doc_wrangler = StandardDocumentWrangler(self.mappings)
+        self.doc_wrangler = StandardDocumentWrangler(self.mappings)
         self.wrangling_algorithm = self.mappings['mapping']['wrangling_algorithm'].strip().lower()
         print('wrangling_algorithm: {}'.format(self.wrangling_algorithm))
         self.pk_name = self.mappings['mapping']['pk_name'].strip().lower()
@@ -101,9 +101,8 @@ class Transformer(object):
 
     def transform_blob(self):
         self.download_blob()
-        # self.transform_file()
-        # self.upload_transformed_blob()
-
+        self.transform_file()
+        self.upload_transformed_blob()
         self.elapsed_time = time.time() - self.start_time
         self.status = 'completed'
 
@@ -126,14 +125,10 @@ class Transformer(object):
                 if self.verbose:
                     print(line)
                 doc = json.loads(line)
-
-                if self.wrangling_algorithm == 'standard':
-                    self.std_doc_wrangler.wrangle(doc)
-                else:
-                    pass  # TODO: implement
-
+                #self.doc_wrangler.wrangle(doc)
                 out.write(json.dumps(doc))
                 out.write("\n")
+                self.lines_processed = self.lines_processed + 1
 
         elapsed = time.time() - start
         print('transformed {} lines in {}'.format(line_count, elapsed))
@@ -153,11 +148,11 @@ class Transformer(object):
 
     def print_summary(self):
         print('-')
-        print('SUMMARY for args: {}'.format(" ".join(self.args))) 
-        print('  status:         {}'.format(self.status)) 
-        print('  rows_processed: {}'.format(self.rows_processed)) 
-        print('  start_time:     {}'.format(self.start_time)) 
-        print('  elapsed_time:   {}'.format(self.elapsed_time))
+        print('SUMMARY for args:  {}'.format(" ".join(self.args))) 
+        print('  status:          {}'.format(self.status)) 
+        print('  lines_processed: {}'.format(self.lines_processed)) 
+        print('  start_time:      {}'.format(self.start_time)) 
+        print('  elapsed_time:    {}'.format(self.elapsed_time))
 
     def cli_arg(self, flag):
         for idx, arg in enumerate(self.args):
@@ -178,7 +173,6 @@ class Transformer(object):
         return self.status == 'successful'
 
     def load_container_mappings(self):
-        # reference_app/data/metadata/openflights_mapping.json
         cname = self.parse_container_from_filename(self.filename)
         print('load_container_mappings; cname: {}'.format(cname))
         fname = '{}_mapping.json'.format(self.dbname)
@@ -193,8 +187,6 @@ class Transformer(object):
         raise Exception("Error: container '{}' missing in metadata file {}".format(cname, fname))
 
     def parse_container_from_filename(self, filename):
-        # filename: tmp/openflights/openflights__airlines__source.json
-        # tokens:   ['openflights', 'airlines', 'source.json']
         tokens = os.path.basename(filename).split('__')
         print('parse_container_from_filename tokens: {}'.format(tokens))
         return tokens[-2]
@@ -203,47 +195,9 @@ class Transformer(object):
         with open(infile) as json_file:
             return json.load(json_file)
 
-def transform_original(doctype, infile, outfile):
-    print('transform: {} -> {} -> {}'.format(doctype, infile, outfile))
-    start_time = time.time()
-    it = text_file_iterator(infile)
-
-    with open(outfile, 'wt') as out:
-        for i, line in enumerate(it):
-            doc = json.loads(line)
-            #del doc['_id']  # a new ObjectId will/can be generated in the target database
-
-            # Reformatting logic; delete the _id, add pk, convert two attributes to arrays
-
-            if doctype == 'name_basics':
-                xform_name_basics(doc, doctype)
-            elif doctype == 'title_basics':
-                xform_title_basics(doc, doctype)
-            else:
-                pass  # no transformation needed
-
-            out.write(json.dumps(doc))
-            out.write("\n")
-
-    print('doctype:  {}'.format(doctype))
-    print('infile:   {}'.format(infile))
-    print('outfile:  {}'.format(outfile))
-    print('elapsed:  {}'.format(time.time() - start_time))
-
-def xform_name_basics(doc, doctype):
-    # add pk, convert two attributes to arrays
-    doc['pk'] = doc['nconst']
-    doc['doctype'] = doctype
-    doc['primaryProfession'] = doc['primaryProfession'].split(',')
-    doc['knownForTitles'] = doc['knownForTitles'].split(',')
-
-def xform_title_basics(doc, doctype):
-    doc['pk'] = doc['tconst']
-    doc['doctype'] = doctype
-    doc['genres'] = doc['genres'].split(',')
-
 def text_file_iterator(infile):
     # return a line generator that can be iterated with iterate()
+    # this is more efficient as the file is read line-by-line
     with open(infile, 'rt') as f:
         for line in f:
             yield line.strip()
