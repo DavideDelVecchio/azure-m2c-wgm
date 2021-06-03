@@ -39,6 +39,10 @@ from pysrc.standard_mapping_generator import StandardMappingGenerator
 app_config = AppConfig()
 
 
+def generate_initial_scripts():
+    generator = ArtifactGenerator('', {})
+    generator.generate_initial_scripts()
+
 def extract_db_metadata(login_db, dbname):
     conn_str = app_config.pymongo_conn_string(login_db)  # login to the admin database
     print('dbname:   {}'.format(dbname))
@@ -129,7 +133,10 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         func = sys.argv[1].lower()
 
-        if func == 'extract_db_metadata':
+        if func == 'generate_initial_scripts':
+            generate_initial_scripts()
+
+        elif func == 'extract_db_metadata':
             login_db = sys.argv[2]
             dbname = sys.argv[3]
             extract_db_metadata(login_db, dbname)

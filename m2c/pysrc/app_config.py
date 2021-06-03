@@ -52,6 +52,10 @@ class AppConfig(object):
         pattern = '{}/*_metadata.json'.format(self.metadata_dir())
         return glob.glob(pattern)
 
+    def migrated_databases_list_file(self):
+        # reference_app/data/metadata/migrated_databases_list.txt
+        return '{}/migrated_databases_list.txt'.format(self.metadata_dir())
+
     def db_metadata_file(self, dbname):
         outdir = self.metadata_dir()
         self.ensure_directory_path(outdir)

@@ -151,20 +151,75 @@ See file **env.sh** and make your edits to it.
 
 This script is **sourced** by the other scripts, and the generated scripts.
 
-In particular, you should set these three variable to point to a filesystem
-location that is **external to this repo**.  They are currently set to the
-reference_app directory within this repo simply to provide easily understood
-references of the process.
+In particular, you should set the three **M2C_APP** variables to point to
+a filesystem location that is **external to this git repo**.  They are currently
+set, by default, to the **reference_app/** directory within this repo simply to provide easily understood sample files.
+
+**env.sh** contains these default settings:
 
 ```
 export M2C_APP_DIR="reference_app"
 export M2C_APP_ARTIFACTS_DIR="reference_app/artifacts"
 export M2C_APP_DATA_DIR="reference_app/data"
+
+export M2C_SHELL_TYPE="bash"
+
+# the Azure Storage Account used in the Migration process
+export M2C_STORAGE_ACCOUNT=$AZURE_M2C_STORAGE_ACCOUNT
+export M2C_STORAGE_KEY=$AZURE_M2C_STORAGE_KEY
+export M2C_STORAGE_CONNECTION_STRING=$AZURE_M2C_STORAGE_CONNECTION_STRING
+
+# Source Database
+export M2C_SOURCE_MONGODB_URL="localhost:27017"
+export M2C_SOURCE_MONGODB_SSL="false"  # true or false
+export M2C_SOURCE_MONGODB_HOST="localhost"
+export M2C_SOURCE_MONGODB_PORT="27017"
+export M2C_SOURCE_MONGODB_USER="root"
+export M2C_SOURCE_MONGODB_PASS="rootpassword"
+
+export M2C_DOCKER_CONTAINER="cjoakim/azure-m2c-wgm-wrangle"
+```
+
+#### 2.5 Edit migrated_databases_list.txt
+
+Edit file **migrated_databases_list.txt** in your **$M2C_APP_DATA_DIR/metadata/** directory.  This is a simple text file.  Add one line for each source database
+you wish to migrate.
+
+For example:
+
+```
+# List the source databases you wish to migrate here.
+# Lines that are empty or begin with a # are ignored.
+
+olympics
+openflights
+
+```
+
+#### 2.6 Generate Initial Scripts
+
+This process will use the above edited **migrated_databases_list.txt** file
+and generate shell scripts to extract database metadata and create the
+initial customed-edited mapping file(s).
+
+This process essentially bootstraps the subsequent database metadata extraction
+and artifact generation processes (described below).
+
+```
+$ ./generate_initial_scripts.sh
+
+generate_initial_scripts
+databases_list: ['olympics', 'openflights']
+file written: extract_metadata.sh
+file written: generate_mapping_files.sh
+done
 ```
 
 ---
 
 ### 3.0 Extract Database Metadata
+
+
 
 This migration process is driven by the **metadata** extracted from the
 source databases, as well an initially-generated but then user edited

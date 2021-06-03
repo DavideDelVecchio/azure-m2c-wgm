@@ -39,6 +39,31 @@ class ArtifactGenerator(object):
         self.blob_linked_svc     = self.app_config.blob_linked_svc
         self.cosmos_linked_svc   = self.app_config.cosmos_linked_svc
 
+    def generate_initial_scripts(self):
+        print('generate_initial_scripts') 
+        databases_list = self.read_migrated_databases_list_file()
+        print('databases_list: {}'.format(databases_list))
+
+        template_data = dict()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py generate_initial_scripts()'
+        template_data['databases'] = databases_list
+
+        self.generate_extract_metadata_script(template_data)
+        self.generate_generate_artifacts_script(template_data)
+
+    def generate_extract_metadata_script(self, template_data):
+        template = 'extract_metadata.txt'
+        t = self.get_template(os.getcwd(), template)
+        s = t.render(template_data)
+        self.write('extract_metadata.sh', s)
+
+    def generate_generate_artifacts_script(self, template_data):
+        template = 'generate_mapping_files.txt'
+        t = self.get_template(os.getcwd(), template)
+        s = t.render(template_data)
+        self.write('generate_mapping_files.sh', s)
+
     def generate(self):
         if (self.gen_artifact('--mongoexports')):
             self.gen_mongoexports()
@@ -360,7 +385,6 @@ class ArtifactGenerator(object):
         except:
             return default_value
 
-
     def _source_collection_names(self):
         names = list()
         for coll in self.collections:
@@ -401,3 +425,23 @@ class ArtifactGenerator(object):
             f.write(s)
             if verbose:
                 print('file written: {}'.format(outfile))
+
+    def read_migrated_databases_list_file(self):
+        infile = self.app_config.migrated_databases_list_file()
+        databases = list()
+        with open(infile, 'rt') as f:
+            for line in f:
+                stripped = line.strip()
+                if stripped.startswith('#'):
+                    pass
+                else:
+                    if len(stripped) > 0:
+                        databases.append(stripped)
+        return databases
+
+    def read_lines(self, infile):
+        lines = list()
+        with open(infile, 'rt') as f:
+            for line in f:
+                lines.append(line)
+        return lines

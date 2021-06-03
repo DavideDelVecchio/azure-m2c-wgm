@@ -1,2 +1,5 @@
+# List the source databases you wish to migrate here.
+# Lines that are empty or begin with a # are ignored.
+
 olympics
 openflights

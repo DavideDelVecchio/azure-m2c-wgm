@@ -31,6 +31,13 @@ def test_instance_variables():
     assert(app_config.source_mongodb_pass == 'rootpassword')
     assert(app_config.source_mongodb_ssl  == False)
 
+
+def test_migrated_databases_list_file():
+        # reference_app/data/metadata/migrated_databases_list.txt
+    app_config = AppConfig()
+    expected = 'reference_app/data/metadata/migrated_databases_list.txt'
+    assert(app_config.migrated_databases_list_file() == expected)
+
 def test_source_mongodb_uri():
     app_config = AppConfig()
     assert(app_config.source_mongodb_uri() == 'mongodb://@localhost:27017')
