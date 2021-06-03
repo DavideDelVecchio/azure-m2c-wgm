@@ -4,6 +4,7 @@ __license__ = "MIT"
 __version__ = "2021.06.02"
 
 import glob
+import json
 import os
 import sys
 import time
@@ -143,8 +144,11 @@ class StandardDocumentWrangler(object):
                 if logic[2] == 'oid':
                     attr_name = logic[1]
                     id = str(ObjectId())
-                    oid = '<"$oid":"{}">'.format(id).replace('<','{').replace('>','}')
-                    doc[attr_name] = oid
+                    # {"$oid":"60b8d3179149822e568ef6f4"}
+                    # oid = dict()
+                    # oid['$oid'] = str(ObjectId())
+                    #tokens = ['{"$oid":"', id, '"}']
+                    doc[attr_name] = '{"$oid":"{}"}'.format(id)
             elif logic[0] == 'literal':
                 attr_name = logic[1]
                 doc[attr_name] = logic[2]
