@@ -14,6 +14,7 @@
 
 **/bin/
 **/obj/
+**/out/
 **/node_modules/
 **/tmp/
 **/target/

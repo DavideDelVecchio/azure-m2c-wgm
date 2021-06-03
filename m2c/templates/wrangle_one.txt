@@ -4,19 +4,34 @@
 #
 # Database Name: {{ dbname }}
 # Generated on:  {{ gen_timestamp }}
-# Template:      wrangle.txt
+# Template:      wrangle_one.txt
 
 source env.sh
 
-mkdir -p tmp/{{ dbname }}
+mkdir -p tmp/{{ dbname }}/out
+mkdir -p out/{{ dbname }}
 
-{% for c in collections %}
+# This script does the following:
+# 1) Downloads blob {{ blob_name }} from container {{ dbname }}-raw
+#    to local file {{ local_file_path }}
+# 2) Wrangle/transform the downloaded blob, producing local file 
+#    {{ wrangled_outfile_path }}
+# 3) Uploads the wrangled file to storage container {{ dbname }}-adf
+# 4) Delete the downloaded and wrangled file, as the host VM may have limited storage
+#
+# Note: this script is executed by script {{ dbname }}_wrangle_all.sh
+
 python wrangle.py transform_blob \
     --db {{ dbname }} \
     --in-container {{ dbname }}-raw \
-    --blobname {{ c['blob_name'] }} \
-    --outfile  {{ c['wrangled_local_file_path'] }} \
-    --out-container {{ dbname }}-adf
-{% endfor %}
+    --blobname {{ blob_name }} \
+    --filename {{ local_file_path }} \
+    --outfile  {{ wrangled_outfile_path }} \
+    --out-container {{ dbname }}-adf  # > {{ redirect }}
 
-echo 'done'
+echo 'deleting downloaded and wrangled files ...'
+rm {{ local_file_path }}
+rm {{ wrangled_outfile_path }}
+
+echo 'done' 
+
