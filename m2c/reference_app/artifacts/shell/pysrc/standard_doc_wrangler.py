@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.06.02"
+__version__ = "2021/06/04"
 
 import glob
 import json
@@ -23,52 +23,51 @@ from bson.objectid import ObjectId
 #
 # Sample mappings look like this:
 # {
-#   "name": "routes",
-#   "mapping": {
-#     "target_dbname": "travel",
-#     "target_container": "routes",
+#     "name": "g2016_summer",
+#     "mapping": {
+#     "target_dbname": "olympics",
+#     "target_container": "games",
 #     "wrangling_algorithm": "standard",
 #     "pk_name": "pk",
 #     "pk_logic": [
-#       [
+#         [
 #         "attribute",
-#         "airline_id"
-#       ]
+#         "games"
+#         ]
 #     ],
 #     "pk_sep": "-",
 #     "doctype_name": "doctype",
 #     "doctype_logic": [
-#       [
-#         "literal",
-#         "route"
-#       ]
+#         [
+#         "dynamic",
+#         "source_cname"
+#         ]
 #     ],
 #     "doctype_sep": "-",
 #     "additions": [
-#       [
+#         [
 #         "dynamic",
-#         "_id",
-#         "oid"
-#       ],
-#       [
-#         "dynamic",
-#         "t",
-#         "epoch"
-#       ]
+#         "some_id",
+#         "uuid"
+#         ]
 #     ],
 #     "excludes": [
-#       "codeshare"
+#         "id"
 #     ]
-#   },
-#   "source_dbname": "openflights",
-#   "default_target_dbname": "travel"
-# }
+#     }
+# },
+
+
+# Rules:
+
+
 
 class StandardDocumentWrangler(object):
 
     def __init__(self, mappings):
         self.mappings = mappings
 
+        self.source_cname = self.mappings['name']
         self.pk_name  = self.mappings['mapping']['pk_name'].strip().lower()
         self.pk_sep   = self.mappings['mapping']['pk_sep'].strip().lower()
         self.pk_logic = self.mappings['mapping']['pk_logic']
@@ -123,32 +122,38 @@ class StandardDocumentWrangler(object):
                     values.append(doc[attr_name])
                 else:
                     print('attribute is not in doc: {}'.format(attr_name))
-            elif logic[0] == 'dynamic':
-                pass # TODO
-
         doc[self.pk_name] = self.pk_sep.join(values)
 
     def wrangle_doctype(self, doc):
         values = list()
-        # for logic in self.doctype_logic:
-        #     if logic['type'] == 'literal':
-        #         values.append(logic['value'])
-        # doc[self.doctype_name] = self.pk_sep.join(values)
+        for logic in self.doctype_logic: 
+            if logic[0] == 'literal':
+                values.append(logic[1])
+            elif logic[0] == 'attribute':
+                attr_name = logic[1]
+                if attr_name in doc.keys():
+                    values.append(doc[attr_name])
+                else:
+                    print('attribute is not in doc: {}'.format(attr_name))
+        doc[self.doctype_name] = self.doctype_sep.join(values)
 
     def wrangle_additions(self, doc):
         for logic in self.additions: 
             if logic[0] == 'dynamic':
-                if logic[2] == 'epoch':
-                    attr_name = logic[1]
-                    doc[attr_name] = time.time()
                 if logic[2] == 'oid':
                     attr_name = logic[1]
                     oid_dict = dict()
                     oid_dict['$oid'] = str(ObjectId())
                     doc[attr_name] = oid_dict
-            elif logic[0] == 'literal':
-                attr_name = logic[1]
-                doc[attr_name] = logic[2]
+                elif logic[2] == 'source_cname':
+                    attr_name = logic[1]
+                    doc[attr_name] = self.source_cname
+                elif logic[2] == 'epoch':
+                    attr_name = logic[1]
+                    doc[attr_name] = time.time()
+                elif logic[2] == 'uuid':
+                    attr_name = logic[1]
+                    doc[attr_name] = str(uuid.uuid4())
             elif logic[0] == 'literal':
                 attr_name = logic[1]
                 doc[attr_name] = logic[2]

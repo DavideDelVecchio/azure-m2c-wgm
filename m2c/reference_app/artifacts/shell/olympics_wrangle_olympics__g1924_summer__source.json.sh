@@ -3,10 +3,10 @@
 # Bash shell script to wrangle/transform a raw mongoexport file
 #
 # Database Name: olympics
-# Generated on:  2021-06-03 22:10:05 UTC
+# Generated on:  2021-06-04 17:49:59 UTC
 # Template:      wrangle_one.txt
 
-source env.sh
+source ./env.sh
 
 mkdir -p tmp/olympics/out
 mkdir -p out/olympics
@@ -27,16 +27,19 @@ python wrangle.py transform_blob \
     --blobname olympics__g1924_summer__source.json \
     --filename tmp/olympics/olympics__g1924_summer__source.json \
     --outfile  tmp/olympics/olympics__g1924_summer__wrangled.json \
-    --out-container olympics-adf  # > out/olympics/wrangle_olympics__g1924_summer__source.json.out
+    --out-container olympics-adf $1 $2 $3 
 
-echo 'first line of input file:' # > out/olympics/wrangle_olympics__g1924_summer__source.json.out
-head -1 tmp/olympics/olympics__g1924_summer__source.json # > out/olympics/wrangle_olympics__g1924_summer__source.json.out
+echo ''
+echo 'first line of input file:'
+head -1 tmp/olympics/olympics__g1924_summer__source.json
 
-echo 'first line of output file:' # > out/olympics/wrangle_olympics__g1924_summer__source.json.out
-head -1 tmp/olympics/olympics__g1924_summer__wrangled.json # > out/olympics/wrangle_olympics__g1924_summer__source.json.out
+echo ''
+echo 'first line of output file:'
+head -1 tmp/olympics/olympics__g1924_summer__wrangled.json
 
-echo 'deleting downloaded and wrangled files ...'
-rm tmp/olympics/olympics__g1924_summer__source.json
-rm tmp/olympics/olympics__g1924_summer__wrangled.json
+# TODO - uncomment the next 3 lines after initial development
+# echo 'deleting downloaded and wrangled files'
+# rm tmp/olympics/olympics__g1924_summer__source.json
+# rm tmp/olympics/olympics__g1924_summer__wrangled.json
 
 echo 'done' 

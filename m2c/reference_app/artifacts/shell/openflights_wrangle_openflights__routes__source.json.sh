@@ -3,10 +3,10 @@
 # Bash shell script to wrangle/transform a raw mongoexport file
 #
 # Database Name: openflights
-# Generated on:  2021-06-03 22:10:05 UTC
+# Generated on:  2021-06-04 17:50:00 UTC
 # Template:      wrangle_one.txt
 
-source env.sh
+source ./env.sh
 
 mkdir -p tmp/openflights/out
 mkdir -p out/openflights
@@ -27,15 +27,18 @@ python wrangle.py transform_blob \
     --blobname openflights__routes__source.json \
     --filename tmp/openflights/openflights__routes__source.json \
     --outfile  tmp/openflights/openflights__routes__wrangled.json \
-    --out-container openflights-adf  # > out/openflights/wrangle_openflights__routes__source.json.out
+    --out-container openflights-adf $1 $2 $3 
 
-echo 'first line of input file:' # > out/openflights/wrangle_openflights__routes__source.json.out
-head -1 tmp/openflights/openflights__routes__source.json # > out/openflights/wrangle_openflights__routes__source.json.out
+echo ''
+echo 'first line of input file:'
+head -1 tmp/openflights/openflights__routes__source.json
 
-echo 'first line of output file:' # > out/openflights/wrangle_openflights__routes__source.json.out
-head -1 tmp/openflights/openflights__routes__wrangled.json # > out/openflights/wrangle_openflights__routes__source.json.out
+echo ''
+echo 'first line of output file:'
+head -1 tmp/openflights/openflights__routes__wrangled.json
 
-# echo 'deleting downloaded and wrangled files ...'
+# TODO - uncomment the next 3 lines after initial development
+# echo 'deleting downloaded and wrangled files'
 # rm tmp/openflights/openflights__routes__source.json
 # rm tmp/openflights/openflights__routes__wrangled.json
 

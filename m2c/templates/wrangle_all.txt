@@ -6,13 +6,13 @@
 # Generated on:  {{ gen_timestamp }}
 # Template:      wrangle_all.txt
 
-source ../env.sh
+source ./env.sh
 
 skip_download_flag=""  # set to "--skip-download" to bypass blob downloading
 
 {% for c in collections %}
-echo '{{ c['script_basename'] }} ...'
-./{{ c['script_basename'] }}.sh $skip_download_flag > tmp/{{ c['script_basename'] }}.txt
+echo 'executing {{ c['script_name'] }} ...'
+./{{ c['script_name'] }} $skip_download_flag
 {% endfor %}
 
 echo 'done'

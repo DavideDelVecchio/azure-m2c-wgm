@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.06.02"
+__version__ = "2021/06/04"
 
 import glob
 import json
@@ -23,46 +23,40 @@ from bson.objectid import ObjectId
 #
 # Sample mappings look like this:
 # {
-#   "name": "routes",
-#   "mapping": {
-#     "target_dbname": "travel",
-#     "target_container": "routes",
+#     "name": "g2016_summer",
+#     "mapping": {
+#     "target_dbname": "olympics",
+#     "target_container": "games",
 #     "wrangling_algorithm": "standard",
 #     "pk_name": "pk",
 #     "pk_logic": [
-#       [
+#         [
 #         "attribute",
-#         "airline_id"
-#       ]
+#         "games"
+#         ]
 #     ],
 #     "pk_sep": "-",
 #     "doctype_name": "doctype",
 #     "doctype_logic": [
-#       [
-#         "literal",
-#         "route"
-#       ]
+#         [
+#         "dynamic",
+#         "source_cname"
+#         ]
 #     ],
 #     "doctype_sep": "-",
 #     "additions": [
-#       [
+#         [
 #         "dynamic",
-#         "_id",
-#         "oid"
-#       ],
-#       [
-#         "dynamic",
-#         "t",
-#         "epoch"
-#       ]
+#         "some_id",
+#         "uuid"
+#         ]
 #     ],
 #     "excludes": [
-#       "codeshare"
+#         "id"
 #     ]
-#   },
-#   "source_dbname": "openflights",
-#   "default_target_dbname": "travel"
-# }
+#     }
+# },
+
 
 # Rules:
 
@@ -157,6 +151,9 @@ class StandardDocumentWrangler(object):
                 elif logic[2] == 'epoch':
                     attr_name = logic[1]
                     doc[attr_name] = time.time()
+                elif logic[2] == 'uuid':
+                    attr_name = logic[1]
+                    doc[attr_name] = str(uuid.uuid4())
             elif logic[0] == 'literal':
                 attr_name = logic[1]
                 doc[attr_name] = logic[2]

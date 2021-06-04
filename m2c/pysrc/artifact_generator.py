@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/01"
+__version__ = "2021/06/04"
 
 import json
 import os
@@ -224,7 +224,12 @@ class ArtifactGenerator(object):
             cname = c['name']
             script_basename = self.app_config.wrangle_script_basename(self.dbname, cname)
             coll_dict = dict()
-            coll_dict['script_basename'] = script_basename
+            # openflights_wrangle_openflights__routes__source.json.sh
+            blob_name = self.app_config.blob_name(self.dbname, cname)
+            script_name = '{}_wrangle_{}.sh'.format(
+                self.dbname, blob_name)
+            coll_dict['blob_name'] = blob_name
+            coll_dict['script_name'] = script_name
             collection_data.append(coll_dict)
 
         t = self.get_template(os.getcwd(), template)

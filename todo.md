@@ -5,15 +5,16 @@
 - TODO Quality Control - file sizes
 - TODO File Map Excel Report?
 
-- TODO ADF/git integration and testing
-
-- TODO Automate VM Provisioning and Setup; see uvm
+- TODO Automate VM Provisioning and Setup; see uvm repo
 
 - TODO Implement StandardDocumentWrangler Unit test
 
-- TODO Generate Wrangling Shell Scripts - for each collection
+- TODO ADF/git integration and testing
+
 
 ---
+
+- Done Generate Wrangling Shell Scripts - for each collection
 
 - Done Generate Wrangling Shell Scripts - for each database
   - app_config wrangle_script_basename

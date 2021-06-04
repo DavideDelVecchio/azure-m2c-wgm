@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021.06.02"
+__version__ = "2021/06/04"
 
 import glob
 import json
@@ -82,18 +82,19 @@ class StandardMappingGenerator(object):
 
         if 'summer' in cname:
             mapping['target_container'] = 'games'
-            mapping['pk_logic'] = 'attr:games'
+            mapping['pk_logic'] = [ ['attribute', 'games'] ]
             mapping['doctype_logic'] = [ ['dynamic', 'source_cname'] ]
 
         if 'winter' in cname:
             mapping['target_container'] = 'games'
-            mapping['pk_logic'] = 'attr:games'
+            mapping['pk_logic'] = [ ['attribute', 'games'] ]
             mapping['doctype_logic'] = [ ['dynamic', 'source_cname'] ]
             
         mapping['excludes'].append("id")
 
-        mapping['additions'].append(
-            {"attr":"_id", "value":"dynamic:uuid"})
+        mapping['additions'] = [
+            ['dynamic', 'some_id', 'uuid'],
+        ] 
 
     def customize_openflights_mapping(self, mapping):
         cname = mapping['target_container']
