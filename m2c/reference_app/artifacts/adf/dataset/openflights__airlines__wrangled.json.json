@@ -1,0 +1,23 @@
+{
+    "name": "openflights__airlines__wrangled",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "M2CMigrationBlobStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "openflights__airlines__wrangled.json",
+                "container": "openflights-adf"
+            }
+        },
+        "schema": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

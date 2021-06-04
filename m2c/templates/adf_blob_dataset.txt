@@ -1,5 +1,5 @@
 {
-    "name": "openflights__routes__wrangled",
+    "name": "{{ dataset_name }}",
     "properties": {
         "linkedServiceName": {
             "referenceName": "M2CMigrationBlobStorage",
@@ -10,15 +10,13 @@
         "typeProperties": {
             "location": {
                 "type": "AzureBlobStorageLocation",
-                "fileName": "openflights__routes__wrangled.json",
-                "container": "openflights-adf"
+                "fileName": "{{ blob_name }}",
+                "container": "{{ blob_container }}"
             }
         },
         "schema": {
             "type": "object",
-            "properties": {
-                
-            }
+            "properties": {}
         }
     },
     "type": "Microsoft.DataFactory/factories/datasets"
