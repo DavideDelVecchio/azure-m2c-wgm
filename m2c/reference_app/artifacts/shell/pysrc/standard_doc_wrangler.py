@@ -148,7 +148,9 @@ class StandardDocumentWrangler(object):
                     # oid = dict()
                     # oid['$oid'] = str(ObjectId())
                     #tokens = ['{"$oid":"', id, '"}']
-                    doc[attr_name] = '{"$oid":"{}"}'.format(id)
+                    oid_dict = dict()
+                    oid_dict['$oid'] = id
+                    doc[attr_name] = oid_dict
             elif logic[0] == 'literal':
                 attr_name = logic[1]
                 doc[attr_name] = logic[2]

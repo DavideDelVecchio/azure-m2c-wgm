@@ -126,7 +126,7 @@ class Transformer(object):
                     print(line)
                 doc = json.loads(line)
                 self.doc_wrangler.wrangle(doc)
-                out.write(json.dumps(doc))
+                out.write(json.dumps(doc, separators=(',', ':')))
                 out.write("\n")
                 self.lines_processed = self.lines_processed + 1
 
