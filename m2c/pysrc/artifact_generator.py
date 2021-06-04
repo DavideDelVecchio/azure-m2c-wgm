@@ -90,6 +90,9 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--wrangle-scripts-individual')):
             self.gen_wrangle_scripts_individual() 
 
+        if (self.gen_artifact('--adf-linked-services')):
+            self.gen_adf_linked_services() 
+
         if (self.gen_artifact('--adf-datasets')):
             self.gen_adf_datasets() 
 
@@ -275,8 +278,13 @@ class ArtifactGenerator(object):
 
             self.write(outfile, s)
 
+    def gen_adf_linked_services(self):
+        outdata_dir = '{}/adf/linkedService'.format(self.data_dir, self.dbname)
+        self.ensure_directory_path(outdata_dir)
+
+
     def gen_adf_datasets(self):
-        outdata_dir = '{}/adf'.format(self.data_dir, self.dbname)
+        outdata_dir = '{}/adf/dataset'.format(self.data_dir, self.dbname)
         self.ensure_directory_path(outdata_dir)
 
         for coll in self.collections:
@@ -300,7 +308,8 @@ class ArtifactGenerator(object):
             self.write(outfile, s)
 
     def gen_adf_pipelines(self):
-        pass
+        outdata_dir = '{}/adf/pipeline'.format(self.data_dir, self.dbname)
+        self.ensure_directory_path(outdata_dir)
 
     def generate_reference_db_scripts(self):
         self.generate_openflights_reference_db_scripts()
