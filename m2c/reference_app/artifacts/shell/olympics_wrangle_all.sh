@@ -3,7 +3,7 @@
 # Bash shell script to wrangle/transform a raw mongoexport file
 #
 # Database Name: olympics
-# Generated on:  2021-06-04 17:49:59 UTC
+# Generated on:  2021-06-04 19:12:26 UTC
 # Template:      wrangle_all.txt
 
 source ./env.sh
