@@ -64,11 +64,16 @@ from bson.objectid import ObjectId
 #   "default_target_dbname": "travel"
 # }
 
+# Rules:
+
+
+
 class StandardDocumentWrangler(object):
 
     def __init__(self, mappings):
         self.mappings = mappings
 
+        self.source_cname = self.mappings['name']
         self.pk_name  = self.mappings['mapping']['pk_name'].strip().lower()
         self.pk_sep   = self.mappings['mapping']['pk_sep'].strip().lower()
         self.pk_logic = self.mappings['mapping']['pk_logic']
@@ -123,32 +128,35 @@ class StandardDocumentWrangler(object):
                     values.append(doc[attr_name])
                 else:
                     print('attribute is not in doc: {}'.format(attr_name))
-            elif logic[0] == 'dynamic':
-                pass # TODO
-
         doc[self.pk_name] = self.pk_sep.join(values)
 
     def wrangle_doctype(self, doc):
         values = list()
-        # for logic in self.doctype_logic:
-        #     if logic['type'] == 'literal':
-        #         values.append(logic['value'])
-        # doc[self.doctype_name] = self.pk_sep.join(values)
+        for logic in self.doctype_logic: 
+            if logic[0] == 'literal':
+                values.append(logic[1])
+            elif logic[0] == 'attribute':
+                attr_name = logic[1]
+                if attr_name in doc.keys():
+                    values.append(doc[attr_name])
+                else:
+                    print('attribute is not in doc: {}'.format(attr_name))
+        doc[self.doctype_name] = self.doctype_sep.join(values)
 
     def wrangle_additions(self, doc):
         for logic in self.additions: 
             if logic[0] == 'dynamic':
-                if logic[2] == 'epoch':
-                    attr_name = logic[1]
-                    doc[attr_name] = time.time()
                 if logic[2] == 'oid':
                     attr_name = logic[1]
                     oid_dict = dict()
                     oid_dict['$oid'] = str(ObjectId())
                     doc[attr_name] = oid_dict
-            elif logic[0] == 'literal':
-                attr_name = logic[1]
-                doc[attr_name] = logic[2]
+                elif logic[2] == 'source_cname':
+                    attr_name = logic[1]
+                    doc[attr_name] = self.source_cname
+                elif logic[2] == 'epoch':
+                    attr_name = logic[1]
+                    doc[attr_name] = time.time()
             elif logic[0] == 'literal':
                 attr_name = logic[1]
                 doc[attr_name] = logic[2]
