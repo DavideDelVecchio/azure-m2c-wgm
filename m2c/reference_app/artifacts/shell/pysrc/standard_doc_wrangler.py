@@ -143,13 +143,8 @@ class StandardDocumentWrangler(object):
                     doc[attr_name] = time.time()
                 if logic[2] == 'oid':
                     attr_name = logic[1]
-                    id = str(ObjectId())
-                    # {"$oid":"60b8d3179149822e568ef6f4"}
-                    # oid = dict()
-                    # oid['$oid'] = str(ObjectId())
-                    #tokens = ['{"$oid":"', id, '"}']
                     oid_dict = dict()
-                    oid_dict['$oid'] = id
+                    oid_dict['$oid'] = str(ObjectId())
                     doc[attr_name] = oid_dict
             elif logic[0] == 'literal':
                 attr_name = logic[1]
