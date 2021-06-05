@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/04"
+__version__ = "2021/06/05"
 
 import arrow
 import glob
@@ -10,9 +10,10 @@ import sys
 import traceback
 import uuid
 
-# Class AppConfig is used by the application to obtain all configuration
-# values, such as environment variables.  It also defines all directory
-# and filenames.
+# Class AppConfig is used by the application to:
+# 1) obtain all configuration values, such as environment variables.  
+# 2) defines all directory and file names
+# 3) define/create other computed string values, such as for code generation
 
 class AppConfig(object):
 
@@ -81,6 +82,12 @@ class AppConfig(object):
 
     def wrangled_file_name(self, dbname, cname):
         return '{}__{}__wrangled.json'.format(dbname, cname)
+
+    def blob_raw_container_name(self, dbname):
+        return '{}-raw'.format(dbname)
+
+    def blob_adf_container_name(self, dbname):
+        return '{}-adf'.format(dbname)
 
     def blob_download_dir(self, dbname):
         return '{}/downloads/{}'.format(self.data_dir, dbname)

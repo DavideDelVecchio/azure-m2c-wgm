@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/04"
+__version__ = "2021/06/05"
 
 import json
 import os
@@ -99,8 +99,8 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
             self.gen_adf_cosmos_mongo_datasets() 
 
-        # if (self.gen_artifact('--adf-pipelines')):
-        #     self.gen_adf_pipelines() 
+        if (self.gen_artifact('--adf-pipelines')):
+            self.gen_adf_pipelines() 
 
     def gen_artifact(self, name):
         for arg in sys.argv:
@@ -119,8 +119,9 @@ class ArtifactGenerator(object):
         template_data['dbname'] = self.dbname
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_mongoexports()'
-        template_data['uri']  = 'mongodb://@{}:{}'.format(
-            self.app_config.source_mongodb_host, self.app_config.source_mongodb_port)
+        template_data['uri'] = self.app_config.source_mongodb_uri()
+        # template_data['uri']  = 'mongodb://@{}:{}'.format(
+        #     self.app_config.source_mongodb_uri, self.app_config.source_mongodb_port)
         template_data['url']  = self.app_config.source_mongodb_url
         template_data['host'] = self.app_config.source_mongodb_host 
         template_data['post'] = self.app_config.source_mongodb_port
@@ -145,8 +146,8 @@ class ArtifactGenerator(object):
         for metadata_file in metadata_files:
             meta = self.load_json_file(metadata_file)
             dbname = meta['dbname']
-            container_names.append('{}-raw'.format(dbname))
-            container_names.append('{}-adf'.format(dbname))
+            container_names.append(self.app_config.blob_raw_container_name(dbname))
+            container_names.append(self.app_config.blob_adf_container_name(dbname))
         template_data['container_names'] = container_names
 
         t = self.get_template(os.getcwd(), 'create_blob_containers.txt')
@@ -164,7 +165,7 @@ class ArtifactGenerator(object):
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_python_uploads()'
         template_data['collections'] = collection_data
-        template_data['container'] = '{}-raw'.format(self.dbname)
+        template_data['container'] = self.app_config.blob_raw_container_name(self.dbname)
 
         for c in self.collections:
             cname = c['name']
@@ -197,7 +198,7 @@ class ArtifactGenerator(object):
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_az_cli_uploads()'
         template_data['collections'] = collection_data
-        template_data['container'] = '{}-raw'.format(self.dbname)
+        template_data['container'] = self.app_config.blob_raw_container_name(self.dbname)
 
         for c in self.collections:
             cname = c['name']
@@ -224,7 +225,7 @@ class ArtifactGenerator(object):
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_for_db()'
         template_data['collections'] = collection_data
-        template_data['container'] = '{}-raw'.format(self.dbname)
+        template_data['container'] = self.app_config.blob_raw_container_name(self.dbname)
 
         for c in self.collections:
             cname = c['name']
@@ -255,7 +256,7 @@ class ArtifactGenerator(object):
             template_data['gen_timestamp'] = self.timestamp()
             template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_individual()'
             template_data['collections'] = collection_data
-            template_data['container'] = '{}-raw'.format(self.dbname)
+            template_data['container'] = self.app_config.blob_raw_container_name(self.dbname)
             cname = c['name']
             script_basename = self.app_config.wrangle_script_basename(
                 self.dbname, cname)
@@ -335,7 +336,7 @@ class ArtifactGenerator(object):
             template_data = dict()
             template_data['dataset_name'] = dataset_name
             template_data['blob_name'] = blob_name
-            template_data['blob_container'] = '{}-adf'.format(self.dbname)
+            template_data['blob_container'] = self.app_config.blob_adf_container_name(self.dbname)
 
             t = self.get_template(os.getcwd(), template)
             s = t.render(template_data)
@@ -370,6 +371,7 @@ class ArtifactGenerator(object):
         outdata_dir = '{}/adf/pipeline'.format(self.data_dir, self.dbname)
         self.ensure_directory_path(outdata_dir)
         template = 'adf_copy_pipeline.txt'
+        print('TODO: implement gen_adf_pipelines()')
 
     def generate_reference_db_scripts(self):
         self.generate_openflights_reference_db_scripts()
