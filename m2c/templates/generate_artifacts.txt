@@ -29,6 +29,7 @@ echo 'deleting previous generated artifacts ...'
 rm  $M2C_APP_ARTIFACTS_DIR/adf/*.*
 rm  $M2C_APP_ARTIFACTS_DIR/shell/*.*
 
+
 cp env.sh     templates 
 cp storage.py templates 
 
@@ -36,6 +37,9 @@ echo 'generating artifacts ...'
 {% for d in databases %}
 python main.py generate_artifacts {{ d }} --all
 {% endfor %}
+
+echo 'replicating scripts'
+./replicate_scripts.sh
 
 echo 'making generated scripts executable ...'
 cp env.sh $M2C_APP_ARTIFACTS_DIR/shell
