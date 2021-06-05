@@ -96,8 +96,8 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--adf-blob-datasets')):
             self.gen_adf_blob_datasets() 
 
-        # if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
-        #     self.gen_adf_cosmos_mongo_datasets() 
+        if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
+            self.gen_adf_cosmos_mongo_datasets() 
 
         # if (self.gen_artifact('--adf-pipelines')):
         #     self.gen_adf_pipelines() 
@@ -328,7 +328,8 @@ class ArtifactGenerator(object):
             coll_name = coll['name']
             blob_name = self.app_config.wrangled_file_name(
                 self.dbname, coll_name)
-            dataset_name = os.path.basename(blob_name).split('.')[0]
+            base_part = os.path.basename(blob_name).split('.')[0]
+            dataset_name = 'blob__{}'.format(base_part)
 
             template = 'adf_blob_dataset.txt'
             template_data = dict()
@@ -338,13 +339,32 @@ class ArtifactGenerator(object):
 
             t = self.get_template(os.getcwd(), template)
             s = t.render(template_data)
-            outfile = '{}/{}'.format(outdir, blob_name)
+            outfile = '{}/blob__{}'.format(outdir, blob_name)
             self.write(outfile, s)
 
     def gen_adf_cosmos_mongo_datasets(self):
-        outdata_dir = '{}/adf/dataset'.format(self.data_dir, self.dbname)
-        self.ensure_directory_path(outdata_dir)
-        template = 'adf_cosmos_mongo_dataset.txt'
+        outdir = '{}/dataset'.format(self.adf_artifacts_dir, self.dbname)
+        self.ensure_directory_path(outdir)
+
+        unique_combinations_dict = dict()
+        for coll in self.collections:
+            target_dbname = coll['mapping']['target_dbname']
+            target_container = coll['mapping']['target_container']
+            key = '{}:{}'.format(target_dbname, target_container)
+            unique_combinations_dict[key] = ''
+
+        for key in sorted(unique_combinations_dict.keys()):
+            tokens = key.split(':')
+            target_db, target_coll = tokens[0], tokens[1]
+            template = 'adf_cosmos_mongo_dataset.txt'
+            template_data = dict()
+            template_data['dataset_name'] = 'cosmos__{}__{}'.format(target_db, target_coll)
+            template_data['linked_service_name'] = 'M2CMigrationCosmosMongo_{}'.format(target_db)
+            template_data['target_collection'] = target_coll
+            t = self.get_template(os.getcwd(), template)
+            s = t.render(template_data)
+            outfile = '{}/cosmos__{}__{}.json'.format(outdir, target_db, target_coll)
+            self.write(outfile, s)
 
     def gen_adf_pipelines(self):
         outdata_dir = '{}/adf/pipeline'.format(self.data_dir, self.dbname)
