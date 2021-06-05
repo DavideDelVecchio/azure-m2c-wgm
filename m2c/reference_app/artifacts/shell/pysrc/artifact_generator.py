@@ -90,11 +90,17 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--wrangle-scripts-individual')):
             self.gen_wrangle_scripts_individual() 
 
-        if (self.gen_artifact('--adf-datasets')):
-            self.gen_adf_datasets() 
+        if (self.gen_artifact('--adf-linked-services')):
+            self.gen_adf_linked_services() 
 
-        if (self.gen_artifact('--adf-pipelines')):
-            self.gen_adf_pipelines() 
+        if (self.gen_artifact('--adf-blob-datasets')):
+            self.gen_adf_blob_datasets() 
+
+        # if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
+        #     self.gen_adf_cosmos_mongo_datasets() 
+
+        # if (self.gen_artifact('--adf-pipelines')):
+        #     self.gen_adf_pipelines() 
 
     def gen_artifact(self, name):
         for arg in sys.argv:
@@ -275,32 +281,75 @@ class ArtifactGenerator(object):
 
             self.write(outfile, s)
 
-    def gen_adf_datasets(self):
-        outdata_dir = '{}/adf'.format(self.data_dir, self.dbname)
-        self.ensure_directory_path(outdata_dir)
+	# templates/adf_blob_dataset.txt
+	# templates/adf_blob_linked_service.txt
+	# templates/adf_copy_pipeline.txt
+	# templates/adf_cosmos_linked_service.txt
+	# templates/adf_cosmos_mongo_dataset.txt
+
+    def target_databases_list(self):
+        target_databases = dict()
+        for c in self.collections:
+            source = self.mapping_data['source_dbname']
+            target = c['mapping']['target_dbname']
+            target_databases[target] = source
+        return sorted(target_databases.keys())
+
+    def gen_adf_linked_services(self):
+        outdir = '{}/linkedService'.format(self.adf_artifacts_dir, self.dbname)
+        self.ensure_directory_path(outdir)
+        template_data = dict()
+
+        # One Storage Blob Linked Service
+        template = 'adf_blob_linked_service.txt'
+        t = self.get_template(os.getcwd(), template)
+        s = t.render(template_data)
+        outfile = '{}/M2CMigrationBlobStorage.json'.format(outdir)
+        self.write(outfile, s)
+
+        # One CosmosMongo Linked Service per target database
+        for target_db in self.target_databases_list():
+            name = 'M2CMigrationCosmosMongo_{}'.format(target_db)
+            template = 'adf_cosmos_mongo_linked_service.txt'
+            template_data = dict()
+            template_data['name'] = name
+            template_data['dbname'] = target_db
+            t = self.get_template(os.getcwd(), template)
+            s = t.render(template_data)
+            outfile = '{}/{}.json'.format(outdir, name)
+            self.write(outfile, s)
+
+    def gen_adf_blob_datasets(self):
+        outdir = '{}/dataset'.format(self.adf_artifacts_dir, self.dbname)
+        self.ensure_directory_path(outdir)
+        template_data = dict()
 
         for coll in self.collections:
             coll_name = coll['name']
-            dataset_name = '{}__{}__mongoexport.json'.format(self.dbname, coll_name)
-            blob_name    = '{}__mongoexport.json'.format(coll_name)
+            blob_name = self.app_config.wrangled_file_name(
+                self.dbname, coll_name)
+            dataset_name = os.path.basename(blob_name).split('.')[0]
 
+            template = 'adf_blob_dataset.txt'
             template_data = dict()
             template_data['dataset_name'] = dataset_name
-            template_data['blob_linked_svc'] = self.blob_linked_svc
             template_data['blob_name'] = blob_name
-            template_data['blob_container'] = self.dbname
+            template_data['blob_container'] = '{}-adf'.format(self.dbname)
 
-            t = self.get_template(os.getcwd(), 'adf_copy_input_blob_dataset.txt')
+            t = self.get_template(os.getcwd(), template)
             s = t.render(template_data)
-
-            dataset_dir = '{}/{}'.format(self.artifacts_dir, 'adf')
-            self.ensure_directory_path(dataset_dir)
-
-            outfile = '{}/{}'.format(dataset_dir, dataset_name)
+            outfile = '{}/{}'.format(outdir, blob_name)
             self.write(outfile, s)
 
+    def gen_adf_cosmos_mongo_datasets(self):
+        outdata_dir = '{}/adf/dataset'.format(self.data_dir, self.dbname)
+        self.ensure_directory_path(outdata_dir)
+        template = 'adf_cosmos_mongo_dataset.txt'
+
     def gen_adf_pipelines(self):
-        pass
+        outdata_dir = '{}/adf/pipeline'.format(self.data_dir, self.dbname)
+        self.ensure_directory_path(outdata_dir)
+        template = 'adf_copy_pipeline.txt'
 
     def generate_reference_db_scripts(self):
         self.generate_openflights_reference_db_scripts()

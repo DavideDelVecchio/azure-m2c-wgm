@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/04"
+__version__ = "2021/06/05"
 
 import arrow
 import os
@@ -111,6 +111,20 @@ def test_wrangle_script_basename():
     print(s)
     assert(s == expected)
 
+def test_wrangled_file_name():
+    app_config = AppConfig()
+    expected = filename('olympics__countries__wrangled.json')
+    s = app_config.wrangled_file_name('olympics', 'countries')
+    print(s)
+    assert(s == expected)
+
+def test_wrangled_outfile():
+    app_config = AppConfig()
+    expected = filename('tmp/olympics/olympics__countries__wrangled.json')
+    s = app_config.wrangled_outfile('olympics', 'countries')
+    print(s)
+    assert(s == expected)
+
 def test_artifact_dir():
     app_config = AppConfig()
     expected = filename('reference_app/artifacts/shell')
@@ -135,6 +149,11 @@ def test_timestamp():
     assert(ts.endswith(' UTC'))
     assert(len(ts) == 23)
     assert(len(ts.split()) == 3)
+
+def test_env_var():
+    app_config = AppConfig()
+    assert(len(app_config.env_var('HOME', '')) > 0)
+    assert(app_config.env_var('ARE_YOU_THERE', 'no') == 'no')
 
 def test_boolean_env_var():
     app_config = AppConfig()
