@@ -21,46 +21,47 @@ from bson.objectid import ObjectId
 # parsed result from one line of the raw input file, and simply transforms
 # that doc object.  This includes adding and removing attributes.
 #
-# Sample mappings look like this:
+# This sample sample mapping JSON demonstrates all built-in wrangling functionality:
 # {
-#     "name": "g2016_summer",
+#     "name": "airports",
 #     "mapping": {
-#     "target_dbname": "olympics",
-#     "target_container": "games",
+#     "target_dbname": "travel",
+#     "target_container": "airports",
 #     "wrangling_algorithm": "standard",
 #     "pk_name": "pk",
 #     "pk_logic": [
 #         [
 #         "attribute",
-#         "games"
+#         "name"
+#         ],
+#         [
+#         "literal",
+#         "xxx"
 #         ]
 #     ],
 #     "pk_sep": "-",
 #     "doctype_name": "doctype",
 #     "doctype_logic": [
 #         [
-#         "dynamic",
-#         "source_cname"
-#         ]
+#         "literal",
+#         "airport"
+#         ],
+#         [
+#         "attribute",
+#         "airport_id"
+#         ]              
 #     ],
 #     "doctype_sep": "-",
 #     "additions": [
-#         [
-#         "dynamic",
-#         "some_id",
-#         "uuid"
-#         ]
+#         [ "dynamic", "cname", "source_cname" ],
+#         [ "dynamic", "e", "epoch" ],
+#         [ "dynamic", "u", "uuid" ],
+#         [ "dynamic", "_id", "oid" ],
+#         [ "literal", "migrated", "yes" ]
 #     ],
-#     "excludes": [
-#         "id"
-#     ]
+#     "excludes": [ "airport_id", "source", "type" ]
 #     }
-# },
-
-
-# Rules:
-
-
+# }
 
 class StandardDocumentWrangler(object):
 
