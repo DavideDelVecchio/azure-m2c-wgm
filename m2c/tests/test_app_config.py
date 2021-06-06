@@ -201,6 +201,10 @@ def test_cosmos_dataset_name():
     print(s)
     assert(s == expected)
 
+def test_reference_app_databases_dir():
+    app_config = AppConfig()
+    assert(app_config.reference_app_databases_dir() == 'reference_app/databases')
+
 def test_ensure_directory_path():
     app_config = AppConfig()
     dirname = 'tmp/{}'.format(int(time.time()))
@@ -235,3 +239,7 @@ def test_boolean_env_var():
     os.environ['MANUAL'] = 'FALSE'
     assert(app_config.boolean_env_var('AUTOMATED', False) == True)
     assert(app_config.boolean_env_var('MANUAL', True) == False)
+
+def test_authored_year_month():
+    app_config = AppConfig()
+    assert(app_config.authored_year_month() == 'June 2021')

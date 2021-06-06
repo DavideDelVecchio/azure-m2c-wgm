@@ -151,6 +151,7 @@ if __name__ == "__main__":
 
         elif func == 'generate_reference_db_scripts':
             generate_reference_db_scripts()
+
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:

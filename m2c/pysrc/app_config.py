@@ -54,7 +54,6 @@ class AppConfig(object):
         return glob.glob(pattern)
 
     def migrated_databases_list_file(self):
-        # reference_app/data/metadata/migrated_databases_list.txt
         return '{}/migrated_databases_list.txt'.format(self.metadata_dir())
 
     def db_metadata_file(self, dbname):
@@ -130,6 +129,9 @@ class AppConfig(object):
     def cosmos_dataset_name(self, dbname, cname):
         return 'cosmos__{}__{}'.format(dbname, cname)
 
+    def reference_app_databases_dir(self):
+        return '{}/databases'.format(self.app_dir) 
+
     def ensure_directory_path(self, dir_path):
         try:
             if not os.path.exists(dir_path):
@@ -142,6 +144,9 @@ class AppConfig(object):
 
     def timestamp(self):
         return arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
+
+    def authored_year_month(self):
+        return 'June 2021'
 
     def env_var(self, name, default_value=''):
         try:
