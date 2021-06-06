@@ -12,7 +12,7 @@ import uuid
 
 from operator import itemgetter
 
-from pysrc.app_config import AppConfig
+from pysrc.config import Config
 
 # Class StandardMappingGenerator implements the "built-in" data mapping
 # generator.  It addresses the olympics and openflights reference databases
@@ -22,8 +22,8 @@ class StandardMappingGenerator(object):
 
     def __init__(self, dbname):
         self.dbname = dbname
-        self.app_config = AppConfig()
-        self.infile = self.app_config.db_metadata_file(self.dbname)
+        self.config = Config()
+        self.infile = self.config.db_metadata_file(self.dbname)
         self.metadata = self.load_json_file(self.infile)
 
     def generate(self):
@@ -66,7 +66,7 @@ class StandardMappingGenerator(object):
         data['collections'] = sorted(coll_data, key = itemgetter('name'))
 
         jstr = json.dumps(data, sort_keys=False, indent=2)
-        outfile = self.app_config.db_mapping_file(self.dbname)
+        outfile = self.config.db_mapping_file(self.dbname)
         self.write(outfile, jstr)
 
     def customize_olympics_mapping(self, mapping):

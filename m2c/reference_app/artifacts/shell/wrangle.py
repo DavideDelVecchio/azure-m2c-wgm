@@ -25,7 +25,7 @@ from os.path import abspath
 from operator import itemgetter
 from bson.objectid import ObjectId
 
-from pysrc.app_config import AppConfig
+from pysrc.config import Config
 from pysrc.standard_doc_wrangler import StandardDocumentWrangler
 
 from storage import StorageUtil
@@ -36,7 +36,7 @@ class Transformer(object):
     def __init__(self, args):
         self.start_time = time.time()
         self.args = args
-        self.app_config = AppConfig()
+        self.config = Config()
         self.stor = StorageUtil()
         self.infile = None
         self.status = 'constructor'

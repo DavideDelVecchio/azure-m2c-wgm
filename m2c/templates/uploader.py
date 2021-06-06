@@ -39,11 +39,11 @@ from docopt import docopt
 from operator import itemgetter
 from pymongo import MongoClient
 
-from pysrc.app_config import AppConfig
+from pysrc.config import Config
 from pysrc.artifact_generator import ArtifactGenerator
 from pysrc.storage import Storage
 
-app_config = AppConfig()
+config = Config()
 
 
 def extract_db_metadata(conn_str, dbname):
@@ -83,7 +83,7 @@ def extract_db_metadata(conn_str, dbname):
     db_metadata['dbstats'] = db.command('dbstats')
 
     jstr = json.dumps(db_metadata, sort_keys=False, indent=2)
-    outfile = app_config.db_metadata_file(dbname)
+    outfile = config.db_metadata_file(dbname)
     write(outfile, jstr)
 
 def prune_coll_stats(stats):
@@ -95,7 +95,7 @@ def prune_coll_stats(stats):
 
 def generate_mapping_file(dbname):
     print('generate_mapping_file; dbname {}'.format(dbname))
-    infile = app_config.db_metadata_file(dbname)
+    infile = config.db_metadata_file(dbname)
     print('generate_mapping_file; infile:  {}'.format(infile))
     metadata = load_json_file(infile)
     data = dict()
@@ -116,12 +116,12 @@ def generate_mapping_file(dbname):
     data['collections'] = sorted(coll_data, key = itemgetter('name'))
 
     jstr = json.dumps(data, sort_keys=False, indent=2)
-    outfile = app_config.db_mapping_file(dbname)
+    outfile = config.db_mapping_file(dbname)
     write(outfile, jstr)
 
 def generate_artifacts(dbname):
     print('generate_artifacts {} {}'.format(dbname, sys.argv))
-    infile = app_config.db_metadata_file(dbname)
+    infile = config.db_metadata_file(dbname)
     db_metadata = load_json_file(infile)
     generator = ArtifactGenerator(dbname, db_metadata)
 

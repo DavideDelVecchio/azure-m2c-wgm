@@ -10,12 +10,12 @@ import sys
 import traceback
 import uuid
 
-# Class AppConfig is used by the application to:
+# Class Config is used by the application to:
 # 1) obtain all configuration values, such as environment variables.  
 # 2) defines all directory and file names
 # 3) define/create other computed string values, such as for code generation
 
-class AppConfig(object):
+class Config(object):
 
     def __init__(self):
         self.shell_type          = self.env_var('M2C_SHELL_TYPE', 'bash')

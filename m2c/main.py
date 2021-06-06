@@ -32,11 +32,11 @@ from docopt import docopt
 from operator import itemgetter
 from pymongo import MongoClient
 
-from pysrc.app_config import AppConfig
+from pysrc.config import Config
 from pysrc.artifact_generator import ArtifactGenerator
 from pysrc.standard_mapping_generator import StandardMappingGenerator
 
-app_config = AppConfig()
+config = Config()
 
 
 def generate_initial_scripts():
@@ -44,7 +44,7 @@ def generate_initial_scripts():
     generator.generate_initial_scripts()
 
 def extract_db_metadata(login_db, dbname):
-    conn_str = app_config.pymongo_conn_string(login_db)  # login to the admin database
+    conn_str = config.pymongo_conn_string(login_db)  # login to the admin database
     print('dbname:   {}'.format(dbname))
     print('conn_str: {}'.format(conn_str))
 
@@ -81,7 +81,7 @@ def extract_db_metadata(login_db, dbname):
     db_metadata['dbstats'] = db.command('dbstats')
 
     jstr = json.dumps(db_metadata, sort_keys=False, indent=2)
-    outfile = app_config.db_metadata_file(dbname)
+    outfile = config.db_metadata_file(dbname)
     write(outfile, jstr)
 
 def prune_coll_stats(stats):
@@ -97,7 +97,7 @@ def generate_mapping_file(dbname):
 
 def generate_artifacts(dbname):
     print('generate_artifacts {} {}'.format(dbname, sys.argv))
-    infile = app_config.db_mapping_file(dbname)
+    infile = config.db_mapping_file(dbname)
     mapping_data = load_json_file(infile)
     generator = ArtifactGenerator(dbname, mapping_data)
     generator.generate()
