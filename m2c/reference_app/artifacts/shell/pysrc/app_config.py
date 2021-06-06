@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/04"
+__version__ = "2021/06/05"
 
 import arrow
 import glob
@@ -10,9 +10,10 @@ import sys
 import traceback
 import uuid
 
-# Class AppConfig is used by the application to obtain all configuration
-# values, such as environment variables.  It also defines all directory
-# and filenames.
+# Class AppConfig is used by the application to:
+# 1) obtain all configuration values, such as environment variables.  
+# 2) defines all directory and file names
+# 3) define/create other computed string values, such as for code generation
 
 class AppConfig(object):
 
@@ -21,6 +22,7 @@ class AppConfig(object):
         self.ssl                 = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL', True)
         self.app_dir             = self.env_var('M2C_APP_DIR', None) 
         self.artifacts_dir       = self.env_var('M2C_APP_ARTIFACTS_DIR', 'artifacts')
+        self.adf_artifacts_dir   = '{}/adf'.format(self.artifacts_dir)
         self.data_dir            = self.env_var('M2C_APP_DATA_DIR', 'data') 
         self.source_mongodb_url  = self.env_var('M2C_SOURCE_MONGODB_URL', 'localhost:27017')
         self.source_mongodb_host = self.env_var('M2C_SOURCE_MONGODB_HOST', 'localhost')
@@ -28,8 +30,8 @@ class AppConfig(object):
         self.source_mongodb_user = self.env_var('M2C_SOURCE_MONGODB_USER', 'root')
         self.source_mongodb_pass = self.env_var('M2C_SOURCE_MONGODB_PASS', 'rootpassword')
         self.source_mongodb_ssl  = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL',  False)
-        self.blob_linked_svc     = 'M2CMigrationBlobStorage'
-        self.cosmos_linked_svc   = 'M2CMigrationCosmosDB'
+        # self.blob_linked_svc     = 'M2CMigrationBlobStorage'
+        # self.cosmos_linked_svc   = 'M2CMigrationCosmosDB'
 
     def source_mongodb_uri(self):
         return 'mongodb://@{}:{}'.format(
@@ -76,11 +78,20 @@ class AppConfig(object):
     def artifact_dir(self, artifact_type):
         return '{}/{}'.format(self.artifacts_dir, artifact_type)
 
+    def shell_artifacts_dir(self):
+        return '{}/shell'.format(self.artifacts_dir)
+
     def blob_name(self, dbname, cname):
         return '{}__{}__source.json'.format(dbname, cname)
 
     def wrangled_file_name(self, dbname, cname):
         return '{}__{}__wrangled.json'.format(dbname, cname)
+
+    def blob_raw_container_name(self, dbname):
+        return '{}-raw'.format(dbname)
+
+    def blob_adf_container_name(self, dbname):
+        return '{}-adf'.format(dbname)
 
     def blob_download_dir(self, dbname):
         return '{}/downloads/{}'.format(self.data_dir, dbname)
@@ -95,6 +106,30 @@ class AppConfig(object):
 
     def wrangle_script_basename(self, dbname, cname):
         return '{}/wrangle_{}_{}'.format(dbname, dbname, cname)
+
+    def wrangle_script_name(self, dbname, cname):
+        return '{}_wrangle_{}.sh'.format(dbname, cname)
+
+    def blob_linked_service_name(self):
+        return 'M2CMigrationBlobStorage'
+
+    def blob_dataset_name(self, dbname, cname):
+        return 'blob__{}__{}'.format(dbname, cname)
+
+    def cosmos_linked_service_name(self, target_db):
+        return 'M2CMigrationCosmosDB_{}'.format(target_db)
+
+    def cosmos_dataset_name(self, dbname, cname):
+        return 'cosmos__{}__{}'.format(dbname, cname)
+
+    def adf_linked_svc_artifacts_dir(self):
+        return '{}/linkedService'.format(self.artifacts_dir)
+
+    def adf_dataset_artifacts_dir(self):
+        return '{}/dataset'.format(self.artifacts_dir)
+
+    def adf_pipeline_artifacts_dir(self):
+        return '{}/pipeline'.format(self.artifacts_dir)
 
     def ensure_directory_path(self, dir_path):
         try:

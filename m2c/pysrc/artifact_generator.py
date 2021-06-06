@@ -32,12 +32,12 @@ class ArtifactGenerator(object):
         self.shell_type          = self.app_config.shell_type
         self.ssl                 = self.app_config.ssl
         self.artifacts_dir       = self.app_config.artifacts_dir
-        self.adf_artifacts_dir   = self.app_config.artifact_dir('adf')
-        self.shell_artifacts_dir = self.app_config.artifact_dir('shell')
+        # self.adf_artifacts_dir   = self.app_config.artifact_dir('adf')
+        self.shell_artifacts_dir = self.app_config.shell_artifacts_dir()
         self.mongoexports_dir    = self.app_config.mongoexports_dir(dbname)
         self.data_dir            = self.app_config.data_dir
-        self.blob_linked_svc     = self.app_config.blob_linked_svc
-        self.cosmos_linked_svc   = self.app_config.cosmos_linked_svc
+        # self.blob_linked_svc     = self.app_config.blob_linked_svc
+        # self.cosmos_linked_svc   = self.app_config.cosmos_linked_svc
 
     def generate_initial_scripts(self):
         print('generate_initial_scripts') 
@@ -119,9 +119,7 @@ class ArtifactGenerator(object):
         template_data['dbname'] = self.dbname
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_mongoexports()'
-        template_data['uri'] = self.app_config.source_mongodb_uri()
-        # template_data['uri']  = 'mongodb://@{}:{}'.format(
-        #     self.app_config.source_mongodb_uri, self.app_config.source_mongodb_port)
+        template_data['uri']  = self.app_config.source_mongodb_uri()
         template_data['url']  = self.app_config.source_mongodb_url
         template_data['host'] = self.app_config.source_mongodb_host 
         template_data['post'] = self.app_config.source_mongodb_port
@@ -152,7 +150,7 @@ class ArtifactGenerator(object):
 
         t = self.get_template(os.getcwd(), 'create_blob_containers.txt')
         s = t.render(template_data)
-        self.ensure_directory_path(self.shell_artifacts_dir)
+        self.ensure_directory_path(self.app_config.shell_artifacts_dir())
         outfile = '{}/python_create_containers.sh'.format(self.shell_artifacts_dir)
         self.write(outfile, s)
 
@@ -180,7 +178,8 @@ class ArtifactGenerator(object):
 
         self.ensure_directory_path(self.shell_artifacts_dir)
 
-        outfile = '{}/{}_python_mongoexport_uploads.sh'.format(self.shell_artifacts_dir, self.dbname)
+        outfile = '{}/{}_python_mongoexport_uploads.sh'.format(
+            self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
 
         for tname in 'env.sh,pyenv.sh,storage.py,requirements.in,requirements.txt'.split(','):
@@ -211,9 +210,8 @@ class ArtifactGenerator(object):
         t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
 
-        self.ensure_directory_path(self.shell_artifacts_dir)
-
-        outfile = '{}/{}_az_cli_mongoexport_uploads.sh'.format(self.shell_artifacts_dir, self.dbname)
+        outfile = '{}/{}_az_cli_mongoexport_uploads.sh'.format(
+            self.shell_artifacts_dir, self.dbname)
         self.write(outfile, s)
 
     def gen_wrangle_scripts_for_db(self):
@@ -233,8 +231,7 @@ class ArtifactGenerator(object):
             coll_dict = dict()
             # openflights_wrangle_openflights__routes__source.json.sh
             blob_name = self.app_config.blob_name(self.dbname, cname)
-            script_name = '{}_wrangle_{}.sh'.format(
-                self.dbname, blob_name)
+            script_name = self.app_config.wrangle_script_name(self.dbname, blob_name)
             coll_dict['blob_name'] = blob_name
             coll_dict['script_name'] = script_name
             collection_data.append(coll_dict)
@@ -279,14 +276,7 @@ class ArtifactGenerator(object):
             t = self.get_template(os.getcwd(), template)
             s = t.render(template_data)
             self.ensure_directory_path(self.shell_artifacts_dir)
-
             self.write(outfile, s)
-
-	# templates/adf_blob_dataset.txt
-	# templates/adf_blob_linked_service.txt
-	# templates/adf_copy_pipeline.txt
-	# templates/adf_cosmos_linked_service.txt
-	# templates/adf_cosmos_mongo_dataset.txt
 
     def target_databases_list(self):
         target_databases = dict()
@@ -297,20 +287,24 @@ class ArtifactGenerator(object):
         return sorted(target_databases.keys())
 
     def gen_adf_linked_services(self):
-        outdir = '{}/linkedService'.format(self.adf_artifacts_dir, self.dbname)
+        outdir = self.app_config.adf_linked_svc_artifacts_dir()
+
         self.ensure_directory_path(outdir)
         template_data = dict()
 
         # One Storage Blob Linked Service
         template = 'adf_blob_linked_service.txt'
+        name = self.app_config.blob_linked_service_name()
+        template_data = dict()
+        template_data['name'] = name
         t = self.get_template(os.getcwd(), template)
         s = t.render(template_data)
-        outfile = '{}/M2CMigrationBlobStorage.json'.format(outdir)
+        outfile = '{}/{}.json'.format(outdir, name)
         self.write(outfile, s)
 
         # One CosmosMongo Linked Service per target database
         for target_db in self.target_databases_list():
-            name = 'M2CMigrationCosmosMongo_{}'.format(target_db)
+            name = self.app_config.cosmos_linked_service_name(target_db)
             template = 'adf_cosmos_mongo_linked_service.txt'
             template_data = dict()
             template_data['name'] = name
@@ -321,7 +315,8 @@ class ArtifactGenerator(object):
             self.write(outfile, s)
 
     def gen_adf_blob_datasets(self):
-        outdir = '{}/dataset'.format(self.adf_artifacts_dir, self.dbname)
+        outdir = self.app_config.adf_dataset_artifacts_dir()
+
         self.ensure_directory_path(outdir)
         template_data = dict()
 
@@ -330,12 +325,12 @@ class ArtifactGenerator(object):
             blob_name = self.app_config.wrangled_file_name(
                 self.dbname, coll_name)
             base_part = os.path.basename(blob_name).split('.')[0]
-            dataset_name = 'blob__{}'.format(base_part)
+            dataset_name = self.app_config.blob_dataset_name(self.dbname, coll_name)
 
             template = 'adf_blob_dataset.txt'
             template_data = dict()
-            template_data['dataset_name'] = dataset_name
-            template_data['blob_name'] = blob_name
+            template_data['dataset_name']   = dataset_name
+            template_data['blob_name']      = blob_name
             template_data['blob_container'] = self.app_config.blob_adf_container_name(self.dbname)
 
             t = self.get_template(os.getcwd(), template)
@@ -344,7 +339,7 @@ class ArtifactGenerator(object):
             self.write(outfile, s)
 
     def gen_adf_cosmos_mongo_datasets(self):
-        outdir = '{}/dataset'.format(self.adf_artifacts_dir, self.dbname)
+        outdir = self.app_config.adf_dataset_artifacts_dir()
         self.ensure_directory_path(outdir)
 
         unique_combinations_dict = dict()
@@ -357,19 +352,21 @@ class ArtifactGenerator(object):
         for key in sorted(unique_combinations_dict.keys()):
             tokens = key.split(':')
             target_db, target_coll = tokens[0], tokens[1]
+            linked_svc_name = self.app_config.cosmos_linked_service_name(target_db)
+            dataset_name = self.app_config.cosmos_dataset_name(target_db, target_coll)
             template = 'adf_cosmos_mongo_dataset.txt'
             template_data = dict()
-            template_data['dataset_name'] = 'cosmos__{}__{}'.format(target_db, target_coll)
-            template_data['linked_service_name'] = 'M2CMigrationCosmosMongo_{}'.format(target_db)
+            template_data['dataset_name'] = dataset_name
+            template_data['linked_service_name'] = linked_svc_name
             template_data['target_collection'] = target_coll
             t = self.get_template(os.getcwd(), template)
             s = t.render(template_data)
-            outfile = '{}/cosmos__{}__{}.json'.format(outdir, target_db, target_coll)
+            outfile = '{}/{}.json'.format(outdir, dataset_name)
             self.write(outfile, s)
 
     def gen_adf_pipelines(self):
-        outdata_dir = '{}/adf/pipeline'.format(self.data_dir, self.dbname)
-        self.ensure_directory_path(outdata_dir)
+        outdir = self.app_config.adf_pipeline_artifacts_dir()
+        self.ensure_directory_path(outdir)
         template = 'adf_copy_pipeline.txt'
         print('TODO: implement gen_adf_pipelines()')
 
@@ -384,8 +381,7 @@ class ArtifactGenerator(object):
         template_data['dbname'] = dbname
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py generate_openflights_reference_db_scripts()'
-        template_data['uri']  = 'mongodb://@{}:{}'.format(
-            self.app_config.source_mongodb_host, self.app_config.source_mongodb_port)
+        template_data['uri']  = self.app_config.source_mongodb_uri()
         template_data['url']  = self.app_config.source_mongodb_url
         template_data['host'] = self.app_config.source_mongodb_host 
         template_data['post'] = self.app_config.source_mongodb_port

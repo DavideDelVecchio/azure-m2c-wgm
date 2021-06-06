@@ -1,5 +1,5 @@
 {
-	"name": "M2CMigrationBlobStorage",
+	"name": "{{ name }}",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],

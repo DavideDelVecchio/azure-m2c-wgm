@@ -18,12 +18,9 @@ def test_instance_variables():
     print(app_config.shell_type)
     assert(app_config.shell_type == 'bash')
     assert(app_config.ssl == False)
-    assert(app_config.artifacts_dir == filename('reference_app/artifacts'))
-    assert(app_config.data_dir == filename('reference_app/data'))
-    assert(app_config.blob_linked_svc == 'M2CMigrationBlobStorage')
-    assert(app_config.cosmos_linked_svc == 'M2CMigrationCosmosDB')
-
-    assert(app_config.app_dir == filename('reference_app'))
+    assert(app_config.artifacts_dir == 'reference_app/artifacts')
+    assert(app_config.data_dir == 'reference_app/data')
+    assert(app_config.app_dir == 'reference_app')
     assert(app_config.source_mongodb_url  == 'localhost:27017')
     assert(app_config.source_mongodb_host == 'localhost')
     assert(app_config.source_mongodb_port == '27017')
@@ -31,9 +28,7 @@ def test_instance_variables():
     assert(app_config.source_mongodb_pass == 'rootpassword')
     assert(app_config.source_mongodb_ssl  == False)
 
-
 def test_migrated_databases_list_file():
-        # reference_app/data/metadata/migrated_databases_list.txt
     app_config = AppConfig()
     expected = 'reference_app/data/metadata/migrated_databases_list.txt'
     assert(app_config.migrated_databases_list_file() == expected)
@@ -49,13 +44,13 @@ def test_pymongo_conn_string():
 
 def test_metadata_dir():
     app_config = AppConfig()
-    expected = filename('reference_app/data/metadata')
+    expected = 'reference_app/data/metadata'
     print(app_config.metadata_dir())
     assert(app_config.metadata_dir() == expected)
 
 def test_metadata_file():
     app_config = AppConfig()
-    expected = filename('reference_app/data/metadata/olympics_metadata.json')
+    expected = 'reference_app/data/metadata/olympics_metadata.json'
     f = app_config.db_metadata_file('olympics')
     print(f)
     assert(f == expected)
@@ -63,74 +58,148 @@ def test_metadata_file():
 def test_metadata_files():
     app_config = AppConfig()
     expected = sorted([
-        filename('reference_app/data/metadata/openflights_metadata.json'),
-        filename('reference_app/data/metadata/olympics_metadata.json')
+        'reference_app/data/metadata/openflights_metadata.json',
+        'reference_app/data/metadata/olympics_metadata.json'
     ])
     print(app_config.metadata_files())
     assert(sorted(app_config.metadata_files()) == expected)
 
 def test_mapping_file():
     app_config = AppConfig()
-    expected =  filename('reference_app/data/metadata/olympics_mapping.json')
+    expected =  'reference_app/data/metadata/olympics_mapping.json'
     f = app_config.db_mapping_file('olympics')
     print(f)
     assert(f == expected)
 
 def test_mongoexports_dir():
     app_config = AppConfig()
-    expected = filename('reference_app/data/mongoexports/olympics')
+    expected = 'reference_app/data/mongoexports/olympics'
     f = app_config.mongoexports_dir('olympics')
     print(f)
     assert(f == expected)
 
 def test_mongoexports_file():
     app_config = AppConfig()
-    expected = filename('reference_app/data/mongoexports/olympics/olympics__countries__source.json')
+    expected = 'reference_app/data/mongoexports/olympics/olympics__countries__source.json'
     f = app_config.mongoexport_file('olympics', 'countries')
+    print(f)
+    assert(f == expected)
+
+def test_blob_raw_container_name():
+    app_config = AppConfig()
+    expected = 'olympics-raw'
+    f = app_config.blob_raw_container_name('olympics')
+    print(f)
+    assert(f == expected)
+
+def test_blob_adf_container_name():
+    app_config = AppConfig()
+    expected = 'olympics-adf'
+    f = app_config.blob_adf_container_name('olympics')
     print(f)
     assert(f == expected)
 
 def test_blob_download_dir():
     app_config = AppConfig()
-    expected = filename('reference_app/data/downloads/olympics')
+    expected = 'reference_app/data/downloads/olympics'
     f = app_config.blob_download_dir('olympics')
     print(f)
     assert(f == expected)
 
 def test_wrangling_blob_download_file():
     app_config = AppConfig()
-    expected = filename('tmp/olympics/olympics__countries__source.json')
+    expected = 'tmp/olympics/olympics__countries__source.json'
     f = app_config.wrangling_blob_download_file('olympics', 'countries')
     print(f)
     assert(f == expected)
 
 def test_wrangle_script_basename():
     app_config = AppConfig()
-    expected = filename('olympics/wrangle_olympics_countries')
+    expected = 'olympics/wrangle_olympics_countries'
     s = app_config.wrangle_script_basename('olympics', 'countries')
+    print(s)
+    assert(s == expected)
+
+def test_wrangle_script_name():
+    app_config = AppConfig()
+    expected = 'olympics_wrangle_countries.sh'
+    s = app_config.wrangle_script_name('olympics', 'countries')
     print(s)
     assert(s == expected)
 
 def test_wrangled_file_name():
     app_config = AppConfig()
-    expected = filename('olympics__countries__wrangled.json')
+    expected = 'olympics__countries__wrangled.json'
     s = app_config.wrangled_file_name('olympics', 'countries')
     print(s)
     assert(s == expected)
 
 def test_wrangled_outfile():
     app_config = AppConfig()
-    expected = filename('tmp/olympics/olympics__countries__wrangled.json')
+    expected = 'tmp/olympics/olympics__countries__wrangled.json'
     s = app_config.wrangled_outfile('olympics', 'countries')
     print(s)
     assert(s == expected)
 
-def test_artifact_dir():
+def test_shell_artifacts_dir():
     app_config = AppConfig()
-    expected = filename('reference_app/artifacts/shell')
-    f = app_config.artifact_dir('shell')
+    expected = 'reference_app/artifacts/shell'
+    f = app_config.shell_artifacts_dir()
     print(f)
     assert(f == expected)
+
+def test_adf_artifacts_dir():
+    app_config = AppConfig()
+    expected = 'reference_app/artifacts/adf'
+    f = app_config.adf_artifacts_dir()
+    print(f)
+    assert(f == expected)
+
+def test_adf_linked_svc_artifacts_dir():
+    app_config = AppConfig()
+    expected = 'reference_app/artifacts/adf/linkedService'
+    f = app_config.adf_linked_svc_artifacts_dir()
+    print(f)
+    assert(f == expected)
+
+def test_adf_dataset_artifacts_dir():
+    app_config = AppConfig()
+    expected = 'reference_app/artifacts/adf/dataset'
+    f = app_config.adf_dataset_artifacts_dir()
+    print(f)
+    assert(f == expected)
+
+def test_adf_pipeline_artifacts_dir():
+    app_config = AppConfig()
+    expected = 'reference_app/artifacts/adf/pipeline'
+    s = app_config.adf_pipeline_artifacts_dir()
+    print(s)
+    assert(s == expected)
+
+def test_blob_linked_service_name():
+    app_config = AppConfig()
+    assert(app_config.blob_linked_service_name() == 'M2CMigrationBlobStorage')
+
+def test_blob_dataset_name():
+    app_config = AppConfig()
+    expected = 'blob__openflights__routes'
+    s = app_config.blob_dataset_name('openflights', 'routes')
+    print(s)
+    assert(s == expected)
+
+def test_cosmos_linked_service_name():
+    app_config = AppConfig()
+    expected = 'M2CMigrationCosmosDB_openflights'
+    s = app_config.cosmos_linked_service_name('openflights')
+    print(s)
+    assert(s == expected)
+
+def test_cosmos_dataset_name():
+    app_config = AppConfig()
+    expected = 'cosmos__openflights__routes'
+    s = app_config.cosmos_dataset_name('openflights', 'routes')
+    print(s)
+    assert(s == expected)
 
 def test_ensure_directory_path():
     app_config = AppConfig()
@@ -166,7 +235,3 @@ def test_boolean_env_var():
     os.environ['MANUAL'] = 'FALSE'
     assert(app_config.boolean_env_var('AUTOMATED', False) == True)
     assert(app_config.boolean_env_var('MANUAL', True) == False)
-
-def filename(path):
-    # placeholder method; may eventualy return the absolute filename
-    return path

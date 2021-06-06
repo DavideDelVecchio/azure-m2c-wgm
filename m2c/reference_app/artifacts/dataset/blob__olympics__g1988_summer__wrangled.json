@@ -1,0 +1,23 @@
+{
+    "name": "blob__olympics__g1988_summer",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "M2CMigrationBlobStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "olympics__g1988_summer__wrangled.json",
+                "container": "olympics-adf"
+            }
+        },
+        "schema": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

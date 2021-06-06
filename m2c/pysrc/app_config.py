@@ -29,8 +29,8 @@ class AppConfig(object):
         self.source_mongodb_user = self.env_var('M2C_SOURCE_MONGODB_USER', 'root')
         self.source_mongodb_pass = self.env_var('M2C_SOURCE_MONGODB_PASS', 'rootpassword')
         self.source_mongodb_ssl  = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL',  False)
-        self.blob_linked_svc     = 'M2CMigrationBlobStorage'
-        self.cosmos_linked_svc   = 'M2CMigrationCosmosDB'
+        # self.blob_linked_svc     = 'M2CMigrationBlobStorage'
+        # self.cosmos_linked_svc   = 'M2CMigrationCosmosDB'
 
     def source_mongodb_uri(self):
         return 'mongodb://@{}:{}'.format(
@@ -74,8 +74,20 @@ class AppConfig(object):
         return '{}/{}__{}__source.json'.format(
             self.mongoexports_dir(dbname), dbname, cname)
 
-    def artifact_dir(self, artifact_type):
-        return '{}/{}'.format(self.artifacts_dir, artifact_type)
+    def shell_artifacts_dir(self):
+        return '{}/shell'.format(self.artifacts_dir)
+
+    def adf_artifacts_dir(self):
+        return '{}/adf'.format(self.artifacts_dir)
+
+    def adf_linked_svc_artifacts_dir(self):
+        return '{}/adf/linkedService'.format(self.artifacts_dir)
+
+    def adf_dataset_artifacts_dir(self):
+        return '{}/adf/dataset'.format(self.artifacts_dir)
+
+    def adf_pipeline_artifacts_dir(self):
+        return '{}/adf/pipeline'.format(self.artifacts_dir)
 
     def blob_name(self, dbname, cname):
         return '{}__{}__source.json'.format(dbname, cname)
@@ -102,6 +114,21 @@ class AppConfig(object):
 
     def wrangle_script_basename(self, dbname, cname):
         return '{}/wrangle_{}_{}'.format(dbname, dbname, cname)
+
+    def wrangle_script_name(self, dbname, cname):
+        return '{}_wrangle_{}.sh'.format(dbname, cname)
+
+    def blob_linked_service_name(self):
+        return 'M2CMigrationBlobStorage'
+
+    def blob_dataset_name(self, dbname, cname):
+        return 'blob__{}__{}'.format(dbname, cname)
+
+    def cosmos_linked_service_name(self, target_db):
+        return 'M2CMigrationCosmosDB_{}'.format(target_db)
+
+    def cosmos_dataset_name(self, dbname, cname):
+        return 'cosmos__{}__{}'.format(dbname, cname)
 
     def ensure_directory_path(self, dir_path):
         try:

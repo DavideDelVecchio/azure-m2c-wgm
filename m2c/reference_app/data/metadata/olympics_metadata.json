@@ -1,6 +1,6 @@
 {
   "dbname": "olympics",
-  "utc_datetime": "2021-06-05T20:36:24.982346+00:00",
+  "utc_datetime": "2021-06-06T12:00:03.307074+00:00",
   "collections": [
     {
       "name": "g1936_summer",
@@ -3022,7 +3022,7 @@
     "indexSize": 13225984.0,
     "totalSize": 34390016.0,
     "scaleFactor": 1.0,
-    "fsUsedSize": 18894893056.0,
+    "fsUsedSize": 18898857984.0,
     "fsTotalSize": 67371577344.0,
     "ok": 1.0
   }
