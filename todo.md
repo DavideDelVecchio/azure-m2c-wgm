@@ -4,9 +4,8 @@
 
 - TODO Automate VM Provisioning and Setup; see uvm repo
 
-- TODO Manifest Excel File
-
 - TODO ADF/git integration and testing
+- TODO Generate ADF Pipelines
 
 ---
 
