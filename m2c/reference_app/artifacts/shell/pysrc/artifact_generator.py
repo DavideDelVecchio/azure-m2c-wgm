@@ -290,7 +290,7 @@ class ArtifactGenerator(object):
                 self.dbname, coll_name)
             base_part = os.path.basename(blob_name).split('.')[0]
             dataset_name = self.config.blob_dataset_name(self.dbname, coll_name)
-            outfile = '{}/blob__{}'.format(outdir, blob_name)
+            outfile = '{}/{}.json'.format(outdir, dataset_name)
             template_name = 'adf_blob_dataset.txt'
             template_data = dict()
             template_data['dataset_name']   = dataset_name
@@ -322,6 +322,10 @@ class ArtifactGenerator(object):
             self.render_template(template_name, template_data, outfile)
 
     def gen_adf_pipelines(self):
+        #                blob__olympics__g1952_summer__wrangled and 
+        # resource name: blob__olympics__g1952_summer are different. 
+        # They should be the same. Fix the resource and refresh the page.
+
         manifest = self.load_json_file(self.config.manifest_json_file())
         pipelines = manifest['pipelines']
         outdir = self.config.adf_pipeline_artifacts_dir()

@@ -1,5 +1,5 @@
 {
-    "name": "blob__olympics__countries",
+    "name": "olympics__countries__wrangled.json",
     "properties": {
         "linkedServiceName": {
             "referenceName": "M2CMigrationBlobStorage",

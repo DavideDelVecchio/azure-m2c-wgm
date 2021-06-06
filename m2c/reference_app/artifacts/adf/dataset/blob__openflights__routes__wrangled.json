@@ -1,5 +1,5 @@
 {
-    "name": "blob__openflights__routes",
+    "name": "openflights__routes__wrangled.json",
     "properties": {
         "linkedServiceName": {
             "referenceName": "M2CMigrationBlobStorage",
