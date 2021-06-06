@@ -1,5 +1,5 @@
 {
-    "name": "blob__openflights__airports__wrangled",
+    "name": "blob__openflights__airports",
     "properties": {
         "linkedServiceName": {
             "referenceName": "M2CMigrationBlobStorage",

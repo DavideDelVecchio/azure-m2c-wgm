@@ -3,7 +3,7 @@
     "properties": {
         "description": "target container",
         "linkedServiceName": {
-            "referenceName": "M2CMigrationCosmosMongo_travel",
+            "referenceName": "M2CMigrationCosmosDB_travel",
             "type": "LinkedServiceReference"
         },
         "annotations": [],

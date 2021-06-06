@@ -1,5 +1,5 @@
 {
-    "name": "blob__olympics__g2016_summer__wrangled",
+    "name": "blob__olympics__g2016_summer",
     "properties": {
         "linkedServiceName": {
             "referenceName": "M2CMigrationBlobStorage",

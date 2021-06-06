@@ -22,7 +22,6 @@ class AppConfig(object):
         self.ssl                 = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL', True)
         self.app_dir             = self.env_var('M2C_APP_DIR', None) 
         self.artifacts_dir       = self.env_var('M2C_APP_ARTIFACTS_DIR', 'artifacts')
-        self.adf_artifacts_dir   = '{}/adf'.format(self.artifacts_dir)
         self.data_dir            = self.env_var('M2C_APP_DATA_DIR', 'data') 
         self.source_mongodb_url  = self.env_var('M2C_SOURCE_MONGODB_URL', 'localhost:27017')
         self.source_mongodb_host = self.env_var('M2C_SOURCE_MONGODB_HOST', 'localhost')
@@ -75,11 +74,20 @@ class AppConfig(object):
         return '{}/{}__{}__source.json'.format(
             self.mongoexports_dir(dbname), dbname, cname)
 
-    def artifact_dir(self, artifact_type):
-        return '{}/{}'.format(self.artifacts_dir, artifact_type)
-
     def shell_artifacts_dir(self):
         return '{}/shell'.format(self.artifacts_dir)
+
+    def adf_artifacts_dir(self):
+        return '{}/adf'.format(self.artifacts_dir)
+
+    def adf_linked_svc_artifacts_dir(self):
+        return '{}/adf/linkedService'.format(self.artifacts_dir)
+
+    def adf_dataset_artifacts_dir(self):
+        return '{}/adf/dataset'.format(self.artifacts_dir)
+
+    def adf_pipeline_artifacts_dir(self):
+        return '{}/adf/pipeline'.format(self.artifacts_dir)
 
     def blob_name(self, dbname, cname):
         return '{}__{}__source.json'.format(dbname, cname)
@@ -121,15 +129,6 @@ class AppConfig(object):
 
     def cosmos_dataset_name(self, dbname, cname):
         return 'cosmos__{}__{}'.format(dbname, cname)
-
-    def adf_linked_svc_artifacts_dir(self):
-        return '{}/linkedService'.format(self.artifacts_dir)
-
-    def adf_dataset_artifacts_dir(self):
-        return '{}/dataset'.format(self.artifacts_dir)
-
-    def adf_pipeline_artifacts_dir(self):
-        return '{}/pipeline'.format(self.artifacts_dir)
 
     def ensure_directory_path(self, dir_path):
         try:

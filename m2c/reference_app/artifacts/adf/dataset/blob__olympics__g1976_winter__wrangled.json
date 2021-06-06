@@ -1,5 +1,5 @@
 {
-    "name": "blob__olympics__g1976_winter__wrangled",
+    "name": "blob__olympics__g1976_winter",
     "properties": {
         "linkedServiceName": {
             "referenceName": "M2CMigrationBlobStorage",
