@@ -2,17 +2,17 @@
 
 ---
 
-- TODO Quality Control - file sizes
-- TODO File Map Excel Report?
-
 - TODO Automate VM Provisioning and Setup; see uvm repo
 
-- TODO Implement StandardDocumentWrangler Unit test
+- TODO Manifest Excel File
 
 - TODO ADF/git integration and testing
 
+- TODO Manifest Excel File
 
 ---
+
+- Done Implement StandardDocumentWrangler Unit test
 
 - Done Generate Wrangling Shell Scripts - for each collection
 
