@@ -1,5 +1,5 @@
 {
-  "generated_on": "2021-06-06 16:34:12 UTC",
+  "generated_on": "2021-06-06 17:29:14 UTC",
   "manifest": [
     {
       "source_db": "Source DB",
@@ -826,6 +826,449 @@
       "adf_blob_doc_count": "-1",
       "adf_dataset_name": "blob__openflights__routes",
       "adf_pipeline_name": "pipeline_copy_to_travel_routes"
+    }
+  ],
+  "pipelines": [
+    {
+      "name": "pipeline_copy_to_olympics_games",
+      "items": [
+        {
+          "source": "olympics:g1896_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1896_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1900_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1900_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1904_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1904_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1906_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1906_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1908_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1908_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1912_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1912_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1920_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1920_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1924_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1924_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1924_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1924_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1928_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1928_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1928_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1928_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1932_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1932_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1932_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1932_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1936_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1936_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1936_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1936_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1948_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1948_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1948_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1948_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1952_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1952_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1952_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1952_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1956_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1956_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1956_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1956_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1960_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1960_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1960_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1960_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1964_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1964_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1964_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1964_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1968_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1968_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1968_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1968_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1972_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1972_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1972_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1972_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1976_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1976_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1976_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1976_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1980_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1980_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1980_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1980_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1984_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1984_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1984_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1984_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1988_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1988_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1988_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1988_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1992_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1992_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1992_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1992_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1994_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1994_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1996_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1996_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g1998_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g1998_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2000_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2000_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2002_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2002_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2004_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2004_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2006_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2006_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2008_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2008_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2010_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2010_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2012_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2012_summer",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2014_winter",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2014_winter",
+          "to_dataset": "cosmos__olympics__games"
+        },
+        {
+          "source": "olympics:g2016_summer",
+          "target": "olympics:games",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__g2016_summer",
+          "to_dataset": "cosmos__olympics__games"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_copy_to_olympics_locations",
+      "items": [
+        {
+          "source": "olympics:countries",
+          "target": "olympics:locations",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__countries",
+          "to_dataset": "cosmos__olympics__locations"
+        },
+        {
+          "source": "olympics:games",
+          "target": "olympics:locations",
+          "target_linked_svc": "M2CMigrationCosmosDB_olympics",
+          "from_dataset": "blob__olympics__games",
+          "to_dataset": "cosmos__olympics__locations"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_copy_to_travel_airlines",
+      "items": [
+        {
+          "source": "openflights:airlines",
+          "target": "travel:airlines",
+          "target_linked_svc": "M2CMigrationCosmosDB_travel",
+          "from_dataset": "blob__openflights__airlines",
+          "to_dataset": "cosmos__travel__airlines"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_copy_to_travel_airports",
+      "items": [
+        {
+          "source": "openflights:airports",
+          "target": "travel:airports",
+          "target_linked_svc": "M2CMigrationCosmosDB_travel",
+          "from_dataset": "blob__openflights__airports",
+          "to_dataset": "cosmos__travel__airports"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_copy_to_travel_countries",
+      "items": [
+        {
+          "source": "openflights:countries",
+          "target": "travel:countries",
+          "target_linked_svc": "M2CMigrationCosmosDB_travel",
+          "from_dataset": "blob__openflights__countries",
+          "to_dataset": "cosmos__travel__countries"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_copy_to_travel_planes",
+      "items": [
+        {
+          "source": "openflights:planes",
+          "target": "travel:planes",
+          "target_linked_svc": "M2CMigrationCosmosDB_travel",
+          "from_dataset": "blob__openflights__planes",
+          "to_dataset": "cosmos__travel__planes"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_copy_to_travel_routes",
+      "items": [
+        {
+          "source": "openflights:routes",
+          "target": "travel:routes",
+          "target_linked_svc": "M2CMigrationCosmosDB_travel",
+          "from_dataset": "blob__openflights__routes",
+          "to_dataset": "cosmos__travel__routes"
+        }
+      ]
     }
   ]
 }

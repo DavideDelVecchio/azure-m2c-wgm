@@ -1,19 +1,13 @@
 
 {
-	"name": "{{ pipeline_name }}",
+	"name": "pipeline_copy_to_travel_routes",
 	"properties": {
 		"activities": [
-			{% for item in items -%}
 			{
-				"name": "{{ item['activity_name'] }}",
+				"name": "copy_blob__openflights__routes",
 				"type": "Copy",
 				"dependsOn": [ 
-					{% if item['has_dependency'] -%}
-					{
-						"activity": "{{ item['dependent_activity'] }}",
-						"dependencyConditions": [ "Succeeded" ]
-					}
-					{% endif %}
+					
 				],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -44,18 +38,18 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "{{ item['input_dataset'] }} ",
+						"referenceName": "blob__openflights__routes ",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "{{ item['output_dataset'] }} ",
+						"referenceName": "cosmos__travel__routes ",
 						"type": "DatasetReference"
 					}
 				]
-			}{{ item['activity_sep'] }}
-			{% endfor %}
+			}
+			
 
 		],
 		"annotations": [],

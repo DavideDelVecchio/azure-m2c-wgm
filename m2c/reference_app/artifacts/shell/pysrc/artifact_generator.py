@@ -322,9 +322,60 @@ class ArtifactGenerator(object):
             self.render_template(template_name, template_data, outfile)
 
     def gen_adf_pipelines(self):
+        manifest = self.load_json_file(self.config.manifest_json_file())
+        pipelines = manifest['pipelines']
         outdir = self.config.adf_pipeline_artifacts_dir()
-        template = 'adf_copy_pipeline.txt'
-        print('TODO: implement gen_adf_pipelines()')
+        template_name = 'adf_copy_pipeline.txt'
+
+        for pidx, pipeline in enumerate(pipelines):
+            pipeline_name = pipeline['name']
+            pipeline_last_idx = len(pipeline['items']) - 1
+
+            outfile = '{}/{}.json'.format(outdir, pipeline_name)
+            template_data = dict()
+            template_data['pipeline_name'] = pipeline_name
+            template_data['items'] = list()
+
+            prev_activity_name = ''
+            for idx, item in enumerate(pipeline['items']):
+                dataset = item['from_dataset']
+                activity_name = 'copy_{}'.format(dataset)
+                template_item_data = dict()
+                template_item_data['activity_name'] = activity_name
+                template_item_data['input_dataset']  = item['from_dataset']
+                template_item_data['output_dataset'] = item['to_dataset']
+                template_item_data['has_dependency'] = len(prev_activity_name) > 0
+                template_item_data['dependent_activity'] = prev_activity_name
+                if idx == pipeline_last_idx:
+                    template_item_data['activity_sep'] = ''
+                else:
+                    template_item_data['activity_sep'] = ','
+                template_data['items'].append(template_item_data)
+                prev_activity_name = str(activity_name)
+
+            debugfile = 'tmp/pipeline_{}_{}_templatedata.json'.format(pidx, pipeline_name)
+            self.write_obj_as_json_file(debugfile, template_data)
+
+            self.render_template(template_name, template_data, outfile)
+
+				# {% if len(item['dependent_activity]) > 0 %}
+				# 	hell yeah
+				# {% endif %}
+
+    # def adf_copy_depends_on_json(self, prev_activity_name):
+    #     # {
+    #     #     "activity": "xxxx",
+    #     #     "dependencyConditions": [
+    #     #         "Succeeded"
+    #     #     ]
+    #     # }
+    #     if prev_activity_name == '':
+    #         return ''
+    #     else:
+    #         depends = dict()
+    #         depends['activity'] = prev_activity_name
+    #         depends['dependencyConditions'] = 'Succeeded'
+    #         return depends  # json.dumps(depends, sort_keys=False, indent=2)
 
     def generate_reference_db_scripts(self):
         self.generate_openflights_reference_db_scripts()
