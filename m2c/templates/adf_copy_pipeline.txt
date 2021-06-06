@@ -44,13 +44,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "{{ item['input_dataset'] }} ",
+						"referenceName": "{{ item['input_dataset'] }}",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "{{ item['output_dataset'] }} ",
+						"referenceName": "{{ item['output_dataset'] }}",
 						"type": "DatasetReference"
 					}
 				]

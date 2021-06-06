@@ -38,13 +38,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__openflights__airlines ",
+						"referenceName": "blob__openflights__airlines",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__travel__airlines ",
+						"referenceName": "cosmos__travel__airlines",
 						"type": "DatasetReference"
 					}
 				]

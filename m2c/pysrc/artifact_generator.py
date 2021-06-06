@@ -98,6 +98,9 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--adf-pipelines')):
             self.gen_adf_pipelines() 
 
+        if (self.gen_artifact('--target--cosmos-mongo-init')):
+            self.gen_target_cosmos_init() 
+
     def gen_artifact(self, name):
         for arg in sys.argv:
             if arg == '--all':
@@ -360,6 +363,24 @@ class ArtifactGenerator(object):
             if False:
                 debugfile = 'tmp/pipeline_{}_{}_templatedata.json'.format(pidx, pipeline_name)
                 self.write_obj_as_json_file(debugfile, template_data)
+            self.render_template(template_name, template_data, outfile)
+
+    def gen_target_cosmos_init(self):
+        manifest = self.load_json_file(self.config.manifest_json_file())
+        databases_list = list()
+
+        for dbname in databases_list:
+            outdir  = self.shell_artifacts_dir
+            outfile = '{}/mongo_init_{}.ddl'.format(outdir, dbname)
+            template_name = 'mongo_database_init.txt'
+            template_data = dict()
+            coll_names = list()
+            for item in manifest['manifest']:
+                if item['target_db'] == dbname:
+                    coll_names.append(item['target_coll'])
+
+            template_data['target_db'] = dbname
+            template_data['collections'] = coll_names
             self.render_template(template_name, template_data, outfile)
 
     def generate_reference_db_scripts(self):

@@ -4,9 +4,16 @@
 
 - TODO Automate VM Provisioning and Setup; see uvm repo
 
-- TODO ADF/git integration and testing
+- TODO ADF Refactorings
+  - TODO ADF Pipelines using multi-datasets for db/container dir
+  - TODO ADF multi-datasets for db/container dir
+  - TODO Alter Wrangle process to upload to db/container dir 
+  - TODO Enhance Manifest for blob db/container dir
+  - TODO Generate Mongo Scripts to Create Target Collections
 
 ---
+
+- Done Initial ADF/git integration and testing
 
 - Done Generate ADF Pipelines
 

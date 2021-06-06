@@ -38,13 +38,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__openflights__countries ",
+						"referenceName": "blob__openflights__countries",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__travel__countries ",
+						"referenceName": "cosmos__travel__countries",
 						"type": "DatasetReference"
 					}
 				]

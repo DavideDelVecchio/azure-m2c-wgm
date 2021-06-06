@@ -38,13 +38,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1896_summer ",
+						"referenceName": "blob__olympics__g1896_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -88,13 +88,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1900_summer ",
+						"referenceName": "blob__olympics__g1900_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -138,13 +138,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1904_summer ",
+						"referenceName": "blob__olympics__g1904_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -188,13 +188,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1906_summer ",
+						"referenceName": "blob__olympics__g1906_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -238,13 +238,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1908_summer ",
+						"referenceName": "blob__olympics__g1908_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -288,13 +288,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1912_summer ",
+						"referenceName": "blob__olympics__g1912_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -338,13 +338,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1920_summer ",
+						"referenceName": "blob__olympics__g1920_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -388,13 +388,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1924_summer ",
+						"referenceName": "blob__olympics__g1924_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -438,13 +438,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1924_winter ",
+						"referenceName": "blob__olympics__g1924_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -488,13 +488,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1928_summer ",
+						"referenceName": "blob__olympics__g1928_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -538,13 +538,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1928_winter ",
+						"referenceName": "blob__olympics__g1928_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -588,13 +588,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1932_summer ",
+						"referenceName": "blob__olympics__g1932_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -638,13 +638,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1932_winter ",
+						"referenceName": "blob__olympics__g1932_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -688,13 +688,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1936_summer ",
+						"referenceName": "blob__olympics__g1936_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -738,13 +738,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1936_winter ",
+						"referenceName": "blob__olympics__g1936_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -788,13 +788,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1948_summer ",
+						"referenceName": "blob__olympics__g1948_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -838,13 +838,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1948_winter ",
+						"referenceName": "blob__olympics__g1948_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -888,13 +888,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1952_summer ",
+						"referenceName": "blob__olympics__g1952_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -938,13 +938,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1952_winter ",
+						"referenceName": "blob__olympics__g1952_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -988,13 +988,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1956_summer ",
+						"referenceName": "blob__olympics__g1956_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1038,13 +1038,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1956_winter ",
+						"referenceName": "blob__olympics__g1956_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1088,13 +1088,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1960_summer ",
+						"referenceName": "blob__olympics__g1960_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1138,13 +1138,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1960_winter ",
+						"referenceName": "blob__olympics__g1960_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1188,13 +1188,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1964_summer ",
+						"referenceName": "blob__olympics__g1964_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1238,13 +1238,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1964_winter ",
+						"referenceName": "blob__olympics__g1964_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1288,13 +1288,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1968_summer ",
+						"referenceName": "blob__olympics__g1968_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1338,13 +1338,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1968_winter ",
+						"referenceName": "blob__olympics__g1968_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1388,13 +1388,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1972_summer ",
+						"referenceName": "blob__olympics__g1972_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1438,13 +1438,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1972_winter ",
+						"referenceName": "blob__olympics__g1972_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1488,13 +1488,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1976_summer ",
+						"referenceName": "blob__olympics__g1976_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1538,13 +1538,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1976_winter ",
+						"referenceName": "blob__olympics__g1976_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1588,13 +1588,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1980_summer ",
+						"referenceName": "blob__olympics__g1980_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1638,13 +1638,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1980_winter ",
+						"referenceName": "blob__olympics__g1980_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1688,13 +1688,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1984_summer ",
+						"referenceName": "blob__olympics__g1984_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1738,13 +1738,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1984_winter ",
+						"referenceName": "blob__olympics__g1984_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1788,13 +1788,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1988_summer ",
+						"referenceName": "blob__olympics__g1988_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1838,13 +1838,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1988_winter ",
+						"referenceName": "blob__olympics__g1988_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1888,13 +1888,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1992_summer ",
+						"referenceName": "blob__olympics__g1992_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1938,13 +1938,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1992_winter ",
+						"referenceName": "blob__olympics__g1992_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -1988,13 +1988,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1994_winter ",
+						"referenceName": "blob__olympics__g1994_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2038,13 +2038,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1996_summer ",
+						"referenceName": "blob__olympics__g1996_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2088,13 +2088,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g1998_winter ",
+						"referenceName": "blob__olympics__g1998_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2138,13 +2138,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2000_summer ",
+						"referenceName": "blob__olympics__g2000_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2188,13 +2188,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2002_winter ",
+						"referenceName": "blob__olympics__g2002_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2238,13 +2238,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2004_summer ",
+						"referenceName": "blob__olympics__g2004_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2288,13 +2288,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2006_winter ",
+						"referenceName": "blob__olympics__g2006_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2338,13 +2338,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2008_summer ",
+						"referenceName": "blob__olympics__g2008_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2388,13 +2388,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2010_winter ",
+						"referenceName": "blob__olympics__g2010_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2438,13 +2438,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2012_summer ",
+						"referenceName": "blob__olympics__g2012_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2488,13 +2488,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2014_winter ",
+						"referenceName": "blob__olympics__g2014_winter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
@@ -2538,13 +2538,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob__olympics__g2016_summer ",
+						"referenceName": "blob__olympics__g2016_summer",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "cosmos__olympics__games ",
+						"referenceName": "cosmos__olympics__games",
 						"type": "DatasetReference"
 					}
 				]
