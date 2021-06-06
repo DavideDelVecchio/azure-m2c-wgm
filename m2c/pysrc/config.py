@@ -29,8 +29,6 @@ class Config(object):
         self.source_mongodb_user = self.env_var('M2C_SOURCE_MONGODB_USER', 'root')
         self.source_mongodb_pass = self.env_var('M2C_SOURCE_MONGODB_PASS', 'rootpassword')
         self.source_mongodb_ssl  = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL',  False)
-        # self.blob_linked_svc     = 'M2CMigrationBlobStorage'
-        # self.cosmos_linked_svc   = 'M2CMigrationCosmosDB'
 
     def source_mongodb_uri(self):
         return 'mongodb://@{}:{}'.format(
@@ -87,6 +85,9 @@ class Config(object):
 
     def adf_pipeline_artifacts_dir(self):
         return '{}/adf/pipeline'.format(self.artifacts_dir)
+
+    def adf_pipeline_name(self, target_db, target_coll):
+        return 'pipeline_copy_to_{}_{}'.format(target_db, target_coll)
 
     def blob_name(self, dbname, cname):
         return '{}__{}__source.json'.format(dbname, cname)

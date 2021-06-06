@@ -8,9 +8,9 @@
 
 - TODO ADF/git integration and testing
 
-- TODO Manifest Excel Manifest File
-
 ---
+
+- Done Manifest Excel and JSON Manifest Files
 
 - Done Refactor class AppConfig to Config
 - Done Refactor ArtifactGenerator to use common method render_template

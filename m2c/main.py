@@ -34,6 +34,8 @@ from pymongo import MongoClient
 
 from pysrc.config import Config
 from pysrc.artifact_generator import ArtifactGenerator
+from pysrc.manifest_generator import ManifestGenerator
+
 from pysrc.standard_mapping_generator import StandardMappingGenerator
 
 config = Config()
@@ -44,8 +46,8 @@ def generate_initial_scripts():
     generator.generate_initial_scripts()
 
 def generate_manifest():
-    generator = ArtifactGenerator('', {})
-    generator.generate_manifest()
+    generator = ManifestGenerator()
+    generator.generate_manifest_files()
 
 def extract_db_metadata(login_db, dbname):
     conn_str = config.pymongo_conn_string(login_db)  # login to the admin database

@@ -9,4 +9,7 @@ echo 'generating manifest ...'
 
 python main.py generate_manifest
 
+echo ''
+echo "Note: the generated 'manifest.json' is used in code generation, so please don't edit it."
+echo ''
 echo 'done'
