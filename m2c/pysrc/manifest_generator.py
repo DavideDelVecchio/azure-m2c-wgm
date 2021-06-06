@@ -66,12 +66,12 @@ class ManifestGenerator(object):
                     raw_blob_name, -1, adf_blob_name, -1, adf_dataset, adf_pipeline)
                 manifest_rows.append(row)
 
-        outfile = '{}/manifest.csv'.format(self.config.metadata_dir())
-        self.write(outfile, "\n".join(manifest_rows))
+        self.write(self.config.manifest_csv_file(), "\n".join(manifest_rows))
         self.save_manifest_as_json(columns, manifest_rows)
 
     def save_manifest_as_json(self, columns, manifest_rows):
         manifest, items = dict(), list()
+        manifest['generated_on'] = self.config.timestamp()
         manifest['manifest'] = items
 
         for row in manifest_rows:
@@ -82,8 +82,7 @@ class ManifestGenerator(object):
                 item[attr_name] = value
             items.append(item)
 
-        outfile = '{}/manifest.json'.format(self.config.metadata_dir())
-        self.write_obj_as_json_file(outfile, manifest)
+        self.write_obj_as_json_file(self.config.manifest_json_file(), manifest)
 
     def doc_count(self, metadata, coll_name):
         try:

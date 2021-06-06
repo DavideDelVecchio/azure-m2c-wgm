@@ -54,6 +54,14 @@ def test_metadata_file():
     print(f)
     assert(f == expected)
 
+def test_manifest_csv_file():
+    config = Config()
+    assert(config.manifest_csv_file() == 'reference_app/data/metadata/manifest.csv')
+
+def test_manifest_json_file():
+    config = Config()
+    assert(config.manifest_json_file() == 'reference_app/data/metadata/manifest.json')
+
 def test_metadata_files():
     config = Config()
     expected = sorted([
@@ -172,6 +180,13 @@ def test_adf_pipeline_artifacts_dir():
     config = Config()
     expected = 'reference_app/artifacts/adf/pipeline'
     s = config.adf_pipeline_artifacts_dir()
+    print(s)
+    assert(s == expected)
+
+def test_adf_pipeline_name():
+    config = Config()
+    expected = 'pipeline_copy_to_openflights_routes'
+    s = config.adf_pipeline_name('openflights', 'routes')
     print(s)
     assert(s == expected)
 

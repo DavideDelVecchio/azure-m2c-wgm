@@ -59,6 +59,12 @@ class Config(object):
         self.ensure_directory_path(outdir)
         return '{}/{}_metadata.json'.format(outdir, dbname)
 
+    def manifest_csv_file(self):
+        return '{}/manifest.csv'.format(self.metadata_dir())
+
+    def manifest_json_file(self):
+        return '{}/manifest.json'.format(self.metadata_dir())
+
     def db_mapping_file(self, dbname):
         outdir = self.metadata_dir()
         self.ensure_directory_path(outdir)
