@@ -65,6 +65,9 @@ class ArtifactGenerator(object):
         template_name = 'generate_artifacts.txt'
         self.render_template(template_name, template_data, 'generate_artifacts.sh')
 
+    def generate_manifest(self):
+        print('generate_manifest')
+
     def generate(self):
         self.ensure_output_directories_exist()
 

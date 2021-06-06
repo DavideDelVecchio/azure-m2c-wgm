@@ -8,9 +8,12 @@
 
 - TODO ADF/git integration and testing
 
-- TODO Manifest Excel File
+- TODO Manifest Excel Manifest File
 
 ---
+
+- Done Refactor class AppConfig to Config
+- Done Refactor ArtifactGenerator to use common method render_template
 
 - Done Implement StandardDocumentWrangler Unit test
 

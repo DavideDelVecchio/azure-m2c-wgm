@@ -43,6 +43,10 @@ def generate_initial_scripts():
     generator = ArtifactGenerator('', {})
     generator.generate_initial_scripts()
 
+def generate_manifest():
+    generator = ArtifactGenerator('', {})
+    generator.generate_manifest()
+
 def extract_db_metadata(login_db, dbname):
     conn_str = config.pymongo_conn_string(login_db)  # login to the admin database
     print('dbname:   {}'.format(dbname))
@@ -135,6 +139,9 @@ if __name__ == "__main__":
 
         if func == 'generate_initial_scripts':
             generate_initial_scripts()
+
+        elif func == 'generate_manifest':
+            generate_manifest()
 
         elif func == 'extract_db_metadata':
             login_db = sys.argv[2]
