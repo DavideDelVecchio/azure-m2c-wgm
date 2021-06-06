@@ -116,7 +116,7 @@ class ManifestGenerator(object):
         pipelines = list()
         for pipeline_name in sorted(unique_pipeline_names.keys()):
             pipeline, pipeline_items = dict(), list()
-            pipeline['name'] = pipeline_name
+            pipeline['name']  = pipeline_name
             pipeline['items'] = pipeline_items
             pipelines.append(pipeline)
 

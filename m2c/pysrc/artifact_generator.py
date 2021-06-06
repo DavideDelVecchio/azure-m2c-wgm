@@ -353,29 +353,10 @@ class ArtifactGenerator(object):
                 template_data['items'].append(template_item_data)
                 prev_activity_name = str(activity_name)
 
-            debugfile = 'tmp/pipeline_{}_{}_templatedata.json'.format(pidx, pipeline_name)
-            self.write_obj_as_json_file(debugfile, template_data)
-
+            if False:
+                debugfile = 'tmp/pipeline_{}_{}_templatedata.json'.format(pidx, pipeline_name)
+                self.write_obj_as_json_file(debugfile, template_data)
             self.render_template(template_name, template_data, outfile)
-
-				# {% if len(item['dependent_activity]) > 0 %}
-				# 	hell yeah
-				# {% endif %}
-
-    # def adf_copy_depends_on_json(self, prev_activity_name):
-    #     # {
-    #     #     "activity": "xxxx",
-    #     #     "dependencyConditions": [
-    #     #         "Succeeded"
-    #     #     ]
-    #     # }
-    #     if prev_activity_name == '':
-    #         return ''
-    #     else:
-    #         depends = dict()
-    #         depends['activity'] = prev_activity_name
-    #         depends['dependencyConditions'] = 'Succeeded'
-    #         return depends  # json.dumps(depends, sort_keys=False, indent=2)
 
     def generate_reference_db_scripts(self):
         self.generate_openflights_reference_db_scripts()
