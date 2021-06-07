@@ -2,7 +2,7 @@
 
 ---
 
-- TODO Automate VM Provisioning and Setup; see uvm repo
+- TODO Automate VM Provisioning and Setup for VM; see uvm repo
 
 - TODO ADF Refactorings
   - TODO ADF Pipelines using multi-datasets for db/container dir
@@ -11,6 +11,8 @@
   - TODO Enhance Manifest for blob db/container dir
 
 ---
+
+- Done Automate Provisioning for Storage, Cosmos, ADF
 
 - Done Refactor reference_app and generated artifacts to another repo
 
