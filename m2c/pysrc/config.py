@@ -96,17 +96,17 @@ class Config(object):
     def adf_pipeline_name(self, target_db, target_coll):
         return 'pipeline_copy_to_{}_{}'.format(target_db, target_coll)
 
-    def blob_name(self, dbname, cname):
-        return '{}__{}__source.json'.format(dbname, cname)
+    def blob_name(self, source_db, source_coll):
+        return '{}__{}.json'.format(source_db, source_coll)
 
     def wrangled_file_name(self, dbname, cname):
         return '{}__{}__wrangled.json'.format(dbname, cname)
 
-    def blob_raw_container_name(self, dbname):
-        return '{}-raw'.format(dbname)
+    def blob_raw_container_name(self, source_db):
+        return '{}-raw'.format(source_db)
 
-    def blob_adf_container_name(self, dbname):
-        return '{}-adf'.format(dbname)
+    def blob_adf_container_name(self, target_db, target_coll):
+        return '{}-{}-adf'.format(target_db, target_coll)
 
     def blob_download_dir(self, dbname):
         return '{}/downloads/{}'.format(self.data_dir, dbname)

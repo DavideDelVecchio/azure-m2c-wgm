@@ -39,37 +39,48 @@ class ManifestGenerator(object):
         columns.append('Avg Doc Size')
         columns.append('Target DB')
         columns.append('Target Coll')
-        columns.append('Raw mongoexport Blob')
-        columns.append('Raw Blob Doc Count')
-        columns.append('Wrangled ADF Blob')
+        columns.append('Blob Name')
+        columns.append('Raw Storage Container')
+        columns.append('ADF Storage Container')
         columns.append('ADF Blob Doc Count')
-        columns.append('ADF Dataset Name')
+        columns.append('ADF Blob Dataset Name')
+        columns.append('ADF Cosmos Dataset Name')
         columns.append('ADF Pipeline Name')
         manifest_rows.append(','.join(columns))
 
-        for dbname in sorted(databases_list):
-            mappings = self.load_json_file(self.config.db_mapping_file(dbname))
-            metadata = self.load_json_file(self.config.db_metadata_file(dbname))
-            raw_blob_container = self.config.blob_raw_container_name(dbname)
-            adf_blob_container = self.config.blob_adf_container_name(dbname)
+        for source_db in sorted(databases_list):
+            mappings = self.load_json_file(self.config.db_mapping_file(source_db))
+            metadata = self.load_json_file(self.config.db_metadata_file(source_db))
 
             for coll in sorted(mappings['collections'], key = itemgetter('name')):
-                coll_name   = coll['name']
+                source_coll = coll['name']
                 target_db   = coll['mapping']['target_dbname']
                 target_coll = coll['mapping']['target_container']
-                doc_count   = self.doc_count(metadata, coll_name)
-                doc_size    = self.avg_doc_size(metadata, coll_name)
-                local_file  = self.config.mongoexport_file(dbname, coll_name)
-                raw_blob    = os.path.basename(local_file)
-                adf_blob    = self.config.wrangled_file_name(dbname, coll_name)
-                raw_blob_name = '{}/{}'.format(raw_blob_container, raw_blob)
-                adf_blob_name = '{}/{}'.format(adf_blob_container, adf_blob)
-                adf_dataset   = self.config.blob_dataset_name(dbname, coll_name)
-                adf_pipeline  = self.config.adf_pipeline_name(target_db, target_coll) 
+                doc_count   = self.doc_count(metadata, source_coll)
+                doc_size    = self.avg_doc_size(metadata, source_coll)
+                # local_file  = self.config.mongoexport_file(source_db, source_coll)
+                # raw_blob    = os.path.basename(local_file)
+                blob_name          = self.config.blob_name(source_db, source_coll)
+                raw_blob_container = self.config.blob_raw_container_name(source_db)
+                adf_blob_container = self.config.blob_adf_container_name(target_db, target_coll)
+                adf_blob_dataset   = self.config.blob_dataset_name(source_db, source_coll)
+                adf_cosmos_dataset = self.config.cosmos_dataset_name(target_db, target_coll)
+                adf_pipeline       = self.config.adf_pipeline_name(target_db, target_coll) 
 
-                row = '{},{},{},{},{},{},{},{},{},{},{},{}'.format(
-                    dbname, coll_name, doc_count, doc_size, target_db, target_coll,
-                    raw_blob_name, -1, adf_blob_name, -1, adf_dataset, adf_pipeline)
+                row = '{},{},{},{},{},{},{},{},{},{},{},{},{}'.format(
+                    source_db,
+                    source_coll,
+                    doc_count,
+                    doc_size,
+                    target_db,
+                    target_coll,
+                    blob_name,
+                    raw_blob_container,
+                    adf_blob_container,
+                    -1,
+                    adf_blob_dataset,
+                    adf_cosmos_dataset,
+                    adf_pipeline)
                 manifest_rows.append(row)
 
         # Save the manifest CSV/Excel file
@@ -90,10 +101,37 @@ class ManifestGenerator(object):
                 for idx, value in enumerate(values):
                     attr_name = columns[idx].lower().replace(' ', '_').strip()
                     item[attr_name] = value
+
+                source_db   = item['source_db']
+                source_coll = item['source_coll']
+                target_db   = item['target_db']
+                target_coll = item['target_coll']
+
+                # item['blob_name']          = self.config.blob_name(source_db, source_coll)
+                # item['raw_blob_container'] = self.config.blob_raw_container_name(source_db)
+                # item['adf_blob_container'] = self.config.blob_adf_container_name(target_db, target_coll)
+                # item['adf_pipeline']       = self.config.adf_pipeline_name(target_db, target_coll)
+
                 items.append(item)
 
         manifest['pipelines'] = self.collect_pipelines(columns, items)
         self.write_obj_as_json_file(self.config.manifest_json_file(), manifest)
+
+        # {
+        #   "source_db": "olympics",
+        #   "source_coll": "countries",
+        #   "doc_count": "230",
+        #   "avg_doc_size": "69",
+        #   "target_db": "olympics",
+        #   "target_coll": "locations",
+        #   "raw_mongoexport_blob": "olympics-raw/olympics__countries__source.json",
+        #   "raw_blob_doc_count": "-1",
+        #   "wrangled_adf_blob": "olympics-adf/olympics__countries__wrangled.json",
+        #   "adf_blob_doc_count": "-1",
+        #   "adf_dataset_name": "blob__olympics__countries",
+        #   "adf_pipeline_name": "pipeline_copy_to_olympics_locations",
+        #   "raw_blob_container": "x"
+        # },
 
     def collect_pipelines(self, columns, manifest_items):
         # first identify the unique pipeline names
@@ -122,8 +160,6 @@ class ManifestGenerator(object):
                     info['source'] = '{}:{}'.format(source_db, source_coll)
                     info['target'] = '{}:{}'.format(target_db, target_coll)
                     info['target_linked_svc'] = self.config.cosmos_linked_service_name(target_db)
-                    info['from_dataset'] = item['adf_dataset_name']
-                    info['to_dataset'] = self.config.cosmos_dataset_name(target_db, target_coll)
                     pipeline_items.append(info)
 
         return pipelines
