@@ -114,10 +114,14 @@ class StorageUtil(object):
 def list_blob_containers():
     stor = StorageUtil()
     containers = stor.list_containers()
+    count = 0
     for idx, c in enumerate(containers):
+        count = count + 1
         # print(str(type(c))) # <class 'azure.storage.blob._models.ContainerProperties'>
         print('{} {}'.format(idx + 1, c.name))
-
+    if count < 1:
+        print('no containers')
+        
 def list_blob_container(cname):
     stor = StorageUtil()
     blobs = stor.list_container(cname)

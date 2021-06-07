@@ -36,6 +36,6 @@ export M2C_SOURCE_MONGODB_PASS="rootpassword"
 # >  db.createUser({'user':'exporter','pwd':'secret','roles':['read']})
 # Successfully added user: { "user" : "exporter", "roles" : [ "read" ] }
 
-export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_COSMOSDB_MONGODB_CONN_STRING
+export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
 
 export M2C_DOCKER_CONTAINER="cjoakim/azure-m2c-wgm-wrangle"
