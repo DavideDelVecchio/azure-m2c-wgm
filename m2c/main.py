@@ -1,22 +1,19 @@
 """
 Usage:
+    source env.sh ; python main.py generate_initial_scripts
+    source env.sh ; python main.py generate_mapping_file
+    source env.sh ; python main.py generate_manifest
+    source env.sh ; python main.py generate_artifacts olympics --all
+    source env.sh ; python main.py generate_reference_db_scripts
     source env.sh ; python main.py extract_db_metadata <login-db> <db-name>
     source env.sh ; python main.py extract_db_metadata admin olympics
     source env.sh ; python main.py extract_db_metadata admin openflights
-    -
-    source env.sh ; python main.py generate_mapping_file olympics
-    source env.sh ; python main.py generate_mapping_file openflights
-    -
-    source env.sh ; python main.py generate_artifacts olympics --all
-    source env.sh ; python main.py generate_artifacts openflights --mongoexports
-    -
-    source env.sh ; python main.py generate_reference_db_scripts
 """
 
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/04"
+__version__ = "2021/06/07"
 
 import json
 import os

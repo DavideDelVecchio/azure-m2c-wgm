@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/05"
+__version__ = "2021/06/07"
 
 import json
 import os
@@ -15,6 +15,7 @@ import jinja2
 
 from operator import itemgetter
 from pysrc.config import Config
+from pysrc.manifest import Manifest
 
 # Class ArtifactGenerator is used to generate all script and code
 # artifacts in this application, by using the extracted source database
@@ -31,10 +32,12 @@ class ArtifactGenerator(object):
             self.collections = list()
 
         self.config = Config()
+        self.manifest = Manifest()
         self.shell_type          = self.config.shell_type
         self.ssl                 = self.config.ssl
         self.artifacts_dir       = self.config.artifacts_dir
         self.shell_artifacts_dir = self.config.shell_artifacts_dir()
+        self.mongo_artifacts_dir = self.config.mongo_artifacts_dir()
         self.mongoexports_dir    = self.config.mongoexports_dir(dbname)
         self.data_dir            = self.config.data_dir
 
@@ -367,20 +370,22 @@ class ArtifactGenerator(object):
 
     def gen_target_cosmos_init(self):
         manifest = self.load_json_file(self.config.manifest_json_file())
-        databases_list = list()
+        database_names = self.manifest.target_database_names()
+        tuples = self.manifest.cosmos_target_db_coll_tuples()
 
-        for dbname in databases_list:
-            outdir  = self.shell_artifacts_dir
-            outfile = '{}/mongo_init_{}.ddl'.format(outdir, dbname)
-            template_name = 'mongo_database_init.txt'
+        for dbname in database_names:
             template_data = dict()
-            coll_names = list()
-            for item in manifest['manifest']:
-                if item['target_db'] == dbname:
-                    coll_names.append(item['target_coll'])
-
-            template_data['target_db'] = dbname
-            template_data['collections'] = coll_names
+            template_data['gen_timestamp'] = self.timestamp()
+            template_data['gen_by'] = 'artifact_generator.py gen_target_cosmos_init()'
+            template_data['authored_year_month'] = self.config.authored_year_month()
+            template_data['dbname'] = dbname
+            template_data['collections'] = list()
+            for t in tuples:
+                if (t[0] == dbname):
+                    template_data['collections'].append(t[1])
+            template_name = 'mongo_database_init.txt'
+            outdir = self.mongo_artifacts_dir
+            outfile = '{}/mongo_init_{}.ddl'.format(outdir, dbname)
             self.render_template(template_name, template_data, outfile)
 
     def generate_reference_db_scripts(self):
@@ -540,6 +545,7 @@ class ArtifactGenerator(object):
         self.ensure_directory_path(self.config.adf_dataset_artifacts_dir())
         self.ensure_directory_path(self.config.adf_pipeline_artifacts_dir())
         self.ensure_directory_path(self.shell_artifacts_dir)
+        self.ensure_directory_path(self.mongo_artifacts_dir)
         self.ensure_directory_path(self.mongoexports_dir)
         self.ensure_directory_path(self.config.reference_app_databases_dir())
 

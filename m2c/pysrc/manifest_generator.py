@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/05"
+__version__ = "2021/06/07"
 
 import json
 import os
@@ -16,6 +16,12 @@ import jinja2
 from operator import itemgetter
 from pysrc.config import Config
 
+# This class generates the similar "manifest" csv and json files, which
+# weave together the extracted metadata from the source databases, as well
+# as the used-edited mapping files.  The manifest is thus a complete and
+# correlated list of all databases, collections, blobs, etc. in the migration .
+# process.  The manifest is used to generate various artifacts - code, scripts,
+# and Excel reporting. 
 
 class ManifestGenerator(object):    
 
@@ -66,43 +72,28 @@ class ManifestGenerator(object):
                     raw_blob_name, -1, adf_blob_name, -1, adf_dataset, adf_pipeline)
                 manifest_rows.append(row)
 
+        # Save the manifest CSV/Excel file
         self.write(self.config.manifest_csv_file(), "\n".join(manifest_rows))
+
+        # Also save the augmented manifest JSON file
         self.save_manifest_as_json(columns, manifest_rows)
 
     def save_manifest_as_json(self, columns, manifest_rows):
         manifest, items = dict(), list()
         manifest['generated_on'] = self.config.timestamp()
-        manifest['manifest'] = items
+        manifest['items'] = items
 
-        for row in manifest_rows:
-            item = dict()
-            values = row.split(',')
-            for idx, value in enumerate(values):
-                attr_name = columns[idx].lower().replace(' ', '_').strip()
-                item[attr_name] = value
-            items.append(item)
+        for row_idx, row in enumerate(manifest_rows):
+            if row_idx > 0:
+                item = dict()
+                values = row.split(',')
+                for idx, value in enumerate(values):
+                    attr_name = columns[idx].lower().replace(' ', '_').strip()
+                    item[attr_name] = value
+                items.append(item)
 
         manifest['pipelines'] = self.collect_pipelines(columns, items)
-
         self.write_obj_as_json_file(self.config.manifest_json_file(), manifest)
-
-    def doc_count(self, metadata, coll_name):
-        try:
-            for coll in metadata['collections']:
-                if coll['name'] == coll_name:
-                    return coll['metadata']['stats']['count']
-            return -1
-        except:
-            return -1
-
-    def avg_doc_size(self, metadata, coll_name):
-        try:
-            for coll in metadata['collections']:
-                if coll['name'] == coll_name:
-                    return coll['metadata']['stats']['avgObjSize']
-            return -1
-        except:
-            return -1
 
     def collect_pipelines(self, columns, manifest_items):
         # first identify the unique pipeline names
@@ -136,6 +127,24 @@ class ManifestGenerator(object):
                     pipeline_items.append(info)
 
         return pipelines
+
+    def doc_count(self, metadata, coll_name):
+        try:
+            for coll in metadata['collections']:
+                if coll['name'] == coll_name:
+                    return coll['metadata']['stats']['count']
+            return -1
+        except:
+            return -1
+
+    def avg_doc_size(self, metadata, coll_name):
+        try:
+            for coll in metadata['collections']:
+                if coll['name'] == coll_name:
+                    return coll['metadata']['stats']['avgObjSize']
+            return -1
+        except:
+            return -1
 
     def load_json_file(self, infile):
         with open(infile) as json_file:

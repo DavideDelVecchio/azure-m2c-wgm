@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/05"
+__version__ = "2021/06/07"
 
 import arrow
 import glob
@@ -79,6 +79,9 @@ class Config(object):
 
     def shell_artifacts_dir(self):
         return '{}/shell'.format(self.artifacts_dir)
+
+    def mongo_artifacts_dir(self):
+        return '{}/shell/mongo'.format(self.artifacts_dir)
 
     def adf_artifacts_dir(self):
         return '{}/adf'.format(self.artifacts_dir)

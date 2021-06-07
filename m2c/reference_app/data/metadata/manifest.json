@@ -1,20 +1,6 @@
 {
-  "generated_on": "2021-06-06 19:20:14 UTC",
-  "manifest": [
-    {
-      "source_db": "Source DB",
-      "source_coll": "Source Coll",
-      "doc_count": "Doc Count",
-      "avg_doc_size": "Avg Doc Size",
-      "target_db": "Target DB",
-      "target_coll": "Target Coll",
-      "raw_mongoexport_blob": "Raw mongoexport Blob",
-      "raw_blob_doc_count": "Raw Blob Doc Count",
-      "wrangled_adf_blob": "Wrangled ADF Blob",
-      "adf_blob_doc_count": "ADF Blob Doc Count",
-      "adf_dataset_name": "ADF Dataset Name",
-      "adf_pipeline_name": "ADF Pipeline Name"
-    },
+  "generated_on": "2021-06-07 15:31:21 UTC",
+  "items": [
     {
       "source_db": "olympics",
       "source_coll": "countries",
