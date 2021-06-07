@@ -56,7 +56,6 @@ class Config(object):
 
     def db_metadata_file(self, dbname):
         outdir = self.metadata_dir()
-        self.ensure_directory_path(outdir)
         return '{}/{}_metadata.json'.format(outdir, dbname)
 
     def manifest_csv_file(self):
@@ -67,7 +66,6 @@ class Config(object):
 
     def db_mapping_file(self, dbname):
         outdir = self.metadata_dir()
-        self.ensure_directory_path(outdir)
         return '{}/{}_mapping.json'.format(outdir, dbname)
 
     def mongoexports_dir(self, dbname):
@@ -141,16 +139,6 @@ class Config(object):
 
     def reference_app_databases_dir(self):
         return '{}/databases'.format(self.app_dir) 
-
-    def ensure_directory_path(self, dir_path):
-        try:
-            if not os.path.exists(dir_path):
-                os.makedirs(dir_path)
-                return 'created'
-            else:
-                return 'exists'
-        except:
-            return 'except'
 
     def timestamp(self):
         return arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')

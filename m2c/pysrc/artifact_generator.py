@@ -32,7 +32,6 @@ class ArtifactGenerator(object):
             self.collections = list()
 
         self.config = Config()
-        self.manifest = Manifest()
         self.shell_type          = self.config.shell_type
         self.ssl                 = self.config.ssl
         self.artifacts_dir       = self.config.artifacts_dir
@@ -42,7 +41,6 @@ class ArtifactGenerator(object):
         self.data_dir            = self.config.data_dir
 
     def generate_initial_scripts(self):
-        self.ensure_output_directories_exist()
         print('generate_initial_scripts') 
         databases_list = self.read_migrated_databases_list_file()
         print('databases_list: {}'.format(databases_list))
@@ -69,8 +67,6 @@ class ArtifactGenerator(object):
         self.render_template(template_name, template_data, 'generate_artifacts.sh')
 
     def generate(self):
-        self.ensure_output_directories_exist()
-
         if (self.gen_artifact('--mongoexports')):
             self.gen_mongoexports()
 
@@ -332,6 +328,7 @@ class ArtifactGenerator(object):
         # resource name: blob__olympics__g1952_summer are different. 
         # They should be the same. Fix the resource and refresh the page.
 
+        manifest = Manifest()
         manifest = self.load_json_file(self.config.manifest_json_file())
         pipelines = manifest['pipelines']
         outdir = self.config.adf_pipeline_artifacts_dir()
@@ -369,9 +366,9 @@ class ArtifactGenerator(object):
             self.render_template(template_name, template_data, outfile)
 
     def gen_target_cosmos_init(self):
-        manifest = self.load_json_file(self.config.manifest_json_file())
-        database_names = self.manifest.target_database_names()
-        tuples = self.manifest.cosmos_target_db_coll_tuples()
+        manifest = Manifest()
+        database_names = manifest.target_database_names()
+        tuples = manifest.cosmos_target_db_coll_tuples()
 
         for dbname in database_names:
             template_data = dict()
@@ -543,17 +540,6 @@ class ArtifactGenerator(object):
     def load_json_file(self, infile):
         with open(infile) as json_file:
             return json.load(json_file)
-
-    def ensure_output_directories_exist(self):
-        self.ensure_directory_path(self.artifacts_dir)
-        self.ensure_directory_path(self.config.adf_artifacts_dir())
-        self.ensure_directory_path(self.config.adf_linked_svc_artifacts_dir())
-        self.ensure_directory_path(self.config.adf_dataset_artifacts_dir())
-        self.ensure_directory_path(self.config.adf_pipeline_artifacts_dir())
-        self.ensure_directory_path(self.shell_artifacts_dir)
-        self.ensure_directory_path(self.mongo_artifacts_dir)
-        self.ensure_directory_path(self.mongoexports_dir)
-        self.ensure_directory_path(self.config.reference_app_databases_dir())
 
     def ensure_directory_path(self, dir_path):
         try:

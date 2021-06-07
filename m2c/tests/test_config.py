@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/05"
+__version__ = "2021/06/07"
 
 import arrow
 import os
@@ -219,15 +219,15 @@ def test_reference_app_databases_dir():
     config = Config()
     assert(config.reference_app_databases_dir() == 'reference_app/databases')
 
-def test_ensure_directory_path():
-    config = Config()
-    dirname = 'tmp/{}'.format(int(time.time()))
-    result = config.ensure_directory_path(dirname)
-    assert(result == 'created')
-    result = config.ensure_directory_path(dirname)
-    assert(result == 'exists')
-    result = config.ensure_directory_path(None)
-    assert(result == 'except')
+# def test_ensure_directory_path():
+#     config = Config()
+#     dirname = 'tmp/{}'.format(int(time.time()))
+#     result = config.ensure_directory_path(dirname)
+#     assert(result == 'created')
+#     result = config.ensure_directory_path(dirname)
+#     assert(result == 'exists')
+#     result = config.ensure_directory_path(None)
+#     assert(result == 'except')
 
 def test_timestamp():
     config = Config()

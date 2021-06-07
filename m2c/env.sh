@@ -7,9 +7,9 @@
 # These next three directory locations currently point to WITHIN this
 # GitHub repo for demonstration purposes.  For customer use, these should
 # point to a location outside of the repo.
-export M2C_APP_DIR="reference_app"
-export M2C_APP_ARTIFACTS_DIR="reference_app/artifacts"
-export M2C_APP_DATA_DIR="reference_app/data"
+export M2C_APP_DIR=$M2C_REF_APP_DIR
+export M2C_APP_ARTIFACTS_DIR=$M2C_REF_APP_DIR"/artifacts"
+export M2C_APP_DATA_DIR=$M2C_REF_APP_DIR"/data"
 
 export M2C_SHELL_TYPE="bash"
 
