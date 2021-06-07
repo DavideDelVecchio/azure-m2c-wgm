@@ -128,8 +128,8 @@ class Config(object):
     def blob_linked_service_name(self):
         return 'M2CMigrationBlobStorage'
 
-    def blob_dataset_name(self, dbname, cname):
-        return 'blob__{}__{}'.format(dbname, cname)
+    def blob_dataset_name(self, target_db, target_coll):
+        return 'blob__{}__{}'.format(target_db, target_coll)
 
     def cosmos_linked_service_name(self, target_db):
         return 'M2CMigrationCosmosDB_{}'.format(target_db)

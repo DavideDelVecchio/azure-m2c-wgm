@@ -63,7 +63,7 @@ class ManifestGenerator(object):
                 blob_name          = self.config.blob_name(source_db, source_coll)
                 raw_blob_container = self.config.blob_raw_container_name(source_db)
                 adf_blob_container = self.config.blob_adf_container_name(target_db, target_coll)
-                adf_blob_dataset   = self.config.blob_dataset_name(source_db, source_coll)
+                adf_blob_dataset   = self.config.blob_dataset_name(target_db, target_coll)
                 adf_cosmos_dataset = self.config.cosmos_dataset_name(target_db, target_coll)
                 adf_pipeline       = self.config.adf_pipeline_name(target_db, target_coll) 
 
@@ -107,31 +107,15 @@ class ManifestGenerator(object):
                 target_db   = item['target_db']
                 target_coll = item['target_coll']
 
-                # item['blob_name']          = self.config.blob_name(source_db, source_coll)
-                # item['raw_blob_container'] = self.config.blob_raw_container_name(source_db)
-                # item['adf_blob_container'] = self.config.blob_adf_container_name(target_db, target_coll)
-                # item['adf_pipeline']       = self.config.adf_pipeline_name(target_db, target_coll)
+                item['mongoexports_dir']     = self.config.mongoexports_dir(source_db)
+                item['mongoexport_file']     = self.config.mongoexport_file(source_db, source_coll)
+                item['wrangle_script_name']  = self.config.wrangle_script_name(source_db, source_coll)
+                item['wrangled_outfile']     = self.config.wrangled_outfile(source_db, source_coll)
 
                 items.append(item)
 
         manifest['pipelines'] = self.collect_pipelines(columns, items)
         self.write_obj_as_json_file(self.config.manifest_json_file(), manifest)
-
-        # {
-        #   "source_db": "olympics",
-        #   "source_coll": "countries",
-        #   "doc_count": "230",
-        #   "avg_doc_size": "69",
-        #   "target_db": "olympics",
-        #   "target_coll": "locations",
-        #   "raw_mongoexport_blob": "olympics-raw/olympics__countries__source.json",
-        #   "raw_blob_doc_count": "-1",
-        #   "wrangled_adf_blob": "olympics-adf/olympics__countries__wrangled.json",
-        #   "adf_blob_doc_count": "-1",
-        #   "adf_dataset_name": "blob__olympics__countries",
-        #   "adf_pipeline_name": "pipeline_copy_to_olympics_locations",
-        #   "raw_blob_container": "x"
-        # },
 
     def collect_pipelines(self, columns, manifest_items):
         # first identify the unique pipeline names
@@ -159,6 +143,7 @@ class ManifestGenerator(object):
                     info = dict()
                     info['source'] = '{}:{}'.format(source_db, source_coll)
                     info['target'] = '{}:{}'.format(target_db, target_coll)
+                    info['source_linked_svc'] = self.config.blob_linked_service_name()
                     info['target_linked_svc'] = self.config.cosmos_linked_service_name(target_db)
                     pipeline_items.append(info)
 

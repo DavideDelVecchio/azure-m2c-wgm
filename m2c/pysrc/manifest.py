@@ -18,17 +18,22 @@ from pysrc.config import Config
 
 # {
 #   "source_db": "olympics",
-#   "source_coll": "countries",
-#   "doc_count": "230",
-#   "avg_doc_size": "69",
+#   "source_coll": "g1896_summer",
+#   "doc_count": "380",
+#   "avg_doc_size": "323",
 #   "target_db": "olympics",
-#   "target_coll": "locations",
-#   "raw_mongoexport_blob": "olympics-raw/olympics__countries__source.json",
-#   "raw_blob_doc_count": "-1",
-#   "wrangled_adf_blob": "olympics-adf/olympics__countries__wrangled.json",
+#   "target_coll": "games",
+#   "blob_name": "olympics__g1896_summer.json",
+#   "raw_storage_container": "olympics-raw",
+#   "adf_storage_container": "olympics-games-adf",
 #   "adf_blob_doc_count": "-1",
-#   "adf_dataset_name": "blob__olympics__countries",
-#   "adf_pipeline_name": "pipeline_copy_to_olympics_locations"
+#   "adf_blob_dataset_name": "blob__olympics__games",
+#   "adf_cosmos_dataset_name": "cosmos__olympics__games",
+#   "adf_pipeline_name": "pipeline_copy_to_olympics_games",
+#   "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics",
+#   "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics/olympics__g1896_summer__source.json",
+#   "wrangle_script_name": "olympics_wrangle_g1896_summer.sh",
+#   "wrangled_outfile": "tmp/olympics/olympics__g1896_summer__wrangled.json"
 # },
 
 class Manifest(object):    
