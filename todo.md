@@ -4,6 +4,8 @@
 
 - TODO Automate VM Provisioning and Setup; see uvm repo
 
+- TODO Refactor reference_app and generated artifacts to another repo
+
 - TODO ADF Refactorings
   - TODO ADF Pipelines using multi-datasets for db/container dir
   - TODO ADF multi-datasets for db/container dir

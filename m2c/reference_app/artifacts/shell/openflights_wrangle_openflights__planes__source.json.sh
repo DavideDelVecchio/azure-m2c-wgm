@@ -3,7 +3,7 @@
 # Bash shell script to wrangle/transform a raw mongoexport file
 #
 # Database Name: openflights
-# Generated on:  2021-06-07 16:18:28 UTC
+# Generated on:  2021-06-07 16:48:15 UTC
 # Template:      wrangle_one.txt
 
 source ./env.sh
