@@ -385,7 +385,7 @@ class ArtifactGenerator(object):
                     template_data['collections'].append(t[1])
             template_name = 'mongo_database_init.txt'
             outdir = self.mongo_artifacts_dir
-            outfile = '{}/mongo_init_{}.ddl'.format(outdir, dbname)
+            outfile = '{}/mongo_init_{}_db.ddl'.format(outdir, dbname)
             self.render_template(template_name, template_data, outfile)
 
     def generate_reference_db_scripts(self):
