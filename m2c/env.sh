@@ -29,18 +29,9 @@ export M2C_SOURCE_MONGODB_PASS="rootpassword"
 # MongoDB instance running locally in a Docker container; see
 # companion repo https://github.com/cjoakim/mongodb-docker
 
-# Alternatively, you can create and use a read-only user for the exports.
-# export M2C_SOURCE_MONGODB_USER="exporter"
-# export M2C_SOURCE_MONGODB_PASS="secret"
-# In mongo shell of source database:
-# >  db.createUser({'user':'exporter','pwd':'secret','roles':['read']})
-# Successfully added user: { "user" : "exporter", "roles" : [ "read" ] }
-
 # Resource Group for the Migration
 export M2C_RG=$AZURE_M2C_RG
 
 export M2C_COSMOS_MONGODB_ACCT=$AZURE_M2C_COSMOS_MONGO_USER
 export M2C_COSMOS_MONGODB_USER=$AZURE_M2C_COSMOS_MONGO_USER
 export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
-
-export M2C_DOCKER_CONTAINER="cjoakim/azure-m2c-wgm-wrangle"
