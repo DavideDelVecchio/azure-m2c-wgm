@@ -39,6 +39,7 @@ class ManifestGenerator(object):
         columns.append('Avg Doc Size')
         columns.append('Target DB')
         columns.append('Target Coll')
+        columns.append('Partition Key')
         columns.append('Blob Name')
         columns.append('Raw Storage Container')
         columns.append('ADF Storage Container')
@@ -56,6 +57,7 @@ class ManifestGenerator(object):
                 source_coll = coll['name']
                 target_db   = coll['mapping']['target_dbname']
                 target_coll = coll['mapping']['target_container']
+                pk_name     = coll['mapping']['pk_name']
                 doc_count   = self.doc_count(metadata, source_coll)
                 doc_size    = self.avg_doc_size(metadata, source_coll)
                 # local_file  = self.config.mongoexport_file(source_db, source_coll)
@@ -67,13 +69,14 @@ class ManifestGenerator(object):
                 adf_cosmos_dataset = self.config.cosmos_dataset_name(target_db, target_coll)
                 adf_pipeline       = self.config.adf_pipeline_name(target_db, target_coll) 
 
-                row = '{},{},{},{},{},{},{},{},{},{},{},{},{}'.format(
+                row = '{},{},{},{},{},{},{},{},{},{},{},{},{},{}'.format(
                     source_db,
                     source_coll,
                     doc_count,
                     doc_size,
                     target_db,
                     target_coll,
+                    pk_name,
                     blob_name,
                     raw_blob_container,
                     adf_blob_container,

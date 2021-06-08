@@ -329,19 +329,13 @@ class ArtifactGenerator(object):
         template_data['ru'] = self.mapping_data['cosmos_db_autoscale_ru']
         template_data['collections'] = target_collection_objects
 
-        for cname in collection_names:
-            cinfo = dict()
-            cinfo['name'] = cname
-            cinfo['pk'] = self.pk_for_container(cname)
-            target_collection_objects.append(cinfo)
+        for target_coll in collection_names:
+            info = dict()
+            info['name'] = target_coll
+            info['pk'] = manifest.pk_for_container(target_db, target_coll)
+            target_collection_objects.append(info)
 
         self.render_template(template_name, template_data, outfile)
-
-    def pk_for_container(self, cname):
-        for c in self.collections:
-            if c['name'] == cname:
-                return c['mapping']['pk_name']
-        return 'pk'
 
     def gen_target_cosmos_mongo_indexes(self):
         manifest = self.get_manifest()

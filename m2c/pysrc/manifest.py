@@ -149,6 +149,13 @@ class Manifest(object):
                 uniques[coll] = 0
         return sorted(uniques.keys())
 
+    def pk_for_container(self, target_db, target_coll):
+        for item in self.items:
+            if item['target_db'] == target_db:
+                if item['target_coll'] == target_coll:
+                    return item['partition_key']
+        return None
+
     def get_pipelines(self):
         return self.pipelines
         
