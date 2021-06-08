@@ -30,6 +30,7 @@ class StandardMappingGenerator(object):
         data = dict()
         data['source_dbname'] = self.dbname
         data['default_target_dbname'] = self.dbname
+        data['cosmos_db_autoscale_ru'] = 10000
 
         if self.dbname == 'olympics':
             data['default_target_dbname'] = 'olympics'

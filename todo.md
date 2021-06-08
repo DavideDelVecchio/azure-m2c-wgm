@@ -10,6 +10,12 @@
   - TODO Alter Wrangle process to upload to db/container dir 
   - TODO Enhance Manifest for blob db/container dir
 
+
+- TODO Generate az script to create target Cosmos/Mongo DB - dbs, collections, pk
+    olympics - games, locations
+    travel - airlines, airports, countries, planes, routes
+
+
 ---
 
 - Done Automate Provisioning for Storage, Cosmos, ADF
