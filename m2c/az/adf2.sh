@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Bash script with AZ CLI to automate the creation/deletion of an
+# Bash script with AZ CLI to automate the creation of an
 # Azure Data Factory account.
-# Chris Joakim, 2021/06/07
+# Chris Joakim, 2021/06/08
 
 source ./azconfig.sh
 
@@ -23,14 +23,14 @@ create() {
     echo 'creating adf acct: '$adf_name
     az datafactory factory create \
         --location $adf_region \
-        --name $adf_name \
+        --name $adf2_name \
         --resource-group $adf_rg \
-        > tmp/adf_acct_create.json
+        > tmp/adf2_acct_create.json
 }
 
 display_usage() {
     echo 'Usage:'
-    echo './adf.sh create'
+    echo './adf2.sh create'
 }
 
 # ========== "main" logic below ==========

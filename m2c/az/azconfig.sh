@@ -2,7 +2,7 @@
 
 # Bash shell that defines parameters and environment variables used in
 # this app, and is "sourced" by the other scripts in this directory.
-# Chris Joakim, Microsoft, 2021/06/07
+# Chris Joakim, Microsoft, 2021/06/08
 
 # environment variables for provisioning:
 
@@ -11,10 +11,12 @@ export user=$USER
 export primary_region="eastus"
 export primary_rg="cjoakimm2c"
 
+# adf1 is intended to be the "production" ADF with git integration
+# adf2 is intended to be the "ad-hoc, exploration" ADF with no git integration
 export adf_region=$primary_region
 export adf_rg=$primary_rg
-export adf_name="cjoakimm2cadf"
-export adf_sku="Standard" 
+export adf1_name="cjoakimm2cadf1"
+export adf2_name="cjoakimm2cadf2"
 #
 export cosmos_mongo_region=$primary_region
 export cosmos_mongo_rg=$primary_rg
