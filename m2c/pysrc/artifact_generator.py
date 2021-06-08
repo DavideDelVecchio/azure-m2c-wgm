@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/08"
+__version__ = "June 2021"
 
 import json
 import os
@@ -102,6 +102,9 @@ class ArtifactGenerator(object):
 
         if (self.gen_artifact('--adf-pipelines')):
             self.gen_adf_pipelines() 
+
+        if (self.gen_artifact('--adf-az-script')):
+            self.gen_adf_az_script() 
 
         if (self.gen_artifact('--target-cosmos-az-create')):
             self.gen_target_cosmos_az_create() 
@@ -297,8 +300,6 @@ class ArtifactGenerator(object):
     def gen_adf_pipelines(self):
         manifest  = self.get_manifest()
         pipelines = manifest.get_merged_pipelines()
-        self.write_obj_as_json_file('tmp/pipelines.json', pipelines)
-
         outdir    = self.config.adf_pipeline_artifacts_dir()
         template_name = 'adf_copy_pipeline.txt'
 
@@ -311,6 +312,18 @@ class ArtifactGenerator(object):
             template_data['pipeline_name'] = pipeline_name
             template_data['activities'] = activities
             self.render_template(template_name, template_data, outfile)
+
+    def gen_adf_az_script(self):
+        manifest  = self.get_manifest()
+        pipelines = manifest.get_merged_pipelines()
+        outdir    = self.config.adf_pipeline_artifacts_dir()
+        template_name = 'adf_az_cli.txt'
+        template_data = dict()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_adf_az_script()'
+        template_data['pipelines'] = pipelines
+        outfile = '{}/adf_az_cli.sh'.format(self.shell_artifacts_dir)
+        self.render_template(template_name, template_data, outfile)
 
     def gen_target_cosmos_az_create(self):
         manifest = self.get_manifest()

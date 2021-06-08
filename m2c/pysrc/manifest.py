@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/07"
+__version__ = "June 2021"
 
 import json
 import os
@@ -17,24 +17,29 @@ from operator import itemgetter
 from pysrc.config import Config
 
 # {
-# "source_db": "olympics",
-# "source_coll": "g1896_summer",
-# "doc_count": "380",
-# "avg_doc_size": "323",
-# "target_db": "olympics",
-# "target_coll": "games",
-# "blob_name": "olympics__g1896_summer.json",
-# "raw_storage_container": "olympics-raw",
-# "adf_storage_container": "olympics-games-adf",
-# "adf_blob_doc_count": "-1",
-# "adf_blob_dataset_name": "blob__olympics__games",
-# "adf_cosmos_dataset_name": "cosmos__olympics__games",
-# "adf_pipeline_name": "pipeline_copy_to_olympics_games",
-# "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics",
-# "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics/olympics__g1896_summer__source.json",
-# "wrangle_script_name": "olympics_wrangle_g1896_summer.sh",
-# "wrangled_outfile": "tmp/olympics/olympics__g1896_summer__wrangled.json"
-# },
+#   "generated_on": "2021-06-08 20:15:53 UTC",
+#   "items": [
+#     {
+#       "source_db": "olympics",
+#       "source_coll": "countries",
+#       "doc_count": "230",
+#       "avg_doc_size": "69",
+#       "target_db": "olympics",
+#       "target_coll": "locations",
+#       "partition_key": "pk",
+#       "blob_name": "olympics__countries.json",
+#       "raw_storage_container": "olympics-raw",
+#       "adf_storage_container": "olympics-locations-adf",
+#       "adf_blob_doc_count": "-1",
+#       "adf_blob_dataset_name": "blob__olympics__locations",
+#       "adf_cosmos_dataset_name": "cosmos__olympics__locations",
+#       "adf_pipeline_name": "pipeline_copy_to_olympics_locations",
+#       "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics",
+#       "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics/olympics__countries.json",
+#       "wrangle_script_name": "wrangle_olympics_countries.sh",
+#       "wrangled_outfile": "tmp/olympics/olympics__countries__wrangled.json",
+#       "local_file_path": "tmp/olympics/olympics__countries.json"
+#     },
 
 class Manifest(object):    
 

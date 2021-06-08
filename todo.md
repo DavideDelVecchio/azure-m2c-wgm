@@ -2,18 +2,18 @@
 
 ---
 
-
 - TODO Automate VM Provisioning and Setup for VM; see uvm repo
-
-- TODO Update the README docs
 
 - TODO Revisit Unit Tests
 
 - TODO Validation checks
 
-- TODO Explore ADF from CLI?
+- TODO Update the README docs
 
 ---
+
+- Done Gen script to submit the ADF pipelines
+- Done Explore ADF from CLI?
 
 - Done Refactor unused files to future/
 

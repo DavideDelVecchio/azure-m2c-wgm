@@ -9,7 +9,7 @@ Usage:
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com,christopher.joakim@gmail.com"
 __license__ = "MIT"
-__version__ = "2021/06/07"
+__version__ = "June 2021"
 
 import json
 import os
@@ -43,17 +43,6 @@ class Transformer(object):
         self.elapsed_time = -1
         self.lines_processed = 0
         self.verbose = self.flag_arg('--verbose')
-
-        # Example bash script invocation:
-        #
-
-        # python wrangle.py transform_blob \
-        #     --db olympics \
-        #     --in-container olympics-raw \
-        #     --blobname olympics__countries.json \
-        #     --filename tmp/olympics/olympics__countries.json \
-        #     --outfile  tmp/olympics/olympics__countries__wrangled.json \
-        #     --out-container olympics-locations-adf $1 $2 $3 
 
         self.dbname        = self.cli_arg('--db')
         self.source_coll   = self.cli_arg('--source-coll')
