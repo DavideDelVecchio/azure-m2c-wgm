@@ -293,36 +293,19 @@ class ArtifactGenerator(object):
 
     def gen_adf_pipelines(self):
         manifest  = self.get_manifest()
-        pipelines = manifest.get_pipelines()
+        pipelines = manifest.get_merged_pipelines()
+        self.write_obj_as_json_file('tmp/pipelines.json', pipelines)
+
         outdir    = self.config.adf_pipeline_artifacts_dir()
         template_name = 'adf_copy_pipeline.txt'
 
         for pidx, pipeline in enumerate(pipelines):
-            pipeline_name  = pipeline['name']
-            pipeline_items = pipeline['items']
-            pipeline_last_idx = len(pipeline_items) - 1
+            pipeline_name = pipeline['name']
+            activities    = pipeline['activities']
             outfile = '{}/{}.json'.format(outdir, pipeline_name)
             template_data = dict()
             template_data['pipeline_name'] = pipeline_name
-            template_data['items'] = list()
-
-            prev_activity_name = ''
-            for idx, item in enumerate(pipeline_items):
-                input_dataset = item['input_dataset']
-                activity_name = 'copy_{}'.format(input_dataset)
-                template_item_data = dict()
-                template_item_data['activity_name']  = activity_name
-                template_item_data['input_dataset']  = item['input_dataset']
-                template_item_data['output_dataset'] = item['output_dataset']
-                template_item_data['has_dependency'] = len(prev_activity_name) > 0
-                template_item_data['dependent_activity'] = prev_activity_name
-                if idx == pipeline_last_idx:
-                    template_item_data['activity_sep'] = ''
-                else:
-                    template_item_data['activity_sep'] = ','
-                template_data['items'].append(template_item_data)
-                prev_activity_name = str(activity_name)
-
+            template_data['activities'] = activities
             self.render_template(template_name, template_data, outfile)
 
     def gen_target_cosmos_mongo_init(self):

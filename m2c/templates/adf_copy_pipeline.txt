@@ -3,14 +3,14 @@
 	"name": "{{ pipeline_name }}",
 	"properties": {
 		"activities": [
-			{% for item in items -%}
+			{% for activity in activities -%}
 			{
-				"name": "{{ item['activity_name'] }}",
+				"name": "{{ activity['name'] }}",
 				"type": "Copy",
 				"dependsOn": [ 
-					{% if item['has_dependency'] -%}
+					{% if activity['has_dependency'] -%}
 					{
-						"activity": "{{ item['dependent_activity'] }}",
+						"activity": "{{ activity['dependent_activity'] }}",
 						"dependencyConditions": [ "Succeeded" ]
 					}
 					{% endif %}
@@ -44,17 +44,17 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "{{ item['input_dataset'] }}",
+						"referenceName": "{{ activity['input_dataset'] }}",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "{{ item['output_dataset'] }}",
+						"referenceName": "{{ activity['output_dataset'] }}",
 						"type": "DatasetReference"
 					}
 				]
-			}{{ item['activity_sep'] }}
+			}{{ activity['activity_sep'] }}
 			{% endfor %}
 
 		],

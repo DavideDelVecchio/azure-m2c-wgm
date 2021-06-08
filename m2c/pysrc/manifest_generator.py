@@ -114,7 +114,7 @@ class ManifestGenerator(object):
                 item['local_file_path']     = self.config.wrangling_blob_download_file(source_db, source_coll)
                 items.append(item)
 
-        manifest['pipelines'] = self.collect_pipelines(columns, items)
+        manifest['pipeline_info'] = self.collect_pipelines(columns, items)
         self.write_obj_as_json_file(self.config.manifest_json_file(), manifest)
 
     def collect_pipelines(self, columns, manifest_items):

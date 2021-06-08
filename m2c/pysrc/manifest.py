@@ -43,7 +43,7 @@ class Manifest(object):
         infile = self.config.manifest_json_file()
         data   = self.load_json_file(infile)
         self.items = data['items']
-        self.pipelines = data['pipelines']
+        self.pipelines = data['pipeline_info']
 
     def source_database_names(self):
         uniques = dict()
@@ -125,6 +125,41 @@ class Manifest(object):
     def get_pipelines(self):
         return self.pipelines
         
+    def get_merged_pipelines(self):
+        pipelines_list = list()
+        for pipeline in self.pipelines:
+            pipeline_info = dict()
+            pipeline_info['name'] = pipeline['name']
+            pipeline_info['activities'] = list()
+            prev_activity_name = ''
+            uniques = dict()
+            pipeline_items = pipeline['items']
+            for item in pipeline_items:
+                input_dataset = item['input_dataset']
+                output_dataset = item['output_dataset']
+                key = '{}:{}'.format(input_dataset, output_dataset)
+                uniques[key] = 0
+            activity_count = len(uniques.keys())
+            activity_last_idx = activity_count - 1
+            for idx, key in enumerate(sorted(uniques.keys())):
+                tokens = key.split(':')
+                input_dataset  = tokens[0]
+                output_dataset = tokens[1]
+                activity = dict()
+                activity['name'] = 'copy_{}'.format(input_dataset)
+                activity['input_dataset'] = input_dataset
+                activity['output_dataset'] = output_dataset
+                activity['has_dependency'] = len(prev_activity_name) > 0
+                activity['dependent_activity'] = str(prev_activity_name)
+                if idx < activity_last_idx:
+                    activity['activity_sep'] = ','
+                else:
+                   activity['activity_sep'] = ''
+                pipeline_info['activities'].append(activity)
+                prev_activity_name = str(activity['name'])
+            pipelines_list.append(pipeline_info)
+        return pipelines_list
+
     def load_json_file(self, infile):
         with open(infile) as json_file:
             return json.load(json_file)
