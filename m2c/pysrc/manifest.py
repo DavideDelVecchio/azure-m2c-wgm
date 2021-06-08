@@ -41,7 +41,9 @@ class Manifest(object):
     def __init__(self):
         self.config = Config()
         infile = self.config.manifest_json_file()
-        self.items = self.load_json_file(infile)['items']
+        data   = self.load_json_file(infile)
+        self.items = data['items']
+        self.pipelines = data['pipelines']
 
     def source_database_names(self):
         uniques = dict()
@@ -65,6 +67,27 @@ class Manifest(object):
             uniques[raw] = 0
             uniques[adf] = 0
         return sorted(uniques.keys())
+
+    def adf_blob_datasets(self):
+        datasets = dict()
+        for item in self.items:
+            name = item['adf_blob_dataset_name']
+            datasets[name] = item['adf_storage_container']
+        return datasets
+
+    def cosmos_target_datasets(self):
+        datasets = dict()
+        for item in self.items:
+            name = item['adf_cosmos_dataset_name']
+            target_db = item['target_db']
+            target_coll = item['target_coll']
+            info = dict()
+            info['dataset_name'] = name
+            info['target_db']    = target_db
+            info['target_coll']  = target_coll
+            info['linked_svc']   = self.config.cosmos_linked_service_name(target_db)
+            datasets[name] = info
+        return datasets
 
     def items_for_source_db(self, source_db):
         db_items = list()
@@ -99,8 +122,9 @@ class Manifest(object):
             tuples.append(uniques[key])
         return tuples
 
-
-
+    def get_pipelines(self):
+        return self.pipelines
+        
     def load_json_file(self, infile):
         with open(infile) as json_file:
             return json.load(json_file)

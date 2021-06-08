@@ -91,20 +91,20 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--wrangle-scripts-individual')):
             self.gen_wrangle_scripts_individual() 
 
-        # if (self.gen_artifact('--adf-linked-services')):
-        #     self.gen_adf_linked_services() 
+        if (self.gen_artifact('--adf-linked-services')):
+            self.gen_adf_linked_services() 
 
-        # if (self.gen_artifact('--adf-blob-datasets')):
-        #     self.gen_adf_blob_datasets() 
+        if (self.gen_artifact('--adf-blob-datasets')):
+            self.gen_adf_blob_datasets() 
 
-        # if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
-        #     self.gen_adf_cosmos_mongo_datasets() 
+        if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
+            self.gen_adf_cosmos_mongo_datasets() 
 
-        # if (self.gen_artifact('--adf-pipelines')):
-        #     self.gen_adf_pipelines() 
+        if (self.gen_artifact('--adf-pipelines')):
+            self.gen_adf_pipelines() 
 
-        # if (self.gen_artifact('--target--cosmos-mongo-init')):
-        #     self.gen_target_cosmos_init() 
+        if (self.gen_artifact('--target-cosmos-mongo-init')):
+            self.gen_target_cosmos_mongo_init() 
 
     def gen_artifact(self, name):
         for arg in sys.argv:
@@ -220,13 +220,6 @@ class ArtifactGenerator(object):
             template_data['gen_timestamp'] = self.timestamp()
             template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_individual()'
             template_data['container'] = self.config.blob_raw_container_name(self.dbname)
-            # cname = c['source_coll']
-            # script_basename = self.config.wrangle_script_basename(
-            #     self.dbname, cname)
-            # local_file_path = self.config.wrangling_blob_download_file(
-            #     self.dbname, cname)
-            # wrangled_outfile_path = self.config.wrangled_outfile(
-            #     self.dbname, cname)
 
             blob_name = item['blob_name']
             wrangle_script_name = item['wrangle_script_name']
@@ -274,74 +267,53 @@ class ArtifactGenerator(object):
             self.render_template(template_name, template_data, outfile)
 
     def gen_adf_blob_datasets(self):
-        outdir = self.config.adf_dataset_artifacts_dir()
+        manifest = self.get_manifest()
+        datasets = manifest.adf_blob_datasets()
+        outdir   = self.config.adf_dataset_artifacts_dir()
         template_data = dict()
 
-        for coll in self.collections:
-            coll_name = coll['name']
-            blob_name = self.config.wrangled_file_name(
-                self.dbname, coll_name)
-            base_part = os.path.basename(blob_name).split('.')[0]
-            dataset_name = self.config.blob_dataset_name(self.dbname, coll_name)
+        for dataset_name in sorted(datasets.keys()):
             outfile = '{}/{}.json'.format(outdir, dataset_name)
-            template_name = 'adf_blob_dataset.txt'
+            template_name = 'adf_blob_directory_dataset.txt'
             template_data = dict()
             template_data['dataset_name']   = dataset_name
-            template_data['blob_name']      = blob_name
-            template_data['blob_container'] = self.config.blob_adf_container_name(self.dbname)
+            template_data['blob_container'] = datasets[dataset_name]
             self.render_template(template_name, template_data, outfile)
 
     def gen_adf_cosmos_mongo_datasets(self):
-        outdir = self.config.adf_dataset_artifacts_dir()
+        manifest = self.get_manifest()
+        datasets = manifest.cosmos_target_datasets()
+        outdir   = self.config.adf_dataset_artifacts_dir()
 
-        unique_combinations_dict = dict()
-        for coll in self.collections:
-            target_dbname = coll['mapping']['target_dbname']
-            target_container = coll['mapping']['target_container']
-            key = '{}:{}'.format(target_dbname, target_container)
-            unique_combinations_dict[key] = ''
-
-        for key in sorted(unique_combinations_dict.keys()):
-            tokens = key.split(':')
-            target_db, target_coll = tokens[0], tokens[1]
-            linked_svc_name = self.config.cosmos_linked_service_name(target_db)
-            dataset_name = self.config.cosmos_dataset_name(target_db, target_coll)
+        for dataset_name in sorted(datasets.keys()):
             outfile = '{}/{}.json'.format(outdir, dataset_name)
             template_name = 'adf_cosmos_mongo_dataset.txt'
-            template_data = dict()
-            template_data['dataset_name'] = dataset_name
-            template_data['linked_service_name'] = linked_svc_name
-            template_data['target_collection'] = target_coll
+            template_data = datasets[dataset_name]
             self.render_template(template_name, template_data, outfile)
 
     def gen_adf_pipelines(self):
-        #                blob__olympics__g1952_summer__wrangled and 
-        # resource name: blob__olympics__g1952_summer are different. 
-        # They should be the same. Fix the resource and refresh the page.
-
-        manifest = self.get_manifest()
-        manifest = self.load_json_file(self.config.manifest_json_file())
-        pipelines = manifest['pipelines']
-        outdir = self.config.adf_pipeline_artifacts_dir()
+        manifest  = self.get_manifest()
+        pipelines = manifest.get_pipelines()
+        outdir    = self.config.adf_pipeline_artifacts_dir()
         template_name = 'adf_copy_pipeline.txt'
 
         for pidx, pipeline in enumerate(pipelines):
-            pipeline_name = pipeline['name']
-            pipeline_last_idx = len(pipeline['items']) - 1
-
+            pipeline_name  = pipeline['name']
+            pipeline_items = pipeline['items']
+            pipeline_last_idx = len(pipeline_items) - 1
             outfile = '{}/{}.json'.format(outdir, pipeline_name)
             template_data = dict()
             template_data['pipeline_name'] = pipeline_name
             template_data['items'] = list()
 
             prev_activity_name = ''
-            for idx, item in enumerate(pipeline['items']):
-                dataset = item['from_dataset']
-                activity_name = 'copy_{}'.format(dataset)
+            for idx, item in enumerate(pipeline_items):
+                input_dataset = item['input_dataset']
+                activity_name = 'copy_{}'.format(input_dataset)
                 template_item_data = dict()
-                template_item_data['activity_name'] = activity_name
-                template_item_data['input_dataset']  = item['from_dataset']
-                template_item_data['output_dataset'] = item['to_dataset']
+                template_item_data['activity_name']  = activity_name
+                template_item_data['input_dataset']  = item['input_dataset']
+                template_item_data['output_dataset'] = item['output_dataset']
                 template_item_data['has_dependency'] = len(prev_activity_name) > 0
                 template_item_data['dependent_activity'] = prev_activity_name
                 if idx == pipeline_last_idx:
@@ -351,12 +323,9 @@ class ArtifactGenerator(object):
                 template_data['items'].append(template_item_data)
                 prev_activity_name = str(activity_name)
 
-            if False:
-                debugfile = 'tmp/pipeline_{}_{}_templatedata.json'.format(pidx, pipeline_name)
-                self.write_obj_as_json_file(debugfile, template_data)
             self.render_template(template_name, template_data, outfile)
 
-    def gen_target_cosmos_init(self):
+    def gen_target_cosmos_mongo_init(self):
         manifest = self.get_manifest()
         database_names = manifest.target_database_names()
         tuples = manifest.cosmos_target_db_coll_tuples()
@@ -364,7 +333,7 @@ class ArtifactGenerator(object):
         for dbname in database_names:
             template_data = dict()
             template_data['gen_timestamp'] = self.timestamp()
-            template_data['gen_by'] = 'artifact_generator.py gen_target_cosmos_init()'
+            template_data['gen_by'] = 'artifact_generator.py gen_target_cosmos_mongo_init()'
             template_data['authored_year_month'] = self.config.authored_year_month()
             template_data['dbname'] = dbname
             template_data['collections'] = list()

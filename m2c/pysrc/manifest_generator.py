@@ -141,6 +141,8 @@ class ManifestGenerator(object):
                     target_db   = item['target_db']
                     target_coll = item['target_coll']
                     info = dict()
+                    info['input_dataset'] = item['adf_blob_dataset_name']
+                    info['output_dataset'] = item['adf_cosmos_dataset_name']
                     info['source'] = '{}:{}'.format(source_db, source_coll)
                     info['target'] = '{}:{}'.format(target_db, target_coll)
                     info['source_linked_svc'] = self.config.blob_linked_service_name()
