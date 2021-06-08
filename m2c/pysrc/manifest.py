@@ -122,6 +122,33 @@ class Manifest(object):
             tuples.append(uniques[key])
         return tuples
 
+    def cosmos_mapping_tuples(self):
+        uniques, tuples = dict(), list()
+        for item in self.items:
+            key = '{}:{}:{}:{}'.format(
+                item['source_db'], item['source_coll'],
+                item['target_db'], item['target_coll'])
+            uniques[key] = (
+                item['source_db'], item['source_coll'],
+                item['target_db'], item['target_coll'])
+        for key in sorted(uniques.keys()):
+            tuples.append(uniques[key])
+        return tuples
+
+    def target_db_for_source_db(self, source_db):
+        for item in self.items:
+            if item['source_db'] == source_db:
+                return item['target_db']
+        return None
+
+    def collections_for_target_db(self, target_db):
+        uniques = dict()
+        for item in self.items:
+            if item['target_db'] == target_db:
+                coll = item['target_coll']
+                uniques[coll] = 0
+        return sorted(uniques.keys())
+
     def get_pipelines(self):
         return self.pipelines
         

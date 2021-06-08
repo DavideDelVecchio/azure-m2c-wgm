@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "2021/06/07"
+__version__ = "2021/06/08"
 
 import json
 import os
@@ -102,6 +102,9 @@ class ArtifactGenerator(object):
 
         if (self.gen_artifact('--adf-pipelines')):
             self.gen_adf_pipelines() 
+
+        if (self.gen_artifact('--target-cosmos-az-create')):
+            self.gen_target_cosmos_az_create() 
 
         if (self.gen_artifact('--target-cosmos-mongo-init')):
             self.gen_target_cosmos_mongo_init() 
@@ -307,6 +310,17 @@ class ArtifactGenerator(object):
             template_data['pipeline_name'] = pipeline_name
             template_data['activities'] = activities
             self.render_template(template_name, template_data, outfile)
+
+    def gen_target_cosmos_az_create(self):
+        manifest = self.get_manifest()
+        ru = self.mapping_data['cosmos_db_autoscale_ru']
+        target_db = manifest.target_db_for_source_db(self.dbname)
+        collections = manifest.collections_for_target_db(target_db)
+
+        # TTT: olympics -> olympics -> ['games', 'locations']
+        # TTT: openflights -> travel -> ['airlines', 'airports', 'countries', 'planes', 'routes']
+        print('TTT: {} -> {} -> {}'.format(
+            self.dbname, target_db, collections))
 
     def gen_target_cosmos_mongo_init(self):
         manifest = self.get_manifest()
