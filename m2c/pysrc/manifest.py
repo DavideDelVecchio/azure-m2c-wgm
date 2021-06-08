@@ -141,7 +141,7 @@ class Manifest(object):
                 return item['target_db']
         return None
 
-    def collections_for_target_db(self, target_db):
+    def collection_names_for_target_db(self, target_db):
         uniques = dict()
         for item in self.items:
             if item['target_db'] == target_db:

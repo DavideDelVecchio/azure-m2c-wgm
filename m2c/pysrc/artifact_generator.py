@@ -313,14 +313,34 @@ class ArtifactGenerator(object):
 
     def gen_target_cosmos_az_create(self):
         manifest = self.get_manifest()
-        ru = self.mapping_data['cosmos_db_autoscale_ru']
         target_db = manifest.target_db_for_source_db(self.dbname)
-        collections = manifest.collections_for_target_db(target_db)
+        collection_names = manifest.collection_names_for_target_db(target_db)
+        target_collection_objects = list()
+        template_name = 'cosmos_db_containers_az_cli.txt'
+        outfile = '{}/{}_cosmos_db_containers_az_cli.sh'.format(
+            self.shell_artifacts_dir, target_db)
 
-        # TTT: olympics -> olympics -> ['games', 'locations']
-        # TTT: openflights -> travel -> ['airlines', 'airports', 'countries', 'planes', 'routes']
-        print('TTT: {} -> {} -> {}'.format(
-            self.dbname, target_db, collections))
+        template_data = dict()
+        template_data['gen_timestamp'] = self.timestamp()
+        template_data['gen_by'] = 'artifact_generator.py gen_target_cosmos_az_create()'
+        template_data['authored_year_month'] = self.config.authored_year_month()
+        template_data['target_db'] = target_db
+        template_data['ru'] = self.mapping_data['cosmos_db_autoscale_ru']
+        template_data['collections'] = target_collection_objects
+
+        for cname in collection_names:
+            cinfo = dict()
+            cinfo['name'] = cname
+            cinfo['pk'] = self.pk_for_container(cname)
+            target_collection_objects.append(cinfo)
+
+        self.render_template(template_name, template_data, outfile)
+
+    def pk_for_container(self, cname):
+        for c in self.collections:
+            if c['name'] == cname:
+                return c['mapping']['pk_name']
+        return 'pkxxxx'
 
     def gen_target_cosmos_mongo_init(self):
         manifest = self.get_manifest()
