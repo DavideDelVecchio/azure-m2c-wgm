@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Bash shell script to wrangle/transform a raw mongoexport file
+# Bash shell script to wrangle/transform a raw mongoexport file.
 #
 # Database Name: {{ dbname }}
 # Generated on:  {{ gen_timestamp }}
@@ -15,7 +15,7 @@ mkdir -p out/{{ dbname }}
 # 1) Downloads blob {{ blob_name }} from container {{ dbname }}-raw
 #    to local file {{ local_file_path }}
 # 2) Wrangle/transform the downloaded blob, producing local file 
-#    {{ wrangled_outfile_path }}
+#    {{ wrangled_outfile }}
 # 3) Uploads the wrangled file to storage container {{ dbname }}-adf
 # 4) Delete the downloaded and wrangled file, as the host VM may have limited storage
 #
@@ -23,11 +23,12 @@ mkdir -p out/{{ dbname }}
 
 python wrangle.py transform_blob \
     --db {{ dbname }} \
-    --in-container {{ dbname }}-raw \
+    --source-coll  {{ source_coll }} \
+    --in-container {{ raw_storage_container }} \
     --blobname {{ blob_name }} \
     --filename {{ local_file_path }} \
-    --outfile  {{ wrangled_outfile_path }} \
-    --out-container {{ dbname }}-adf $1 $2 $3 
+    --outfile  {{ wrangled_outfile }} \
+    --out-container {{ adf_storage_container }} $1 $2 $3 
 
 echo ''
 echo 'first line of input file:'
@@ -35,12 +36,12 @@ head -1 {{ local_file_path }}
 
 echo ''
 echo 'first line of output file:'
-head -1 {{ wrangled_outfile_path }}
+head -1 {{ wrangled_outfile }}
 
 # TODO - uncomment the next 3 lines after initial development
 # echo 'deleting downloaded and wrangled files'
 # rm {{ local_file_path }}
-# rm {{ wrangled_outfile_path }}
+# rm {{ wrangled_outfile }}
 
 echo 'done' 
 

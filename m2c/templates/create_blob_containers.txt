@@ -8,7 +8,7 @@
 
 source env.sh
 
-{% for cname in container_names %}
+{% for cname in container_names -%}
 python storage.py create_blob_container {{ cname }}
 {% endfor %}
 

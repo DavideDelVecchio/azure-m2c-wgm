@@ -72,7 +72,7 @@ class Config(object):
         return '{}/mongoexports/{}'.format(self.data_dir, dbname)
 
     def mongoexport_file(self, dbname, cname):
-        return '{}/{}__{}__source.json'.format(
+        return '{}/{}__{}.json'.format(
             self.mongoexports_dir(dbname), dbname, cname)
 
     def shell_artifacts_dir(self):
@@ -123,7 +123,7 @@ class Config(object):
         return '{}/wrangle_{}_{}'.format(dbname, dbname, cname)
 
     def wrangle_script_name(self, dbname, cname):
-        return '{}_wrangle_{}.sh'.format(dbname, cname)
+        return 'wrangle_{}_{}.sh'.format(dbname, cname)
 
     def blob_linked_service_name(self):
         return 'M2CMigrationBlobStorage'

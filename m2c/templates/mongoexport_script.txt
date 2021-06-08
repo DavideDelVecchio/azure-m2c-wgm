@@ -16,7 +16,7 @@ echo 'mongoexporting - database: {{ dbname }} container: {{ c['name'] }}'
 mongoexport --authenticationDatabase admin -u $M2C_SOURCE_MONGODB_USER -p $M2C_SOURCE_MONGODB_PASS --uri {{ uri }} \
     --db {{ dbname }} \
     --collection {{ c['name'] }} \
-    --out {{ outdir }}/{{ dbname }}__{{ c['name'] }}__source.json
+    --out {{ outdir }}/{{ dbname }}__{{ c['name'] }}.json
     {{ ssl }}
 {% endfor %}
 

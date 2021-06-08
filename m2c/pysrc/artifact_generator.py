@@ -32,6 +32,7 @@ class ArtifactGenerator(object):
             self.collections = list()
 
         self.config = Config()
+        self.manifest = None
         self.shell_type          = self.config.shell_type
         self.ssl                 = self.config.ssl
         self.artifacts_dir       = self.config.artifacts_dir
@@ -39,6 +40,11 @@ class ArtifactGenerator(object):
         self.mongo_artifacts_dir = self.config.mongo_artifacts_dir()
         self.mongoexports_dir    = self.config.mongoexports_dir(dbname)
         self.data_dir            = self.config.data_dir
+
+    def get_manifest(self):
+        if self.manifest == None:
+            self.manifest = Manifest()
+        return self.manifest
 
     def generate_initial_scripts(self):
         print('generate_initial_scripts') 
@@ -85,20 +91,20 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--wrangle-scripts-individual')):
             self.gen_wrangle_scripts_individual() 
 
-        if (self.gen_artifact('--adf-linked-services')):
-            self.gen_adf_linked_services() 
+        # if (self.gen_artifact('--adf-linked-services')):
+        #     self.gen_adf_linked_services() 
 
-        if (self.gen_artifact('--adf-blob-datasets')):
-            self.gen_adf_blob_datasets() 
+        # if (self.gen_artifact('--adf-blob-datasets')):
+        #     self.gen_adf_blob_datasets() 
 
-        if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
-            self.gen_adf_cosmos_mongo_datasets() 
+        # if (self.gen_artifact('--adf-cosmos-mongo-datasets')):
+        #     self.gen_adf_cosmos_mongo_datasets() 
 
-        if (self.gen_artifact('--adf-pipelines')):
-            self.gen_adf_pipelines() 
+        # if (self.gen_artifact('--adf-pipelines')):
+        #     self.gen_adf_pipelines() 
 
-        if (self.gen_artifact('--target--cosmos-mongo-init')):
-            self.gen_target_cosmos_init() 
+        # if (self.gen_artifact('--target--cosmos-mongo-init')):
+        #     self.gen_target_cosmos_init() 
 
     def gen_artifact(self, name):
         for arg in sys.argv:
@@ -109,8 +115,6 @@ class ArtifactGenerator(object):
         return False 
 
     def gen_mongoexports(self):
-        #script_lines = self.shell_script_lines()
-
         template_name = 'mongoexport_script.txt'
         outfile = '{}/{}_mongoexports.sh'.format(self.shell_artifacts_dir, self.dbname)
         template_data = dict()
@@ -129,21 +133,20 @@ class ArtifactGenerator(object):
         self.render_template(template_name, template_data, outfile)
 
     def gen_python_create_containers(self):
-        metadata_files = self.config.metadata_files()
+        manifest = self.get_manifest()
+        container_names = manifest.storage_container_names()
         template_name = 'create_blob_containers.txt'
-        outfile = '{}/python_create_containers.sh'.format(self.shell_artifacts_dir)
+        outfile = '{}/create_blob_containers.sh'.format(self.shell_artifacts_dir)
         template_data = dict()
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_python_create_containers()'
-
-        container_names = list()
-        for metadata_file in metadata_files:
-            meta = self.load_json_file(metadata_file)
-            dbname = meta['dbname']
-            container_names.append(self.config.blob_raw_container_name(dbname))
-            container_names.append(self.config.blob_adf_container_name(dbname))
         template_data['container_names'] = container_names
         self.render_template(template_name, template_data, outfile)
+
+        # also generate other files related to create_blob_containers and python
+        for template_name in 'env.sh,pyenv.sh,storage.py,requirements.in,requirements.txt'.split(','):
+            outfile = '{}/{}'.format(self.shell_artifacts_dir, template_name)
+            self.render_template(template_name, template_data, outfile)
 
     def gen_python_uploads(self):
         mongoexports_dir = self.config.mongoexports_dir(self.dbname)
@@ -166,10 +169,6 @@ class ArtifactGenerator(object):
             coll_dict['blob_name'] = os.path.basename(local_file)
             collection_data.append(coll_dict)
         self.render_template(template_name, template_data, outfile)
-
-        for template_name in 'env.sh,pyenv.sh,storage.py,requirements.in,requirements.txt'.split(','):
-            outfile = '{}/{}'.format(self.shell_artifacts_dir, template_name)
-            self.render_template(template_name, template_data, outfile)
 
     def gen_az_cli_uploads(self):
         mongoexports_dir = self.config.mongoexports_dir(self.dbname)
@@ -195,61 +194,53 @@ class ArtifactGenerator(object):
         self.render_template(template_name, template_data, outfile)
 
     def gen_wrangle_scripts_for_db(self):
+        manifest = self.get_manifest()
+        script_names = manifest.wrangle_script_names_for_source_db(self.dbname)
         mongoexports_dir = self.config.mongoexports_dir(self.dbname)
         template_name = 'wrangle_all.txt'
-        outfile = '{}/{}_wrangle_all.sh'.format(self.shell_artifacts_dir, self.dbname)
+        outfile = '{}/wrangle_{}_all.sh'.format(self.shell_artifacts_dir, self.dbname)
         template_data = dict()
         collection_data = list()
         template_data['dbname'] = self.dbname
         template_data['gen_timestamp'] = self.timestamp()
         template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_for_db()'
-        template_data['collections'] = collection_data
-        template_data['container'] = self.config.blob_raw_container_name(self.dbname)
-
-        for c in self.collections:
-            cname = c['name']
-            script_basename = self.config.wrangle_script_basename(self.dbname, cname)
-            coll_dict = dict()
-            # openflights_wrangle_openflights__routes__source.json.sh
-            blob_name = self.config.blob_name(self.dbname, cname)
-            script_name = self.config.wrangle_script_name(self.dbname, blob_name)
-            coll_dict['blob_name'] = blob_name
-            coll_dict['script_name'] = script_name
-            collection_data.append(coll_dict)
-
+        template_data['script_names'] = script_names
         self.render_template(template_name, template_data, outfile)
 
     def gen_wrangle_scripts_individual(self):
+        manifest = self.get_manifest()
         mongoexports_dir = self.config.mongoexports_dir(self.dbname)
         template_name = 'wrangle_one.txt'
 
-        for c in self.collections:
+        items = manifest.items_for_source_db(self.dbname)
+        for item in items:
             template_data = dict()
             collection_data = list()
             template_data['dbname'] = self.dbname
             template_data['gen_timestamp'] = self.timestamp()
             template_data['gen_by'] = 'artifact_generator.py gen_wrangle_scripts_individual()'
-            template_data['collections'] = collection_data
             template_data['container'] = self.config.blob_raw_container_name(self.dbname)
-            cname = c['name']
-            script_basename = self.config.wrangle_script_basename(
-                self.dbname, cname)
-            blob_name = self.config.blob_name(self.dbname, cname)
-            local_file_path = self.config.wrangling_blob_download_file(
-                self.dbname, cname)
-            wrangled_outfile_path = self.config.wrangled_outfile(
-                self.dbname, cname)
-            outfile = '{}/{}_wrangle_{}.sh'.format(
-                self.shell_artifacts_dir, self.dbname, blob_name)
-            redirect = 'out/{}/wrangle_{}.out'.format(self.dbname, blob_name)
+            # cname = c['source_coll']
+            # script_basename = self.config.wrangle_script_basename(
+            #     self.dbname, cname)
+            # local_file_path = self.config.wrangling_blob_download_file(
+            #     self.dbname, cname)
+            # wrangled_outfile_path = self.config.wrangled_outfile(
+            #     self.dbname, cname)
 
-            template_data['cname'] = cname
+            blob_name = item['blob_name']
+            wrangle_script_name = item['wrangle_script_name']
+            outfile = '{}/{}'.format(
+                self.shell_artifacts_dir, wrangle_script_name)
+            redirect = 'out/{}/wrangle_{}.out'.format(self.dbname, wrangle_script_name)
+
+            template_data['raw_storage_container'] = item['raw_storage_container']
+            template_data['adf_storage_container'] = item['adf_storage_container']
+            template_data['source_coll'] = item['source_coll']
             template_data['blob_name'] = blob_name
-            template_data['local_file_path'] = local_file_path
-            template_data['wrangled_outfile_path'] = wrangled_outfile_path
-            template_data['script_basename'] = script_basename
+            template_data['local_file_path'] = item['local_file_path']
+            template_data['wrangled_outfile'] = item['wrangled_outfile']
             template_data['redirect'] = redirect
-
             self.render_template(template_name, template_data, outfile)
 
     def target_databases_list(self):
@@ -328,7 +319,7 @@ class ArtifactGenerator(object):
         # resource name: blob__olympics__g1952_summer are different. 
         # They should be the same. Fix the resource and refresh the page.
 
-        manifest = Manifest()
+        manifest = self.get_manifest()
         manifest = self.load_json_file(self.config.manifest_json_file())
         pipelines = manifest['pipelines']
         outdir = self.config.adf_pipeline_artifacts_dir()
@@ -366,7 +357,7 @@ class ArtifactGenerator(object):
             self.render_template(template_name, template_data, outfile)
 
     def gen_target_cosmos_init(self):
-        manifest = Manifest()
+        manifest = self.get_manifest()
         database_names = manifest.target_database_names()
         tuples = manifest.cosmos_target_db_coll_tuples()
 

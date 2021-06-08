@@ -9,16 +9,16 @@
 
 source env.sh
 
-while true; do
-    echo ''
-    echo 'This process will delete all previously generated artifacts, then recreate them.'
-    read -p "Do you wish to proceed - delete and regenerate? " yn
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+# while true; do
+#     echo ''
+#     echo 'This process will delete all previously generated artifacts, then recreate them.'
+#     read -p "Do you wish to proceed - delete and regenerate? " yn
+#     case $yn in
+#         [Yy]* ) break;;
+#         [Nn]* ) exit;;
+#         * ) echo "Please answer yes or no.";;
+#     esac
+# done
 
 echo 'ensuring target artifact directories exist ...'
 mkdir -p $M2C_APP_ARTIFACTS_DIR/adf

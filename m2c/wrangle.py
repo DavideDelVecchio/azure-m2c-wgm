@@ -46,15 +46,17 @@ class Transformer(object):
 
         # Example bash script invocation:
         #
+
         # python wrangle.py transform_blob \
-        #     --db openflights \
-        #     --in-container openflights-raw \
-        #     --blobname openflights__routes__source.json \
-        #     --filename tmp/openflights/openflights__routes__source.json \
-        #     --outfile  tmp/openflights/openflights__routes__wrangled.json \
-        #     --out-container openflights-adf  # > out/openflights/wrangle_openflights__routes__source.json.out
+        #     --db olympics \
+        #     --in-container olympics-raw \
+        #     --blobname olympics__countries.json \
+        #     --filename tmp/olympics/olympics__countries.json \
+        #     --outfile  tmp/olympics/olympics__countries__wrangled.json \
+        #     --out-container olympics-locations-adf $1 $2 $3 
 
         self.dbname        = self.cli_arg('--db')
+        self.source_coll   = self.cli_arg('--source-coll')
         self.in_container  = self.cli_arg('--in-container')
         self.blobname      = self.cli_arg('--blobname')
         self.filename      = self.cli_arg('--filename')
@@ -63,6 +65,7 @@ class Transformer(object):
 
         print('Transformer constructor; parsed args:')
         print('  dbname:        {}'.format(self.dbname))
+        print('  source_coll:   {}'.format(self.source_coll))
         print('  in_container:  {}'.format(self.in_container))
         print('  blobname:      {}'.format(self.blobname))
         print('  filename:      {}'.format(self.filename))
@@ -76,6 +79,8 @@ class Transformer(object):
         # Fail fast if invalid inputs:
         if self.dbname == None:
             raise Exception("Error: no --db specified")
+        if self.source_coll == None:
+            raise Exception("Error: no --source-coll specified")
         if self.in_container == None:
             raise Exception("Error: no --in_container specified")
         if self.blobname == None:
@@ -173,7 +178,7 @@ class Transformer(object):
         return self.status == 'successful'
 
     def load_container_mappings(self):
-        cname = self.parse_container_from_filename(self.filename)
+        cname = self.source_coll
         print('load_container_mappings; cname: {}'.format(cname))
         fname = '{}_mapping.json'.format(self.dbname)
         print('load_container_mappings; fname: {}'.format(fname))

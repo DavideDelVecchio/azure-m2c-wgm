@@ -107,11 +107,11 @@ class ManifestGenerator(object):
                 target_db   = item['target_db']
                 target_coll = item['target_coll']
 
-                item['mongoexports_dir']     = self.config.mongoexports_dir(source_db)
-                item['mongoexport_file']     = self.config.mongoexport_file(source_db, source_coll)
-                item['wrangle_script_name']  = self.config.wrangle_script_name(source_db, source_coll)
-                item['wrangled_outfile']     = self.config.wrangled_outfile(source_db, source_coll)
-
+                item['mongoexports_dir']    = self.config.mongoexports_dir(source_db)
+                item['mongoexport_file']    = self.config.mongoexport_file(source_db, source_coll)
+                item['wrangle_script_name'] = self.config.wrangle_script_name(source_db, source_coll)
+                item['wrangled_outfile']    = self.config.wrangled_outfile(source_db, source_coll)
+                item['local_file_path']     = self.config.wrangling_blob_download_file(source_db, source_coll)
                 items.append(item)
 
         manifest['pipelines'] = self.collect_pipelines(columns, items)

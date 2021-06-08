@@ -10,9 +10,9 @@ source ./env.sh
 
 skip_download_flag=""  # set to "--skip-download" to bypass blob downloading
 
-{% for c in collections %}
-echo 'executing {{ c['script_name'] }} ...'
-./{{ c['script_name'] }} $skip_download_flag
+{% for script_name in script_names %}
+echo 'executing {{ script_name }} ...'
+./{{ script_name }} $skip_download_flag
 {% endfor %}
 
 echo 'done'
