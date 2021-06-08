@@ -2,21 +2,19 @@
 
 ---
 
+- TODO Update the README docs
+
 - TODO Automate VM Provisioning and Setup for VM; see uvm repo
 
-- TODO ADF Refactorings
-  - TODO ADF Pipelines using multi-datasets for db/container dir
-  - TODO ADF multi-datasets for db/container dir
-  - TODO Alter Wrangle process to upload to db/container dir 
-  - TODO Enhance Manifest for blob db/container dir
+- TODO Validation checks
 
-
-- TODO Generate az script to create target Cosmos/Mongo DB - dbs, collections, pk
-    olympics - games, locations
-    travel - airlines, airports, countries, planes, routes
-
+- TODO ADF from CLI?
 
 ---
+
+- Done Implement working ADF pipelines
+
+- Done Generate az script to create target dbs, collections, pk
 
 - Done Automate Provisioning for Storage, Cosmos, ADF
 

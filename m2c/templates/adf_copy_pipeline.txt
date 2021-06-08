@@ -22,15 +22,21 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "generated_at",
+						"value": "{{ gen_timestamp }}"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
-						},
+						},					
 						"formatSettings": {
 							"type": "JsonReadSettings"
 						}

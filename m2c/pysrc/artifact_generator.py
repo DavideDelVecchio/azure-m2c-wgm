@@ -307,6 +307,7 @@ class ArtifactGenerator(object):
             activities    = pipeline['activities']
             outfile = '{}/{}.json'.format(outdir, pipeline_name)
             template_data = dict()
+            template_data['gen_timestamp'] = self.timestamp()
             template_data['pipeline_name'] = pipeline_name
             template_data['activities'] = activities
             self.render_template(template_name, template_data, outfile)
@@ -340,7 +341,7 @@ class ArtifactGenerator(object):
         for c in self.collections:
             if c['name'] == cname:
                 return c['mapping']['pk_name']
-        return 'pkxxxx'
+        return 'pk'
 
     def gen_target_cosmos_mongo_indexes(self):
         manifest = self.get_manifest()
