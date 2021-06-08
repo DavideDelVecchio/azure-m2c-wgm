@@ -106,8 +106,8 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--target-cosmos-az-create')):
             self.gen_target_cosmos_az_create() 
 
-        if (self.gen_artifact('--target-cosmos-mongo-init')):
-            self.gen_target_cosmos_mongo_init() 
+        if (self.gen_artifact('--target-cosmos-mongo-indexes')):
+            self.gen_target_cosmos_mongo_indexes() 
 
     def gen_artifact(self, name):
         for arg in sys.argv:
@@ -342,7 +342,7 @@ class ArtifactGenerator(object):
                 return c['mapping']['pk_name']
         return 'pkxxxx'
 
-    def gen_target_cosmos_mongo_init(self):
+    def gen_target_cosmos_mongo_indexes(self):
         manifest = self.get_manifest()
         database_names = manifest.target_database_names()
         tuples = manifest.cosmos_target_db_coll_tuples()
@@ -350,7 +350,7 @@ class ArtifactGenerator(object):
         for dbname in database_names:
             template_data = dict()
             template_data['gen_timestamp'] = self.timestamp()
-            template_data['gen_by'] = 'artifact_generator.py gen_target_cosmos_mongo_init()'
+            template_data['gen_by'] = 'artifact_generator.py gen_target_cosmos_mongo_indexes()'
             template_data['authored_year_month'] = self.config.authored_year_month()
             template_data['dbname'] = dbname
             template_data['collections'] = list()
@@ -358,14 +358,14 @@ class ArtifactGenerator(object):
                 if (t[0] == dbname):
                     template_data['collections'].append(t[1])
 
-            template_name = 'mongo_database_init.ddl'
+            template_name = 'mongo_database_indexes.ddl'
             outdir = self.mongo_artifacts_dir
-            outfile = '{}/mongo_init_{}_db.ddl'.format(outdir, dbname)
+            outfile = '{}/mongo_indexes_{}_db.ddl'.format(outdir, dbname)
             self.render_template(template_name, template_data, outfile)
 
-            template_name = 'mongo_database_init.txt'
+            template_name = 'mongo_database_indexes.txt'
             outdir = self.shell_artifacts_dir
-            outfile = '{}/mongo_init_{}_db.sh'.format(outdir, dbname)
+            outfile = '{}/mongo_indexes_{}_db.sh'.format(outdir, dbname)
             self.render_template(template_name, template_data, outfile)
 
     def generate_reference_db_scripts(self):
