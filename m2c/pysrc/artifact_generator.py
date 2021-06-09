@@ -324,7 +324,7 @@ class ArtifactGenerator(object):
             template_data['gen_timestamp'] = self.timestamp()
             template_data['gen_by'] = 'artifact_generator.py gen_adf_az_pipeline_scripts()'
             template_data['p'] = p
-            outfile = '{}/adf_pipeline_{}.sh'.format(
+            outfile = '{}/adf_{}.sh'.format(
                 self.shell_artifacts_dir, pname)
             self.render_template(template_name, template_data, outfile)
 
