@@ -103,8 +103,8 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--adf-pipelines')):
             self.gen_adf_pipelines() 
 
-        if (self.gen_artifact('--adf-az-script')):
-            self.gen_adf_az_script() 
+        if (self.gen_artifact('--adf-az-pipeline-scripts')):
+            self.gen_adf_az_pipeline_scripts() 
 
         if (self.gen_artifact('--target-cosmos-az-create')):
             self.gen_target_cosmos_az_create() 
@@ -313,17 +313,20 @@ class ArtifactGenerator(object):
             template_data['activities'] = activities
             self.render_template(template_name, template_data, outfile)
 
-    def gen_adf_az_script(self):
+    def gen_adf_az_pipeline_scripts(self):
         manifest  = self.get_manifest()
         pipelines = manifest.get_merged_pipelines()
         outdir    = self.config.adf_pipeline_artifacts_dir()
-        template_name = 'adf_az_cli.txt'
-        template_data = dict()
-        template_data['gen_timestamp'] = self.timestamp()
-        template_data['gen_by'] = 'artifact_generator.py gen_adf_az_script()'
-        template_data['pipelines'] = pipelines
-        outfile = '{}/adf_az_cli.sh'.format(self.shell_artifacts_dir)
-        self.render_template(template_name, template_data, outfile)
+        for p in pipelines:
+            pname = p['name']
+            template_name = 'adf_az_cli.txt'
+            template_data = dict()
+            template_data['gen_timestamp'] = self.timestamp()
+            template_data['gen_by'] = 'artifact_generator.py gen_adf_az_pipeline_scripts()'
+            template_data['p'] = p
+            outfile = '{}/adf_pipeline_{}.sh'.format(
+                self.shell_artifacts_dir, pname)
+            self.render_template(template_name, template_data, outfile)
 
     def gen_target_cosmos_az_create(self):
         manifest = self.get_manifest()
