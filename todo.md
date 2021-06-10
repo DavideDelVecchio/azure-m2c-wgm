@@ -6,9 +6,10 @@
 
 - TODO Revisit Unit Tests
 
-- TODO Validation checks
-
 - TODO Update the README docs
+
+- WIP Validation checks
+
 
 ---
 

@@ -8,6 +8,7 @@ Usage:
     source env.sh ; python main.py extract_db_metadata <login-db> <db-name>
     source env.sh ; python main.py extract_db_metadata admin olympics
     source env.sh ; python main.py extract_db_metadata admin openflights
+    source env.sh ; python main.py validate --databases openflights olympics --presence all --counts none
 """
 
 __author__  = 'Chris Joakim'
@@ -32,6 +33,7 @@ from pymongo import MongoClient
 from pysrc.config import Config
 from pysrc.artifact_generator import ArtifactGenerator
 from pysrc.manifest_generator import ManifestGenerator
+from pysrc.validator import Validator
 
 from pysrc.standard_mapping_generator import StandardMappingGenerator
 
@@ -157,6 +159,10 @@ if __name__ == "__main__":
 
         elif func == 'generate_reference_db_scripts':
             generate_reference_db_scripts()
+        
+        elif func == 'validate':
+            validator = Validator(sys.argv)
+            validator.validate()
 
         else:
             print_options('Error: invalid function: {}'.format(func))
