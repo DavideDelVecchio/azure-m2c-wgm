@@ -77,15 +77,15 @@ class Validator(object):
 
     def validate_storage_containers(self, source_db):
         actual_containers_dict = dict()
-        for c in self.stor.list_containers():
-            name = c.name
-            actual_containers_dict[name] = 1
-        actual_container_names = sorted(actual_containers_dict.keys())
+        # for c in self.stor.list_containers():
+        #     name = c.name
+        #     actual_containers_dict[name] = 1
+        # actual_container_names = sorted(actual_containers_dict.keys())
 
-        for container_name in self.manifest.storage_container_names():
-            if container_name.startswith(source_db):
-            exists = container_name in actual_container_names
-            print('blob container: {}  exists: {}'.format(container_name, exists))
+        # for container_name in self.manifest.storage_container_names():
+        #     if container_name.startswith(source_db):
+        #     exists = container_name in actual_container_names
+        #     print('blob container: {}  exists: {}'.format(container_name, exists))
 
     def validate_mongoexport_blobs(self, source_db):
         pass
