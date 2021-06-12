@@ -23,6 +23,26 @@ The following software is also strongly recommended:
 - **Azure Storage Explorer** - See https://azure.microsoft.com/en-us/features/storage-explorer/
 - **A Text Edior** - such as [Visual Studio Code](https://code.visualstudio.com)
 
+## Fork or Clone this repository
+
+Next, create **your own copy** of this repository.  There are at least two ways do
+do this.  First, in GitHub, you can simply **fork** this repository.
+
+Alternatively, choose an appropriate directory on your laptop to clone this repository to,
+as follows:
+
+```
+$ git clone git@github.com:cjoakim/azure-m2c-wgm.git
+$ cd azure-m2c-wgm
+$ rm -rf .git/
+```
+
+Note how we execute **rm -rf .git/** to disconnect the repo from the original GitHub
+cjoakim/azure-m2c-wgm.  Copy these files and add the **azure-m2c-wgm** to **YOUR repository**.
+
+You'll be spending a lot of time in the **m2c directory** (for Mongo-to-Cosmos) within
+the repo root directory, including creating a python virtual environment as described next.
+
 ## Python Virtual Environment
 
 Though Python is a cross-platform language and runtime, there are many ways to
@@ -50,6 +70,8 @@ A critical file in this project is **env.sh**, shown below.  This file is **sour
 the other scripts in this repo so as to **export** environment variables to those scripts.
 
 **You'll need to edit the env.sh file (shown below) for your particular configuration**. 
+
+**All of the environment variables in env.sh are critical, so please take some time to understand this file.**
 
 ```
 #!/bin/bash
