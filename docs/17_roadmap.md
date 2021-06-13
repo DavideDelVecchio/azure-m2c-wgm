@@ -13,6 +13,8 @@ chronological order.
   - Validate the presence of Azure Data Factory Artifacts
   - Validate approximate document counts; Source vs Target DB
 - Implement **PowerShell Scripts for Windows**
+- **Parallelize** the mongoexport process
+- **Parallelize** the raw mongoexport upload process
 - Implement Wrangling Logic in **Other Programming Languages**
   - C# and DotNet 5
   - Java 8+
