@@ -206,9 +206,14 @@ Execute each script as follows:
 ```
 $ ./adf_pipeline_copy_to_olympics_games.sh
 
-TODO - output
+Command group 'datafactory pipeline' is experimental and under development. Reference and support levels: https://aka.ms/CLI_refstatus
+{
+  "runId": "5abe95e2-cc69-11eb-852f-acde48001122"
+}
+done
 ```
 
 Then visit the Monitor tab of your ADF UI, and verify that the Pipeline completes successfully.
 
-<p align="center"><img src="img/ TODO image here .png" width="99%"></p>
+TODO - add screen shots here
+
