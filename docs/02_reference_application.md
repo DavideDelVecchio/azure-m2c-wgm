@@ -11,6 +11,8 @@ https://github.com/cjoakim/azure-m2c-wgm-reference-app
 The separate sibling repo was created so as not to clutter this primary
 implementation repository with extraneous content.
 
+**It is strongly recommended that you do a practice migration with the reference application before migrating your actual databases.**
+
 ## Reference Databases
 
 Mongoexport files for two separate curated databases have been created:

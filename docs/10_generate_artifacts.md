@@ -16,6 +16,12 @@ artifacts are generated with python, the Jinja2 library, and the templates in th
 The generated artifacts, where possible (i.e. - the non-JSON file), contain a comment which states how
 the artifact was generated and with which template.
 
+You'll later need to **create a Python Virtual Environment in the generated artifacts/shell directory**
+to actually execute some of these generated scripts.
+See sections [03 - Development Computer Setup](03_development_computer_setup.md) and
+[12 - Create the Azure Storage Containers](12_create_the_azure_storage_containers.md), which
+describe this process.
+
 ---
 
 ## "Secrets", Artifacts, Source-Control
@@ -247,7 +253,7 @@ mongoexport --authenticationDatabase admin -u $M2C_SOURCE_MONGODB_USER -p $M2C_S
 
 ## Storage Container Scripts
 
-Sample:
+Sample; create_blob_containers.sh
 
 ```
 #!/bin/bash
