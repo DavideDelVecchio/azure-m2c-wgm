@@ -15,11 +15,12 @@ The following software is required on your Developer Laptop computer:
 - **git** source control program.  See https://git-scm.com 
 - **bash** shell.  Available on Linux, macOS, or Windows 10 with WSL.
 - **python3**.  See https://www.python.org.  The project was developed and tested with python 3.8.6.
+- **mongo client** - from MongoDB Community Edition
 
 **Standard Python** is recommended; **Anaconda** is not.
 
 The following software is also strongly recommended:
-- **mongo client** - from MongoDB Community Edition, [Studio 3T](https://studio3t.com), etc.
+- **A mongo UI client** - [Studio 3T](https://studio3t.com), etc.
 - **Azure Storage Explorer** - See https://azure.microsoft.com/en-us/features/storage-explorer/
 - **A Text Edior** - such as [Visual Studio Code](https://code.visualstudio.com)
 

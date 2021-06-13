@@ -28,7 +28,7 @@ file written: /Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/da
 done
 ```
 
-The output files are written to the location within your $M2C_APP_DATA_DIR.
+The output files are written to the location within your $M2C_APP_DATA_DIR, in the **metadata** subdirectory.
 
 ## Sample Metadata
 

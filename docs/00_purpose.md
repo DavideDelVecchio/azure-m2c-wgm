@@ -11,3 +11,6 @@ Migration aspects that are not addressed by this project include:
 - CosmosDB/Mongo API Indexing - this depends on your specific application and query patterns
 
 The Microsoft team will work with you to address these aspects of each migration.
+
+In the following pages, pages 01 through 15 describe the migration process and its
+setup.  Only in step 16 do you actually execute the migration.

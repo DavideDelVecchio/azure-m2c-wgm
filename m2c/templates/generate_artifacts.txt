@@ -34,15 +34,16 @@ cp storage.py       templates
 cp requirements.in  templates 
 cp requirements.txt templates 
 
-echo 'listing templates ...'
-ls -al templates
+# echo 'listing templates ...'
+# ls -al templates
 
 echo 'generating artifacts ...'
 {% for d in databases %}
 python main.py generate_artifacts {{ d }} --all
 {% endfor %}
 
-python main.py generate_reference_db_scripts
+# Not needed for customer migrations
+# python main.py generate_reference_db_scripts
 
 echo 'replicating scripts'
 ./replicate_scripts.sh

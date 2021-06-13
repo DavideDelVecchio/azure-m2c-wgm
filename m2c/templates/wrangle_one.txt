@@ -38,10 +38,9 @@ echo ''
 echo 'first line of output file:'
 head -1 {{ wrangled_outfile }}
 
-# TODO - uncomment the next 3 lines after initial development
-# echo 'deleting downloaded and wrangled files'
-# rm {{ local_file_path }}
-# rm {{ wrangled_outfile }}
+echo 'deleting the downloaded and wrangled files to save disk space...'
+rm {{ local_file_path }}
+rm {{ wrangled_outfile }}
 
 echo 'done' 
 
