@@ -21,7 +21,7 @@ For example, the repo structure is this:
 
 The following three screen-shots demonstrate these setup steps:
 
-<p align="center"><img src="img/adf-repo-setup.png" width="99%"></p>
+<p align="center"><img src="img/adf-repo-setup.png" width="25%"></p>
 
 ---
 
