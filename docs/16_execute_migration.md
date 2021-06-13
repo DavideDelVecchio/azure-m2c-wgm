@@ -7,7 +7,7 @@ In this page we finally **execute the migration process!**
 
 The architecture diagram is repeated here:
 
-<p align="center"><img src="docs/img/architecture.png" width="99%"></p>
+<p align="center"><img src="img/architecture.png" width="99%"></p>
 
 
 ## mongoexports
