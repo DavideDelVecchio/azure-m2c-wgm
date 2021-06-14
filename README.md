@@ -5,8 +5,7 @@
 
 ```
 ├── docs     <-- Project documentation; start here
-├── m2c      <-- the implementation of the Mongo-to-Cosmos (m2c) process
-└── uvm      <-- Azure Linux VM setup scripts
+├── m2c      <-- The Implementation of the Mongo-to-Cosmos (m2c) process
 ```
 
 [Read the Documentation](docs/README.md)
