@@ -375,11 +375,15 @@ column.  Alternatively, enter the runID value in the search box at the top of th
 
 #### Search for Pipeline by runId
 
+Enter the runId in the search box at the top of the list.
+
 <p align="center"><img src="img/adf-pipeline-search-by-runid.png" width="99%"></p>
 
 ---
 
 #### A completed Pipeline: travel routes
+
+From the pipeline runs list, click into a Pipeline run to display its details.
 
 <p align="center"><img src="img/adf-completed-pipeline-travel-routes.png" width="99%"></p>
 
