@@ -300,24 +300,24 @@ StandardDocumentWrangler constructor:
 wrangling_algorithm: standard
 download_blob olympics__g1896_summer.json from olympics-raw to tmp/olympics/olympics__g1896_summer.json
 download_blob: olympics-raw olympics__g1896_summer.json -> tmp/olympics/olympics__g1896_summer.json
-downloaded tmp/olympics/olympics__g1896_summer.json in 0.5496351718902588ms
-transformed 1900 lines in 0.07993888854980469
-uploading tmp/olympics/olympics__g1896_summer.json at 2021-06-14 15:24:23 UTC to olympics-games-adf/olympics__g1896_summer__wrangled.json
+downloaded tmp/olympics/olympics__g1896_summer.json in 1.0001301765441895ms
+transformed 380 lines in 0.02562713623046875
+uploading tmp/olympics/olympics__g1896_summer.json at 2021-06-14 19:30:47 UTC to olympics-games-adf/olympics__g1896_summer__wrangled.json
 upload_blob: tmp/olympics/olympics__g1896_summer__wrangled.json True -> olympics-games-adf olympics__g1896_summer__wrangled.json
-uploaded tmp/olympics/olympics__g1896_summer.json/olympics__g1896_summer__wrangled.json at 2021-06-14 15:24:23 UTC in 0.5146279335021973
-{'name': 'olympics__g1896_summer__wrangled.json', 'container': 'olympics-games-adf', 'snapshot': None, 'version_id': None, 'is_current_version': None, 'blob_type': <BlobType.BlockBlob: 'BlockBlob'>, 'metadata': {}, 'encrypted_metadata': None, 'last_modified': datetime.datetime(2021, 6, 14, 15, 24, 23, tzinfo=datetime.timezone.utc), 'etag': '"0x8D92F487D8001BE"', 'size': 753940, 'content_range': None, 'append_blob_committed_block_count': None, 'is_append_blob_sealed': None, 'page_blob_sequence_number': None, 'server_encrypted': True, 'copy': {'id': None, 'source': None, 'status': None, 'progress': None, 'completion_time': None, 'status_description': None, 'incremental_copy': None, 'destination_snapshot': None}, 'content_settings': {'content_type': 'application/octet-stream', 'content_encoding': None, 'content_language': None, 'content_md5': bytearray(b'\x13I\xa4N\xaft\x9d\xb409\x8enCW\x1a\x14'), 'content_disposition': None, 'cache_control': None}, 'lease': {'status': 'unlocked', 'state': 'available', 'duration': None}, 'blob_tier': 'Hot', 'rehydrate_priority': None, 'blob_tier_change_time': None, 'blob_tier_inferred': True, 'deleted': False, 'deleted_time': None, 'remaining_retention_days': None, 'creation_time': datetime.datetime(2021, 6, 14, 14, 42, 29, tzinfo=datetime.timezone.utc), 'archive_status': None, 'encryption_key_sha256': None, 'encryption_scope': None, 'request_server_encrypted': True, 'object_replication_source_properties': [], 'object_replication_destination_policy': None, 'last_accessed_on': None, 'tag_count': None, 'tags': None}
+uploaded tmp/olympics/olympics__g1896_summer.json/olympics__g1896_summer__wrangled.json at 2021-06-14 19:30:47 UTC in 0.22879409790039062
+{'name': 'olympics__g1896_summer__wrangled.json', 'container': 'olympics-games-adf', 'snapshot': None, 'version_id': None, 'is_current_version': None, 'blob_type': <BlobType.BlockBlob: 'BlockBlob'>, 'metadata': {}, 'encrypted_metadata': None, 'last_modified': datetime.datetime(2021, 6, 14, 19, 30, 48, tzinfo=datetime.timezone.utc), 'etag': '"0x8D92F6AE98FA47C"', 'size': 150788, 'content_range': None, 'append_blob_committed_block_count': None, 'is_append_blob_sealed': None, 'page_blob_sequence_number': None, 'server_encrypted': True, 'copy': {'id': None, 'source': None, 'status': None, 'progress': None, 'completion_time': None, 'status_description': None, 'incremental_copy': None, 'destination_snapshot': None}, 'content_settings': {'content_type': 'application/octet-stream', 'content_encoding': None, 'content_language': None, 'content_md5': bytearray(b'v\xd4\xe4\x87\x81?MyJ\xbel\xe6|\xb9.\xe0'), 'content_disposition': None, 'cache_control': None}, 'lease': {'status': 'unlocked', 'state': 'available', 'duration': None}, 'blob_tier': 'Hot', 'rehydrate_priority': None, 'blob_tier_change_time': None, 'blob_tier_inferred': True, 'deleted': False, 'deleted_time': None, 'remaining_retention_days': None, 'creation_time': datetime.datetime(2021, 6, 14, 19, 26, 41, tzinfo=datetime.timezone.utc), 'archive_status': None, 'encryption_key_sha256': None, 'encryption_scope': None, 'request_server_encrypted': True, 'object_replication_source_properties': [], 'object_replication_destination_policy': None, 'last_accessed_on': None, 'tag_count': None, 'tags': None}
 -
 SUMMARY for args:  wrangle.py transform_blob --db olympics --source-coll g1896_summer --in-container olympics-raw --blobname olympics__g1896_summer.json --filename tmp/olympics/olympics__g1896_summer.json --outfile tmp/olympics/olympics__g1896_summer__wrangled.json --out-container olympics-games-adf
   status:          completed
-  lines_processed: 1900
-  start_time:      1623684262.594481
-  elapsed_time:    1.2128219604492188
+  lines_processed: 380
+  start_time:      1623699046.73406
+  elapsed_time:    1.3163938522338867
 
 first line of input file:
-{"_id":{"$oid":"60bf6ae06693ba6550c1b694"},"id":"1724","name":"Aristidis Akratopoulos","sex":"m","age":"-1","height":"-1","weight":"-1","team":"greece","noc":"gre","games":"1896_summer","year":"1896","season":"summer","city":"athina","sport":"tennis","event":"tennis mens singles","medal":"","medal_value":"0"}
+{"_id":{"$oid":"60c7a7e05480299daf2e2090"},"id":"4113","name":"Anastasios Andreou","sex":"m","age":"-1","height":"-1","weight":"-1","team":"greece","noc":"gre","games":"1896_summer","year":"1896","season":"summer","city":"athina","sport":"athletics","event":"athletics mens 110 metres hurdles","medal":"","medal_value":"0"}
 
 first line of output file:
-{"_id":{"$oid":"60bf6ae06693ba6550c1b694"},"name":"Aristidis Akratopoulos","sex":"m","age":"-1","height":"-1","weight":"-1","team":"greece","noc":"gre","games":"1896_summer","year":"1896","season":"summer","city":"athina","sport":"tennis","event":"tennis mens singles","medal":"","medal_value":"0","pk":"1896_summer","doctype":"","some_id":"3c8939a4-7acb-436a-b010-574e24464504"}
+{"_id":{"$oid":"60c7a7e05480299daf2e2090"},"name":"Anastasios Andreou","sex":"m","age":"-1","height":"-1","weight":"-1","team":"greece","noc":"gre","games":"1896_summer","year":"1896","season":"summer","city":"athina","sport":"athletics","event":"athletics mens 110 metres hurdles","medal":"","medal_value":"0","pk":"1896_summer","doctype":"","some_id":"ca6e9b8b-216e-43ae-8040-7229a7479c4f"}
 deleting the downloaded and wrangled files to save disk space...
 done
 ```
