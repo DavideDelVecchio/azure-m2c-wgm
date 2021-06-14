@@ -198,7 +198,6 @@ if __name__ == "__main__":
             delete_blob_container(cname)
 
         elif func == 'upload_blob':
-            print(len(sys.argv))
             local_file_path = sys.argv[2]
             cname = sys.argv[3]
             if len(sys.argv) > 4:
@@ -208,7 +207,6 @@ if __name__ == "__main__":
             upload_blob(local_file_path, cname, blob_name)
 
         elif func == 'download_blob':
-            print(len(sys.argv))
             cname = sys.argv[2]
             blob_name = sys.argv[3]
             local_file_path = sys.argv[4]

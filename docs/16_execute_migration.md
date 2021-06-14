@@ -8,6 +8,8 @@ The architecture diagram is repeated here:
 
 <p align="center"><img src="img/architecture.png" width="99%"></p>
 
+---
+
 ## mongoexports
 
 In the **artifacts/shell** directory there will be a generated file named
@@ -81,6 +83,39 @@ The way the script is currently implemented the exports are executed sequentiall
 The project roadmap has a high-ranking item to **parallelize** the mongoexport process; this should
 be a very easy enhancement to implement additional scripts for this.
 
+Sample output:
+
+```
+$ ./openflights_mongoexports.sh
+
+mongoexporting - database: openflights container: airlines
+2021-06-14T11:32:31.520-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-14T11:32:31.932-0400	exported 18483 records
+
+mongoexporting - database: openflights container: airports
+2021-06-14T11:32:31.967-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-14T11:32:32.596-0400	exported 23094 records
+
+mongoexporting - database: openflights container: countries
+2021-06-14T11:32:32.633-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-14T11:32:32.658-0400	exported 783 records
+
+mongoexporting - database: openflights container: planes
+2021-06-14T11:32:32.691-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-14T11:32:32.713-0400	exported 738 records
+
+mongoexporting - database: openflights container: routes
+2021-06-14T11:32:32.745-0400	connected to: mongodb://[**REDACTED**]@localhost:27017
+2021-06-14T11:32:33.749-0400	[####....................]  openflights.routes  40000/202989  (19.7%)
+2021-06-14T11:32:34.746-0400	[###########.............]  openflights.routes  96000/202989  (47.3%)
+2021-06-14T11:32:35.747-0400	[##################......]  openflights.routes  160000/202989  (78.8%)
+2021-06-14T11:32:36.286-0400	[########################]  openflights.routes  202989/202989  (100.0%)
+2021-06-14T11:32:36.286-0400	exported 202989 records
+done
+```
+
+---
+
 ## Uploading the Raw mongoexport blobs to Azure Storage
 
 This step is **intended to be executed from the same location/VM as the previous step, as the mongoexport files are local to that filesystem**.
@@ -105,6 +140,26 @@ openflights_python_mongoexport_uploads.sh
 The way the script is currently implemented the uploads are executed sequentially on the same VM.
 The project roadmap also has a high-ranking item to **parallelize** the uploads process; this should
 also be a very easy enhancement to implement additional scripts for this.
+
+### storage.py
+
+There is a Python script, in the same directory, for accessing your Azure Storage Account.
+The following functions are available:
+
+```
+Usage:
+    source env.sh ; python storage.py create_blob_container openflights-raw
+    source env.sh ; python storage.py create_blob_container openflights-adf
+    source env.sh ; python storage.py create_blob_container test
+    source env.sh ; python storage.py delete_blob_container openflights-raw
+    source env.sh ; python storage.py list_blob_containers
+    source env.sh ; python storage.py list_blob_container openflights-raw
+    source env.sh ; python storage.py upload_blob local_file_path cname blob_name
+    source env.sh ; python storage.py upload_blob requirements.in test requirements.in
+    source env.sh ; python storage.py download_blob test aaa.txt aaa-down.txt
+```
+
+---
 
 ## Wrangling for ADF
 
@@ -177,11 +232,102 @@ rm tmp/olympics/olympics__g1896_summer__wrangled.json
 echo 'done' 
 ```
 
-It is important to note that the uploaded wrangled blobs are written to the
-Azure Storage container that corresponds to a target CosmosDB database and collection,
+It is important to note that the uploaded 
+**wrangled blobs are written to the Azure Storage container that corresponds to a target CosmosDB database and collection**,
 and not the source DB and container.  This design allows Azure Data Factory to read 
 the one or more transofrmed files in each xxx-adf container as a single **dataset**.
 
+Output from the above wrangling script:
+
+```
+$ ./wrangle_olympics_g1896_summer.sh
+__main__ args: ['wrangle.py', 'transform_blob', '--db', 'olympics', '--source-coll', 'g1896_summer', '--in-container', 'olympics-raw', '--blobname', 'olympics__g1896_summer.json', '--filename', 'tmp/olympics/olympics__g1896_summer.json', '--outfile', 'tmp/olympics/olympics__g1896_summer__wrangled.json', '--out-container', 'olympics-games-adf']
+func: transform_blob
+Transformer constructor; parsed args:
+  dbname:        olympics
+  source_coll:   g1896_summer
+  in_container:  olympics-raw
+  blobname:      olympics__g1896_summer.json
+  filename:      tmp/olympics/olympics__g1896_summer.json
+  outfile:       tmp/olympics/olympics__g1896_summer__wrangled.json
+  out_container: olympics-games-adf
+load_container_mappings; cname: g1896_summer
+load_container_mappings; fname: olympics_mapping.json
+mappings:
+{
+  "name": "g1896_summer",
+  "mapping": {
+    "target_dbname": "olympics",
+    "target_container": "games",
+    "wrangling_algorithm": "standard",
+    "pk_name": "pk",
+    "pk_logic": [
+      [
+        "attribute",
+        "games"
+      ]
+    ],
+    "pk_sep": "-",
+    "doctype_name": "doctype",
+    "doctype_logic": [
+      [
+        "dynamic",
+        "source_cname"
+      ]
+    ],
+    "doctype_sep": "-",
+    "additions": [
+      [
+        "dynamic",
+        "some_id",
+        "uuid"
+      ]
+    ],
+    "excludes": [
+      "id"
+    ]
+  },
+  "source_dbname": "olympics",
+  "default_target_dbname": "olympics"
+}
+StandardDocumentWrangler constructor:
+  do_pk_wrangling:      True
+  do_doctype_wrangling: True
+  do_additions:         True
+  do_excludes:          True
+wrangling_algorithm: standard
+download_blob olympics__g1896_summer.json from olympics-raw to tmp/olympics/olympics__g1896_summer.json
+download_blob: olympics-raw olympics__g1896_summer.json -> tmp/olympics/olympics__g1896_summer.json
+downloaded tmp/olympics/olympics__g1896_summer.json in 0.5496351718902588ms
+transformed 1900 lines in 0.07993888854980469
+uploading tmp/olympics/olympics__g1896_summer.json at 2021-06-14 15:24:23 UTC to olympics-games-adf/olympics__g1896_summer__wrangled.json
+upload_blob: tmp/olympics/olympics__g1896_summer__wrangled.json True -> olympics-games-adf olympics__g1896_summer__wrangled.json
+uploaded tmp/olympics/olympics__g1896_summer.json/olympics__g1896_summer__wrangled.json at 2021-06-14 15:24:23 UTC in 0.5146279335021973
+{'name': 'olympics__g1896_summer__wrangled.json', 'container': 'olympics-games-adf', 'snapshot': None, 'version_id': None, 'is_current_version': None, 'blob_type': <BlobType.BlockBlob: 'BlockBlob'>, 'metadata': {}, 'encrypted_metadata': None, 'last_modified': datetime.datetime(2021, 6, 14, 15, 24, 23, tzinfo=datetime.timezone.utc), 'etag': '"0x8D92F487D8001BE"', 'size': 753940, 'content_range': None, 'append_blob_committed_block_count': None, 'is_append_blob_sealed': None, 'page_blob_sequence_number': None, 'server_encrypted': True, 'copy': {'id': None, 'source': None, 'status': None, 'progress': None, 'completion_time': None, 'status_description': None, 'incremental_copy': None, 'destination_snapshot': None}, 'content_settings': {'content_type': 'application/octet-stream', 'content_encoding': None, 'content_language': None, 'content_md5': bytearray(b'\x13I\xa4N\xaft\x9d\xb409\x8enCW\x1a\x14'), 'content_disposition': None, 'cache_control': None}, 'lease': {'status': 'unlocked', 'state': 'available', 'duration': None}, 'blob_tier': 'Hot', 'rehydrate_priority': None, 'blob_tier_change_time': None, 'blob_tier_inferred': True, 'deleted': False, 'deleted_time': None, 'remaining_retention_days': None, 'creation_time': datetime.datetime(2021, 6, 14, 14, 42, 29, tzinfo=datetime.timezone.utc), 'archive_status': None, 'encryption_key_sha256': None, 'encryption_scope': None, 'request_server_encrypted': True, 'object_replication_source_properties': [], 'object_replication_destination_policy': None, 'last_accessed_on': None, 'tag_count': None, 'tags': None}
+-
+SUMMARY for args:  wrangle.py transform_blob --db olympics --source-coll g1896_summer --in-container olympics-raw --blobname olympics__g1896_summer.json --filename tmp/olympics/olympics__g1896_summer.json --outfile tmp/olympics/olympics__g1896_summer__wrangled.json --out-container olympics-games-adf
+  status:          completed
+  lines_processed: 1900
+  start_time:      1623684262.594481
+  elapsed_time:    1.2128219604492188
+
+first line of input file:
+{"_id":{"$oid":"60bf6ae06693ba6550c1b694"},"id":"1724","name":"Aristidis Akratopoulos","sex":"m","age":"-1","height":"-1","weight":"-1","team":"greece","noc":"gre","games":"1896_summer","year":"1896","season":"summer","city":"athina","sport":"tennis","event":"tennis mens singles","medal":"","medal_value":"0"}
+
+first line of output file:
+{"_id":{"$oid":"60bf6ae06693ba6550c1b694"},"name":"Aristidis Akratopoulos","sex":"m","age":"-1","height":"-1","weight":"-1","team":"greece","noc":"gre","games":"1896_summer","year":"1896","season":"summer","city":"athina","sport":"tennis","event":"tennis mens singles","medal":"","medal_value":"0","pk":"1896_summer","doctype":"","some_id":"3c8939a4-7acb-436a-b010-574e24464504"}
+deleting the downloaded and wrangled files to save disk space...
+done
+```
+
+Items to note:
+
+1) Information about the files being uses, and the mappings applied, are logged. 
+2) Information about the uploaded blob is logged.
+3) Rows processed and processing elapses time is logged.
+4) The first rows of both the input file and the output file are logged for visual verification of the transformation.
+
+---
 
 ## Execute ADF Pipelines
 
