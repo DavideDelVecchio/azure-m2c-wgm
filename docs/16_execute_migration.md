@@ -163,6 +163,8 @@ Usage:
 
 ## Wrangling for ADF
 
+**The purpose of these scripts is to transform each raw mongexport file from the source database into the format for loading into CosmosDB via Azure Data Factory**.
+
 **This process is expected to be executed on an Azure VM(s) in the same region as your Storage Account.**
 
 The **artifacts/shell** directory will contain a number of generated **wrangle_** scripts;
@@ -332,8 +334,11 @@ Items to note:
 ## Execute ADF Pipelines
 
 The last steps of the migration process are to execute each ADF Pipeline.
+
 This can be done either in the Azure Portal and ADF UI, or from a command-line
 to execute the generated scripts.
+
+**The purpose of these ADF Pipelines are to copy the transformed mongoexport files to the containers in your CosmosDB database.**
 
 For example, the reference application produces these scripts.
 
@@ -351,13 +356,14 @@ Execute each script as follows:
 
 ```
 $ ./adf_pipeline_copy_to_olympics_games.sh
-
 Command group 'datafactory pipeline' is experimental and under development. Reference and support levels: https://aka.ms/CLI_refstatus
 {
-  "runId": "5abe95e2-cc69-11eb-852f-acde48001122"
+  "runId": "ac39c82e-cd2c-11eb-bf5a-acde48001122"
 }
 done
 ```
+
+This gives you a **runId** that you can **then monitor in Azure Data Factory**.
 
 Then visit the Monitor tab of your ADF UI, and verify that the Pipeline completes successfully.
 

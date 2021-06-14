@@ -39,8 +39,9 @@ your documents and extract this data to other documents.
 After addressing these design issues, please proceed to the editing and/or generating
 your mapping files.
 
-## The Mapping Files 
+---
 
+## The Mapping Files 
 
 Please see documentation page [07 - Generate Mapping Files](07_generate_mapping_files.md)
 regarding the mapping file format and generation.
@@ -60,3 +61,14 @@ reference_app/data/metadata/openflights_mapping.json
 
 Once these mapping files are **finalized, or completed** please proceed to the
 next pages, which uses the mapping files for **artifact generation**.
+
+### Alternative Wrangling/Transformation
+
+This migration process implements an **"opinionated"** design regarding the
+wrangling or transformation of the mongoexport files from "raw" format
+to "adf-ready" format.
+
+Each customer may certainly implement alternative ways to transform the
+mongoexport files.  If you choose to use Python, please look at file 
+**standard_doc_wrangler.py** in this repository and consider a similar
+implementation.
