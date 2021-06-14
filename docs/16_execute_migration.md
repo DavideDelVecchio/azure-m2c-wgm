@@ -355,17 +355,36 @@ adf_pipeline_copy_to_travel_routes.sh
 Execute each script as follows:
 
 ```
-$ ./adf_pipeline_copy_to_olympics_games.sh
+$ ./adf_pipeline_copy_to_travel_routes.sh
 Command group 'datafactory pipeline' is experimental and under development. Reference and support levels: https://aka.ms/CLI_refstatus
 {
-  "runId": "ac39c82e-cd2c-11eb-bf5a-acde48001122"
+  "runId": "9512045e-cd4a-11eb-9923-acde48001122"
 }
-done
 ```
 
 This gives you a **runId** that you can **then monitor in Azure Data Factory**.
 
-Then visit the Monitor tab of your ADF UI, and verify that the Pipeline completes successfully.
+Then **visit the Monitor tab of your ADF UI**, and verify that the Pipeline completes successfully.  Scroll to the right of the list of Pipeline Runs to see the **Run ID**
+column.  Alternatively, enter the runID value in the search box at the top of the list.
 
-TODO - add screen shots here
+#### ADF Monitor View with list of Pipeline Runs
 
+<p align="center"><img src="img/adf-monitor-pipelines-list.png" width="99%"></p>
+
+---
+
+#### Search for Pipeline by runId
+
+<p align="center"><img src="img/adf-pipeline-search-by-runid.png" width="99%"></p>
+
+---
+
+#### A completed Pipeline: travel routes
+
+<p align="center"><img src="img/adf-completed-pipeline-travel-routes.png" width="99%"></p>
+
+---
+
+#### A completed Pipeline: olympics games
+
+<p align="center"><img src="img/adf-completed-pipeline-olympics-games.png" width="99%"></p>
