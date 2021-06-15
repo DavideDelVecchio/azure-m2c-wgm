@@ -136,6 +136,9 @@ class StandardDocumentWrangler(object):
                     values.append(doc[attr_name])
                 else:
                     print('attribute is not in doc: {}'.format(attr_name))
+            elif logic[0] == 'dynamic':
+                if logic[1] == 'source_cname':
+                    values.append(self.source_cname)
         doc[self.doctype_name] = self.doctype_sep.join(values)
 
     def wrangle_additions(self, doc):
