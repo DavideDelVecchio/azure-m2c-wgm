@@ -39,11 +39,17 @@ Configure your Linked Services first.
 Git add/commit/push only the files in the **linkedService/** directory of your repo.
 
 Then synchonize your ADF with your repo in the ADF Editor web UI.
+
 You'll have to setup the credentials manually in the UI, as the code generator 
 intententionally did not embed the credentials.
+**Do this by clicking into each item in your Linked Services List, as shown below**. 
 
-The click "test connection" to ensure that your LinkedService definition in ADF
+<p align="center"><img src="img/adf-linked-services-list.png" width="99%"></p>
+
+Click **"test connection"** to ensure that each of your LinkedService definitions in ADF
 is pointing to an actual Azure service.
+
+Click **publish** to ensure that your changes to both ADF, and the git repo.
 
 ## ADF Datasets
 
@@ -53,8 +59,12 @@ the latest changes.
 Then, git add/commit/push only the files in the **dataset/** directory of your repo.
 
 Then again synchonize your ADF with your repo in the ADF Editor web UI.
-You may need to click into each dataset, and click  "test connection".
 
+As with the Linked Services, you'll have to click into each dataset and confirm or select
+the Linked Service and dataset location.  Click  **"test connection"** to confirm that the
+dataset is pointing to actual Azure data.
+
+Click **publish** to ensure that your changes to both ADF, and the git repo.
 
 ## ADF Pipelines
 
@@ -70,3 +80,7 @@ user property, which was created during artifact generation.
 
 <p align="center"><img src="img/adf-pipeline-generated-at.png" width="99%"></p>
 
+Finally, click the **Validate** button, as shown below, for each pipeline to ensure
+that it is valid and pointing to valid source and sink datasets.
+
+<p align="center"><img src="img/adf-pipeline-validate.png" width="99%"></p>
