@@ -2,19 +2,18 @@
 
 The **m2c/az** directory contains shell scripts.
 
+**This step is typically executed from a Developer laptop.**
+
 First edit file **azconfig.sh**, shown below, for your migration.
 Set your Azure Subscription, Region, Resource Group, and Resource names - 
 please do not use **cjoakim** in your names!
-
-**This step is typically executed from a Developer laptop.**
-
 
 ```
 #!/bin/bash
 
 # Bash shell that defines parameters and environment variables used in
 # this app, and is "sourced" by the other scripts in this directory.
-# Chris Joakim, Microsoft, 2021/06/08
+# Chris Joakim, Microsoft, June 2021
 
 # environment variables for provisioning:
 
@@ -42,6 +41,19 @@ export storage_name="cjoakimm2cstorage"
 export storage_kind="BlobStorage"     # {BlobStorage, BlockBlobStorage, FileStorage, Storage, StorageV2}]
 export storage_sku="Standard_LRS"     # {Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, , Standard_RAGRS, Standard_RAGZRS, Standard_ZRS]
 export storage_access_tier="Hot"      # Cool, Hot
+#
+export uvm_rg=$primary_rg
+export uvm_region=$primary_region
+export uvm_name="m2cmigrationvm1"
+export uvm_publisher='Canonical'
+export uvm_offer='UbuntuServer'
+export uvm_sku='18.04-LTS'
+export uvm_version='latest'
+export uvm_image=""$uvm_publisher":"$uvm_offer":"$uvm_sku":"$uvm_version # Values from: az vm image list
+export uvm_size="Standard_D3_v2"  # Values from: az vm list-sizes, Default: Standard_DS1_v2
+export uvm_datasizegb="1024"
+export uvm_user=$AZURE_UVM_USER   # cjoakim
+export uvm_ssh_keys=$AZURE_UVM_PUBLIC_SSH_KEY  # $HOME/<user>/.ssh/<name>.pub
 ```
 
 ## Storage
@@ -64,15 +76,63 @@ See section [13 - Create the CosmosDB Target Databases and Containers](13_create
 
 ## Virtual Machine
 
+### Provision 
+
+Execute script **/uvm.sh create**
+
+
+```
+$ ./uvm.sh create
+creating UVM rg: cjoakimm2c
+creating UVM: m2cmigrationvm1
+INFO: Use existing SSH public key file: ....
+INFO: Command ran in 94.545 seconds (init: 0.137, invoke: 94.408)
+done
+```
+
+### Networking
+
+In Azure Portal, go to the VM created above.  Record the **Public IP Address** value.
+
+Then, in the **Networking** panel of your VM, set the 
+**Inbound Port Rule for port 22 to the IP Address of your Laptop/Workstation**, and click Save.
+This will ensure ssh access to the VM only from your IP.
+
+### ssh into you VM 
+
+```
+$ ssh -A <user>@<vm-ip-address-per-azure-portal>
+```
+
+### Clone your repo
+
+**Clone YOUR repo, with your generated artifacts, etc.**
+
+This example show cloning this repo and the reference app repos:
+
+```
+$ cd ~           <-- change to some migration-root directory of your choice on the VM
+
+$ which git
+/usr/bin/git     <-- excellent, git is already installed on the VM
+
+$ git clone git@github.com:cjoakim/azure-m2c-wgm.git
+ - or -
+$ git clone https://github.com/cjoakim/azure-m2c-wgm.git
+
+$ git clone git@github.com:cjoakim/azure-m2c-wgm-reference-app.git
+ - or -
+$ git clone https://github.com/cjoakim/azure-m2c-wgm-reference-app.git
+```
+
+### Install Necessary Software
+
 **Ubuntu Linux Virtual Machines are recommended, with the following installed:**
 
-- **git** source control program.  See https://git-scm.com 
-- **bash** shell.  Available on Linux, macOS, or Windows 10 with WSL.
 - **python3**.  See https://www.python.org.  The project was developed and tested with python 3.8.6.
 - **mongo client** - from MongoDB Community Edition
 - **Azure CLI (az)** - See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 
 **Standard Python** is recommended; **Anaconda** is not.
 
-**git** is used so that you can clone your git repository which contains
-your **env.sh** file and the artifacts you generated on your Developer laptop.
+TODO - installs

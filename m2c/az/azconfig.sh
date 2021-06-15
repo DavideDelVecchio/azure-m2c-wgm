@@ -2,7 +2,7 @@
 
 # Bash shell that defines parameters and environment variables used in
 # this app, and is "sourced" by the other scripts in this directory.
-# Chris Joakim, Microsoft, 2021/06/08
+# Chris Joakim, Microsoft, June 2021
 
 # environment variables for provisioning:
 
@@ -30,3 +30,16 @@ export storage_name="cjoakimm2cstorage"
 export storage_kind="BlobStorage"     # {BlobStorage, BlockBlobStorage, FileStorage, Storage, StorageV2}]
 export storage_sku="Standard_LRS"     # {Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, , Standard_RAGRS, Standard_RAGZRS, Standard_ZRS]
 export storage_access_tier="Hot"      # Cool, Hot
+#
+export uvm_rg=$primary_rg
+export uvm_region=$primary_region
+export uvm_name="m2cmigrationvm1"
+export uvm_publisher='Canonical'
+export uvm_offer='UbuntuServer'
+export uvm_sku='18.04-LTS'
+export uvm_version='latest'
+export uvm_image=""$uvm_publisher":"$uvm_offer":"$uvm_sku":"$uvm_version # Values from: az vm image list
+export uvm_size="Standard_D3_v2"  # Values from: az vm list-sizes, Default: Standard_DS1_v2
+export uvm_datasizegb="1024"
+export uvm_user=$AZURE_UVM_USER   # cjoakim
+export uvm_ssh_keys=$AZURE_UVM_PUBLIC_SSH_KEY  # $HOME/<user>/.ssh/<name>.pub

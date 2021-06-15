@@ -2,7 +2,7 @@
 
 # Bash script with AZ CLI to automate the creation/deletion of an
 # Azure Storage account.
-# Chris Joakim, 2021/06/07
+# Chris Joakim, Microsoft, June 2021
 
 # az login
 
