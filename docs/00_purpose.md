@@ -14,13 +14,13 @@ Migration aspects that are not addressed by this project include:
 - CosmosDB/Mongo API Database Design - databases, containers, partition keys, RU settings, etc
 - CosmosDB/Mongo API Indexing - this depends on your specific application and query patterns
 
-The Microsoft team will work with you to address these aspects of each migration.
+**The Microsoft team will work with you to address these aspects of each migration.**
 
 In the following pages, pages 01 through 15 describe the migration process and its
 setup.  Only in step 16 do you actually execute the migration.
 
 ## Other Microsoft Solutions to Consider
 
-- https://docs.microsoft.com/en-us/azure/cosmos-db/import-data
-- https://docs.microsoft.com/en-us/azure/dms/tutorial-mongodb-cosmos-db
-- https://azure.microsoft.com/en-us/services/database-migration/#features
+- https://docs.microsoft.com/en-us/azure/cosmos-db/import-data  (DMT)
+- https://docs.microsoft.com/en-us/azure/dms/tutorial-mongodb-cosmos-db  (DMS)
+- https://azure.microsoft.com/en-us/services/database-migration/#features (DMS)
