@@ -10,6 +10,8 @@ as the **customer-edited mappings** file(s) to create a combined view.
 Like the **metadata** files, the **manifest** file is **not intended to be edited**.
 It is used in the next step - **artifact generation**, described on the next page.
 
+**This step is typically executed from a Developer laptop.**
+
 ## Execute script generate_manifest.sh
 
 In the **m2c/** directory, execute this script:

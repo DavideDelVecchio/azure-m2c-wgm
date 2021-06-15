@@ -8,6 +8,8 @@ The architecture diagram is repeated here:
 
 <p align="center"><img src="img/architecture.png" width="99%"></p>
 
+**These steps are typically executed from an Azure VM, though submitting the ADF pipelines can be done from a Developer laptop.**
+
 ---
 
 ## mongoexports

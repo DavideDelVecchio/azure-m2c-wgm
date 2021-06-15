@@ -3,6 +3,8 @@
 Before Source Database Metadata Extraction happens, you need to first edit env.sh
 and also specify the list of source databases.
 
+**This step is typically executed from a Developer laptop.**
+
 ## env.sh
 
 As described in [03 - Development Computer Setup](03_development_computer_setup.md)

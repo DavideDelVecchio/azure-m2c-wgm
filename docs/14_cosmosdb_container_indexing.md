@@ -10,6 +10,8 @@ reference_app/artifacts/shell/mongo_indexes_xxx_db.sh
 reference_app/artifacts/shell/mongo/mongo_indexes_xxx_db.ddl
 ```
 
+**This step is typically executed from a Developer laptop.**
+
 ## Edit the Cosmos/Mongo Index Files
 
 The generated **"ddl"** (borrowing the term Data Definition Language from relational databases)

@@ -2,6 +2,8 @@
 
 **This step will generate high-quality code and file artifacts that can be used "as-is" during migration execution; no manual editing of these artifacts is required.**
 
+**This step is typically executed from a Developer laptop.**
+
 There are two execptions to this no-editing-required rule:
 1) The target database ddl or index files, described below.
 2) The Azure Data Factory artifacts.  The ADF artifacts can be used as-is.  However, there are some minor

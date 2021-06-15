@@ -1,5 +1,7 @@
 # 12 - Create the Azure Storage Containers
 
+**This step is typically executed from a Developer laptop.**
+
 ## Python Virtual Environment
 
 As described in section [03 - Development Computer Setup](03_development_computer_setup.md)

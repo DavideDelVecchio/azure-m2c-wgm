@@ -1,5 +1,6 @@
 # 13 - Create the CosmosDB Target Databases and Containers
 
+**This step is typically executed from a Developer laptop.**
 
 ## Execute the xxx_cosmos_db_containers_az_cli.sh scripts
 

@@ -1,6 +1,6 @@
 # 00 - Purpose
 
-The purpose of this project is to provide a **high-quality, highly automated, and repeatable process for migrating MongoDB databases to Azure CosmosDB**. The focus is on **data migration**.
+The purpose of this project is to provide a **high-quality, highly-automated, and repeatable process for migrating MongoDB databases to Azure CosmosDB**. The focus is on **data migration**.
 
 The project provides both an architecture, and working implementation, of the process.
 The process is flexible to allow customization on a case-by-case basis.

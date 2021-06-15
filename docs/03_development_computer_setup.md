@@ -6,16 +6,19 @@ A Developer laptop can be used to execute much of the migration process, includi
 - Artifact Generation
 - Azure Data Factory - use in Azure Portal, and Pipeline execution
 
-However, an Azure VM is recommended for the data wrangling processes.
+However, a **Azure VMs** are recommended for most of the actual migration execution;
+see [16 - Execute Migration](16_execute_migration.md).
 
 ## Software Requirements
 
-The following software is required on your Developer Laptop computer:
+The following software is required on your Developer Laptop computer,
+as well as on the Azure Virtual Machines used for your migrations.
 
 - **git** source control program.  See https://git-scm.com 
 - **bash** shell.  Available on Linux, macOS, or Windows 10 with WSL.
 - **python3**.  See https://www.python.org.  The project was developed and tested with python 3.8.6.
 - **mongo client** - from MongoDB Community Edition
+- **Azure CLI (az)** - See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
 
 **Standard Python** is recommended; **Anaconda** is not.
 

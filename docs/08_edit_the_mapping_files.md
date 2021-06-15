@@ -62,6 +62,8 @@ reference_app/data/metadata/openflights_mapping.json
 Once these mapping files are **finalized, or completed** please proceed to the
 next pages, which uses the mapping files for **artifact generation**.
 
+**This step is typically executed from a Developer laptop.**
+
 ### Alternative Wrangling/Transformation
 
 This migration process implements an **"opinionated"** design regarding the

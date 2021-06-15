@@ -1,8 +1,10 @@
 # 06 - Extract Source Database Metadata
 
-In this section you excute script **extract_metadata.sh** which
-executes a python program, which uses the pymongo library, to
-read the metadata from the source MongoDB databases.
+In this section you excute script **extract_metadata.sh** which executes a 
+python program, which uses the pymongo library, to read the metadata from 
+the source MongoDB databases.
+
+**This step is typically executed from a Developer laptop.**
 
 ## Execute script generate_initial_scripts.sh
 

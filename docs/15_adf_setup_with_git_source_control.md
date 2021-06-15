@@ -5,6 +5,8 @@ to understand how ADF uses git as a source-control system.
 
 Then configure a git repo of your choice to use with your ADF instance.
 
+**This step is typically executed from a Developer laptop.**
+
 ## Github Repo Setup
 
 The approach I use is to use a separate private GitHub repo for ADF, and create a directory called **adf/**

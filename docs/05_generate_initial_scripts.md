@@ -3,6 +3,8 @@
 This section effectively **bootstraps** your migration by generating
 three shell scripts.
 
+**This step is typically executed from a Developer laptop.**
+
 ## Execute script generate_initial_scripts.sh
 
 In the **m2c/** directory, execute this script:

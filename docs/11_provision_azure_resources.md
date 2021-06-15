@@ -1,10 +1,13 @@
 # 11 - Provision Azure Resources
 
-The **m2c/az** directory contains shell scripts 
+The **m2c/az** directory contains shell scripts.
 
 First edit file **azconfig.sh**, shown below, for your migration.
 Set your Azure Subscription, Region, Resource Group, and Resource names - 
 please do not use **cjoakim** in your names!
+
+**This step is typically executed from a Developer laptop.**
+
 
 ```
 #!/bin/bash
@@ -61,5 +64,15 @@ See section [13 - Create the CosmosDB Target Databases and Containers](13_create
 
 ## Virtual Machine
 
-TODO - I'll update this section week-of 6/14
+**Ubuntu Linux Virtual Machines are recommended, with the following installed:**
 
+- **git** source control program.  See https://git-scm.com 
+- **bash** shell.  Available on Linux, macOS, or Windows 10 with WSL.
+- **python3**.  See https://www.python.org.  The project was developed and tested with python 3.8.6.
+- **mongo client** - from MongoDB Community Edition
+- **Azure CLI (az)** - See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+
+**Standard Python** is recommended; **Anaconda** is not.
+
+**git** is used so that you can clone your git repository which contains
+your **env.sh** file and the artifacts you generated on your Developer laptop.

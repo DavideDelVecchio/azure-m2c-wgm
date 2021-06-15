@@ -13,6 +13,8 @@ reference_app/data/metadata/olympics_mapping.json
 reference_app/data/metadata/openflights_mapping.json
 ```
 
+**This step is typically executed from a Developer laptop.**
+
 ## Sample
 
 This example from **olympics_mapping.json** shows the mapping for the **g1896_summer**

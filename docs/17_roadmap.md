@@ -5,7 +5,7 @@ The initial version of this project was created in June 2021.
 The following enhancements are on the **Project Roadmap**, in approximate
 chronological order.
 
-- Revisit the **Unit tests**, achieve 100% code coverage on certain classes
+- Revisit the **Unit tests**, achieve 100% code coverage, again, on certain classes
 - Implement a **Validation Process**
   - Validate the presence of Storage Containers
   - Validate the presence of Storage Blobs
