@@ -46,7 +46,7 @@ def test_complete_wrangling():
     print(json2)
 
     assert(doc['pk'] == 'Charlotte Douglas International Airport-xxx')
-    assert(doc['doctype'] == 'airport-3876')
+    assert(doc['doctype'] == 'x-3876-airports')
     assert(doc['cname'] == 'airports')
     assert(has_key(doc, 'airport_id') == False)
     assert(has_key(doc, 'source') == False)
@@ -106,7 +106,7 @@ def airports_mapping():
         "doctype_logic": [
           [
             "literal",
-            "airport"
+            "x"
           ],
           [
             "attribute",
@@ -115,7 +115,11 @@ def airports_mapping():
           [
             "attribute",
             "airport_id"
-          ]              
+          ],
+          [
+            "dynamic",
+            "source_cname"
+          ]               
         ],
         "doctype_sep": "-",
         "additions": [
