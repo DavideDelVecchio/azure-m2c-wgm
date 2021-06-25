@@ -4,7 +4,7 @@ A Developer laptop can be used to execute much of the migration process, includi
 
 - Source Database Metadata Extraction
 - Artifact Generation
-- Azure Data Factory - use in Azure Portal, and Pipeline execution
+- Azure Data Factory - use in Azure Portal, and ADF Pipeline execution
 
 However, a **Azure VMs** are recommended for most of the actual migration execution;
 see [16 - Execute Migration](16_execute_migration.md).
@@ -19,15 +19,24 @@ as well as on the Azure Virtual Machines used for your migrations.
 - **python3**.  See https://www.python.org.  The project was developed and tested with python 3.8.6.
 - **mongo client** - from MongoDB Community Edition
 - **Azure CLI (az)** - See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+  - The az CLI is used in this project to:
+    - Upload files to Azure Blob Storage
+    - Submit Azure Data Factory pipelines
+    - Optionally provision Azure Resources, such as Storage, ADF, and CosmosDB.
 
-**Standard Python** is recommended; **Anaconda** is not.
+**Standard Python3** is recommended; **Anaconda** is not.  Python 2 is not supported.
 
 The following software is also strongly recommended:
 - **A mongo UI client** - [Studio 3T](https://studio3t.com), etc.
 - **Azure Storage Explorer** - See https://azure.microsoft.com/en-us/features/storage-explorer/
 - **A Text Edior** - such as [Visual Studio Code](https://code.visualstudio.com)
 
-## Fork or Clone this repository
+Additionally:
+- [Docker](https://www.docker.com/products/docker-desktop) and 
+[docker-compose](https://docs.docker.com/compose/install/) 
+if you wish to run the reference MongoDB locally as a container.
+
+## Copy this git repository to your source control 
 
 Next, create **your own copy** of this repository.  There are at least two ways do
 do this.  First, in GitHub, you can simply **fork** this repository.
@@ -42,7 +51,7 @@ $ rm -rf .git/
 ```
 
 Note how we execute **rm -rf .git/** to disconnect the repo from the original GitHub
-cjoakim/azure-m2c-wgm.  Copy these files and add the **azure-m2c-wgm** to **YOUR repository**.
+cjoakim/azure-m2c-wgm.  Copy the remaining files to **YOUR repository**.
 
 You'll be spending a lot of time in the **m2c directory** (for Mongo-to-Cosmos) within
 the repo root directory, including creating a python virtual environment as described next.
@@ -99,7 +108,8 @@ export M2C_STORAGE_ACCOUNT=$AZURE_M2C_STORAGE_ACCOUNT
 export M2C_STORAGE_KEY=$AZURE_M2C_STORAGE_KEY
 export M2C_STORAGE_CONNECTION_STRING=$AZURE_M2C_STORAGE_CONNECTION_STRING
 
-# The Source Database
+# The Source Database.  The values below assume MongoDB Community
+# edition running locally as a Docker container.
 export M2C_SOURCE_MONGODB_URL="localhost:27017"
 export M2C_SOURCE_MONGODB_SSL="false"
 export M2C_SOURCE_MONGODB_HOST="localhost"
