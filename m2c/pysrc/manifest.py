@@ -16,30 +16,6 @@ import jinja2
 from operator import itemgetter
 from pysrc.config import Config
 
-# {
-#   "generated_on": "2021-06-08 20:15:53 UTC",
-#   "items": [
-#     {
-#       "source_db": "olympics",
-#       "source_coll": "countries",
-#       "doc_count": "230",
-#       "avg_doc_size": "69",
-#       "target_db": "olympics",
-#       "target_coll": "locations",
-#       "partition_key": "pk",
-#       "blob_name": "olympics__countries.json",
-#       "raw_storage_container": "olympics-raw",
-#       "adf_storage_container": "olympics-locations-adf",
-#       "adf_blob_doc_count": "-1",
-#       "adf_blob_dataset_name": "blob__olympics__locations",
-#       "adf_cosmos_dataset_name": "cosmos__olympics__locations",
-#       "adf_pipeline_name": "pipeline_copy_to_olympics_locations",
-#       "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics",
-#       "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics/olympics__countries.json",
-#       "wrangle_script_name": "wrangle_olympics_countries.sh",
-#       "wrangled_outfile": "tmp/olympics/olympics__countries__wrangled.json",
-#       "local_file_path": "tmp/olympics/olympics__countries.json"
-#     },
 
 class Manifest(object):    
 
@@ -160,10 +136,7 @@ class Manifest(object):
                 if item['target_coll'] == target_coll:
                     return item['partition_key']
         return None
-
-    def get_pipelines(self):
-        return self.pipelines
-        
+ 
     def get_merged_pipelines(self):
         pipelines_list = list()
         for pipeline in self.pipelines:
@@ -222,8 +195,8 @@ class Manifest(object):
             f.write(txt)
         print("file written: " + outfile)
 
-    def write(self, outfile, s, verbose=True):
-        with open(outfile, 'w') as f:
-            f.write(s)
-            if verbose:
-                print('file written: {}'.format(outfile))
+    # def write(self, outfile, s, verbose=True):
+    #     with open(outfile, 'w') as f:
+    #         f.write(s)
+    #         if verbose:
+    #             print('file written: {}'.format(outfile))

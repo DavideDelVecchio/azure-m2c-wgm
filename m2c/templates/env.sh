@@ -19,7 +19,8 @@ export M2C_STORAGE_ACCOUNT=$AZURE_M2C_STORAGE_ACCOUNT
 export M2C_STORAGE_KEY=$AZURE_M2C_STORAGE_KEY
 export M2C_STORAGE_CONNECTION_STRING=$AZURE_M2C_STORAGE_CONNECTION_STRING
 
-# The Source Database
+# The Source Database.  The values below assume MongoDB Community
+# edition running locally as a Docker container.
 export M2C_SOURCE_MONGODB_URL="localhost:27017"
 export M2C_SOURCE_MONGODB_SSL="false"
 export M2C_SOURCE_MONGODB_HOST="localhost"
