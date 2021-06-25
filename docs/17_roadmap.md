@@ -12,13 +12,10 @@ chronological order.
   - Validate the presence of Azure Data Factory Artifacts
   - Validate approximate document counts; Source vs Target DB
 - Implement **PowerShell Scripts for Windows**
-- **Parallelize** the mongoexport process
-- **Parallelize** the raw mongoexport upload process
 - Implement Wrangling Logic in **Other Programming Languages**
-  - C# and DotNet 5
+  - C# and net5.0
   - Java 8+
 - **Partition Key Analysis**
   - Cardinality and Distribution of pk values in the wrangled blobs
   - Do this analysis before loading CosmosDB
-- Explore **Apache Spark** (i.e. - Synapse or Databricks) for Wrangling and/or Loading
 - Explore the MongoDB **oplog** as a potential datasource
