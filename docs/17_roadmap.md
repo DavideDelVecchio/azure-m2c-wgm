@@ -6,8 +6,8 @@ The following enhancements are on the **Project Roadmap**, in approximate
 chronological order.
 
 - Implement a **Validation Process**
-  - Validate the presence of Storage Containers
-  - Validate the presence of Storage Blobs
+  - Validate the presence of Storage Containers - DONE
+  - Validate the presence of Storage Blobs - WIP
   - Validate the presence of Target CosmosDB Containers
   - Validate the presence of Azure Data Factory Artifacts
   - Validate approximate document counts; Source vs Target DB
