@@ -11,8 +11,9 @@ see [16 - Execute Migration](16_execute_migration.md).
 
 ## Software Requirements
 
-The following software is required on your Developer Laptop computer,
+The following software is required on your **"Development Workstation"**
 as well as on the Azure Virtual Machines used for your migrations.
+Your "Development Workstation" could be a laptop, a server, or a VM.
 
 - **git** source control program.  See https://git-scm.com 
 - **bash** shell.  Available on Linux, macOS, or Windows 10 with WSL.
