@@ -24,3 +24,4 @@ setup.  Only in step 16 do you actually execute the migration.
 - https://docs.microsoft.com/en-us/azure/cosmos-db/import-data  (DMT)
 - https://docs.microsoft.com/en-us/azure/dms/tutorial-mongodb-cosmos-db  (DMS)
 - https://azure.microsoft.com/en-us/services/database-migration/#features (DMS)
+- https://github.com/cjoakim/azure-cosmosdb-adhoc-migrations
