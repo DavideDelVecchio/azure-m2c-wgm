@@ -16,6 +16,7 @@ __version__ = "June 2021"
 
 # TODO - this class is not yet implemented, it is a work-in-progress
 
+import json
 import os
 import sys
 import traceback
@@ -32,6 +33,10 @@ class Validator(object):
         self.args = args
         self.manifest = Manifest()
         self.stor = StorageUtil()
+        self.verbose = False
+        for arg in args:
+            if arg == '--verbose':
+                self.verbose = True
 
     def validate_storage_containers(self):
         print('validate_storage_containers ...')
@@ -54,18 +59,25 @@ class Validator(object):
             blob_name = item["blob_name"]
             try:
                 properties = self.stor.blob_properties(container, blob_name)
-                #properties = self.stor.blob_properties(container, 'nope')
-                print('ok, blob present:   {} {}'.format(container, blob_name))
-                #print(json.dumps(obj, sort_keys=False, indent=2))
+                size = properties['size']
+                print('ok, blob present; container: {} blob: {} size: {}'.format(
+                    container, blob_name, size))
             except:
                 print('error, blob absent: {} {}'.format(container, blob_name))
 
-
-
-
-
     def validate_wrangled_blobs(self):
         print('validate_wrangled_blobs ...')
+        for item in self.manifest.items:
+            container = item["adf_storage_container"]
+            blob_name = item["wrangled_blob_name"]
+            try:
+                properties = self.stor.blob_properties(container, blob_name)
+                size = properties['size']
+                print('ok, blob present; container: {} blob: {} size: {}'.format(
+                    container, blob_name, size))
+            except:
+                print('error, blob absent: {} {}'.format(container, blob_name))
+
 
     def validate_target_cosmos_db(self):
         print('validate_target_cosmos_db ...')
