@@ -22,6 +22,9 @@ import sys
 import traceback
 import uuid
 
+from operator import itemgetter
+from pymongo import MongoClient
+
 from pysrc.config import Config
 from pysrc.manifest import Manifest
 from storage import StorageUtil
@@ -31,6 +34,7 @@ class Validator(object):
 
     def __init__(self, args):
         self.args = args
+        self.config = Config()
         self.manifest = Manifest()
         self.stor = StorageUtil()
         self.verbose = False
@@ -78,9 +82,28 @@ class Validator(object):
             except:
                 print('error, blob absent: {} {}'.format(container, blob_name))
 
-
     def validate_target_cosmos_db(self):
         print('validate_target_cosmos_db ...')
+        conn_str = os.environ['M2C_COSMOS_MONGO_CONN_STRING']
+        #print('conn_str: {}'.format(conn_str))
+
+        client = MongoClient(conn_str)
+        print('client: {}'.format(client))
+
+        dbs = sorted(client.list_databases(), key = itemgetter('name'))
+        for db_obj in dbs:        
+            dbname = db_obj['name']
+            print('dbname: {}'.format(dbname))
+            db = client[dbname]
+            coll_names = db.list_collection_names()
+            db_metadata = dict()
+            db_metadata['dbname'] = dbname
+            db_metadata['collections'] = list() 
+
+            for coll_name in sorted(coll_names):
+                print('dbname: {}  coll: {}'.format(dbname, coll_name))
+                coll_obj = db[coll_name]
+       
 
     def validate_adf_objects(self):
         print('validate_adf_objects ...')

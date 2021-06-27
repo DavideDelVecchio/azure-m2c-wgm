@@ -50,7 +50,7 @@ def generate_manifest():
     generator.generate_manifest_files()
 
 def extract_db_metadata(login_db, dbname):
-    conn_str = config.pymongo_conn_string(login_db)  # login to the admin database
+    conn_str = config.source_pymongo_conn_string(login_db)  # login to the admin database
     print('dbname:   {}'.format(dbname))
     print('conn_str: {}'.format(conn_str))
 

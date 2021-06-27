@@ -35,10 +35,10 @@ def test_source_mongodb_uri():
     config = Config()
     assert(config.source_mongodb_uri() == 'mongodb://@localhost:27017')
 
-def test_pymongo_conn_string():
+def test_source_pymongo_conn_string():
     config = Config()
     expected = 'mongodb://root:rootpassword@localhost:27017/admin'
-    assert(config.pymongo_conn_string('admin') == expected)
+    assert(config.source_pymongo_conn_string('admin') == expected)
 
 def test_metadata_dir():
     config = Config()

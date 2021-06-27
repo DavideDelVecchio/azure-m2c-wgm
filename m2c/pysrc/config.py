@@ -34,7 +34,7 @@ class Config(object):
         return 'mongodb://@{}:{}'.format(
             self.source_mongodb_host, self.source_mongodb_port)
 
-    def pymongo_conn_string(self, dbname):
+    def source_pymongo_conn_string(self, dbname):
         # https://docs.mongodb.com/manual/reference/connection-string/
         # mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]
         return 'mongodb://{}:{}@{}:{}/{}'.format(

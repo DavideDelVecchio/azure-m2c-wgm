@@ -60,25 +60,26 @@ def test_items_for_source_db():
     write_obj_as_json_file('tmp/items_for_source_db.json', items)
 
     expected = {
-        "source_db": "openflights",
-        "source_coll": "routes",
-        "doc_count": "67663",
-        "avg_doc_size": "229",
-        "target_db": "travel",
-        "target_coll": "routes",
-        "partition_key": "pk",
-        "blob_name": "openflights__routes.json",
-        "raw_storage_container": "openflights-raw",
-        "adf_storage_container": "travel-routes-adf",
-        "adf_blob_doc_count": "-1",
-        "adf_blob_dataset_name": "blob__travel__routes",
-        "adf_cosmos_dataset_name": "cosmos__travel__routes",
-        "adf_pipeline_name": "pipeline_copy_to_travel_routes",
-        "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/openflights",
-        "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/openflights/openflights__routes.json",
-        "wrangle_script_name": "wrangle_openflights_routes.sh",
-        "wrangled_outfile": "tmp/openflights/openflights__routes__wrangled.json",
-        "local_file_path": "tmp/openflights/openflights__routes.json"
+      "source_db": "openflights",
+      "source_coll": "routes",
+      "doc_count": "67663",
+      "avg_doc_size": "229",
+      "target_db": "travel",
+      "target_coll": "routes",
+      "partition_key": "pk",
+      "blob_name": "openflights__routes.json",
+      "raw_storage_container": "openflights-raw",
+      "adf_storage_container": "travel-routes-adf",
+      "adf_blob_doc_count": "-1",
+      "adf_blob_dataset_name": "blob__travel__routes",
+      "adf_cosmos_dataset_name": "cosmos__travel__routes",
+      "adf_pipeline_name": "pipeline_copy_to_travel_routes",
+      "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/openflights",
+      "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/openflights/openflights__routes.json",
+      "wrangle_script_name": "wrangle_openflights_routes.sh",
+      "wrangled_outfile": "tmp/openflights/openflights__routes__wrangled.json",
+      "wrangled_blob_name": "openflights__routes__wrangled.json",
+      "local_file_path": "tmp/openflights/openflights__routes.json"
     }
     assert(items[-1] == expected)
 
