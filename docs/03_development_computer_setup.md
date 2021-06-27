@@ -70,7 +70,40 @@ is used.  You'll see several **pyenv.sh** scripts in this repo.
 However, on your computer, simply create python virtual environment with your tool-of-choice,
 and install the **requirements.txt** file(s) found in this repo, such as in the **m2c/** directory.
 
-## Environment Variables
+## Create an Azure Service Principal
+
+If you plan on executing parts of the migration process on an Azure Virtual Machine
+then you'll need to create a **Service Principal** as described on this documentation page: 
+https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli
+
+From your Development Workstation, run the following command to login:
+
+```
+$ az login
+```
+
+Next, set and display your Azure Subscription.  You may already have access to several, 
+so use the Azure Subscription pertinent to this migration:
+
+```
+$ az account set --subscription $AZURE_SUBSCRIPTION_ID
+$ az account show
+```
+
+Confirm that the "az account show" output displays the "id" value of your
+chosen Azure Subscription.
+
+Next, create a **Service Principal (SP)** .  The name MongoToCosmosMigration in this example 
+isn't pertinent; choose a name that's consistent with you organization standards.
+This creates a SP with the default role of 'Contributor'.
+
+**Capture the JSON output of this command - you set these values in env.sh, below.**
+
+```
+$ az ad sp create-for-rbac --name MongoToCosmosMigration
+```
+
+## Environment Variables (env.sh)
 
 This project uses environment variables extensively.  Configuring a system using environment 
 variable is generally a best-practice in IT, and is one of the tenets of 
@@ -103,6 +136,16 @@ export M2C_APP_DATA_DIR=$M2C_REF_APP_DIR"/data"
 
 # The generated script type; Windows PowerShell will be added in the future.
 export M2C_SHELL_TYPE="bash"
+
+# The Azure Service Principal used by az commands
+export M2C_SP_APP_ID=$AZURE_M2C_SP_APP_ID
+export M2C_SP_DISPLAY_NAME=$AZURE_M2C_SP_DISPLAY_NAME
+export M2C_SP_NAME=$AZURE_M2C_SP_NAME
+export M2C_SP_PASSWORD=$AZURE_M2C_SP_PASSWORD
+export M2C_SP_TENANT=$AZURE_M2C_SP_TENANT
+
+# Your Azure Subscription used in the migration
+export M2C_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
 
 # The Azure Storage Account used in the Migration process
 export M2C_STORAGE_ACCOUNT=$AZURE_M2C_STORAGE_ACCOUNT

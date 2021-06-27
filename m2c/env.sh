@@ -14,6 +14,16 @@ export M2C_APP_DATA_DIR=$M2C_REF_APP_DIR"/data"
 # The generated script type; Windows PowerShell will be added in the future.
 export M2C_SHELL_TYPE="bash"
 
+# The Azure Service Principal used by az commands
+export M2C_SP_APP_ID=$AZURE_M2C_SP_APP_ID
+export M2C_SP_DISPLAY_NAME=$AZURE_M2C_SP_DISPLAY_NAME
+export M2C_SP_NAME=$AZURE_M2C_SP_NAME
+export M2C_SP_PASSWORD=$AZURE_M2C_SP_PASSWORD
+export M2C_SP_TENANT=$AZURE_M2C_SP_TENANT
+
+# Your Azure Subscription used in the migration
+export M2C_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+
 # The Azure Storage Account used in the Migration process
 export M2C_STORAGE_ACCOUNT=$AZURE_M2C_STORAGE_ACCOUNT
 export M2C_STORAGE_KEY=$AZURE_M2C_STORAGE_KEY

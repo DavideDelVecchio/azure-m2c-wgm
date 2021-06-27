@@ -82,6 +82,9 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--py-uploads')):
             self.gen_python_uploads() 
 
+        if (self.gen_artifact('--az-login')):
+            self.gen_az_login() 
+
         if (self.gen_artifact('--az-cli-uploads')):
             self.gen_az_cli_uploads() 
 
@@ -174,6 +177,13 @@ class ArtifactGenerator(object):
             coll_dict['local_file_path'] = local_file
             coll_dict['blob_name'] = os.path.basename(local_file)
             collection_data.append(coll_dict)
+        self.render_template(template_name, template_data, outfile)
+
+    def gen_az_login(self):
+        template_name = 'az_login_sp.txt'
+        outfile = '{}/az_login_sp.sh'.format(self.shell_artifacts_dir)
+        template_data = dict()
+        template_data['gen_timestamp'] = self.timestamp()
         self.render_template(template_name, template_data, outfile)
 
     def gen_az_cli_uploads(self):

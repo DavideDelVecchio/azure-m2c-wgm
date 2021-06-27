@@ -49,6 +49,20 @@ class Validator(object):
 
     def validate_raw_blobs(self):
         print('validate_raw_blobs ...')
+        for item in self.manifest.items:
+            container = item["raw_storage_container"]
+            blob_name = item["blob_name"]
+            try:
+                properties = self.stor.blob_properties(container, blob_name)
+                #properties = self.stor.blob_properties(container, 'nope')
+                print('ok, blob present:   {} {}'.format(container, blob_name))
+                #print(json.dumps(obj, sort_keys=False, indent=2))
+            except:
+                print('error, blob absent: {} {}'.format(container, blob_name))
+
+
+
+
 
     def validate_wrangled_blobs(self):
         print('validate_wrangled_blobs ...')
@@ -71,6 +85,28 @@ class Validator(object):
         traceback.print_exception(
             exc_type, exc_value, exc_traceback, limit=2, file=sys.stderr)
 
+    # Manifest items look like this:
+    # {
+    #   "source_db": "olympics",
+    #   "source_coll": "countries",
+    #   "doc_count": "230",
+    #   "avg_doc_size": "69",
+    #   "target_db": "olympics",
+    #   "target_coll": "locations",
+    #   "partition_key": "pk",
+    #   "blob_name": "olympics__countries.json",
+    #   "raw_storage_container": "olympics-raw",
+    #   "adf_storage_container": "olympics-locations-adf",
+    #   "adf_blob_doc_count": "-1",
+    #   "adf_blob_dataset_name": "blob__olympics__locations",
+    #   "adf_cosmos_dataset_name": "cosmos__olympics__locations",
+    #   "adf_pipeline_name": "pipeline_copy_to_olympics_locations",
+    #   "mongoexports_dir": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics",
+    #   "mongoexport_file": "/Users/cjoakim/github/azure-m2c-wgm-reference-app/reference_app/data/mongoexports/olympics/olympics__countries.json",
+    #   "wrangle_script_name": "wrangle_olympics_countries.sh",
+    #   "wrangled_outfile": "tmp/olympics/olympics__countries__wrangled.json",
+    #   "local_file_path": "tmp/olympics/olympics__countries.json"
+    # },
 
 if __name__ == "__main__":
     #print(sys.argv)
