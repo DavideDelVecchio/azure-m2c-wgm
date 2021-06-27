@@ -30,6 +30,7 @@ rm  $M2C_APP_ARTIFACTS_DIR/shell/*.*
 
 echo 'copying core files to templates ...'
 cp env.sh           templates 
+cp venv.sh          templates 
 cp storage.py       templates 
 cp requirements.in  templates 
 cp requirements.txt templates 
