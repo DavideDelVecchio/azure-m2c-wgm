@@ -12,8 +12,8 @@
 export M2C_APP_DIR="/home/cjoakim/azure-m2c-wgm-reference-app/reference_app"
 # Note: this is what I use for local development on macOS:
 # export M2C_APP_DIR=$M2C_REF_APP_DIR
-export M2C_APP_ARTIFACTS_DIR=$M2C_REF_APP_DIR"/artifacts"
-export M2C_APP_DATA_DIR=$M2C_REF_APP_DIR"/data"
+export M2C_APP_ARTIFACTS_DIR=$M2C_APP_DIR"/artifacts"
+export M2C_APP_DATA_DIR=$M2C_APP_DIR"/data"
 
 # The generated script type; Windows PowerShell will be added in the future.
 export M2C_SHELL_TYPE="bash"
