@@ -26,7 +26,4 @@ mkdir -p $M2C_APP_DIR/data/metadata
 
 mkdir -p $M2C_APP_DIR/databases
 
-echo 'displaying drectory tree:'
-tree -d $M2C_APP_DIR
-
 echo 'done'
