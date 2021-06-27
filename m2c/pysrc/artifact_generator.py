@@ -153,7 +153,7 @@ class ArtifactGenerator(object):
         self.render_template(template_name, template_data, outfile)
 
         # also generate other files related to create_blob_containers and python
-        for template_name in 'env.sh,pyenv.sh,storage.py,requirements.in,requirements.txt'.split(','):
+        for template_name in 'env.sh,pyenv.sh,storage.py,requirements.in,requirements.txt,venv.sh'.split(','):
             outfile = '{}/{}'.format(self.shell_artifacts_dir, template_name)
             self.render_template(template_name, template_data, outfile)
 
