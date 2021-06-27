@@ -104,6 +104,14 @@ This will ensure ssh access to the VM only from your IP.
 $ ssh -A <user>@<vm-ip-address-per-azure-portal>
 ```
 
+### Install the az CLI
+
+See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
+
+```
+$ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
 ### Clone your repo
 
 **Clone YOUR repo, with your generated artifacts, etc.**

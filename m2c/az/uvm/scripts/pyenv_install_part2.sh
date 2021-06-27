@@ -3,7 +3,8 @@
 # see https://www.liquidweb.com/kb/how-to-install-pyenv-on-ubuntu-18-04/
 # Chris Joakim, Microsoft, June 2021
 
-rm -rf /home/cjoakim/.pyenv
+cd ~
+rm -rf .pyenv
 
 set -e
 [ -n "$PYENV_DEBUG" ] && set -x
