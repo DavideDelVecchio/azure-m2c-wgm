@@ -13,25 +13,25 @@ rm .python-version
 pyenv virtualenv -f $python_version $venv_name
 
 echo '=== python version'
-python --version 
+python3 --version 
 
 echo '=== setting pyenv local ...'
 pyenv local $venv_name
 
-echo '=== upgrade pip ...'
-pip install --upgrade pip
+echo '=== upgrade pip3 ...'
+pip3 install --upgrade pip
 
 echo '=== install pip-tools ...'
-pip install pip-tools
+pip3 install pip-tools
 
-echo '=== pip compile ...'
+echo '=== pip3 compile ...'
 pip-compile
 
-echo '=== pip install ...'
-pip install -r requirements.txt
+echo '=== pip3 install ...'
+pip3 install -r requirements.txt
 
-echo '=== pip list ...'
-pip list
+echo '=== pip3 list ...'
+pip3 list
 
 echo '=== .python-version ...'
 cat .python-version
