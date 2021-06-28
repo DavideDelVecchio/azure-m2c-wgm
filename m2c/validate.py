@@ -18,6 +18,7 @@ __version__ = "June 2021"
 
 import json
 import os
+import subprocess
 import sys
 import traceback
 import uuid
@@ -52,9 +53,9 @@ class Validator(object):
 
         for expected_cname in self.manifest.storage_container_names():
             if expected_cname in actual_container_names.keys():
-                print('ok, container present:   {}'.format(expected_cname))
+                print('OK, container present:   {}'.format(expected_cname))
             else:
-                print('error, container absent: {}'.format(expected_cname))
+                print('ERROR, container absent: {}'.format(expected_cname))
 
     def validate_raw_blobs(self):
         print('validate_raw_blobs ...')
@@ -64,10 +65,10 @@ class Validator(object):
             try:
                 properties = self.stor.blob_properties(container, blob_name)
                 size = properties['size']
-                print('ok, blob present; container: {} blob: {} size: {}'.format(
+                print('OK, blob present; container: {} blob: {} size: {}'.format(
                     container, blob_name, size))
             except:
-                print('error, blob absent: {} {}'.format(container, blob_name))
+                print('ERROR, blob absent: {} {}'.format(container, blob_name))
 
     def validate_wrangled_blobs(self):
         print('validate_wrangled_blobs ...')
@@ -77,10 +78,10 @@ class Validator(object):
             try:
                 properties = self.stor.blob_properties(container, blob_name)
                 size = properties['size']
-                print('ok, blob present; container: {} blob: {} size: {}'.format(
+                print('OK, blob present; container: {} blob: {} size: {}'.format(
                     container, blob_name, size))
             except:
-                print('error, blob absent: {} {}'.format(container, blob_name))
+                print('ERROR, blob absent: {} {}'.format(container, blob_name))
 
     def validate_target_cosmos_db(self):
         print('validate_target_cosmos_db ...')
@@ -120,7 +121,7 @@ class Validator(object):
         traceback.print_exception(
             exc_type, exc_value, exc_traceback, limit=2, file=sys.stderr)
 
-    # Manifest items look like this:
+    # Manifest items loOK like this:
     # {
     #   "source_db": "olympics",
     #   "source_coll": "countries",

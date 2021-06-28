@@ -58,7 +58,7 @@ $ ./mongo_indexes_travel_db.sh
 init database travel ...
 ...
 MongoDB shell version v4.4.5
-connecting to: mongodb://cjoakimm2ccosmosmongo.mongo.cosmos.azure.com:10255/?appName=%40cjoakimm2ccosmosmongo%40&compressors=disabled&gssapiServiceName=mongodb&maxIdleTimeMS=120000&replicaSet=globaldb&retrywrites=false&ssl=true
+connecting to: mongodb://cjoakimm2ccosmosmongo.mongo.cosmos.azure.com:10255/....&ssl=true
 Implicit session: session { "id" : UUID("76e...2da") }
 MongoDB server version: 4.0.0
 WARNING: shell and server versions do not match
