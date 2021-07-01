@@ -10,10 +10,10 @@
 
 if [ $HOME == "/home/cjoakim" ];
 then
-    echo "we're on a linux vm"
+    #echo "we're on a linux vm"
     export M2C_APP_DIR="/home/cjoakim/azure-m2c-wgm-reference-app/reference_app"
 else
-    echo "we're on a mac"
+    #echo "we're on a mac"
     export M2C_APP_DIR=$M2C_REF_APP_DIR  # <-- M2C_REF_APP_DIR already present on workstation
 fi
 export M2C_APP_ARTIFACTS_DIR=$M2C_APP_DIR"/artifacts"

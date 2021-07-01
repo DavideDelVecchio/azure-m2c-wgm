@@ -14,8 +14,6 @@ __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
 __version__ = "July 2021"
 
-# TODO - this class is not yet implemented, it is a work-in-progress
-
 import json
 import os
 import subprocess

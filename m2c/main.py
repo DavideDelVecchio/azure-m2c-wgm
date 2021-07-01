@@ -34,7 +34,6 @@ from pysrc.config import Config
 from pysrc.artifact_generator import ArtifactGenerator
 from pysrc.manifest_generator import ManifestGenerator
 from pysrc.doc_generator import DocGenerator
-from pysrc.validator import Validator
 
 from pysrc.standard_mapping_generator import StandardMappingGenerator
 
@@ -164,10 +163,6 @@ if __name__ == "__main__":
         elif func == 'gen_docs':
             generator = DocGenerator()
             generator.generate()
-        
-        elif func == 'validate':
-            validator = Validator(sys.argv)
-            validator.validate()
 
         else:
             print_options('Error: invalid function: {}'.format(func))
