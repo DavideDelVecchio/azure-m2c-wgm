@@ -437,124 +437,124 @@ OK, container present: travel-planes-adf
 OK, container present: travel-routes-adf
 
 validate_raw_blobs ...
-OK, blob present; container: olympics-raw blob: olympics__countries.json size: 20365
-OK, blob present; container: olympics-raw blob: olympics__g1896_summer.json size: 125037
-OK, blob present; container: olympics-raw blob: olympics__g1900_summer.json size: 632359
-OK, blob present; container: olympics-raw blob: olympics__g1904_summer.json size: 442391
-OK, blob present; container: olympics-raw blob: olympics__g1906_summer.json size: 576820
-OK, blob present; container: olympics-raw blob: olympics__g1908_summer.json size: 1024421
-OK, blob present; container: olympics-raw blob: olympics__g1912_summer.json size: 1354740
-OK, blob present; container: olympics-raw blob: olympics__g1920_summer.json size: 1435359
-OK, blob present; container: olympics-raw blob: olympics__g1924_summer.json size: 1709472
-OK, blob present; container: olympics-raw blob: olympics__g1924_winter.json size: 154737
-OK, blob present; container: olympics-raw blob: olympics__g1928_summer.json size: 1667939
-OK, blob present; container: olympics-raw blob: olympics__g1928_winter.json size: 196522
-OK, blob present; container: olympics-raw blob: olympics__g1932_summer.json size: 1018258
-OK, blob present; container: olympics-raw blob: olympics__g1932_winter.json size: 119721
-OK, blob present; container: olympics-raw blob: olympics__g1936_summer.json size: 2136780
-OK, blob present; container: olympics-raw blob: olympics__g1936_winter.json size: 310950
-OK, blob present; container: olympics-raw blob: olympics__g1948_summer.json size: 2106381
-OK, blob present; container: olympics-raw blob: olympics__g1948_winter.json size: 361857
-OK, blob present; container: olympics-raw blob: olympics__g1952_summer.json size: 2735307
-OK, blob present; container: olympics-raw blob: olympics__g1952_winter.json size: 358855
-OK, blob present; container: olympics-raw blob: olympics__g1956_summer.json size: 1713391
-OK, blob present; container: olympics-raw blob: olympics__g1956_winter.json size: 449058
-OK, blob present; container: olympics-raw blob: olympics__g1960_summer.json size: 2677642
-OK, blob present; container: olympics-raw blob: olympics__g1960_winter.json size: 382169
-OK, blob present; container: olympics-raw blob: olympics__g1964_summer.json size: 2547116
-OK, blob present; container: olympics-raw blob: olympics__g1964_winter.json size: 600251
-OK, blob present; container: olympics-raw blob: olympics__g1968_summer.json size: 2900825
-OK, blob present; container: olympics-raw blob: olympics__g1968_winter.json size: 638506
-OK, blob present; container: olympics-raw blob: olympics__g1972_summer.json size: 3419187
-OK, blob present; container: olympics-raw blob: olympics__g1972_winter.json size: 558672
-OK, blob present; container: olympics-raw blob: olympics__g1976_summer.json size: 2887176
-OK, blob present; container: olympics-raw blob: olympics__g1976_winter.json size: 628892
-OK, blob present; container: olympics-raw blob: olympics__g1980_summer.json size: 2380176
-OK, blob present; container: olympics-raw blob: olympics__g1980_winter.json size: 594809
-OK, blob present; container: olympics-raw blob: olympics__g1984_summer.json size: 3174258
-OK, blob present; container: olympics-raw blob: olympics__g1984_winter.json size: 722006
-OK, blob present; container: olympics-raw blob: olympics__g1988_summer.json size: 3973001
-OK, blob present; container: olympics-raw blob: olympics__g1988_winter.json size: 886867
-OK, blob present; container: olympics-raw blob: olympics__g1992_summer.json size: 4328061
-OK, blob present; container: olympics-raw blob: olympics__g1992_winter.json size: 1172426
-OK, blob present; container: olympics-raw blob: olympics__g1994_winter.json size: 1083239
-OK, blob present; container: olympics-raw blob: olympics__g1996_summer.json size: 4567620
-OK, blob present; container: olympics-raw blob: olympics__g1998_winter.json size: 1216227
-OK, blob present; container: olympics-raw blob: olympics__g2000_summer.json size: 4574295
-OK, blob present; container: olympics-raw blob: olympics__g2002_winter.json size: 1417214
-OK, blob present; container: olympics-raw blob: olympics__g2004_summer.json size: 4447320
-OK, blob present; container: olympics-raw blob: olympics__g2006_winter.json size: 1475181
-OK, blob present; container: olympics-raw blob: olympics__g2008_summer.json size: 4511678
-OK, blob present; container: olympics-raw blob: olympics__g2010_winter.json size: 1497220
-OK, blob present; container: olympics-raw blob: olympics__g2012_summer.json size: 4273943
-OK, blob present; container: olympics-raw blob: olympics__g2014_winter.json size: 1639687
-OK, blob present; container: olympics-raw blob: olympics__g2016_summer.json size: 4624209
-OK, blob present; container: olympics-raw blob: olympics__games.json size: 4309
-OK, blob present; container: openflights-raw blob: openflights__airlines.json size: 1140892
-OK, blob present; container: openflights-raw blob: openflights__airports.json size: 2691581
-OK, blob present; container: openflights-raw blob: openflights__countries.json size: 25621
-OK, blob present; container: openflights-raw blob: openflights__planes.json size: 24399
-OK, blob present; container: openflights-raw blob: openflights__routes.json size: 16384309
+OK, raw blob present; container: olympics-raw blob: olympics__countries.json size: 20365
+OK, raw blob present; container: olympics-raw blob: olympics__g1896_summer.json size: 125037
+OK, raw blob present; container: olympics-raw blob: olympics__g1900_summer.json size: 632359
+OK, raw blob present; container: olympics-raw blob: olympics__g1904_summer.json size: 442391
+OK, raw blob present; container: olympics-raw blob: olympics__g1906_summer.json size: 576820
+OK, raw blob present; container: olympics-raw blob: olympics__g1908_summer.json size: 1024421
+OK, raw blob present; container: olympics-raw blob: olympics__g1912_summer.json size: 1354740
+OK, raw blob present; container: olympics-raw blob: olympics__g1920_summer.json size: 1435359
+OK, raw blob present; container: olympics-raw blob: olympics__g1924_summer.json size: 1709472
+OK, raw blob present; container: olympics-raw blob: olympics__g1924_winter.json size: 154737
+OK, raw blob present; container: olympics-raw blob: olympics__g1928_summer.json size: 1667939
+OK, raw blob present; container: olympics-raw blob: olympics__g1928_winter.json size: 196522
+OK, raw blob present; container: olympics-raw blob: olympics__g1932_summer.json size: 1018258
+OK, raw blob present; container: olympics-raw blob: olympics__g1932_winter.json size: 119721
+OK, raw blob present; container: olympics-raw blob: olympics__g1936_summer.json size: 2136780
+OK, raw blob present; container: olympics-raw blob: olympics__g1936_winter.json size: 310950
+OK, raw blob present; container: olympics-raw blob: olympics__g1948_summer.json size: 2106381
+OK, raw blob present; container: olympics-raw blob: olympics__g1948_winter.json size: 361857
+OK, raw blob present; container: olympics-raw blob: olympics__g1952_summer.json size: 2735307
+OK, raw blob present; container: olympics-raw blob: olympics__g1952_winter.json size: 358855
+OK, raw blob present; container: olympics-raw blob: olympics__g1956_summer.json size: 1713391
+OK, raw blob present; container: olympics-raw blob: olympics__g1956_winter.json size: 449058
+OK, raw blob present; container: olympics-raw blob: olympics__g1960_summer.json size: 2677642
+OK, raw blob present; container: olympics-raw blob: olympics__g1960_winter.json size: 382169
+OK, raw blob present; container: olympics-raw blob: olympics__g1964_summer.json size: 2547116
+OK, raw blob present; container: olympics-raw blob: olympics__g1964_winter.json size: 600251
+OK, raw blob present; container: olympics-raw blob: olympics__g1968_summer.json size: 2900825
+OK, raw blob present; container: olympics-raw blob: olympics__g1968_winter.json size: 638506
+OK, raw blob present; container: olympics-raw blob: olympics__g1972_summer.json size: 3419187
+OK, raw blob present; container: olympics-raw blob: olympics__g1972_winter.json size: 558672
+OK, raw blob present; container: olympics-raw blob: olympics__g1976_summer.json size: 2887176
+OK, raw blob present; container: olympics-raw blob: olympics__g1976_winter.json size: 628892
+OK, raw blob present; container: olympics-raw blob: olympics__g1980_summer.json size: 2380176
+OK, raw blob present; container: olympics-raw blob: olympics__g1980_winter.json size: 594809
+OK, raw blob present; container: olympics-raw blob: olympics__g1984_summer.json size: 3174258
+OK, raw blob present; container: olympics-raw blob: olympics__g1984_winter.json size: 722006
+OK, raw blob present; container: olympics-raw blob: olympics__g1988_summer.json size: 3973001
+OK, raw blob present; container: olympics-raw blob: olympics__g1988_winter.json size: 886867
+OK, raw blob present; container: olympics-raw blob: olympics__g1992_summer.json size: 4328061
+OK, raw blob present; container: olympics-raw blob: olympics__g1992_winter.json size: 1172426
+OK, raw blob present; container: olympics-raw blob: olympics__g1994_winter.json size: 1083239
+OK, raw blob present; container: olympics-raw blob: olympics__g1996_summer.json size: 4567620
+OK, raw blob present; container: olympics-raw blob: olympics__g1998_winter.json size: 1216227
+OK, raw blob present; container: olympics-raw blob: olympics__g2000_summer.json size: 4574295
+OK, raw blob present; container: olympics-raw blob: olympics__g2002_winter.json size: 1417214
+OK, raw blob present; container: olympics-raw blob: olympics__g2004_summer.json size: 4447320
+OK, raw blob present; container: olympics-raw blob: olympics__g2006_winter.json size: 1475181
+OK, raw blob present; container: olympics-raw blob: olympics__g2008_summer.json size: 4511678
+OK, raw blob present; container: olympics-raw blob: olympics__g2010_winter.json size: 1497220
+OK, raw blob present; container: olympics-raw blob: olympics__g2012_summer.json size: 4273943
+OK, raw blob present; container: olympics-raw blob: olympics__g2014_winter.json size: 1639687
+OK, raw blob present; container: olympics-raw blob: olympics__g2016_summer.json size: 4624209
+OK, raw blob present; container: olympics-raw blob: olympics__games.json size: 4309
+OK, raw blob present; container: openflights-raw blob: openflights__airlines.json size: 1140892
+OK, raw blob present; container: openflights-raw blob: openflights__airports.json size: 2691581
+OK, raw blob present; container: openflights-raw blob: openflights__countries.json size: 25621
+OK, raw blob present; container: openflights-raw blob: openflights__planes.json size: 24399
+OK, raw blob present; container: openflights-raw blob: openflights__routes.json size: 16384309
 
 validate_wrangled_blobs ...
-OK, blob present; container: olympics-locations-adf blob: olympics__countries__wrangled.json size: 34165
-OK, blob present; container: olympics-games-adf blob: olympics__g1896_summer__wrangled.json size: 155348
-OK, blob present; container: olympics-games-adf blob: olympics__g1900_summer__wrangled.json size: 786885
-OK, blob present; container: olympics-games-adf blob: olympics__g1904_summer__wrangled.json size: 546118
-OK, blob present; container: olympics-games-adf blob: olympics__g1906_summer__wrangled.json size: 715085
-OK, blob present; container: olympics-games-adf blob: olympics__g1908_summer__wrangled.json size: 1271939
-OK, blob present; container: olympics-games-adf blob: olympics__g1912_summer__wrangled.json size: 1677229
-OK, blob present; container: olympics-games-adf blob: olympics__g1920_summer__wrangled.json size: 1777915
-OK, blob present; container: olympics-games-adf blob: olympics__g1924_summer__wrangled.json size: 2127098
-OK, blob present; container: olympics-games-adf blob: olympics__g1924_winter__wrangled.json size: 191436
-OK, blob present; container: olympics-games-adf blob: olympics__g1928_summer__wrangled.json size: 2066252
-OK, blob present; container: olympics-games-adf blob: olympics__g1928_winter__wrangled.json size: 242969
-OK, blob present; container: olympics-games-adf blob: olympics__g1932_summer__wrangled.json size: 1255236
-OK, blob present; container: olympics-games-adf blob: olympics__g1932_winter__wrangled.json size: 147802
-OK, blob present; container: olympics-games-adf blob: olympics__g1936_summer__wrangled.json size: 2655920
-OK, blob present; container: olympics-games-adf blob: olympics__g1936_winter__wrangled.json size: 382359
-OK, blob present; container: olympics-games-adf blob: olympics__g1948_summer__wrangled.json size: 2617628
-OK, blob present; container: olympics-games-adf blob: olympics__g1948_winter__wrangled.json size: 447683
-OK, blob present; container: olympics-games-adf blob: olympics__g1952_summer__wrangled.json size: 3395222
-OK, blob present; container: olympics-games-adf blob: olympics__g1952_winter__wrangled.json size: 445705
-OK, blob present; container: olympics-games-adf blob: olympics__g1956_summer__wrangled.json size: 2122418
-OK, blob present; container: olympics-games-adf blob: olympics__g1956_winter__wrangled.json size: 553392
-OK, blob present; container: olympics-games-adf blob: olympics__g1960_summer__wrangled.json size: 3325801
-OK, blob present; container: olympics-games-adf blob: olympics__g1960_winter__wrangled.json size: 471215
-OK, blob present; container: olympics-games-adf blob: olympics__g1964_summer__wrangled.json size: 3161868
-OK, blob present; container: olympics-games-adf blob: olympics__g1964_winter__wrangled.json size: 742111
-OK, blob present; container: olympics-games-adf blob: olympics__g1968_summer__wrangled.json size: 3586413
-OK, blob present; container: olympics-games-adf blob: olympics__g1968_winter__wrangled.json size: 789426
-OK, blob present; container: olympics-games-adf blob: olympics__g1972_summer__wrangled.json size: 4241646
-OK, blob present; container: olympics-games-adf blob: olympics__g1972_winter__wrangled.json size: 690712
-OK, blob present; container: olympics-games-adf blob: olympics__g1976_summer__wrangled.json size: 3576833
-OK, blob present; container: olympics-games-adf blob: olympics__g1976_winter__wrangled.json size: 777372
-OK, blob present; container: olympics-games-adf blob: olympics__g1980_summer__wrangled.json size: 2954222
-OK, blob present; container: olympics-games-adf blob: olympics__g1980_winter__wrangled.json size: 734144
-OK, blob present; container: olympics-games-adf blob: olympics__g1984_summer__wrangled.json size: 3929032
-OK, blob present; container: olympics-games-adf blob: olympics__g1984_winter__wrangled.json size: 892267
-OK, blob present; container: olympics-games-adf blob: olympics__g1988_summer__wrangled.json size: 4933977
-OK, blob present; container: olympics-games-adf blob: olympics__g1988_winter__wrangled.json size: 1097418
-OK, blob present; container: olympics-games-adf blob: olympics__g1992_summer__wrangled.json size: 5363845
-OK, blob present; container: olympics-games-adf blob: olympics__g1992_winter__wrangled.json size: 1446662
-OK, blob present; container: olympics-games-adf blob: olympics__g1994_winter__wrangled.json size: 1335427
-OK, blob present; container: olympics-games-adf blob: olympics__g1996_summer__wrangled.json size: 5667496
-OK, blob present; container: olympics-games-adf blob: olympics__g1998_winter__wrangled.json size: 1503860
-OK, blob present; container: olympics-games-adf blob: olympics__g2000_summer__wrangled.json size: 5677390
-OK, blob present; container: olympics-games-adf blob: olympics__g2002_winter__wrangled.json size: 1745080
-OK, blob present; container: olympics-games-adf blob: olympics__g2004_summer__wrangled.json size: 5520144
-OK, blob present; container: olympics-games-adf blob: olympics__g2006_winter__wrangled.json size: 1824854
-OK, blob present; container: olympics-games-adf blob: olympics__g2008_summer__wrangled.json size: 5597199
-OK, blob present; container: olympics-games-adf blob: olympics__g2010_winter__wrangled.json size: 1848380
-OK, blob present; container: olympics-games-adf blob: olympics__g2012_summer__wrangled.json size: 5305226
-OK, blob present; container: olympics-games-adf blob: olympics__g2014_winter__wrangled.json size: 2029927
-OK, blob present; container: olympics-games-adf blob: olympics__g2016_summer__wrangled.json size: 5716830
-OK, blob present; container: olympics-locations-adf blob: olympics__games__wrangled.json size: 7777
-OK, blob present; container: travel-airlines-adf blob: openflights__airlines__wrangled.json size: 1296479
-OK, blob present; container: travel-airports-adf blob: openflights__airports__wrangled.json size: 2930510
-OK, blob present; container: travel-countries-adf blob: openflights__countries__wrangled.json size: 30345
-OK, blob present; container: travel-planes-adf blob: openflights__planes__wrangled.json size: 30899
-OK, blob present; container: travel-routes-adf blob: openflights__routes__wrangled.json size: 18697344
+OK, blob present; container: olympics-locations-adf blob: olympics__countries__wrangled.json size: 34165 adf/raw size ratio: 1.6776331942057452
+OK, blob present; container: olympics-games-adf blob: olympics__g1896_summer__wrangled.json size: 155348 adf/raw size ratio: 1.2424162447915417
+OK, blob present; container: olympics-games-adf blob: olympics__g1900_summer__wrangled.json size: 786885 adf/raw size ratio: 1.2443643563229114
+OK, blob present; container: olympics-games-adf blob: olympics__g1904_summer__wrangled.json size: 546118 adf/raw size ratio: 1.2344690556543871
+OK, blob present; container: olympics-games-adf blob: olympics__g1906_summer__wrangled.json size: 715085 adf/raw size ratio: 1.2397021601192746
+OK, blob present; container: olympics-games-adf blob: olympics__g1908_summer__wrangled.json size: 1271939 adf/raw size ratio: 1.2416174600091174
+OK, blob present; container: olympics-games-adf blob: olympics__g1912_summer__wrangled.json size: 1677229 adf/raw size ratio: 1.2380449385121868
+OK, blob present; container: olympics-games-adf blob: olympics__g1920_summer__wrangled.json size: 1777915 adf/raw size ratio: 1.2386552771815273
+OK, blob present; container: olympics-games-adf blob: olympics__g1924_summer__wrangled.json size: 2127098 adf/raw size ratio: 1.2443011643361226
+OK, blob present; container: olympics-games-adf blob: olympics__g1924_winter__wrangled.json size: 191436 adf/raw size ratio: 1.2371701661528918
+OK, blob present; container: olympics-games-adf blob: olympics__g1928_summer__wrangled.json size: 2066252 adf/raw size ratio: 1.2388054958844419
+OK, blob present; container: olympics-games-adf blob: olympics__g1928_winter__wrangled.json size: 242969 adf/raw size ratio: 1.2363450402499465
+OK, blob present; container: olympics-games-adf blob: olympics__g1932_summer__wrangled.json size: 1255236 adf/raw size ratio: 1.2327288368959537
+OK, blob present; container: olympics-games-adf blob: olympics__g1932_winter__wrangled.json size: 147802 adf/raw size ratio: 1.234553670617519
+OK, blob present; container: olympics-games-adf blob: olympics__g1936_summer__wrangled.json size: 2655920 adf/raw size ratio: 1.2429543518752515
+OK, blob present; container: olympics-games-adf blob: olympics__g1936_winter__wrangled.json size: 382359 adf/raw size ratio: 1.229647853352629
+OK, blob present; container: olympics-games-adf blob: olympics__g1948_summer__wrangled.json size: 2617628 adf/raw size ratio: 1.2427134502257664
+OK, blob present; container: olympics-games-adf blob: olympics__g1948_winter__wrangled.json size: 447683 adf/raw size ratio: 1.2371820912680975
+OK, blob present; container: olympics-games-adf blob: olympics__g1952_summer__wrangled.json size: 3395222 adf/raw size ratio: 1.24125811106395
+OK, blob present; container: olympics-games-adf blob: olympics__g1952_winter__wrangled.json size: 445705 adf/raw size ratio: 1.2420197572835825
+OK, blob present; container: olympics-games-adf blob: olympics__g1956_summer__wrangled.json size: 2122418 adf/raw size ratio: 1.2387236771991916
+OK, blob present; container: olympics-games-adf blob: olympics__g1956_winter__wrangled.json size: 553392 adf/raw size ratio: 1.2323396977673262
+OK, blob present; container: olympics-games-adf blob: olympics__g1960_summer__wrangled.json size: 3325801 adf/raw size ratio: 1.2420633527558949
+OK, blob present; container: olympics-games-adf blob: olympics__g1960_winter__wrangled.json size: 471215 adf/raw size ratio: 1.233001630168852
+OK, blob present; container: olympics-games-adf blob: olympics__g1964_summer__wrangled.json size: 3161868 adf/raw size ratio: 1.241352180269764
+OK, blob present; container: olympics-games-adf blob: olympics__g1964_winter__wrangled.json size: 742111 adf/raw size ratio: 1.2363344667480771
+OK, blob present; container: olympics-games-adf blob: olympics__g1968_summer__wrangled.json size: 3586413 adf/raw size ratio: 1.2363424198288417
+OK, blob present; container: olympics-games-adf blob: olympics__g1968_winter__wrangled.json size: 789426 adf/raw size ratio: 1.2363642628260345
+OK, blob present; container: olympics-games-adf blob: olympics__g1972_summer__wrangled.json size: 4241646 adf/raw size ratio: 1.240542269258745
+OK, blob present; container: olympics-games-adf blob: olympics__g1972_winter__wrangled.json size: 690712 adf/raw size ratio: 1.236346192399118
+OK, blob present; container: olympics-games-adf blob: olympics__g1976_summer__wrangled.json size: 3576833 adf/raw size ratio: 1.2388690540514329
+OK, blob present; container: olympics-games-adf blob: olympics__g1976_winter__wrangled.json size: 777372 adf/raw size ratio: 1.236097771954485
+OK, blob present; container: olympics-games-adf blob: olympics__g1980_summer__wrangled.json size: 2954222 adf/raw size ratio: 1.2411779633102762
+OK, blob present; container: olympics-games-adf blob: olympics__g1980_winter__wrangled.json size: 734144 adf/raw size ratio: 1.2342516673419535
+OK, blob present; container: olympics-games-adf blob: olympics__g1984_summer__wrangled.json size: 3929032 adf/raw size ratio: 1.237779663782843
+OK, blob present; container: olympics-games-adf blob: olympics__g1984_winter__wrangled.json size: 892267 adf/raw size ratio: 1.235816599862051
+OK, blob present; container: olympics-games-adf blob: olympics__g1988_summer__wrangled.json size: 4933977 adf/raw size ratio: 1.2418766066255709
+OK, blob present; container: olympics-games-adf blob: olympics__g1988_winter__wrangled.json size: 1097418 adf/raw size ratio: 1.2374098934789546
+OK, blob present; container: olympics-games-adf blob: olympics__g1992_summer__wrangled.json size: 5363845 adf/raw size ratio: 1.239318253601324
+OK, blob present; container: olympics-games-adf blob: olympics__g1992_winter__wrangled.json size: 1446662 adf/raw size ratio: 1.2339047411094601
+OK, blob present; container: olympics-games-adf blob: olympics__g1994_winter__wrangled.json size: 1335427 adf/raw size ratio: 1.2328091953853213
+OK, blob present; container: olympics-games-adf blob: olympics__g1996_summer__wrangled.json size: 5667496 adf/raw size ratio: 1.240798490242183
+OK, blob present; container: olympics-games-adf blob: olympics__g1998_winter__wrangled.json size: 1503860 adf/raw size ratio: 1.2364961475119365
+OK, blob present; container: olympics-games-adf blob: olympics__g2000_summer__wrangled.json size: 5677390 adf/raw size ratio: 1.2411508221485497
+OK, blob present; container: olympics-games-adf blob: olympics__g2002_winter__wrangled.json size: 1745080 adf/raw size ratio: 1.2313454425372596
+OK, blob present; container: olympics-games-adf blob: olympics__g2004_summer__wrangled.json size: 5520144 adf/raw size ratio: 1.2412293246269663
+OK, blob present; container: olympics-games-adf blob: olympics__g2006_winter__wrangled.json size: 1824854 adf/raw size ratio: 1.2370373533823984
+OK, blob present; container: olympics-games-adf blob: olympics__g2008_summer__wrangled.json size: 5597199 adf/raw size ratio: 1.240602498671226
+OK, blob present; container: olympics-games-adf blob: olympics__g2010_winter__wrangled.json size: 1848380 adf/raw size ratio: 1.2345413499686084
+OK, blob present; container: olympics-games-adf blob: olympics__g2012_summer__wrangled.json size: 5305226 adf/raw size ratio: 1.2412954501264992
+OK, blob present; container: olympics-games-adf blob: olympics__g2014_winter__wrangled.json size: 2029927 adf/raw size ratio: 1.2379966420420483
+OK, blob present; container: olympics-games-adf blob: olympics__g2016_summer__wrangled.json size: 5716830 adf/raw size ratio: 1.2362827891213395
+OK, blob present; container: olympics-locations-adf blob: olympics__games__wrangled.json size: 7777 adf/raw size ratio: 1.8048271060570897
+OK, blob present; container: travel-airlines-adf blob: openflights__airlines__wrangled.json size: 1296479 adf/raw size ratio: 1.1363731185773938
+OK, blob present; container: travel-airports-adf blob: openflights__airports__wrangled.json size: 2930510 adf/raw size ratio: 1.0887690171687199
+OK, blob present; container: travel-countries-adf blob: openflights__countries__wrangled.json size: 30345 adf/raw size ratio: 1.1843800007806096
+OK, blob present; container: travel-planes-adf blob: openflights__planes__wrangled.json size: 30899 adf/raw size ratio: 1.2664043608344604
+OK, blob present; container: travel-routes-adf blob: openflights__routes__wrangled.json size: 18697344 adf/raw size ratio: 1.1411737901183383
 
 validate_target_cosmos_db ...
 OK, MongoClient created
@@ -565,5 +565,4 @@ OK, collection 'airports' is in database 'travel'
 OK, collection 'countries' is in database 'travel'
 OK, collection 'planes' is in database 'travel'
 OK, collection 'routes' is in database 'travel'
-
 ```

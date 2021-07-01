@@ -38,6 +38,7 @@ class Validator(object):
         for arg in args:
             if arg == '--verbose':
                 self.verbose = True
+        self.blob_data = dict()
 
     def validate_storage_containers(self):
         print('')
@@ -62,25 +63,39 @@ class Validator(object):
             blob_name = item["blob_name"]
             try:
                 properties = self.stor.blob_properties(container, blob_name)
-                size = properties['size']
-                print('OK, blob present; container: {} blob: {} size: {}'.format(
+                size = int(properties['size'])
+                key = 'raw:{}'.format(blob_name)
+                self.blob_data[key] = size
+                print('OK, raw blob present; container: {} blob: {} size: {}'.format(
                     container, blob_name, size))
             except:
-                print('ERROR, blob absent: {} {}'.format(container, blob_name))
+                print('ERROR, raw blob absent: {} {}'.format(container, blob_name))
 
     def validate_wrangled_blobs(self):
         print('')
         print('validate_wrangled_blobs ...')
         for item in self.manifest.items:
             container = item["adf_storage_container"]
-            blob_name = item["wrangled_blob_name"]
+            raw_blob_name = item["blob_name"]
+            adf_blob_name = item["wrangled_blob_name"]
+            raw_key = 'raw:{}'.format(raw_blob_name)
+            adf_key = 'adf:{}'.format(adf_blob_name)
             try:
-                properties = self.stor.blob_properties(container, blob_name)
-                size = properties['size']
-                print('OK, blob present; container: {} blob: {} size: {}'.format(
-                    container, blob_name, size))
+                properties = self.stor.blob_properties(container, adf_blob_name)
+                adf_size = int(properties['size'])
+                self.blob_data[adf_key] = adf_size
+
+                if raw_key in self.blob_data.keys():
+                    raw_size = self.blob_data[raw_key]
+                    ratio = float(adf_size) / float(raw_size)
+                    print('OK, blob present; container: {} blob: {} size: {} adf/raw size ratio: {}'.format(
+                        container, adf_blob_name, adf_size, ratio))
+                else:
+                    print('OK, blob present; container: {} blob: {} size: {}'.format(
+                        container, adf_blob_name, adf_size))
             except:
-                print('ERROR, blob absent: {} {}'.format(container, blob_name))
+                self.print_exception()
+                print('ERROR, blob absent: {} {}'.format(container, adf_blob_name))
 
     def validate_target_cosmos_db(self):
         print('')
