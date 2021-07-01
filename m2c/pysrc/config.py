@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "June 2021"
+__version__ = "July 2021"
 
 import arrow
 import glob
@@ -144,7 +144,7 @@ class Config(object):
         return arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
 
     def authored_year_month(self):
-        return 'June 2021'
+        return 'July 2021'
 
     def env_var(self, name, default_value=''):
         try:

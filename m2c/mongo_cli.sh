@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bash script to connect to the source mongodb database with the mongo cli program.
-# Chris Joakim, Microsoft, June 2021
+# Chris Joakim, Microsoft, July 2021
 
 source env.sh
 

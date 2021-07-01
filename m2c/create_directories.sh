@@ -2,7 +2,7 @@
 
 # Bash script to create the initial directory structure for the 
 # generated application and artifacts.
-# Chris Joakim, Microsoft, June 2021
+# Chris Joakim, Microsoft, July 2021
 
 source env.sh
 

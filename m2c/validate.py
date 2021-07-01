@@ -12,7 +12,7 @@ Usage:
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "June 2021"
+__version__ = "July 2021"
 
 # TODO - this class is not yet implemented, it is a work-in-progress
 

@@ -9,7 +9,7 @@ Usage:
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com,christopher.joakim@gmail.com"
 __license__ = "MIT"
-__version__ = "June 2021"
+__version__ = "July 2021"
 
 import json
 import os

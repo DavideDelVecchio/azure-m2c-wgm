@@ -2,7 +2,7 @@
 
 # This script defines environment variables used in this migration process;
 # it is 'sourced' by other scripts in this repo.
-# Chris Joakim, Microsoft, June 2021
+# Chris Joakim, Microsoft, July 2021
 
 # These next three directory locations currently point to where the 
 # generated artifacts and data are written to; they should be external

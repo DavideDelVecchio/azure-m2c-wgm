@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Bash script to install python3 and jq on an Ubuntu VM.
-# Chris Joakim, Microsoft, June 2021
+# Chris Joakim, Microsoft, July 2021
 
 echo '=== apt install python3-pip'
 sudo apt update
