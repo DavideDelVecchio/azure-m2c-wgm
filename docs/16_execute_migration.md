@@ -400,13 +400,15 @@ From the pipeline runs list, click into a Pipeline run to display its details.
 
 ## Validation
 
-At any point in the migration you can execute a **validation process** to confirm that expected Storage Containers, Blobs, and CosmosDB databases and containers are actually present.
+At any point in the migration you can execute a **validation process** to confirm 
+that expected Storage Containers, Blobs, and CosmosDB databases and containers are
+actually present.
 
 For example, before you execute the wrangling scripts you'll want to verify
 that the input blobs are present.
 
-Likewise, before you execute the ADF pipelines you'll want to confirm that both the wrangled blobs and the target  CosmosDB databases and collections 
-are present.
+Likewise, before you execute the ADF pipelines you'll want to confirm that both 
+the wrangled blobs and the target  CosmosDB databases and collections are present.
 
 Here's a list of the available validations and how to execute them:
 
@@ -566,3 +568,7 @@ OK, collection 'countries' is in database 'travel'
 OK, collection 'planes' is in database 'travel'
 OK, collection 'routes' is in database 'travel'
 ```
+
+Note: if you execute validate.py with the **all** option it will calculate,
+and additionally display, the ratio of the wrangled blob size vs the corresponding
+raw blob size.
