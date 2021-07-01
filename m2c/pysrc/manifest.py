@@ -194,9 +194,3 @@ class Manifest(object):
         with open(outfile, 'wt') as f:
             f.write(txt)
         print("file written: " + outfile)
-
-    # def write(self, outfile, s, verbose=True):
-    #     with open(outfile, 'w') as f:
-    #         f.write(s)
-    #         if verbose:
-    #             print('file written: {}'.format(outfile))

@@ -60,8 +60,6 @@ class ManifestGenerator(object):
                 pk_name     = coll['mapping']['pk_name']
                 doc_count   = self.doc_count(metadata, source_coll)
                 doc_size    = self.avg_doc_size(metadata, source_coll)
-                # local_file  = self.config.mongoexport_file(source_db, source_coll)
-                # raw_blob    = os.path.basename(local_file)
                 blob_name          = self.config.blob_name(source_db, source_coll)
                 raw_blob_container = self.config.blob_raw_container_name(source_db)
                 adf_blob_container = self.config.blob_adf_container_name(target_db, target_coll)
