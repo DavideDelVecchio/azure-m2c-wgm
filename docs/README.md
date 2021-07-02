@@ -18,6 +18,6 @@
 - [13 - Create the CosmosDB Target Databases and Containers](13_create_the_cosmosdb_target_databases_and_containers.md)
 - [14 - CosmosDB Container Indexing](14_cosmosdb_container_indexing.md)
 - [15 - ADF Setup with Git Source Control](15_adf_setup_with_git_source_control.md)
-- [16 - Partition Key Distribution Analysis](16_pk_distribution)
+- [16 - Partition Key Distribution Analysis](16_pk_distribution.md)
 - [18 - Execute Migration](18_execute_migration.md)
 - [20 - Roadmap](20_roadmap.md)
