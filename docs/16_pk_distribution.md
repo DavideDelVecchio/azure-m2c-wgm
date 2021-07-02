@@ -13,14 +13,19 @@ and therefore refactor your partition key design before loading your target Cosm
 One way to do this analyis is with an Azure Spark environment - such as **Azure Synapse,
 Azure Machine Learning, or Azure Databricks** as shown here.
 
-This example shows a simple **PySpark Notebook** which reads the wrangled/transformed blob data destined for a target collection, groups the partition key value, and produces
+This example shows a simple **PySpark Notebook** which reads the wrangled/transformed blob data destined for a target collection, groups the partition key values, and produces
 a histogram visualization.  This visualization can be very useful in understanding your data. 
 
-<p align="center"><img src="img/pyspark-pk-distribution-notebook.png" width="90%"></p>
+Note that this PySpark Notebook reads all of the JSON Blobs in the given olympics-games-adf
+container in one DataFrame (i.e. - df) for analysis.  Likewise, the Azure Data Factory 
+Pipeline would copy all of these blobs from this storage container into a target CosmosDB 
+container.
+
+<p align="center"><img src="img/pyspark-pk-distribution-notebook.png" width="95%"></p>
 
 ---
 
-<p align="center"><img src="img/pyspark-pk-distribution-diagram.png" width="90%"></p>
+<p align="center"><img src="img/pyspark-pk-distribution-diagram.png" width="80%"></p>
 
 ---
 
