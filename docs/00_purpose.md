@@ -19,6 +19,10 @@ Migration aspects that are not addressed by this project include:
 In the following pages, pages 01 through 15 describe the migration process and its
 setup.  Only in step 16 do you actually execute the migration.
 
+The current focus of this project is on migrating MongoDB databases to the 
+**CosmosDB/Mongo API**, but the process can easily be modified to target the
+**CosmosDB/SQL API**.
+
 ## Other Microsoft Solutions to Consider
 
 - https://docs.microsoft.com/en-us/azure/cosmos-db/import-data  (DMT)

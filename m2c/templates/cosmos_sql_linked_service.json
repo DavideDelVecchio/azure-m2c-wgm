@@ -3,10 +3,9 @@
     "type": "Microsoft.DataFactory/factories/linkedservices",
     "properties": {
         "annotations": [],
-        "type": "CosmosDbMongoDbApi",
+        "type": "CosmosDb",
         "typeProperties": {
-            "connectionString": "{{ conn_str }}",
-            "database": "{{ database }}",
+            "connectionString": "AccountEndpoint=https://{{ accountname }}.documents.azure.com:443/;Database={{ dbname }};",
             "encryptedCredential": "{{ credential }}"
         }
     }
