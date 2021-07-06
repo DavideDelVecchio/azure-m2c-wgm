@@ -6,7 +6,7 @@ of simple programs.
 In **unix/linux pseudocode**, the processing pipeline looks like this:
 
 ```
-mongoexport | blob_upload | wrangle_transform | load_cosmosdb_with adf
+mongoexport | blob_upload | wrangle_transform | load_cosmosdb_with_adf
 ```
 
 ## MongoDB
