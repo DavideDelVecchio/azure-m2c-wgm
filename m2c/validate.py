@@ -19,6 +19,7 @@ import sys
 import traceback
 import uuid
 
+from docopt import docopt
 from operator import itemgetter
 from pymongo import MongoClient
 
@@ -145,6 +146,11 @@ class Validator(object):
         print("*** exception:")
         traceback.print_exception(
             exc_type, exc_value, exc_traceback, limit=2, file=sys.stderr)
+
+def print_options(msg):
+    print(msg)
+    arguments = docopt(__doc__, version=__version__)
+    print(arguments)
 
 
 if __name__ == "__main__":
