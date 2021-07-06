@@ -3,6 +3,12 @@
 The project adopts a unix philosophy of building a complex system from a series
 of simple programs.
 
+In **unix/linux pseudocode**, the processing pipeline looks like this:
+
+```
+mongoexport | blob_upload | wrangle_transform | load_cosmosdb_with adf
+```
+
 ## MongoDB
 
 The **Source Database** is assumed to be MongoDB.  This can be located either on-prem,
