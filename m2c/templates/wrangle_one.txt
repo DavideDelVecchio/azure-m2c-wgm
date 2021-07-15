@@ -39,6 +39,7 @@ echo 'first line of output file:'
 head -1 {{ wrangled_outfile }}
 
 if [ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ];
+then
     echo 'The wrangled file will be loaded into CosmosDB with mongoimport now' 
 
     mongoimport \

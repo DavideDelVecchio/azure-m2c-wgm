@@ -63,5 +63,6 @@ export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
 export M2C_COSMOS_LOAD_METHOD="mongoimport"
 
 # mongoimport parameters
-export M2C_MONGOIMPORT_NIWORKERS="1"
+export M2C_MONGOIMPORT_NWORKERS="1"
 export M2C_MONGOIMPORT_BATCH_SIZE="24"
+export M2C_MONGOIMPORT_MODE="upsert"  # [insert|upsert|merge|delete]
