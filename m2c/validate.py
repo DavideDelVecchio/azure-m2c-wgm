@@ -127,10 +127,9 @@ class Validator(object):
                     #cmd = { 'collStats' : curr_cname, 'verbose' : True }
                     stats = db_obj.command( { 'collStats' : curr_cname, 'verbose' : True })
                     if stats == None:
-                        print("ERROR, can't get stats for collection '{}'".format(curr_cname))
+                        print("ERROR, can't get stats for collection '{}'".format(curr_cname))   
                     else:
-                        pass
-                        #print("OK, stats for collection '{}' = {}".format(curr_cname, stats))
+                        print("OK, collection '{}' has {} documents".format(curr_cname, stats['count']))
                 else:
                     print("ERROR, collection '{}' is NOT in database '{}'".format(
                         curr_cname, curr_dbname))
