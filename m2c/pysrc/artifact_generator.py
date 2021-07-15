@@ -249,6 +249,10 @@ class ArtifactGenerator(object):
             template_data['blob_name'] = blob_name
             template_data['local_file_path'] = item['local_file_path']
             template_data['wrangled_outfile'] = item['wrangled_outfile']
+
+            template_data['target_db'] = item['target_db']
+            template_data['target_coll'] = item['target_coll']
+
             template_data['redirect'] = redirect
             self.render_template(template_name, template_data, outfile)
 

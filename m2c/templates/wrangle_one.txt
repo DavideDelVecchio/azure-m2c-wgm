@@ -38,6 +38,21 @@ echo ''
 echo 'first line of output file:'
 head -1 {{ wrangled_outfile }}
 
+if [ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ];
+    echo 'The wrangled file will be loaded into CosmosDB with mongoimport now' 
+
+    mongoimport \
+        --uri $AZURE_M2C_COSMOS_MONGO_CONN_STRING \
+        --db {{ target_db }} \
+        --collection {{ target_coll }} \
+        --file {{ wrangled_outfile }} \
+        --numInsertionWorkers $M2C_MONGOIMPORT_NWORKERS \
+        --batchSize $M2C_MONGOIMPORT_BATCH_SIZE \
+        --mode $M2C_MONGOIMPORT_MODE \
+        --writeConcern "{w:0}" \
+        --ssl
+fi 
+
 echo 'deleting the downloaded and wrangled files to save disk space...'
 rm {{ local_file_path }}
 rm {{ wrangled_outfile }}
