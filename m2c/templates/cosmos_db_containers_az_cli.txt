@@ -25,6 +25,10 @@ az cosmosdb mongodb collection create \
     --database-name {{ target_db }} \
     --name {{ c['name'] }} \
     --shard {{ c['pk'] }}
+    
+    # --analytical-storage-ttl
+
+# see https://docs.microsoft.com/en-us/cli/azure/cosmosdb/mongodb/collection?view=azure-cli-latest
 
 {% endfor %}
 echo 'done'

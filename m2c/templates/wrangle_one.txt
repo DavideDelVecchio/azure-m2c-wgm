@@ -40,7 +40,8 @@ head -1 {{ wrangled_outfile }}
 
 if [ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ];
 then
-    echo 'The wrangled file will be loaded into CosmosDB with mongoimport now' 
+    echo ''
+    echo 'executing mongoimport to db: {{ target_db }} coll: {{ target_coll }} ...' 
 
     mongoimport \
         --uri $AZURE_M2C_COSMOS_MONGO_CONN_STRING \
@@ -52,6 +53,8 @@ then
         --mode $M2C_MONGOIMPORT_MODE \
         --writeConcern "{w:0}" \
         --ssl
+
+    echo 'mongoimport completed' 
 fi 
 
 echo 'deleting the downloaded and wrangled files to save disk space...'
