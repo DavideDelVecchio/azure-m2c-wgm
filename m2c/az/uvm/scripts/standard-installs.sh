@@ -35,6 +35,9 @@ mongo --version
 which mongoimport
 mongoimport --version
 
+echo '=== install dotnet 5'
+sudo snap install dotnet-sdk --classic --channel=5.0
+# https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
 
 echo ''
 echo 'todo - run sudo ./pyenv_install_part1.sh'
