@@ -62,7 +62,7 @@ export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
 # How we populate CosmosDB/Mongo; either adf or mongoimport or dotnet_mongo_loader
 # export M2C_COSMOS_LOAD_METHOD="adf"
 # export M2C_COSMOS_LOAD_METHOD="mongoimport"
-export M2C_COSMOS_LOAD_METHOD="dotnet_mongo_loader"
+export M2C_COSMOS_LOAD_METHOD="mongoimport"
 
 # mongoimport parameters
 export M2C_MONGOIMPORT_NWORKERS="1"
