@@ -63,7 +63,7 @@ then
     echo 'executing dotnet_mongo_loader to db: {{ target_db }} coll: {{ target_coll }} ...' 
 
     dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj \
-        {{ wrangled_outfile }} \
+        {{ target_db }} {{ target_coll }} {{ wrangled_outfile }} \
         $M2C_DOTNETMONGOLOADER_TARGET \
         $M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY \
         --tracerInterval $M2C_DOTNETMONGOLOADER_TRACER_INTERVAL \
