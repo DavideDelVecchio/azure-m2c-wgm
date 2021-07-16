@@ -23,6 +23,7 @@ done
 echo 'ensuring target artifact directories exist ...'
 mkdir -p $M2C_APP_ARTIFACTS_DIR/adf
 mkdir -p $M2C_APP_ARTIFACTS_DIR/shell
+mkdir -p $M2C_APP_ARTIFACTS_DIR/shell/dotnet_mongo_loader
 
 echo 'deleting previous generated artifacts ...'
 rm  $M2C_APP_ARTIFACTS_DIR/adf/*.*
@@ -33,6 +34,9 @@ cp env.sh           templates
 cp storage.py       templates 
 cp requirements.in  templates 
 cp requirements.txt templates 
+
+echo 'copying dotnet_mongo_loader files ...'
+cp dotnet_mongo_loader/*.* $M2C_APP_ARTIFACTS_DIR/shell/dotnet_mongo_loader
 
 # echo 'listing templates ...'
 # ls -al templates

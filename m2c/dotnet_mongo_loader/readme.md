@@ -33,3 +33,12 @@ The dotnet project can be executed like this (from the parent directory):
 ```
 $ dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj
 ```
+
+```
+$ source env.sh ; dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj \
+  data/openflights__airports.json \
+  --targetCosmos \
+  --createNewDocIds \
+  --tracerInterval 100 \
+  --rowMaxRetries 7
+```

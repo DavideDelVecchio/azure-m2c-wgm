@@ -59,10 +59,18 @@ export M2C_COSMOS_MONGODB_USER=$AZURE_M2C_COSMOS_MONGO_USER
 export M2C_COSMOS_MONGODB_PASS=$AZURE_M2C_COSMOS_MONGO_PASS
 export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
 
-# How we populate CosmosDB/Mongo; either adf or mongoimport
-export M2C_COSMOS_LOAD_METHOD="mongoimport"
+# How we populate CosmosDB/Mongo; either adf or mongoimport or dotnet_mongo_loader
+# export M2C_COSMOS_LOAD_METHOD="adf"
+# export M2C_COSMOS_LOAD_METHOD="mongoimport"
+export M2C_COSMOS_LOAD_METHOD="dotnet_mongo_loader"
 
 # mongoimport parameters
 export M2C_MONGOIMPORT_NWORKERS="1"
 export M2C_MONGOIMPORT_BATCH_SIZE="24"
 export M2C_MONGOIMPORT_MODE="upsert"  # [insert|upsert|merge|delete]
+
+# dotnet_mongo_loader parameters
+export M2C_DOTNETMONGOLOADER_TARGET="--targetCosmos" # --targetLocal
+export M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY="--createNewDocIds" # or --retainIds 
+export M2C_DOTNETMONGOLOADER_TRACER_INTERVAL="1000"  # log on every 1000 lines
+export M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES="10"    # number of times to try each line

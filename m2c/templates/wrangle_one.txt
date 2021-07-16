@@ -57,6 +57,19 @@ then
     echo 'mongoimport completed' 
 fi 
 
+if [ $M2C_COSMOS_LOAD_METHOD == "dotnet_mongo_loader" ];
+then
+    echo ''
+    echo 'executing dotnet_mongo_loader to db: {{ target_db }} coll: {{ target_coll }} ...' 
+
+    dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj \
+        {{ wrangled_outfile }} \
+        $M2C_DOTNETMONGOLOADER_TARGET \
+        $M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY \
+        --tracerInterval $M2C_DOTNETMONGOLOADER_TRACER_INTERVAL \
+        --rowMaxRetries $M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES
+fi
+
 echo 'deleting the downloaded and wrangled files to save disk space...'
 rm {{ local_file_path }}
 rm {{ wrangled_outfile }}
