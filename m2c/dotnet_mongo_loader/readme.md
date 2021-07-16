@@ -26,8 +26,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   dotnet_mongo_loader -> .../dotnet_mongo_loader/bin/Debug/net5.0/publish/
 ```
 
-The generated dll file can be executed cross-platform, like this:
+### Execute the Console App
+
+The dotnet project can be executed like this (from the parent directory):
 
 ```
-$ dotnet run bin/Debug/net5.0/dotnet_mongo_loader.dll
+$ dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj
 ```
