@@ -64,15 +64,19 @@ then
 
     dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj \
         {{ target_db }} {{ target_coll }} {{ wrangled_outfile }} \
-        $M2C_DOTNETMONGOLOADER_TARGET \
+        $M2C_DOTNETMONGOLOADER_TARGET $M2C_DOTNETMONGOLOADER_LOAD_IND \
         $M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY \
         --tracerInterval $M2C_DOTNETMONGOLOADER_TRACER_INTERVAL \
-        --rowMaxRetries $M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES
+        --rowMaxRetries $M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES \
+        $M2C_DOTNETMONGOLOADER_VERBOSE
 fi
 
-echo 'deleting the downloaded and wrangled files to save disk space...'
-rm {{ local_file_path }}
-rm {{ wrangled_outfile }}
+if [ $M2C_WRANGLING_CLEANUP == "cleanup" ];
+then
+    echo ''
+    echo 'deleting the downloaded and wrangled files to save disk space...'
+    rm {{ local_file_path }}
+    rm {{ wrangled_outfile }}
+fi
 
-echo 'done' 
-
+echo 'done'

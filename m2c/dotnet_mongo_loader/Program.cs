@@ -19,6 +19,7 @@ namespace dotnet_mongo_loader {
         private static string collname = null;
         private static string infile   = null;
         private static string target   = "none";
+        private static bool   doLoad   = true;
         private static bool   verbose  = false;
         private static bool   createNewDocIds = false;
         private static int    lineNumber = 0;
@@ -71,6 +72,9 @@ namespace dotnet_mongo_loader {
                     }
                     if (arg.Equals("--targetCosmos")) {
                         target = "cosmos";
+                    }
+                    if (arg.Equals("--noload")) {
+                        doLoad = false;
                     }
                     if (arg.Equals("--verbose")) {
                         verbose = true;
@@ -177,14 +181,18 @@ namespace dotnet_mongo_loader {
                     jObj.Remove("_id");
                 }
                 if (verbose) {
-                    Console.WriteLine($"ProcessLine, jObj: {jObj.ToJson()}");
+                    Console.WriteLine($"ProcessLine, jObj: {jObj}");
                 }
 
-                var bsonDoc = jObj.ToBsonDocument();
+                //var bsonDoc = jObj.ToBsonDocument();
+                var bsonDoc = BsonDocument.Parse(jObj.ToString());
                 if (verbose) {
                     Console.WriteLine($"ProcessLine, bsonDoc: {bsonDoc}");
                 }
-                collectionObj.InsertOne(bsonDoc);
+
+                if (doLoad) {
+                    collectionObj.InsertOne(bsonDoc);
+                }
                 return true;
             }
             catch (Exception e) {
