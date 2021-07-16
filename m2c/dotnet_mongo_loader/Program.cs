@@ -172,10 +172,14 @@ namespace dotnet_mongo_loader {
         private static bool ProcessLine(dynamic collectionObj, string line) {
 
             try {
-                JObject jObj = JObject.Parse(line);
+                JObject jObj = JObject.Parse(line.Trim());
                 if (createNewDocIds) {
                     jObj.Remove("_id");
                 }
+                if (verbose) {
+                    Console.WriteLine($"ProcessLine, jObj: {jObj.ToJson()}");
+                }
+
                 var bsonDoc = jObj.ToBsonDocument();
                 if (verbose) {
                     Console.WriteLine($"ProcessLine, bsonDoc: {bsonDoc}");
