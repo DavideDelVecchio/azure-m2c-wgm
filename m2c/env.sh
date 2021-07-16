@@ -70,12 +70,12 @@ export M2C_MONGOIMPORT_BATCH_SIZE="24"
 export M2C_MONGOIMPORT_MODE="upsert"  # [insert|upsert|merge|delete]
 
 # dotnet_mongo_loader parameters
-export M2C_DOTNETMONGOLOADER_TARGET="--targetLocal" # --targetLocal or --targetCosmos
-export M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY="--createNewDocIdsx" # or --retainIds 
+export M2C_DOTNETMONGOLOADER_TARGET="--targetCosmos" # --targetLocal or --targetCosmos
+export M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY="--createNewDocIds" # or --retainIds 
 export M2C_DOTNETMONGOLOADER_TRACER_INTERVAL="1000"  # log on every 1000 lines
 export M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES="10"    # number of times to try each line
-export M2C_DOTNETMONGOLOADER_VERBOSE="--verbose"     # --verbose or --quiet
-export M2C_DOTNETMONGOLOADER_LOAD_IND="--noload"     # --load or --noload
+export M2C_DOTNETMONGOLOADER_VERBOSE="--quiet"       # --verbose or --quiet
+export M2C_DOTNETMONGOLOADER_LOAD_IND="--load"       # --load or --noload
 
 # wrangling process cleanup
 export M2C_WRANGLING_CLEANUP="keep"                  # cleanup or keep
