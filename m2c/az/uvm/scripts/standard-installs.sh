@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Bash script to install python3 and jq on an Ubuntu VM.
+# Bash script to install the software necessary for the migration process.
 # Chris Joakim, Microsoft, July 2021
+
+echo '=== install the az cli'
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 echo '=== apt install python3-pip'
 sudo apt update
@@ -37,7 +40,19 @@ mongoimport --version
 
 echo '=== install dotnet 5'
 sudo snap install dotnet-sdk --classic --channel=5.0
-# https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
+# See https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
+
+echo '=== install docker'
+sudo apt install docker.io
+docker version
+
+echo '=== install docker-compose'
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+
+echo '=== listing the installed apt packages'
+sudo apt list --installed
 
 echo ''
 echo 'todo - run sudo ./pyenv_install_part1.sh'
