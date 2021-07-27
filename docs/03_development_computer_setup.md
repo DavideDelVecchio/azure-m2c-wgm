@@ -97,11 +97,17 @@ Next, create a **Service Principal (SP)** .  The name MongoToCosmosMigration in 
 isn't pertinent; choose a name that's consistent with you organization standards.
 This creates a SP with the default role of 'Contributor'.
 
-**Capture the JSON output of this command - you set these values in env.sh, below.**
-
 ```
 $ az ad sp create-for-rbac --name MongoToCosmosMigration
 ```
+
+**Capture the JSON output of this command - you set these values in env.sh, below.**.  These Service Principal environment variable values will be referenced in generated
+script **az_login_sp.sh** used later in the migration process.
+
+Note that the **az login** command allows you to login either from an interactive
+web browser with a given code, or in a non-interactive manner with a Service Principal.
+When executing "az login" in a VM terminal session, then the Service Principal approach
+must be used.
 
 ## Environment Variables (env.sh)
 
