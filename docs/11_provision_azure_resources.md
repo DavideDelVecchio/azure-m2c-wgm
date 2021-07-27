@@ -80,7 +80,6 @@ See section [13 - Create the CosmosDB Target Databases and Containers](13_create
 
 Execute script **/uvm.sh create**
 
-
 ```
 $ ./uvm.sh create
 creating UVM rg: cjoakimm2c
@@ -106,7 +105,6 @@ $ ssh -A <user>@<vm-ip-address-per-azure-portal>
 
 ### Install the az CLI
 
-See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
 
 ```
 $ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -137,10 +135,17 @@ $ git clone https://github.com/cjoakim/azure-m2c-wgm-reference-app.git
 
 **Ubuntu Linux Virtual Machines are recommended, with the following installed:**
 
-- **python3**.  See https://www.python.org.  The project was developed and tested with python 3.8.6.
-- **mongo client** - from MongoDB Community Edition
 - **Azure CLI (az)** - See https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+- **python3**  - The project was developed and tested with python 3.8.6.
+- **python3-pip** - python package manager
+- **python3-venv** - python virtual environment tool
+- **mongo client, mongoexport, mongoimport** - from MongoDB Community Edition
+- **jq** - JSON validator and pretty-printer
+- **docker**
+- **docker-compose**
 
-**Standard Python** is recommended; **Anaconda** is not.
+**Note: Standard Python** is strongly recommended; **Anaconda** is not.
 
-TODO - installs
+See the **standard-installs.sh** script in the **m2c/az/uvm/scripts/** directory of
+this repo.  This script can be executed on your Ubuntu Linux Virtual Machine
+to install the above software which is necessary for the migration process.
