@@ -50,7 +50,7 @@ then
 fi
 ```
 
-## Results
+## Results - dotnet_mongo_loader
 
 ```
 executing dotnet_mongo_loader to db: travel coll: routes ...
@@ -146,5 +146,10 @@ ProcessingLoop - interval, line: 66000, minutes: 7.789483333333333, retries: 0, 
 ProcessingLoop - interval, line: 67000, minutes: 7.9103, retries: 0, failures: 0
 ProcessingLoop - completed, line: 67663, minutes: 7.989466666666667, retries: 0, failures: 0
 done
+```
+
+## Results - mongoimport
+
+```
 
 ```
