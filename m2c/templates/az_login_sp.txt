@@ -13,6 +13,9 @@ az login --service-principal \
     --password $M2C_SP_PASSWORD \
     --tenant   $M2C_SP_TENANT
 
+echo 'setting subscription ...'
+az account set --subscription $M2C_SUBSCRIPTION_ID
+
 echo 'showing az account ...'
 az account show
 

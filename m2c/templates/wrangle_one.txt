@@ -38,13 +38,13 @@ echo ''
 echo 'first line of output file:'
 head -1 {{ wrangled_outfile }}
 
-if [ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ];
+if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];
 then
     echo ''
     echo 'executing mongoimport to db: {{ target_db }} coll: {{ target_coll }} ...' 
 
     mongoimport \
-        --uri $AZURE_M2C_COSMOS_MONGO_CONN_STRING \
+        --uri $M2C_COSMOS_MONGO_CONN_STRING \
         --db {{ target_db }} \
         --collection {{ target_coll }} \
         --file {{ wrangled_outfile }} \
@@ -57,7 +57,7 @@ then
     echo 'mongoimport completed' 
 fi 
 
-if [ $M2C_COSMOS_LOAD_METHOD == "dotnet_mongo_loader" ];
+if [[ $M2C_COSMOS_LOAD_METHOD == "dotnet_mongo_loader" ]];
 then
     echo ''
     echo 'executing dotnet_mongo_loader to db: {{ target_db }} coll: {{ target_coll }} ...' 
@@ -71,7 +71,7 @@ then
         $M2C_DOTNETMONGOLOADER_VERBOSE
 fi
 
-if [ $M2C_WRANGLING_CLEANUP == "cleanup" ];
+if [[ $M2C_WRANGLING_CLEANUP == "cleanup" ]];
 then
     echo ''
     echo 'deleting the downloaded and wrangled files to save disk space...'

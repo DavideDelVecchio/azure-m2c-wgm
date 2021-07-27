@@ -8,7 +8,7 @@
 # generated artifacts and data are written to; they should be external
 # to this GitHub repo.
 
-if [ $HOME == "/home/cjoakim" ];
+if [[ $HOME == "/home/cjoakim" ]];
 then
     #echo "we're on a linux vm"
     export M2C_APP_DIR="/home/cjoakim/azure-m2c-wgm-reference-app/reference_app"
