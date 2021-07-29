@@ -16,6 +16,7 @@ cp env.sh         $M2C_APP_ARTIFACTS_DIR/shell
 cp mongo_cli.sh   $M2C_APP_ARTIFACTS_DIR/shell
 cp requirements*  $M2C_APP_ARTIFACTS_DIR/shell
 cp storage.py     $M2C_APP_ARTIFACTS_DIR/shell
+cp validate.py    $M2C_APP_ARTIFACTS_DIR/shell
 cp wrangle.py     $M2C_APP_ARTIFACTS_DIR/shell
 cp pysrc/*.py     $M2C_APP_ARTIFACTS_DIR/shell/pysrc
 
