@@ -1,10 +1,10 @@
 """
 Usage:
-    source env.sh ; python omniscript_validate.py storage_containers
-    source env.sh ; python omniscript_validate.py raw_blobs
-    source env.sh ; python omniscript_validate.py wrangled_blobs
-    source env.sh ; python omniscript_validate.py target_cosmos_db
-    source env.sh ; python omniscript_validate.py all
+    source env.sh ; python omniscript_validate.py <function> <source_db> <outfile>
+    source env.sh ; python omniscript_validate.py storage_containers olympics tmp/vsc.json
+    source env.sh ; python omniscript_validate.py wrangled_blobs     olympics tmp/vwb.json
+    source env.sh ; python omniscript_validate.py target_cosmos_db   olympics tmp/vcdb.json
+    source env.sh ; python omniscript_validate.py target_cosmos_docs olympics tmp/vcdocs.json
 """
 
 __author__  = 'Chris Joakim'
@@ -19,6 +19,8 @@ import sys
 import traceback
 import uuid
 
+import arrow
+
 from docopt import docopt
 from operator import itemgetter
 from pymongo import MongoClient
@@ -28,10 +30,13 @@ from pysrc.manifest import Manifest
 from storage import StorageUtil
 
 
-class Validator(object):
+class OmniscriptValidator(object):
 
-    def __init__(self, args):
+    def __init__(self, args, dbname, outfile):
         self.args = args
+        self.dbname = dbname    # the source database name
+        self.outfile = outfile  # write this file if validation is successful
+        self.errfile = '{}.errors.json'.format(self.outfile) 
         self.config = Config()
         self.manifest = Manifest()
         self.stor = StorageUtil()
@@ -41,40 +46,44 @@ class Validator(object):
                 self.verbose = True
         self.blob_data = dict()
 
+        self.outdata = dict()  # outdata is written as JSON as end of process
+        self.outdata['dbname'] = self.dbname 
+        self.outdata['outfile'] = self.outfile 
+        self.outdata['timestamp'] = arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
+        self.outdata['messages'] = list()
+        self.outdata['errors'] = list()
+
     def validate_storage_containers(self):
-        print('')
-        print('validate_storage_containers ...')
+        self.outdata['function'] = 'storage_containers' 
         actual_container_names = dict()
         actual_containers = self.stor.list_containers()
         for actual in actual_containers:
             name = actual['name']
             actual_container_names[name] = actual
 
-        for expected_cname in self.manifest.storage_container_names():
-            if expected_cname in actual_container_names.keys():
-                print('OK, container present: {}'.format(expected_cname))
-            else:
-                print('ERROR, container absent: {}'.format(expected_cname))
+        expected_containers = self.manifest.storage_container_names_for_source_db(self.dbname)
+        self.outdata['expected_containers'] = expected_containers
+        self.outdata['actual_containers'] = sorted(actual_container_names.keys())
 
-    def validate_raw_blobs(self):
-        print('')
-        print('validate_raw_blobs ...')
-        for item in self.manifest.items:
-            container = item["raw_storage_container"]
-            blob_name = item["blob_name"]
-            try:
-                properties = self.stor.blob_properties(container, blob_name)
-                size = int(properties['size'])
-                key = 'raw:{}'.format(blob_name)
-                self.blob_data[key] = size
-                print('OK, raw blob present; container: {} blob: {} size: {}'.format(
-                    container, blob_name, size))
-            except:
-                print('ERROR, raw blob absent: {} {}'.format(container, blob_name))
+        for expected_cname in expected_containers:
+            if expected_cname in actual_container_names.keys():
+                msg = 'OK, container present: {}'.format(expected_cname)
+                self.add_message(msg)
+            else:
+                msg = 'ERROR, container absent: {}'.format(expected_cname)
+                self.add_error(msg)
+
+        print(json.dumps(self.outdata, sort_keys=False, indent=2))
+
+        if self.has_errors():
+            print('OmniscriptValidator - validation errors encountered')
+            self.write_obj_as_json_file(self.errfile, self.outdata)
+        else:
+            print('OmniscriptValidator - validation ok')
+            self.write_obj_as_json_file(self.outfile, self.outdata)
 
     def validate_wrangled_blobs(self):
-        print('')
-        print('validate_wrangled_blobs ...')
+        self.outdata['function'] = 'wrangled_blobs' 
         for item in self.manifest.items:
             container = item["adf_storage_container"]
             raw_blob_name = item["blob_name"]
@@ -99,8 +108,7 @@ class Validator(object):
                 print('ERROR, blob absent: {} {}'.format(container, adf_blob_name))
 
     def validate_target_cosmos_db(self):
-        print('')
-        print('validate_target_cosmos_db ...')
+        self.outdata['function'] = 'target_cosmos_db' 
         conn_str = os.environ['M2C_COSMOS_MONGO_CONN_STRING']
         client = None
         try:
@@ -136,7 +144,10 @@ class Validator(object):
             except:
                 print_exception('ERROR, exception on database: {} collection: {}'.format(
                     curr_cname, curr_dbname))
-       
+
+    def validate_target_cosmos_docs(self):
+        self.outdata['function'] = 'target_cosmos_docs' 
+
     def print_exception(self, msg=None):
         print('*** exception in storage.py - {}'.format(msg))
         exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -146,6 +157,24 @@ class Validator(object):
         traceback.print_exception(
             exc_type, exc_value, exc_traceback, limit=2, file=sys.stderr)
 
+    def add_message(self, msg):
+        self.outdata['messages'].append(msg)
+
+    def has_messages(self):
+        return len(self.outdata['messages']) > 0
+
+    def add_error(self, msg):
+        self.outdata['errors'].append(msg)
+
+    def has_errors(self):
+        return len(self.outdata['errors']) > 0
+
+    def write_obj_as_json_file(self, outfile, obj):
+        txt = json.dumps(obj, sort_keys=False, indent=2)
+        with open(outfile, 'wt') as f:
+            f.write(txt)
+        print("file written: " + outfile)
+
 def print_options(msg):
     print(msg)
     arguments = docopt(__doc__, version=__version__)
@@ -154,32 +183,25 @@ def print_options(msg):
 
 if __name__ == "__main__":
     #print(sys.argv)
-    print('program exiting; it is not yet implemented')
-    exit()
+    print('WARNING - THIS PROGRAM IS NOT FULLY IMPLEMENTED')
 
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         func = sys.argv[1].lower()
-        validator = Validator(sys.argv)
+        dbname = sys.argv[2]
+        outfile = sys.argv[3]
+        validator = OmniscriptValidator(sys.argv, dbname, outfile)
 
-        if func == 'all':
-            print('')
-            print('validating all ...')
+        if func == 'storage_containers':
             validator.validate_storage_containers()
-            validator.validate_raw_blobs()
-            validator.validate_wrangled_blobs()
-            validator.validate_target_cosmos_db()
-
-        elif func == 'storage_containers':
-            validator.validate_storage_containers()
-
-        elif func == 'raw_blobs':
-            validator.validate_raw_blobs()
 
         elif func == 'wrangled_blobs':
             validator.validate_wrangled_blobs()
 
         elif func == 'target_cosmos_db':
             validator.validate_target_cosmos_db()
+
+        elif func == 'target_cosmos_docs':
+            validator.validate_target_cosmos_docs()
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:

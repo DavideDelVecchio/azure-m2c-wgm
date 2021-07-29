@@ -11,13 +11,16 @@
 # Template:      migrate_db_omniscript.txt
 
 # define verification filenames:
-verify_storage_containers_file="tmp/omniscript_{{ dbname }}_storage_containers_ok.txt"
-verify_wrangled_blobs_file="tmp/omniscript_{{ dbname }}_wrangled_blobs_ok.txt"
+verify_storage_containers_file="tmp/omniscript_{{ dbname }}_storage_containers.json"
+verify_wrangled_blobs_file="tmp/omniscript_{{ dbname }}_wrangled_blobs.json"
+verify_target_cosmos_db_file="tmp/omniscript_{{ dbname }}_target_cosmos_db.json"
 
 source ./env.sh
 
 mkdir -p tmp
-rm tmp/omniscript_verify_{{ dbname }}_*.*
+rm $verify_storage_containers_file
+rm $verify_wrangled_blobs_file
+rm $verify_target_cosmos_db_file
 
 # -----------------------------------------------------------------------------
 
@@ -28,7 +31,7 @@ fi
 
 # -----------------------------------------------------------------------------
 
-# Ensure that the target Azure Storage Blob containers are present
+# Verify that the necessary Azure Storage Blob containers are present
 
 python omniscript_validate.py storage_containers {{ dbname }} $verify_storage_containers_file 
 
@@ -64,15 +67,26 @@ fi
 if [[ $M2C_OMNISCRIPT_DO_COSMOS_LOAD == "yes" ]];
 then
     python omniscript_validate.py wrangled_blobs {{ dbname }} $verify_wrangled_blobs_file 
+    python omniscript_validate.py target_cosmos_db {{ dbname }} $verify_target_cosmos_db_file 
 
     if [ -f "$verify_wrangled_blobs_file" ];
     then
-        echo 'Wrangled blobs are present, proceeding...'
-        ./load_cosmos_for_source_db_{{ dbname }}_all.sh
+        echo 'Wranged Azure Storage Blobs are present, proceeding...'
     else
         echo 'TERMINATING - Wrangled blob(s) are absent'
         exit 2
     fi
+
+    if [ -f "$verify_target_cosmos_db_file" ];
+    then
+        echo 'CosmosDB database and containers are present, proceeding...'
+        ./load_cosmos_for_source_db_{{ dbname }}_all.sh
+    else
+        echo 'TERMINATING - Wrangled blob(s) are absent'
+        exit 3
+    fi
+
+    python omniscript_validate.py target_cosmos_docs {{ dbname }}
 fi
 
 echo 'done'

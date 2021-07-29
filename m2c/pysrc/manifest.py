@@ -49,6 +49,16 @@ class Manifest(object):
             uniques[adf] = 0
         return sorted(uniques.keys())
 
+    def storage_container_names_for_source_db(self, dbname):
+        uniques = dict()
+        for item in self.items:
+            if item['source_db'] == dbname:
+                raw = item['raw_storage_container']
+                adf = item['adf_storage_container']
+                uniques[raw] = 0
+                uniques[adf] = 0
+        return sorted(uniques.keys())
+
     def adf_blob_datasets(self):
         datasets = dict()
         for item in self.items:
