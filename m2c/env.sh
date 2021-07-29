@@ -60,8 +60,6 @@ export M2C_COSMOS_MONGODB_PASS=$AZURE_M2C_COSMOS_MONGO_PASS
 export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
 
 # How we populate CosmosDB/Mongo; either adf or mongoimport or dotnet_mongo_loader
-# export M2C_COSMOS_LOAD_METHOD="adf"
-# export M2C_COSMOS_LOAD_METHOD="mongoimport"
 export M2C_COSMOS_LOAD_METHOD="mongoimport"
 
 # mongoimport parameters
@@ -81,8 +79,8 @@ export M2C_DOTNETMONGOLOADER_LOAD_IND="--load"       # --load or --noload
 export M2C_WRANGLING_CLEANUP="keep"                  # cleanup or keep
 
 # DB migration omniscript configuration
-export M2C_OMNISCRIPT_DO_MONGOEXPORTS="yes"              # "yes" or anything else
-export M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS="yes"       # "yes" or anything else
-export M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD="python" # "python" or "azcli", defaults to python
-export M2C_OMNISCRIPT_DO_WRANGLE="yes" 
-export M2C_OMNISCRIPT_DO_COSMOS_LOAD="yes"               # refer to M2C_COSMOS_LOAD_METHOD above
+export M2C_OMNISCRIPT_DO_MONGOEXPORTS="yes"              # yes or no
+export M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS="yes"       # yes or no
+export M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD="python" # python or azcli
+export M2C_OMNISCRIPT_DO_WRANGLE="yes"                   # yes or no
+export M2C_OMNISCRIPT_DO_COSMOS_LOAD="yes"               # yes or no
