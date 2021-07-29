@@ -4,7 +4,7 @@ Usage:
     source env.sh ; python omniscript_validate.py storage_containers olympics tmp/vsc.json
     source env.sh ; python omniscript_validate.py wrangled_blobs     olympics tmp/vwb.json
     source env.sh ; python omniscript_validate.py target_cosmos_db   olympics tmp/vcdb.json
-    source env.sh ; python omniscript_validate.py target_cosmos_docs olympics tmp/vcdocs.json
+    source env.sh ; python omniscript_validate.py all olympics 
 """
 
 __author__  = 'Chris Joakim'
@@ -46,14 +46,8 @@ class OmniscriptValidator(object):
                 self.verbose = True
         self.blob_data = dict()
 
-        self.outdata = dict()  # outdata is written as JSON as end of process
-        self.outdata['dbname'] = self.dbname 
-        self.outdata['outfile'] = self.outfile 
-        self.outdata['timestamp'] = arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
-        self.outdata['messages'] = list()
-        self.outdata['errors'] = list()
-
     def validate_storage_containers(self):
+        self.initialize_outdata()
         self.outdata['function'] = 'storage_containers' 
         actual_container_names = dict()
         actual_containers = self.stor.list_containers()
@@ -76,6 +70,7 @@ class OmniscriptValidator(object):
         self.write_results_file()
 
     def validate_wrangled_blobs(self):
+        self.initialize_outdata()
         self.outdata['function'] = 'wrangled_blobs' 
         for item in self.manifest.items:
             if item['source_db'] == self.dbname:
@@ -96,49 +91,61 @@ class OmniscriptValidator(object):
         self.write_results_file()
 
     def validate_target_cosmos_db(self):
+        self.initialize_outdata()
         self.outdata['function'] = 'target_cosmos_db' 
         conn_str = os.environ['M2C_COSMOS_MONGO_CONN_STRING']
         client = None
         try:
             client = MongoClient(conn_str)
         except:
-            pass
+            self.add_error('ERROR, execption on creating MongoClient object')
+
         if client != None:
-            print('OK, MongoClient created')
+            self.add_message('OK, MongoClient created')
         else:
-            print('ERROR, unable to create MongoClient from M2C_COSMOS_MONGO_CONN_STRING')
+            self.add_error('ERROR, unable to create MongoClient from M2C_COSMOS_MONGO_CONN_STRING')
             return
 
         curr_dbname, curr_cname = None, None
-        for db_coll_tuple in self.manifest.cosmos_target_db_coll_tuples():
+        for db_coll_tuple in self.manifest.cosmos_target_db_coll_tuples_for_source_db(self.dbname):
             try:
+                print(db_coll_tuple)
                 curr_dbname = db_coll_tuple[0]
                 curr_cname  = db_coll_tuple[1]
                 db_obj      = client[curr_dbname]
                 db_colls    = db_obj.list_collection_names()
                 if curr_cname in db_colls:
-                    print("OK, collection '{}' is in database '{}'".format(
-                        curr_cname, curr_dbname))
+                    msg = "OK, collection '{}' is in database '{}'".format(curr_cname, curr_dbname)
+                    self.add_message(msg)
                     coll_obj = db_obj[curr_cname]
-                    #cmd = { 'collStats' : curr_cname, 'verbose' : True }
                     stats = db_obj.command( { 'collStats' : curr_cname, 'verbose' : True })
                     if stats == None:
-                        print("ERROR, can't get stats for collection '{}'".format(curr_cname))   
+                        msg = "ERROR, can't get stats for collection '{}'".format(curr_cname)
+                        self.add_error(msg)
                     else:
-                        print("OK, collection '{}' has {} documents".format(curr_cname, stats['count']))
+                        msg = "OK, collection '{}' has {} documents".format(curr_cname, stats['count'])
+                        self.add_message(msg)
                 else:
-                    print("ERROR, collection '{}' is NOT in database '{}'".format(
-                        curr_cname, curr_dbname))
+                    msg = "ERROR, collection '{}' is NOT in database '{}'".format(curr_cname, curr_dbname)
+                    self.add_error(msg)
             except:
-                print_exception('ERROR, exception on database: {} collection: {}'.format(
-                    curr_cname, curr_dbname))
+                msg = 'ERROR, exception on database: {} collection: {}'.format(curr_cname, curr_dbname)
+                self.add_error(msg)
 
         self.write_results_file()
 
-    def validate_target_cosmos_docs(self):
-        self.outdata['function'] = 'target_cosmos_docs' 
+    def validate_all(self):
+        self.outfile = "tmp/validate_storage_containers.json"
+        self.errfile = '{}.errors.json'.format(self.outfile)
+        self.validate_storage_containers()
 
-        self.write_results_file()
+        self.outfile = "tmp/validate_wrangled_blobs.json"
+        self.errfile = '{}.errors.json'.format(self.outfile)
+        self.validate_wrangled_blobs()
+
+        self.outfile = "tmp/validate_target_cosmos_db.json"
+        self.errfile = '{}.errors.json'.format(self.outfile)
+        self.validate_target_cosmos_db()
 
     def print_exception(self, msg=None):
         print('*** exception in storage.py - {}'.format(msg))
@@ -148,6 +155,14 @@ class OmniscriptValidator(object):
         print("*** exception:")
         traceback.print_exception(
             exc_type, exc_value, exc_traceback, limit=2, file=sys.stderr)
+
+    def initialize_outdata(self):
+        self.outdata = dict()  # outdata is written as JSON as end of process
+        self.outdata['dbname'] = self.dbname 
+        self.outdata['outfile'] = self.outfile 
+        self.outdata['timestamp'] = arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
+        self.outdata['messages'] = list()
+        self.outdata['errors'] = list()
 
     def add_message(self, msg):
         self.outdata['messages'].append(msg)
@@ -184,12 +199,13 @@ def print_options(msg):
 
 if __name__ == "__main__":
     #print(sys.argv)
-    print('WARNING - THIS PROGRAM IS NOT FULLY IMPLEMENTED')
 
     if len(sys.argv) > 2:
         func = sys.argv[1].lower()
         dbname = sys.argv[2]
-        outfile = sys.argv[3]
+        outfile = 'none'
+        if len(sys.argv) > 3:
+            outfile = sys.argv[3]
         validator = OmniscriptValidator(sys.argv, dbname, outfile)
 
         if func == 'storage_containers':
@@ -201,8 +217,9 @@ if __name__ == "__main__":
         elif func == 'target_cosmos_db':
             validator.validate_target_cosmos_db()
 
-        elif func == 'target_cosmos_docs':
-            validator.validate_target_cosmos_docs()
+        elif func == 'all':
+            validator.validate_all()
+
         else:
             print_options('Error: invalid function: {}'.format(func))
     else:

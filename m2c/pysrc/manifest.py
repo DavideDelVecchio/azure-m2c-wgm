@@ -113,6 +113,16 @@ class Manifest(object):
             tuples.append(uniques[key])
         return tuples
 
+    def cosmos_target_db_coll_tuples_for_source_db(self, source_db):
+        uniques, tuples = dict(), list()
+        for item in self.items:
+            if item['source_db'] == source_db:
+                key = '{}:{}'.format(item['target_db'], item['target_coll'])
+                uniques[key] = ( item['target_db'], item['target_coll'] )
+        for key in sorted(uniques.keys()):
+            tuples.append(uniques[key])
+        return tuples
+
     def cosmos_mapping_tuples(self):
         uniques, tuples = dict(), list()
         for item in self.items:
