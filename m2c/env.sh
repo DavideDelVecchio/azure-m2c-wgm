@@ -83,4 +83,3 @@ export M2C_OMNISCRIPT_DO_MONGOEXPORTS="yes"              # yes or no
 export M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS="yes"       # yes or no
 export M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD="python" # python or azcli
 export M2C_OMNISCRIPT_DO_WRANGLE="yes"                   # yes or no
-export M2C_OMNISCRIPT_DO_COSMOS_LOAD="yes"               # yes or no
