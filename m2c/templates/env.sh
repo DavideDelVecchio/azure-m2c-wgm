@@ -80,3 +80,9 @@ export M2C_DOTNETMONGOLOADER_LOAD_IND="--load"       # --load or --noload
 # wrangling process cleanup
 export M2C_WRANGLING_CLEANUP="keep"                  # cleanup or keep
 
+# DB migration omniscript configuration
+export M2C_OMNISCRIPT_DO_MONGOEXPORTS="yes"              # "yes" or anything else
+export M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS="yes"       # "yes" or anything else
+export M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD="python" # "python" or "azcli", defaults to python
+export M2C_OMNISCRIPT_DO_WRANGLE="yes" 
+export M2C_OMNISCRIPT_DO_COSMOS_LOAD="yes"               # refer to M2C_COSMOS_LOAD_METHOD above

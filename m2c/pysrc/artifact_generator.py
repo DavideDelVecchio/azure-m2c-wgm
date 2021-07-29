@@ -94,6 +94,9 @@ class ArtifactGenerator(object):
         if (self.gen_artifact('--wrangle-scripts-individual')):
             self.gen_wrangle_scripts_individual() 
 
+        if (self.gen_artifact('--migrate-db-omniscript')):
+            self.gen_migrate_db_omniscript() 
+
         if (self.gen_artifact('--adf-linked-services')):
             self.gen_adf_linked_services() 
 
@@ -255,6 +258,15 @@ class ArtifactGenerator(object):
 
             template_data['redirect'] = redirect
             self.render_template(template_name, template_data, outfile)
+
+    def gen_migrate_db_omniscript(self):
+        template_name = 'migrate_db_omniscript.txt'
+        template_data = dict()
+        template_data['dbname'] = self.dbname
+        template_data['gen_timestamp'] = self.timestamp()
+        outfile = '{}/migrate_db_{}_omniscript.sh'.format(
+            self.shell_artifacts_dir, self.dbname)
+        self.render_template(template_name, template_data, outfile)
 
     def target_databases_list(self):
         target_databases = dict()

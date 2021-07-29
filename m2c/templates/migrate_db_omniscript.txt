@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Bash shell script to execute a complete database migration,
+# from mongoexport to CosmosDB loading, for a given source database.
+#
+# This script will execute several other generated scripts.
+# Set the several M2C_OMNISCRIPT_* variables, as necessary, in env.sh.
+#
+# Database Name: {{ dbname }}
+# Generated on:  {{ gen_timestamp }}
+# Template:      migrate_db_omniscript.txt
+
+# define verification filenames:
+verify_storage_containers_file="tmp/omniscript_{{ dbname }}_storage_containers_ok.txt"
+verify_wrangled_blobs_file="tmp/omniscript_{{ dbname }}_wrangled_blobs_ok.txt"
+
+source ./env.sh
+
+mkdir -p tmp
+rm tmp/omniscript_verify_{{ dbname }}_*.*
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_MONGOEXPORTS == "yes" ]];
+then
+    ./{{ dbname }}_mongoexports.sh
+fi
+
+# -----------------------------------------------------------------------------
+
+# Ensure that the target Azure Storage Blob containers are present
+
+python omniscript_validate.py storage_containers {{ dbname }} $verify_storage_containers_file 
+
+if [ -f "$verify_storage_containers_file" ];
+then
+    echo 'Azure Storage Blob containers are present, proceeding...'
+else
+    echo 'TERMINATING - Azure Storage container(s) are absent'
+    exit 1
+fi
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS == "yes" ]];
+then
+    if [[ $M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD == "azcli" ]];
+    then
+        ./{{ dbname }}_az_cli_mongoexport_uploads.sh
+    else
+        ./{{ dbname }}_python_mongoexport_uploads.sh
+    fi
+fi
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_WRANGLE == "yes" ]];
+then
+    ./wrangle_{{ dbname }}_all.sh
+fi
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_COSMOS_LOAD == "yes" ]];
+then
+    python omniscript_validate.py wrangled_blobs {{ dbname }} $verify_wrangled_blobs_file 
+
+    if [ -f "$verify_wrangled_blobs_file" ];
+    then
+        echo 'Wrangled blobs are present, proceeding...'
+        ./load_cosmos_for_source_db_{{ dbname }}_all.sh
+    else
+        echo 'TERMINATING - Wrangled blob(s) are absent'
+        exit 2
+    fi
+fi
+
+echo 'done'
+
