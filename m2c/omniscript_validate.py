@@ -73,39 +73,27 @@ class OmniscriptValidator(object):
                 msg = 'ERROR, container absent: {}'.format(expected_cname)
                 self.add_error(msg)
 
-        print(json.dumps(self.outdata, sort_keys=False, indent=2))
-
-        if self.has_errors():
-            print('OmniscriptValidator - validation errors encountered')
-            self.write_obj_as_json_file(self.errfile, self.outdata)
-        else:
-            print('OmniscriptValidator - validation ok')
-            self.write_obj_as_json_file(self.outfile, self.outdata)
+        self.write_results_file()
 
     def validate_wrangled_blobs(self):
         self.outdata['function'] = 'wrangled_blobs' 
         for item in self.manifest.items:
-            container = item["adf_storage_container"]
-            raw_blob_name = item["blob_name"]
-            adf_blob_name = item["wrangled_blob_name"]
-            raw_key = 'raw:{}'.format(raw_blob_name)
-            adf_key = 'adf:{}'.format(adf_blob_name)
-            try:
-                properties = self.stor.blob_properties(container, adf_blob_name)
-                adf_size = int(properties['size'])
-                self.blob_data[adf_key] = adf_size
+            if item['source_db'] == self.dbname:
+                container = item["adf_storage_container"]
+                blob_name = item["wrangled_blob_name"]
+                try:
+                    properties = self.stor.blob_properties(container, blob_name)
+                    #print(properties)
+                    adf_size = int(properties['size'])
+                    msg = 'OK, blob present; container: {} blob: {} size: {}'.format(
+                        container, blob_name, adf_size)
+                    self.add_message(msg)
+                except:
+                    msg = 'ERROR, blob absent: {} {}'.format(container, blob_name)
+                    self.add_error(msg)
+                    self.print_exception()
 
-                if raw_key in self.blob_data.keys():
-                    raw_size = self.blob_data[raw_key]
-                    ratio = float(adf_size) / float(raw_size)
-                    print('OK, blob present; container: {} blob: {} size: {} adf/raw size ratio: {}'.format(
-                        container, adf_blob_name, adf_size, ratio))
-                else:
-                    print('OK, blob present; container: {} blob: {} size: {}'.format(
-                        container, adf_blob_name, adf_size))
-            except:
-                self.print_exception()
-                print('ERROR, blob absent: {} {}'.format(container, adf_blob_name))
+        self.write_results_file()
 
     def validate_target_cosmos_db(self):
         self.outdata['function'] = 'target_cosmos_db' 
@@ -145,8 +133,12 @@ class OmniscriptValidator(object):
                 print_exception('ERROR, exception on database: {} collection: {}'.format(
                     curr_cname, curr_dbname))
 
+        self.write_results_file()
+
     def validate_target_cosmos_docs(self):
         self.outdata['function'] = 'target_cosmos_docs' 
+
+        self.write_results_file()
 
     def print_exception(self, msg=None):
         print('*** exception in storage.py - {}'.format(msg))
@@ -168,6 +160,15 @@ class OmniscriptValidator(object):
 
     def has_errors(self):
         return len(self.outdata['errors']) > 0
+
+    def write_results_file(self):
+        print(json.dumps(self.outdata, sort_keys=False, indent=2))
+        if self.has_errors():
+            print('OmniscriptValidator - validation errors encountered')
+            self.write_obj_as_json_file(self.errfile, self.outdata)
+        else:
+            print('OmniscriptValidator - validation ok')
+            self.write_obj_as_json_file(self.outfile, self.outdata)
 
     def write_obj_as_json_file(self, outfile, obj):
         txt = json.dumps(obj, sort_keys=False, indent=2)
