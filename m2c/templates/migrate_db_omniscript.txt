@@ -36,7 +36,7 @@ fi
 
 # Verify that the necessary Azure Storage Blob containers are present
 
-python omniscript_validate.py storage_containers {{ dbname }} $verify_storage_containers_file 
+python validate.py storage_containers {{ dbname }} $verify_storage_containers_file 
 
 if [ -f "$verify_storage_containers_file" ];
 then
@@ -69,8 +69,8 @@ fi
 
 if [[ $M2C_OMNISCRIPT_DO_COSMOS_LOAD == "yes" ]];
 then
-    python omniscript_validate.py wrangled_blobs {{ dbname }} $verify_wrangled_blobs_file 
-    python omniscript_validate.py target_cosmos_db {{ dbname }} $verify_target_cosmos_db_file 
+    python validate.py wrangled_blobs {{ dbname }} $verify_wrangled_blobs_file 
+    python validate.py target_cosmos_db {{ dbname }} $verify_target_cosmos_db_file 
 
     if [ -f "$verify_wrangled_blobs_file" ];
     then
@@ -90,7 +90,7 @@ then
     fi
 
     # get CosmosDB document counts by collection
-    python omniscript_validate.py target_cosmos_docs {{ dbname }} $report_target_cosmos_db_file
+    python validate.py target_cosmos_docs {{ dbname }} $report_target_cosmos_db_file
 fi
 
 echo 'done'

@@ -1,10 +1,10 @@
 """
 Usage:
-    source env.sh ; python omniscript_validate.py <function> <source_db> <outfile>
-    source env.sh ; python omniscript_validate.py storage_containers olympics tmp/vsc.json
-    source env.sh ; python omniscript_validate.py wrangled_blobs     olympics tmp/vwb.json
-    source env.sh ; python omniscript_validate.py target_cosmos_db   olympics tmp/vcdb.json
-    source env.sh ; python omniscript_validate.py all olympics 
+    source env.sh ; python validate.py <function> <source_db> <outfile>
+    source env.sh ; python validate.py storage_containers olympics tmp/vsc.json
+    source env.sh ; python validate.py wrangled_blobs     olympics tmp/vwb.json
+    source env.sh ; python validate.py target_cosmos_db   olympics tmp/vcdb.json
+    source env.sh ; python validate.py all olympics 
 """
 
 __author__  = 'Chris Joakim'
