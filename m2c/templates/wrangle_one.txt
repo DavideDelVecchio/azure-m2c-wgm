@@ -17,7 +17,9 @@ mkdir -p out/{{ dbname }}
 # 2) Wrangle/transform the downloaded blob, producing local file 
 #    {{ wrangled_outfile }}
 # 3) Uploads the wrangled file to storage container {{ dbname }}-adf
-# 4) Delete the downloaded and wrangled file, as the host VM may have limited storage
+# 4) Optionally loads the target CosmosDB using the mongoimport program
+# 5) Optionally loads the target CosmosDB using a custom DotNet program
+# 6) Delete the downloaded and wrangled file, as the host VM may have limited storage
 #
 # Note: this script is executed by script {{ dbname }}_wrangle_all.sh
 

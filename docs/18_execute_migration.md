@@ -163,17 +163,59 @@ Usage:
 
 ---
 
-## Wrangling for ADF
+## Data Wrangling of mongoimport files for CosmosDB
 
-**The purpose of these scripts is to transform each raw mongexport file from the source database into the format for loading into CosmosDB via Azure Data Factory**.
+The purpose of the **Data Wrangling** process is to **transform the raw mongoexport**
+files/blobs per your **mappings**.  The wrangling process runs on an **Azure VM**.
 
-**This process is expected to be executed on an Azure VM(s) in the same region as your Storage Account.**
+The generated wrangling scripts will download a raw blob to the VM, transform it,
+then upload the transformed file to the Azure Storage container that corresponds
+to the target CosmosDB target database and container.
 
-The **artifacts/shell** directory will contain a number of generated **wrangle_** scripts;
-one per source database, and one for each collection in each source database.
+### Three ways to load CosmosDB
 
-You can execute these all sequentially for a given source database, by executing the **_all.sh**
-script.  Likewise, you can execute these scripts individually to parallelize them.
+This migration process implements three ways to load the transformed data into
+CosmosDB.
+
+- Azure Data Factory (ADF)
+- mongoimport
+- DotNet 5 custom loader program
+
+You should edit file **env.sh**, as shown below, to use your preferred loading method.
+
+```
+export M2C_COSMOS_LOAD_METHOD="mongoimport"  # either adf or mongoimport or dotnet_mongo_loader
+```
+
+#### ADF Loading
+
+The preferred method of populating CosmosDB with this transformed data is
+**Azure Data Factory (ADF)**.  See section "Execute ADF Pipelines", below.
+If this method is used, then the wrangling process will simply transform
+the raw blob.
+
+#### mongoimport and dotnet_mongo_loader Loading
+
+Alternatively, there are two additional ways to load the transformed data into CosmosDB -
+the **mongoimport** program from MongoDB, and a **DotNet 5 custom loader program**.
+
+If either of these two methods is specified in **M2C_COSMOS_LOAD_METHOD** environment
+variable, then the wrangling process will additionally directly load CosmosDB
+with the transformed data.
+
+See the m2c/dotnet_mongo_loader/ directory in this repo for the loader program.
+
+
+### The generated scripts
+
+The **artifacts/shell** directory will contain a number of generated **wrangle_**
+scripts; one per source database, and one for each collection in each source database.
+
+You can execute these all sequentially for a given source database, by executing the
+**_all.sh** script.  Likewise, you can execute these scripts individually to parallelize
+them.
+
+For example, for the openflights reference database, the following are generated:
 
 ```
 reference_app/artifacts/shell/wrangle_openflights_airlines.sh
@@ -181,12 +223,13 @@ reference_app/artifacts/shell/wrangle_openflights_airports.sh
 reference_app/artifacts/shell/wrangle_openflights_countries.sh
 reference_app/artifacts/shell/wrangle_openflights_planes.sh
 reference_app/artifacts/shell/wrangle_openflights_routes.sh
-
 reference_app/artifacts/shell/wrangle_openflights_all.sh   <-- executes each of the above
 ```
 
-Each wrangling file looks like the following.  Please see the generated comment in the 
-script that describes the logic.  In short: **download, wrangle, upload, cleanup**.
+
+#### Example Wrangling Script
+
+Each wrangling file looks like the following.
 
 ```
 #!/bin/bash
@@ -194,7 +237,7 @@ script that describes the logic.  In short: **download, wrangle, upload, cleanup
 # Bash shell script to wrangle/transform a raw mongoexport file.
 #
 # Database Name: olympics
-# Generated on:  2021-06-13 13:18:14 UTC
+# Generated on:  2021-07-30 21:52:55 UTC
 # Template:      wrangle_one.txt
 
 source ./env.sh
@@ -208,7 +251,9 @@ mkdir -p out/olympics
 # 2) Wrangle/transform the downloaded blob, producing local file 
 #    tmp/olympics/olympics__g1896_summer__wrangled.json
 # 3) Uploads the wrangled file to storage container olympics-adf
-# 4) Delete the downloaded and wrangled file, as the host VM may have limited storage
+# 4) Optionally loads the target CosmosDB using the mongoimport program
+# 5) Optionally loads the target CosmosDB using a custom DotNet program
+# 6) Delete the downloaded and wrangled file, as the host VM may have limited storage
 #
 # Note: this script is executed by script olympics_wrangle_all.sh
 
@@ -229,11 +274,48 @@ echo ''
 echo 'first line of output file:'
 head -1 tmp/olympics/olympics__g1896_summer__wrangled.json
 
-echo 'deleting the downloaded and wrangled files to save disk space...'
-rm tmp/olympics/olympics__g1896_summer.json
-rm tmp/olympics/olympics__g1896_summer__wrangled.json
+if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];
+then
+    echo ''
+    echo 'executing mongoimport to db: olympics coll: games ...' 
 
-echo 'done' 
+    mongoimport \
+        --uri $M2C_COSMOS_MONGO_CONN_STRING \
+        --db olympics \
+        --collection games \
+        --file tmp/olympics/olympics__g1896_summer__wrangled.json \
+        --numInsertionWorkers $M2C_MONGOIMPORT_NWORKERS \
+        --batchSize $M2C_MONGOIMPORT_BATCH_SIZE \
+        --mode $M2C_MONGOIMPORT_MODE \
+        --writeConcern "{w:0}" \
+        --ssl
+
+    echo 'mongoimport completed' 
+fi 
+
+if [[ $M2C_COSMOS_LOAD_METHOD == "dotnet_mongo_loader" ]];
+then
+    echo ''
+    echo 'executing dotnet_mongo_loader to db: olympics coll: games ...' 
+
+    dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj \
+        olympics games tmp/olympics/olympics__g1896_summer__wrangled.json \
+        $M2C_DOTNETMONGOLOADER_TARGET $M2C_DOTNETMONGOLOADER_LOAD_IND \
+        $M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY \
+        --tracerInterval $M2C_DOTNETMONGOLOADER_TRACER_INTERVAL \
+        --rowMaxRetries $M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES \
+        $M2C_DOTNETMONGOLOADER_VERBOSE
+fi
+
+if [[ $M2C_WRANGLING_CLEANUP == "cleanup" ]];
+then
+    echo ''
+    echo 'deleting the downloaded and wrangled files to save disk space...'
+    rm tmp/olympics/olympics__g1896_summer.json
+    rm tmp/olympics/olympics__g1896_summer__wrangled.json
+fi
+
+echo 'done'
 ```
 
 It is important to note that the uploaded 
@@ -331,6 +413,153 @@ Items to note:
 2) Information about the uploaded blob is logged.
 3) Rows processed and processing elapses time is logged.
 4) The first rows of both the input file and the output file are logged for visual verification of the transformation.
+
+---
+
+## Database-level Migration OmniScripts
+
+As an alternative to manually executing these many granular generated scripts,
+there are also **database-level OmniScripts** which will execute an end-to-end
+migration (except for loading CosmosDB via ADF).
+
+In short, they will execute the following:
+
+- mongoexport raw data from the source database
+- upload the raw mongoexport files
+- wrangle the raw mongoexport data and upload the transformed data to Azure Blob storage
+- optionally load CosmosDB using the mongoexport program
+- optionally load CosmosDB using the DotNet loader program
+
+### Validations
+
+As an OmniScript executes, it will perform several validations before proceeding.
+For example, it will first ensure that the necessary Azure Storage containers
+exist.
+
+And before loading CosmosDB via either mongoimport or the DotNet loader,
+it will first ensure that the target CosmosDB and containers exist.
+
+### env.sh
+
+File **env.sh** contains these entries which govern the omniscripts:
+
+```
+# DB migration omniscript configuration
+export M2C_OMNISCRIPT_DO_MONGOEXPORTS="yes"              # yes or no
+export M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS="yes"       # yes or no
+export M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD="python" # python or azcli
+export M2C_OMNISCRIPT_DO_WRANGLE="yes"                   # yes or no
+```
+
+### Filenames
+
+These generated omniscripts are named like the following:
+
+```
+migrate_db_olympics_omniscript.sh
+migrate_db_openflights_omniscript.sh
+```
+
+### Sample OmniScript
+
+A sample omniscript is shown here:
+
+```
+#!/bin/bash
+
+# Bash shell script to execute a complete database migration (1)
+# from mongoexport to CosmosDB loading, for a given source database.
+#
+# (1) = However, CosmosDB loading only when $M2C_COSMOS_LOAD_METHOD
+# is either 'mongoimport' or 'dotnet_mongo_loader', and not 'adf'.
+#
+# This script will execute several other generated scripts.
+# Set the several M2C_OMNISCRIPT_* variables, as necessary, in env.sh.
+#
+# Database Name: openflights
+# Generated on:  2021-07-30 21:52:56 UTC
+# Template:      migrate_db_omniscript.txt
+# Use:
+# ./migrate_db_openflights_omniscript.sh > tmp/migrate_db_openflights.txt
+
+# define verification filenames:
+verify_storage_containers_file="tmp/omniscript_openflights_storage_containers.json"
+verify_wrangled_blobs_file="tmp/omniscript_openflights_wrangled_blobs.json"
+verify_target_cosmos_db_file="tmp/omniscript_openflights_target_cosmos_db.json"
+report_target_cosmos_db_file="tmp/omniscript_openflights_target_cosmos_db_report.json"
+
+source ./env.sh
+
+mkdir -p tmp
+rm $verify_storage_containers_file
+rm $verify_wrangled_blobs_file
+rm $verify_target_cosmos_db_file
+rm $report_target_cosmos_db_file
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_MONGOEXPORTS == "yes" ]];
+then
+    ./openflights_mongoexports.sh
+fi
+
+# -----------------------------------------------------------------------------
+
+# Verify that the necessary Azure Storage Blob containers are present
+
+source bin/activate
+python --version
+
+source env.sh ; python validate.py storage_containers openflights $verify_storage_containers_file 
+
+if [[ -f "$verify_storage_containers_file" ]];
+then
+    echo 'Azure Storage Blob containers are present, proceeding...'
+else
+    echo 'TERMINATING - Azure Storage container(s) are absent'
+    exit 1
+fi
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS == "yes" ]];
+then
+    if [[ $M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD == "azcli" ]];
+    then
+        ./openflights_az_cli_mongoexport_uploads.sh
+    else
+        ./openflights_python_mongoexport_uploads.sh
+    fi
+fi
+
+# -----------------------------------------------------------------------------
+
+if [[ $M2C_OMNISCRIPT_DO_WRANGLE == "yes" ]];
+then
+    if [[ $M2C_COSMOS_LOAD_METHOD == "adf" ]]
+    then
+        # No need to verify the target CosmosDB yet
+        ./wrangle_openflights_all.sh
+    else
+        # Verify the target CosmosDB since the Wrangle process will also load
+        source env.sh ; python validate.py target_cosmos_db openflights $verify_target_cosmos_db_file 
+        
+        if [[ -f "$verify_target_cosmos_db_file" ]];
+        then
+            echo 'CosmosDB database and containers are present, proceeding...'
+            ./wrangle_openflights_all.sh
+        else
+            echo 'TERMINATING - Wrangled blob(s) are absent'
+            exit 2
+        fi
+
+        # Get CosmosDB document counts by collection
+        source env.sh ; python validate.py target_cosmos_db openflights $report_target_cosmos_db_file
+    fi
+fi
+
+echo 'done'
+```
 
 ---
 
