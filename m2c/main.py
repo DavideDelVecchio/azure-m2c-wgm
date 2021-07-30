@@ -31,6 +31,7 @@ from operator import itemgetter
 from pymongo import MongoClient
 
 from pysrc.config import Config
+from pysrc.manifest import Manifest
 from pysrc.artifact_generator import ArtifactGenerator
 from pysrc.manifest_generator import ManifestGenerator
 from pysrc.doc_generator import DocGenerator
@@ -38,7 +39,7 @@ from pysrc.doc_generator import DocGenerator
 from pysrc.standard_mapping_generator import StandardMappingGenerator
 
 config = Config()
-
+manifest = Manifest()
 
 def generate_initial_scripts():
     generator = ArtifactGenerator('', {})
@@ -111,11 +112,29 @@ def generate_reference_db_scripts():
     generator = ArtifactGenerator('', {})
     generator.generate_reference_db_scripts()
 
+def sum_document_counts():
+    print('sum_document_counts')
+    counter = dict()
+    for item in manifest.items:
+        target_db   = item['target_db']
+        target_coll = item['target_coll']
+        concat_key  = '{}:{}'.format(target_db, target_coll)
+        doc_count   = int(item['doc_count'])
+        if concat_key in counter.keys():
+            count = counter[concat_key]
+            counter[concat_key] = count + doc_count
+        else:
+            counter[concat_key] = doc_count 
+
+    outdir = config.metadata_dir()
+    outfile = '{}/target_db_expected_doc_counts.json'.format(outdir)
+    write_obj_as_json_file(outfile, counter, True)
+
 def load_json_file(infile):
     with open(infile) as json_file:
         return json.load(json_file)
 
-def write_obj_as_json_file(outfile, obj):
+def write_obj_as_json_file(outfile, obj, sort_keys=False):
     txt = json.dumps(obj, sort_keys=False, indent=2)
     with open(outfile, 'wt') as f:
         f.write(txt)
@@ -163,6 +182,9 @@ if __name__ == "__main__":
         elif func == 'gen_docs':
             generator = DocGenerator()
             generator.generate()
+
+        elif func == 'sum_document_counts':
+            sum_document_counts()
 
         else:
             print_options('Error: invalid function: {}'.format(func))

@@ -47,6 +47,7 @@ python main.py generate_artifacts olympics --all
 
 python main.py generate_artifacts openflights --all
 
+python main.py sum_document_counts
 
 # Not needed for customer migrations
 # python main.py generate_reference_db_scripts
