@@ -129,7 +129,7 @@ class OmniscriptValidator(object):
                     msg = "ERROR, collection '{}' is NOT in database '{}'".format(curr_cname, curr_dbname)
                     self.add_error(msg)
             except:
-                msg = 'ERROR, exception on database: {} collection: {}'.format(curr_cname, curr_dbname)
+                msg = 'ERROR, exception on database: {} collection: {}'.format(curr_dbname, curr_cname)
                 self.add_error(msg)
 
         self.write_results_file()
