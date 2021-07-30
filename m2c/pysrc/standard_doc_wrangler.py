@@ -97,8 +97,6 @@ class StandardDocumentWrangler(object):
         print('  do_additions:         {}'.format(self.do_additions))
         print('  do_excludes:          {}'.format(self.do_excludes))
 
-        # TODO - validate the logic arrays 
-
     def wrangle(self, doc):
         if self.do_pk_wrangling:
             self.wrangle_pk(doc)
