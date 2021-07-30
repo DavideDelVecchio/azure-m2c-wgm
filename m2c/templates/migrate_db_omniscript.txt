@@ -12,6 +12,8 @@
 # Database Name: {{ dbname }}
 # Generated on:  {{ gen_timestamp }}
 # Template:      migrate_db_omniscript.txt
+# Use:
+# ./migrate_db_{{ dbname }}_omniscript.sh > tmp/migrate_db_{{ dbname }}.txt
 
 # define verification filenames:
 verify_storage_containers_file="tmp/omniscript_{{ dbname }}_storage_containers.json"
@@ -82,9 +84,8 @@ then
         fi
 
         # Get CosmosDB document counts by collection
-        python validate.py target_cosmos_docs {{ dbname }} $report_target_cosmos_db_file
+        python validate.py target_cosmos_db {{ dbname }} $report_target_cosmos_db_file
     fi
 fi
 
 echo 'done'
-
