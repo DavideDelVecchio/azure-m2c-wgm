@@ -40,6 +40,9 @@ fi
 
 # Verify that the necessary Azure Storage Blob containers are present
 
+source bin/activate
+python --version
+
 python validate.py storage_containers {{ dbname }} $verify_storage_containers_file 
 
 if [[ -f "$verify_storage_containers_file" ]];
