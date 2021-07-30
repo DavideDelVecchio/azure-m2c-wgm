@@ -18,9 +18,37 @@ export M2C_APP_ARTIFACTS_DIR=$M2C_REF_APP_DIR"/artifacts"
 export M2C_APP_DATA_DIR=$M2C_REF_APP_DIR"/data"
 ```
 
-The idea here is that you set **M2C_APP_DIR**, **M2C_APP_ARTIFACTS_DIR**, and **M2C_APP_DATA_DIR**
-to some directories on your computer where you will edit some files, and also where the
-generated artifacts will be written to.
+The idea here is that you set **M2C_APP_DIR**, **M2C_APP_ARTIFACTS_DIR**, and **M2C_APP_DATA_DIR** to some directories on your computer where you will edit
+some files, and also where the generated artifacts will be written to.
+
+## Create Directories
+
+Given that you set **M2C_APP_DIR** in **env.sh**, as described above, execute
+the following script to create these directories on your computer:
+
+```
+$ cd m2c
+$ ./create_directories.sh   # this is in same directory as env.sh
+```
+
+**create_directories.sh** will execute the following:
+
+```
+mkdir -p $M2C_APP_DIR
+mkdir -p $M2C_APP_DIR/artifacts
+mkdir -p $M2C_APP_DIR/artifacts/adf/dataset
+mkdir -p $M2C_APP_DIR/artifacts/adf/linkedService
+mkdir -p $M2C_APP_DIR/artifacts/adf/pipeline
+mkdir -p $M2C_APP_DIR/artifacts/shell
+mkdir -p $M2C_APP_DIR/artifacts/shell/data
+mkdir -p $M2C_APP_DIR/artifacts/shell/mongo
+mkdir -p $M2C_APP_DIR/artifacts/shell/out
+mkdir -p $M2C_APP_DIR/artifacts/shell/pysrc
+mkdir -p $M2C_APP_DIR/artifacts/shell/tmp
+mkdir -p $M2C_APP_DIR/data
+mkdir -p $M2C_APP_DIR/data/metadata
+mkdir -p $M2C_APP_DIR/databases
+```
 
 ## Databases List - migrated_databases_list.txt
 

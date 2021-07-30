@@ -25,5 +25,3 @@ mkdir -p $M2C_APP_DIR/data
 mkdir -p $M2C_APP_DIR/data/metadata
 
 mkdir -p $M2C_APP_DIR/databases
-
-echo 'done'

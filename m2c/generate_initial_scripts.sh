@@ -7,6 +7,8 @@
 
 source env.sh
 
+./create_directories.sh
+
 python main.py generate_initial_scripts
 
 chmod 744 *.sh  # make them executable
