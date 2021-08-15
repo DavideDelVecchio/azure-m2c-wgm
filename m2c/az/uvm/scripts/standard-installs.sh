@@ -39,8 +39,12 @@ which mongoimport
 mongoimport --version
 
 echo '=== install dotnet 5'
+sudo snap remove dotnet-sdk
 sudo snap install dotnet-sdk --classic --channel=5.0
+sudo dotnet --info
+# dotnet-sdk (5.0/stable) 5.0.400 from Microsoft .NET Core (dotnetcore✓) installed
 # See https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
+# See https://ubuntuforums.org/showthread.php?t=2465790&amp%3Bgoto=newpost
 
 echo '=== install docker'
 sudo apt install docker.io
