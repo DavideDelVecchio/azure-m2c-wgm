@@ -42,6 +42,10 @@ echo '=== install dotnet 5'
 sudo snap remove dotnet-sdk
 sudo snap install dotnet-sdk --classic --channel=5.0
 sudo dotnet --info
+sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
+which dotnet  #  -> /usr/local/bin/dotnet
+#export DOTNET_ROOT=/snap/dotnet-sdk/current
+
 # dotnet-sdk (5.0/stable) 5.0.400 from Microsoft .NET Core (dotnetcore✓) installed
 # See https://docs.microsoft.com/en-us/dotnet/core/install/linux-snap
 # See https://ubuntuforums.org/showthread.php?t=2465790&amp%3Bgoto=newpost
