@@ -2,7 +2,7 @@
 
 # Bash shell that defines parameters and environment variables used in
 # this app, and is "sourced" by the other scripts in this directory.
-# Chris Joakim, Microsoft, July 2021
+# Chris Joakim, Microsoft, August 2021
 
 # environment variables for provisioning:
 
@@ -38,7 +38,8 @@ export uvm_publisher='Canonical'
 export uvm_offer='UbuntuServer'
 export uvm_sku='20.04-LTS'
 export uvm_version='latest'
-export uvm_image=""$uvm_publisher":"$uvm_offer":"$uvm_sku":"$uvm_version # Values from: az vm image list
+export uvm_image='UbuntuLTS'
+#export uvm_image=""$uvm_publisher":"$uvm_offer":"$uvm_sku":"$uvm_version # Values from: az vm image list
 export uvm_size="Standard_D3_v2"  # Values from: az vm list-sizes, Default: Standard_DS1_v2
 export uvm_datasizegb="1024"
 export uvm_user=$AZURE_UVM_USER   # cjoakim
