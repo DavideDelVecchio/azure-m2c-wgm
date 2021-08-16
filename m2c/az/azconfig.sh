@@ -33,10 +33,10 @@ export storage_access_tier="Hot"      # Cool, Hot
 #
 export uvm_rg=$primary_rg
 export uvm_region=$primary_region
-export uvm_name="m2cmigrationvm1"
+export uvm_name="m2cmigrationvm2"
 export uvm_publisher='Canonical'
 export uvm_offer='UbuntuServer'
-export uvm_sku='18.04-LTS'
+export uvm_sku='20.04-LTS'
 export uvm_version='latest'
 export uvm_image=""$uvm_publisher":"$uvm_offer":"$uvm_sku":"$uvm_version # Values from: az vm image list
 export uvm_size="Standard_D3_v2"  # Values from: az vm list-sizes, Default: Standard_DS1_v2
