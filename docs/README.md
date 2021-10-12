@@ -27,7 +27,7 @@
 ## Quick Reference 
 
 - Development Computer Setup, see [03 - Development Computer Setup](03_development_computer_setup.md)
-- Copy/clone/fork this repo to your source control system
+- Copy/clone/fork this repo to your private source control system
 - Create Service Principal, see [03 - Development Computer Setup](03_development_computer_setup.md)
 - Edit **env.sh** - the environment variables script, see [03 - Development Computer Setup](03_development_computer_setup.md)
 - Execute **create_directories.sh** for output directories, see [04 - Initial Customer Edits](04_initial_customer_edits.md)
