@@ -25,7 +25,7 @@ The current focus of this project is on migrating MongoDB databases to the
 
 ## Other Microsoft Solutions to Consider
 
-- https://docs.microsoft.com/en-us/azure/cosmos-db/import-data  (DMT)
+- https://docs.microsoft.com/en-us/azure/cosmos-db/import-data  (DMT for Cosmos/SQL)
 - https://docs.microsoft.com/en-us/azure/dms/tutorial-mongodb-cosmos-db  (DMS)
 - https://azure.microsoft.com/en-us/services/database-migration/#features (DMS)
 - https://github.com/cjoakim/azure-cosmosdb-adhoc-migrations
