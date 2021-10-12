@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "July 2021"
+__version__ = "October 2021"
 
 import arrow
 import glob
@@ -20,7 +20,8 @@ class Config(object):
     def __init__(self):
         self.shell_type          = self.env_var('M2C_SHELL_TYPE', 'bash')
         self.ssl                 = self.boolean_env_var('M2C_SOURCE_MONGODB_SSL', True)
-        self.app_dir             = self.env_var('M2C_APP_DIR', None) 
+        self.app_dir             = self.env_var('M2C_APP_DIR', None)
+        self.artifact_types      = self.env_var('M2C_APP_ARTIFACTS', '--all') 
         self.artifacts_dir       = self.env_var('M2C_APP_ARTIFACTS_DIR', 'artifacts')
         self.data_dir            = self.env_var('M2C_APP_DATA_DIR', 'data') 
         self.source_mongodb_url  = self.env_var('M2C_SOURCE_MONGODB_URL', 'localhost:27017')
@@ -144,7 +145,7 @@ class Config(object):
         return arrow.utcnow().format('YYYY-MM-DD HH:mm:ss UTC')
 
     def authored_year_month(self):
-        return 'July 2021'
+        return 'October 2021'
 
     def env_var(self, name, default_value=''):
         try:

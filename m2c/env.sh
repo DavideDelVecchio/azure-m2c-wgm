@@ -16,6 +16,8 @@ else
     #echo "we're on a mac"
     export M2C_APP_DIR=$M2C_REF_APP_DIR  # <-- M2C_REF_APP_DIR already present on workstation
 fi
+
+export M2C_APP_ARTIFACTS="--simple"
 export M2C_APP_ARTIFACTS_DIR=$M2C_APP_DIR"/artifacts"
 export M2C_APP_DATA_DIR=$M2C_APP_DIR"/data"
 

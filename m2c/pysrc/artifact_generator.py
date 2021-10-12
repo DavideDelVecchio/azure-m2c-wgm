@@ -1,7 +1,7 @@
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
-__version__ = "July 2021"
+__version__ = "October 2021"
 
 import json
 import os
@@ -35,6 +35,7 @@ class ArtifactGenerator(object):
         self.manifest = None
         self.shell_type          = self.config.shell_type
         self.ssl                 = self.config.ssl
+        self.artifact_types      = self.config.artifact_types
         self.artifacts_dir       = self.config.artifacts_dir
         self.shell_artifacts_dir = self.config.shell_artifacts_dir()
         self.mongo_artifacts_dir = self.config.mongo_artifacts_dir()
@@ -119,12 +120,27 @@ class ArtifactGenerator(object):
             self.gen_target_cosmos_mongo_indexes() 
 
     def gen_artifact(self, name):
-        for arg in sys.argv:
-            if arg == '--all':
-                return True
-            elif arg == name:
-                return True 
-        return False 
+        if self.artifact_types == '--all':
+            return True
+        if name == self.artifact_types:
+            return True
+
+        if self.artifact_types == '--simple':
+            if 'omniscript' in name:
+                return False
+            if '--adf' in name:
+                return False
+            return True
+
+        return False
+
+    # def gen_artifact(self, name):
+    #     for arg in sys.argv:
+    #         if arg == '--all':
+    #             return True
+    #         elif arg == name:
+    #             return True 
+    #     return False 
 
     def gen_mongoexports(self):
         template_name = 'mongoexport_script.txt'
