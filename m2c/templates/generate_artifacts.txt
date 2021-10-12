@@ -38,9 +38,6 @@ cp requirements.txt templates
 echo 'copying dotnet_mongo_loader files ...'
 cp dotnet_mongo_loader/*.* $M2C_APP_ARTIFACTS_DIR/shell/dotnet_mongo_loader
 
-# echo 'listing templates ...'
-# ls -al templates
-
 echo 'generating artifacts ...'
 {% for d in databases %}
 python main.py generate_artifacts {{ d }}
@@ -57,3 +54,4 @@ cp env.sh $M2C_APP_ARTIFACTS_DIR/shell
 chmod 744 $M2C_APP_ARTIFACTS_DIR/shell/*.sh 
 
 echo 'done'
+
