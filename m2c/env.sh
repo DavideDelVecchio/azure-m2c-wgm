@@ -18,6 +18,11 @@ else
 fi
 
 export M2C_APP_ARTIFACTS="--simple"
+# options:
+# --all
+# --simple-wrangle
+# --simple-nowrangle
+
 export M2C_APP_ARTIFACTS_DIR=$M2C_APP_DIR"/artifacts"
 export M2C_APP_DATA_DIR=$M2C_APP_DIR"/data"
 

@@ -120,12 +120,13 @@ class ArtifactGenerator(object):
             self.gen_target_cosmos_mongo_indexes() 
 
     def gen_artifact(self, name):
-        if self.artifact_types == '--all':
+        if '--all' in self.artifact_types:
             return True
+            
         if name == self.artifact_types:
             return True
 
-        if self.artifact_types == '--simple':
+        if '--simple' in self.artifact_types:
             if 'omniscript' in name:
                 return False
             if '--adf' in name:
