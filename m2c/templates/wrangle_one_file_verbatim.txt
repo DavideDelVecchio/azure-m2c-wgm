@@ -1,44 +1,16 @@
 #!/bin/bash
 
-# Bash shell script to wrangle/transform a raw mongoexport file.
+# Bash shell script to import a verbatim mongoexport file to CosmosDB.
 #
 # Database Name: {{ dbname }}
 # Generated on:  {{ gen_timestamp }}
-# Template:      wrangle_one.txt
+# Template:      wrangle_one_file_verbatim.txt
 
 source ./env.sh
-
-mkdir -p tmp/{{ dbname }}/out
-mkdir -p out/{{ dbname }}
-
-# This script does the following:
-# 1) Downloads blob {{ blob_name }} from container {{ dbname }}-raw
-#    to local file {{ local_file_path }}
-# 2) Wrangle/transform the downloaded blob, producing local file 
-#    {{ wrangled_outfile }}
-# 3) Uploads the wrangled file to storage container {{ dbname }}-adf
-# 4) Optionally loads the target CosmosDB using the mongoimport program
-# 5) Optionally loads the target CosmosDB using a custom DotNet program
-# 6) Delete the downloaded and wrangled file, as the host VM may have limited storage
-#
-# Note: this script is executed by script {{ dbname }}_wrangle_all.sh
-
-python wrangle.py transform_blob \
-    --db {{ dbname }} \
-    --source-coll  {{ source_coll }} \
-    --in-container {{ raw_storage_container }} \
-    --blobname {{ blob_name }} \
-    --filename {{ local_file_path }} \
-    --outfile  {{ wrangled_outfile }} \
-    --out-container {{ adf_storage_container }} $1 $2 $3 
 
 echo ''
 echo 'first line of input file:'
 head -1 {{ local_file_path }}
-
-echo ''
-echo 'first line of output file:'
-head -1 {{ wrangled_outfile }}
 
 if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];
 then
