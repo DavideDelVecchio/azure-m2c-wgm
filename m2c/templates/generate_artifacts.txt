@@ -43,7 +43,7 @@ cp dotnet_mongo_loader/*.* $M2C_APP_ARTIFACTS_DIR/shell/dotnet_mongo_loader
 
 echo 'generating artifacts ...'
 {% for d in databases %}
-python main.py generate_artifacts {{ d }} --all
+python main.py generate_artifacts {{ d }}
 {% endfor %}
 
 # Not needed for customer migrations
