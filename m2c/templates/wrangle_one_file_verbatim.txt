@@ -10,7 +10,7 @@ source ./env.sh
 
 echo ''
 echo 'first line of input file:'
-head -1 {{ local_file_path }}
+head -1 {{ infile }}
 
 if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];
 then
@@ -21,7 +21,7 @@ then
         --uri $M2C_COSMOS_MONGO_CONN_STRING \
         --db {{ target_db }} \
         --collection {{ target_coll }} \
-        --file {{ wrangled_outfile }} \
+        --file {{ infile }} \
         --numInsertionWorkers $M2C_MONGOIMPORT_NWORKERS \
         --batchSize $M2C_MONGOIMPORT_BATCH_SIZE \
         --mode $M2C_MONGOIMPORT_MODE \
@@ -48,9 +48,8 @@ fi
 if [[ $M2C_WRANGLING_CLEANUP == "cleanup" ]];
 then
     echo ''
-    echo 'deleting the downloaded and wrangled files to save disk space...'
-    rm {{ local_file_path }}
-    rm {{ wrangled_outfile }}
+    echo 'deleting the mongoexport file to save disk space...'
+    rm {{ infile }}
 fi
 
 echo 'done'

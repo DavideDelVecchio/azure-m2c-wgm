@@ -260,6 +260,7 @@ class ArtifactGenerator(object):
 
         items = manifest.items_for_source_db(self.dbname)
         for item in items:
+            #print(item)
             template_data = dict()
             collection_data = list()
             template_data['dbname'] = self.dbname
@@ -277,7 +278,18 @@ class ArtifactGenerator(object):
             template_data['adf_storage_container'] = item['adf_storage_container']
             template_data['source_coll'] = item['source_coll']
             template_data['blob_name'] = blob_name
+
+            # TODO - should be:
+            # --filename tmp/openflights/openflights__planes.json \
+            #local_file = self.config.mongoexport_file(self.dbname, item['source_coll'])
             template_data['local_file_path'] = item['local_file_path']
+
+            template_data['wrangled_outfile'] = item['wrangled_outfile']
+
+            infile = '{}/{}__{}.json'.format(
+                self.mongoexports_dir, self.dbname, item['source_coll'])
+            template_data['infile'] = infile
+
             template_data['wrangled_outfile'] = item['wrangled_outfile']
 
             template_data['target_db'] = item['target_db']

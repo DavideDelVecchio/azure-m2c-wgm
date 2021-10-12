@@ -15,12 +15,12 @@ mkdir -p out/{{ dbname }}
 python wrangle.py transform_file \
     --db {{ dbname }} \
     --source-coll  {{ source_coll }} \
-    --infile   {{ local_file_path }} \
+    --infile   {{ infile }} \
     --outfile  {{ wrangled_outfile }}
 
 echo ''
 echo 'first line of input file:'
-head -1 {{ local_file_path }}
+head -1 {{ infile }}
 
 echo ''
 echo 'first line of output file:'
@@ -62,9 +62,8 @@ fi
 if [[ $M2C_WRANGLING_CLEANUP == "cleanup" ]];
 then
     echo ''
-    echo 'deleting the downloaded and wrangled files to save disk space...'
-    rm {{ local_file_path }}
-    rm {{ wrangled_outfile }}
+    echo 'deleting the mongoexport file to save disk space...'
+    rm {{ infile }}
 fi
 
 echo 'done'

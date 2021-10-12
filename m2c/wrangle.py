@@ -9,7 +9,7 @@ Usage:
 __author__  = 'Chris Joakim'
 __email__   = "chjoakim@microsoft.com,christopher.joakim@gmail.com"
 __license__ = "MIT"
-__version__ = "July 2021"
+__version__ = "October 2021"
 
 import json
 import os
@@ -49,6 +49,7 @@ class Transformer(object):
         self.in_container  = self.cli_arg('--in-container')
         self.blobname      = self.cli_arg('--blobname')
         self.filename      = self.cli_arg('--filename')
+        self.infile        = self.cli_arg('--infile')
         self.outfile       = self.cli_arg('--outfile')
         self.out_container = self.cli_arg('--out-container')
 
@@ -58,6 +59,7 @@ class Transformer(object):
         print('  in_container:  {}'.format(self.in_container))
         print('  blobname:      {}'.format(self.blobname))
         print('  filename:      {}'.format(self.filename))
+        print('  infile:        {}'.format(self.infile))
         print('  outfile:       {}'.format(self.outfile))
         print('  out_container: {}'.format(self.out_container))
 
@@ -65,6 +67,17 @@ class Transformer(object):
         print('mappings:')
         print(json.dumps(self.mappings, indent=2, sort_keys=False))
 
+        # Configure wrangling logic
+        self.doc_wrangler = StandardDocumentWrangler(self.mappings)
+        self.wrangling_algorithm = self.mappings['mapping']['wrangling_algorithm'].strip().lower()
+        print('wrangling_algorithm: {}'.format(self.wrangling_algorithm))
+        self.pk_name = self.mappings['mapping']['pk_name'].strip().lower()
+        self.pk_logic = self.mappings['mapping']['pk_logic']
+        self.do_pk_wrangling = len(self.pk_name) > 0
+        self.excludes = self.mappings['mapping']['excludes']
+        self.do_excludes = len(self.excludes) > 0
+
+    def transform_blob(self):
         # Fail fast if invalid inputs:
         if self.dbname == None:
             raise Exception("Error: no --db specified")
@@ -83,19 +96,8 @@ class Transformer(object):
         if self.mappings == None:
             raise Exception("Error: mappings")
 
-        # Configure wrangling logic
-        self.doc_wrangler = StandardDocumentWrangler(self.mappings)
-        self.wrangling_algorithm = self.mappings['mapping']['wrangling_algorithm'].strip().lower()
-        print('wrangling_algorithm: {}'.format(self.wrangling_algorithm))
-        self.pk_name = self.mappings['mapping']['pk_name'].strip().lower()
-        self.pk_logic = self.mappings['mapping']['pk_logic']
-        self.do_pk_wrangling = len(self.pk_name) > 0
-        self.excludes = self.mappings['mapping']['excludes']
-        self.do_excludes = len(self.excludes) > 0
-
-    def transform_blob(self):
         self.download_blob()
-        self.transform_file()
+        self.transform_downloaded_blob()
         self.upload_transformed_blob()
         self.elapsed_time = time.time() - self.start_time
         self.status = 'completed'
@@ -109,9 +111,9 @@ class Transformer(object):
         elapsed = time.time() - start
         print('downloaded {} in {}ms'.format(self.filename, elapsed))
 
-    def transform_file(self):
+    def transform_downloaded_blob(self):
         start, line_count = time.time(), 0
-        it = text_file_iterator(self.filename)  # use and iterator to handle huge files
+        it = text_file_iterator(self.filename)  # use an iterator to handle huge files
 
         with open(self.outfile, 'wt') as out:
             for i, line in enumerate(it):
@@ -126,6 +128,37 @@ class Transformer(object):
 
         elapsed = time.time() - start
         print('transformed {} lines in {}'.format(line_count, elapsed))
+
+    def transform_file(self):
+        # Fail fast if invalid inputs:
+        if self.dbname == None:
+            raise Exception("Error: no --db specified")
+        if self.source_coll == None:
+            raise Exception("Error: no --source-coll specified")
+        if self.infile == None:
+            raise Exception("Error: no --infile specified")
+        if self.outfile == None:
+            raise Exception("Error: no --outfile specified")
+        if self.mappings == None:
+            raise Exception("Error: mappings")
+
+        start, line_count = time.time(), 0
+        it = text_file_iterator(self.infile)  # use an iterator to handle huge files
+
+        with open(self.outfile, 'wt') as out:
+            for i, line in enumerate(it):
+                line_count = line_count + 1
+                if self.verbose:
+                    print(line)
+                doc = json.loads(line)
+                self.doc_wrangler.wrangle(doc)
+                out.write(json.dumps(doc, separators=(',', ':')))
+                out.write("\n")
+                self.lines_processed = self.lines_processed + 1
+
+        self.elapsed_time = time.time() - self.start_time
+        self.status = 'completed'
+        print('transformed {} lines in {}'.format(line_count, self.elapsed_time))
 
     def upload_transformed_blob(self):
         bname = os.path.basename(self.outfile)
@@ -224,6 +257,14 @@ if __name__ == "__main__":
             try:
                 t = Transformer(args)
                 t.transform_blob()
+                t.print_summary()
+            except:
+                print("ERROR: TRANSFORMATION_FAILED for args {}".format(args))
+                traceback.print_exc(file=sys.stdout)
+        elif func == 'transform_file':
+            try:
+                t = Transformer(args)
+                t.transform_file()
                 t.print_summary()
             except:
                 print("ERROR: TRANSFORMATION_FAILED for args {}".format(args))
