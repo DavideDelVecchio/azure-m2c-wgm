@@ -12,6 +12,7 @@
 **/.settings/
 **/.vs/
 
+**/app/
 **/bin/
 **/obj/
 **/out/

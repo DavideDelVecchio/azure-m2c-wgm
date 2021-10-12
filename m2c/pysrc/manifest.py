@@ -21,10 +21,15 @@ class Manifest(object):
 
     def __init__(self):
         self.config = Config()
-        infile = self.config.manifest_json_file()
-        data   = self.load_json_file(infile)
-        self.items = data['items']
-        self.pipelines = data['pipeline_info']
+        try:
+            infile = self.config.manifest_json_file()
+            data   = self.load_json_file(infile)
+            self.items = data['items']
+            self.pipelines = data['pipeline_info']
+        except:
+            print('WARNING - NO MANIFEST JSON FILE')
+            self.items = list()
+            self.pipelines = list()
 
     def source_database_names(self):
         uniques = dict()
