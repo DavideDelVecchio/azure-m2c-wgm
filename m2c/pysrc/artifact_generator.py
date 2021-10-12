@@ -131,6 +131,9 @@ class ArtifactGenerator(object):
                 return False
             if '--adf' in name:
                 return False
+            if 'noblob' in self.artifact_types:
+                if 'upload' in name:
+                    return False
             return True
 
         return False
@@ -246,7 +249,14 @@ class ArtifactGenerator(object):
     def gen_wrangle_scripts_individual(self):
         manifest = self.get_manifest()
         mongoexports_dir = self.config.mongoexports_dir(self.dbname)
-        template_name = 'wrangle_one.txt'
+
+        # Use one of three jinja2 templates
+        template_name = 'wrangle_one_blob.txt'
+        if 'noblob' in self.artifact_types:
+            if 'verbatim' in self.artifact_types:
+                template_name = 'wrangle_one_file_verbatim.txt'
+            else:
+                template_name = 'wrangle_one_file.txt'
 
         items = manifest.items_for_source_db(self.dbname)
         for item in items:
