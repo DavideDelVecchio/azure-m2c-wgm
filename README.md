@@ -10,4 +10,4 @@
 
 [Read the Documentation](docs/README.md)
 
-[Reference Application](https://github.com/cjoakim/azure-m2c-wgm-reference-app)
+[See the Reference Application](https://github.com/cjoakim/azure-m2c-wgm-reference-app)
