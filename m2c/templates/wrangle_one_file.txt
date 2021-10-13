@@ -19,11 +19,11 @@ python wrangle.py transform_file \
     --outfile  {{ wrangled_outfile }}
 
 echo ''
-echo 'first line of input file:'
+echo 'first line of input file: {{ infile }}'
 head -1 {{ infile }}
 
 echo ''
-echo 'first line of output file:'
+echo 'first line of output file: {{ wrangled_outfile }}'
 head -1 {{ wrangled_outfile }}
 
 if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];

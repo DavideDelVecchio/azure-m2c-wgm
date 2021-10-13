@@ -17,7 +17,7 @@ else
     export M2C_APP_DIR=$M2C_REF_APP_DIR  # <-- M2C_REF_APP_DIR already present on workstation
 fi
 
-export M2C_APP_ARTIFACTS="--simple-noblob-verbatim"
+export M2C_APP_ARTIFACTS="--simple-noblob"
 # options:
 # --all
 # --simple-noblob

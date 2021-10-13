@@ -9,7 +9,7 @@
 source ./env.sh
 
 echo ''
-echo 'first line of input file:'
+echo 'first line of input file: {{ infile }}'
 head -1 {{ infile }}
 
 if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];
@@ -37,7 +37,7 @@ then
     echo 'executing dotnet_mongo_loader to db: {{ target_db }} coll: {{ target_coll }} ...' 
 
     dotnet run --project dotnet_mongo_loader/dotnet_mongo_loader.csproj \
-        {{ target_db }} {{ target_coll }} {{ wrangled_outfile }} \
+        {{ target_db }} {{ target_coll }} {{ infile }} \
         $M2C_DOTNETMONGOLOADER_TARGET $M2C_DOTNETMONGOLOADER_LOAD_IND \
         $M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY \
         --tracerInterval $M2C_DOTNETMONGOLOADER_TRACER_INTERVAL \

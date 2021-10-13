@@ -22,11 +22,11 @@ python wrangle.py transform_blob \
     --out-container {{ adf_storage_container }} $1 $2 $3 
 
 echo ''
-echo 'first line of input file:'
+echo 'first line of input file: {{ local_file_path }}'
 head -1 {{ local_file_path }}
 
 echo ''
-echo 'first line of output file:'
+echo 'first line of output file: {{ wrangled_outfile }}'
 head -1 {{ wrangled_outfile }}
 
 if [[ $M2C_COSMOS_LOAD_METHOD == "mongoimport" ]];

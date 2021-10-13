@@ -17,7 +17,7 @@ else
     export M2C_APP_DIR=$M2C_REF_APP_DIR  # <-- M2C_REF_APP_DIR already present on workstation
 fi
 
-export M2C_APP_ARTIFACTS="--simple-noblob-verbatim"
+export M2C_APP_ARTIFACTS="--simple-noblob"
 # options:
 # --all
 # --simple-noblob
@@ -68,7 +68,7 @@ export M2C_COSMOS_MONGODB_PASS=$AZURE_M2C_COSMOS_MONGO_PASS
 export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
 
 # How we populate CosmosDB/Mongo; either adf or mongoimport or dotnet_mongo_loader
-export M2C_COSMOS_LOAD_METHOD="mongoimport"
+export M2C_COSMOS_LOAD_METHOD="dotnet_mongo_loader"
 
 # mongoimport parameters
 export M2C_MONGOIMPORT_NWORKERS="1"

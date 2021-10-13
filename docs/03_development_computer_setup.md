@@ -131,14 +131,30 @@ the other scripts in this repo so as to **export** environment variables to thos
 
 # This script defines environment variables used in this migration process;
 # it is 'sourced' by other scripts in this repo.
-# Chris Joakim, Microsoft, June 2021
+# Chris Joakim, Microsoft, October 2021
 
 # These next three directory locations currently point to where the 
 # generated artifacts and data are written to; they should be external
 # to this GitHub repo.
-export M2C_APP_DIR=$M2C_REF_APP_DIR
-export M2C_APP_ARTIFACTS_DIR=$M2C_REF_APP_DIR"/artifacts"
-export M2C_APP_DATA_DIR=$M2C_REF_APP_DIR"/data"
+
+if [[ $HOME == "/home/cjoakim" ]];
+then
+    #echo "we're on a linux vm"
+    export M2C_APP_DIR="/home/cjoakim/azure-m2c-wgm-reference-app/reference_app"
+else
+    #echo "we're on a mac"
+    export M2C_APP_DIR=$M2C_REF_APP_DIR  # <-- M2C_REF_APP_DIR already present on workstation
+fi
+
+export M2C_APP_ARTIFACTS="--simple-noblob"
+# options:
+# --all
+# --simple-noblob
+# --simple-verbatim
+# --simple-noblob-verbatim
+
+export M2C_APP_ARTIFACTS_DIR=$M2C_APP_DIR"/artifacts"
+export M2C_APP_DATA_DIR=$M2C_APP_DIR"/data"
 
 # The generated script type; Windows PowerShell will be added in the future.
 export M2C_SHELL_TYPE="bash"
@@ -177,7 +193,33 @@ export M2C_ADF_NAME=$AZURE_M2C_ADF_NAME
 # Target CosmosDB/Mongo account
 export M2C_COSMOS_MONGODB_ACCT=$AZURE_M2C_COSMOS_MONGO_USER
 export M2C_COSMOS_MONGODB_USER=$AZURE_M2C_COSMOS_MONGO_USER
+export M2C_COSMOS_MONGODB_PASS=$AZURE_M2C_COSMOS_MONGO_PASS
 export M2C_COSMOS_MONGO_CONN_STRING=$AZURE_M2C_COSMOS_MONGO_CONN_STRING
+
+# How we populate CosmosDB/Mongo; either adf or mongoimport or dotnet_mongo_loader
+export M2C_COSMOS_LOAD_METHOD="mongoimport"
+
+# mongoimport parameters
+export M2C_MONGOIMPORT_NWORKERS="1"
+export M2C_MONGOIMPORT_BATCH_SIZE="24"
+export M2C_MONGOIMPORT_MODE="upsert"  # [insert|upsert|merge|delete]
+
+# dotnet_mongo_loader parameters
+export M2C_DOTNETMONGOLOADER_TARGET="--targetCosmos" # --targetLocal or --targetCosmos
+export M2C_DOTNETMONGOLOADER_DOCUMENT_ID_POLICY="--createNewDocIds" # or --retainIds 
+export M2C_DOTNETMONGOLOADER_TRACER_INTERVAL="1000"  # log on every 1000 lines
+export M2C_DOTNETMONGOLOADER_ROW_MAX_RETRIES="10"    # number of times to try each line
+export M2C_DOTNETMONGOLOADER_VERBOSE="--quiet"       # --verbose or --quiet
+export M2C_DOTNETMONGOLOADER_LOAD_IND="--load"       # --load or --noload
+
+# wrangling process cleanup
+export M2C_WRANGLING_CLEANUP="keep"                  # cleanup or keep
+
+# DB migration omniscript configuration
+export M2C_OMNISCRIPT_DO_MONGOEXPORTS="yes"              # yes or no
+export M2C_OMNISCRIPT_DO_MONGOEXPORT_UPLOADS="yes"       # yes or no
+export M2C_OMNISCRIPT_MONGOEXPORT_UPLOAD_METHOD="python" # python or azcli
+export M2C_OMNISCRIPT_DO_WRANGLE="yes"                   # yes or no
 ```
 
 All of the environment variables used by this project begin with **M2C_**, and it
