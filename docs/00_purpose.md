@@ -9,15 +9,26 @@ and **particularly if the migration isn't a simple copy from point A to point B*
 The project provides both an architecture, and working implementation, of the process.
 The process is flexible to allow customization on a case-by-case basis.
 
-Migration aspects that are not addressed by this project include:
+### Migration Strategies Supported
+
+1) mongoexport, wrangling/transformation, Azure Blob Storage, load CosmosDB with Azure Data Factory
+1) mongoexport, wrangling/transformation, Azure Blob Storage, load CosmosDB with mongoimport
+3) mongoexport, wrangling/transformation, Azure Blob Storage, load CosmosDB with DotNet Client program
+4) mongoexport, wrangling/transformation, load CosmosDB with mongoimport
+5) mongoexport, wrangling/transformation, load CosmosDB with DotNet Client program
+6) mongoexport, no transformation, load CosmosDB with mongoimport
+7) mongoexport, no transformation, load CosmosDB with DotNet Client program
+
+### Migration aspects that are Not Addressed by this Project
+
 - Application Code Modification
 - CosmosDB/Mongo API Database Design - databases, containers, partition keys, RU settings, etc
 - CosmosDB/Mongo API Indexing - this depends on your specific application and query patterns
 
 **The Microsoft team will work with you to address these aspects of each migration.**
 
-In the following pages, pages 01 through 15 describe the migration process and its
-setup.  Only in step 16 do you actually execute the migration.
+In the following pages, pages 01 through 16 describe the migration process and its
+setup.  Only in step 18 do you actually execute the migration.
 
 The current focus of this project is on migrating MongoDB databases to the 
 **CosmosDB/Mongo API**, but the process can easily be modified to target the
