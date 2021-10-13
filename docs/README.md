@@ -24,7 +24,9 @@
 
 ---
 
-## Quick Reference 
+## Summary of Actions and Scripts to Execute
+
+This section summarizes the aboe content pages.
 
 - Development Computer Setup, see [03 - Development Computer Setup](03_development_computer_setup.md)
 - Copy/clone/fork this repo to your private source control system
@@ -38,6 +40,7 @@
   - Optionally reimplement **standard_mapping_generator.py** (generates the mapping files for you)
   - Then execute **generate_mapping_files.sh**
 - Optionally manually edit the generated mapping files, see [08 - Edit the Mapping Files](08_edit_the_mapping_files.md)
+- Execute **generate_manifest.sh**, see [09 - Generate the Manifest](09_generate_the_manifest.md)
 - Execute **generate_artifacts.sh**, see [10 - Generate Artifacts](10_generate_artifacts.md)
   - there are several migration strategies:
     - mongoexport + wrangle + Azure Data Factory
@@ -59,4 +62,17 @@
   - mongoexport + wrangle + Azure Data Factory
   - mongoexport + wrangle + mongoimport
   - mongoexport + wrangle + DotNet Loader
-  - In all cases, use the generated scripts/artifacts
+  - In all cases, use the generated scripts/
+  - The sequence of scripts/processes to execute depends on the migration strategy, in general:
+    - create CosmosDB databases and containers, **ddd_cosmos_db_containers_az_cli.sh**
+    - create CosmosDB indexes for the containers, **mongo_indexes_ddd_db.sh**
+    - import the generated adf/ linked service, dataset, and pipeline json files into Azure Data Factory.  Manually configure these in ADF.
+    - execute mongoexports, **ddd_mongoexports.sh** scripts
+    - execute blob uploads, **ddd_az_cli_mongoexport_uploads.sh** or **ddd_python_mongoexport_uploads.sh**
+    - execute wrangling/transformation/upload scripts:
+      - **wrangle_ddd_all.sh** (all containers for the database)
+      - **wrangle_ddd_ccc.sh** (individual containers for the database)
+      - these wrangle scripts will also upload to CosmosDB per M2C_COSMOS_LOAD_METHOD environment variable
+    - Execute the ADF pipelines
+    - in the above examples, ddd is a database name and ccc is a container name
+
