@@ -7,7 +7,7 @@ A Developer laptop can be used to execute much of the migration process, includi
 - Azure Data Factory - use in Azure Portal, and ADF Pipeline execution
 
 However, a **Azure VMs** are recommended for most of the actual migration execution;
-see [16 - Execute Migration](16_execute_migration.md).
+see [18 - Execute Migration](18_execute_migration.md).
 
 ## Software Requirements
 
