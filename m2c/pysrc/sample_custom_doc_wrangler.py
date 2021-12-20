@@ -122,7 +122,7 @@ class SampleCustomDocumentWrangler(object):
                 dt = datetime.datetime.fromtimestamp(timestamp / 1000.0)
                 doc['timestamp_year'] = dt.year
             except:
-                pass
+                doc['timestamp_year'] = -1
 
     def wrangle_pk(self, doc):
         values = list()
