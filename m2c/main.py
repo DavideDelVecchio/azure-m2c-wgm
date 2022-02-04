@@ -16,6 +16,7 @@ __email__   = "chjoakim@microsoft.com"
 __license__ = "MIT"
 __version__ = "July 2021"
 
+import datetime
 import json
 import os
 import pprint
@@ -134,8 +135,12 @@ def load_json_file(infile):
     with open(infile) as json_file:
         return json.load(json_file)
 
+def datetimeconverter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
+        
 def write_obj_as_json_file(outfile, obj, sort_keys=False):
-    txt = json.dumps(obj, sort_keys=False, indent=2)
+    txt = json.dumps(obj, sort_keys=False, indent=2, default=datetimeconverter)
     with open(outfile, 'wt') as f:
         f.write(txt)
     print("file written: " + outfile)
